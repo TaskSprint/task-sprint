@@ -3,16 +3,20 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import {Head, Link, useForm} from '@inertiajs/react';
+import {FormEventHandler} from 'react';
+import {useRouter} from "@/hooks/useRouter";
+import {useLaravelReactI18n} from "laravel-react-i18n";
 
 export default function Register() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const {route} = useRouter();
+    const {data, setData, post, processing, errors, reset} = useForm({
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
     });
+    const {t} = useLaravelReactI18n();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -24,11 +28,11 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title={t('auth.register.title')}/>
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value={t('auth.register.name')}/>
 
                     <TextInput
                         id="name"
@@ -41,11 +45,11 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.name} className="mt-2" />
+                    <InputError message={errors.name} className="mt-2"/>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value={t('auth.register.email')}/>
 
                     <TextInput
                         id="email"
@@ -58,11 +62,11 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.email} className="mt-2"/>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value={t('auth.register.password')}/>
 
                     <TextInput
                         id="password"
@@ -75,13 +79,13 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
+                    <InputError message={errors.password} className="mt-2"/>
                 </div>
 
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value={t('auth.register.confirm_password')}
                     />
 
                     <TextInput
@@ -108,11 +112,11 @@ export default function Register() {
                         href={route('login')}
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                     >
-                        Already registered?
+                        {t('auth.register.already_registered')}
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
+                        {t('auth.register.button')}
                     </PrimaryButton>
                 </div>
             </form>

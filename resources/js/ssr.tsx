@@ -1,9 +1,11 @@
-import { createInertiaApp } from '@inertiajs/react';
+import {createInertiaApp} from '@inertiajs/react';
 import createServer from '@inertiajs/react/server';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import ReactDOMServer from 'react-dom/server';
-import { RouteName } from 'ziggy-js';
-import { route } from '../../vendor/tightenco/ziggy';
+import {RouteName} from 'ziggy-js';
+import {route} from '../../vendor/tightenco/ziggy';
+import {LaravelReactI18nProvider} from "laravel-react-i18n";
+import {HeroUIProvider} from "@heroui/react";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -17,7 +19,7 @@ createServer((page) =>
                 `./Pages/${name}.tsx`,
                 import.meta.glob('./Pages/**/*.tsx'),
             ),
-        setup: ({ App, props }) => {
+        setup: ({App, props}) => {
             /* eslint-disable */
             // @ts-expect-error
             global.route<RouteName> = (name, params, absolute) =>
@@ -27,7 +29,14 @@ createServer((page) =>
                 });
             /* eslint-enable */
 
-            return <App {...props} />;
+            return <LaravelReactI18nProvider
+                fallbackLocale={'en'}
+                files={import.meta.glob('/lang/*.json', {eager: true})}
+            >
+                <HeroUIProvider>
+                    <App {...props} />
+                </HeroUIProvider>
+            </LaravelReactI18nProvider>;
         },
     }),
 );
