@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->jsonb('name');
-            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

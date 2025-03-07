@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->foreignIdFor(Task::class);
             $table->enum('status', array_column(TaskOrderStatus::cases(), 'value'))
                 ->default(TaskOrderStatus::Pending->value);
-            $table->foreignIdFor(User::class, 'employee_id');
+            $table->foreignIdFor(User::class, 'employee_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
 
             $table->primary(new Task()->getForeignKey());

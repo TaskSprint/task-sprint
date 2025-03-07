@@ -19,8 +19,8 @@ return new class extends Migration {
             $table->date('estimated_date');
             $table->enum('status', array_column(TaskStatus::cases(), 'value'))
                 ->default(TaskStatus::Pending->value);
-            $table->foreignIdFor(User::class, 'customer_id');
-            $table->foreignIdFor(Currency::class, 'currency_code');
+            $table->foreignIdFor(User::class, 'customer_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Currency::class, 'currency_code')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
