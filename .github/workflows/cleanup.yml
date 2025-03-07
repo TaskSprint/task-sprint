@@ -1,4 +1,4 @@
-name: Pull Request Actions
+name: Cleanup Actions
 
 on:
   pull_request:
@@ -51,6 +51,6 @@ jobs:
         if: ${{ steps.prettify.outcome == 'success' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🖌️ Auto prettify"
+          commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
