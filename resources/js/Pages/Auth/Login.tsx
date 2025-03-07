@@ -4,23 +4,22 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import {Head, Link, useForm} from '@inertiajs/react';
-import {FormEventHandler} from 'react';
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-export default function Login(
-    {
-        status,
-        canResetPassword,
-    }: {
-        status?: string;
-        canResetPassword: boolean;
-    }) {
-    const {route} = useRouter();
-    const {t} = useLaravelReactI18n();
+export default function Login({
+    status,
+    canResetPassword,
+}: {
+    status?: string;
+    canResetPassword: boolean;
+}) {
+    const { route } = useRouter();
+    const { t } = useLaravelReactI18n();
 
-    const {data, setData, post, processing, errors, reset} = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
         remember: false as boolean,
@@ -36,17 +35,13 @@ export default function Login(
 
     return (
         <GuestLayout>
-            <Head title={t('auth.login.title')}/>
+            <Head title={t('auth.login.title')} />
 
-            {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
+            {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value={t('auth.login.email')}/>
+                    <InputLabel htmlFor="email" value={t('auth.login.email')} />
 
                     <TextInput
                         id="email"
@@ -59,11 +54,11 @@ export default function Login(
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
-                    <InputError message={errors.email} className="mt-2"/>
+                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value={t('auth.login.password')}/>
+                    <InputLabel htmlFor="password" value={t('auth.login.password')} />
 
                     <TextInput
                         id="password"
@@ -75,7 +70,7 @@ export default function Login(
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
-                    <InputError message={errors.password} className="mt-2"/>
+                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4 block">
@@ -84,10 +79,7 @@ export default function Login(
                             name="remember"
                             checked={data.remember}
                             onChange={(e) =>
-                                setData(
-                                    'remember',
-                                    (e.target.checked || false) as false,
-                                )
+                                setData('remember', (e.target.checked || false) as false)
                             }
                         />
                         <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">

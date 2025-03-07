@@ -3,17 +3,17 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import {Head, useForm} from '@inertiajs/react';
-import {FormEventHandler} from 'react';
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Head, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function ConfirmPassword() {
-    const {route} = useRouter();
-    const {data, setData, post, processing, errors, reset} = useForm({
+    const { route } = useRouter();
+    const { data, setData, post, processing, errors, reset } = useForm({
         password: '',
     });
-    const {t} = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ export default function ConfirmPassword() {
 
     return (
         <GuestLayout>
-            <Head title={t('auth.confirm-password.title')}/>
+            <Head title={t('auth.confirm-password.title')} />
 
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
                 {t('auth.confirm-password.content')}
@@ -33,7 +33,7 @@ export default function ConfirmPassword() {
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value={t('auth.confirm-password.password')}/>
+                    <InputLabel htmlFor="password" value={t('auth.confirm-password.password')} />
 
                     <TextInput
                         id="password"
@@ -45,7 +45,7 @@ export default function ConfirmPassword() {
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
-                    <InputError message={errors.password} className="mt-2"/>
+                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">

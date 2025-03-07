@@ -3,20 +3,20 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import {Head, Link, useForm} from '@inertiajs/react';
-import {FormEventHandler} from 'react';
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function Register() {
-    const {route} = useRouter();
-    const {data, setData, post, processing, errors, reset} = useForm({
+    const { route } = useRouter();
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
     });
-    const {t} = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -28,11 +28,11 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title={t('auth.register.title')}/>
+            <Head title={t('auth.register.title')} />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value={t('auth.register.name')}/>
+                    <InputLabel htmlFor="name" value={t('auth.register.name')} />
 
                     <TextInput
                         id="name"
@@ -45,11 +45,11 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.name} className="mt-2"/>
+                    <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value={t('auth.register.email')}/>
+                    <InputLabel htmlFor="email" value={t('auth.register.email')} />
 
                     <TextInput
                         id="email"
@@ -62,11 +62,11 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.email} className="mt-2"/>
+                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value={t('auth.register.password')}/>
+                    <InputLabel htmlFor="password" value={t('auth.register.password')} />
 
                     <TextInput
                         id="password"
@@ -79,7 +79,7 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.password} className="mt-2"/>
+                    <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -95,16 +95,11 @@ export default function Register() {
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                     />
 
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
