@@ -4,21 +4,16 @@ import InputLabel from '@/Components/InputLabel';
 import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
-import {useForm} from '@inertiajs/react';
-import {FormEventHandler, useRef, useState} from 'react';
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { useForm } from '@inertiajs/react';
+import { FormEventHandler, useRef, useState } from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-export default function DeleteUserForm(
-    {
-        className = '',
-    }: {
-        className?: string;
-    }) {
-    const {route} = useRouter();
+export default function DeleteUserForm({ className = '' }: { className?: string }) {
+    const { route } = useRouter();
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef<HTMLInputElement>(null);
-    const {t} = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
     const {
         data,
@@ -66,9 +61,7 @@ export default function DeleteUserForm(
                 </p>
             </header>
 
-            <DangerButton onClick={confirmUserDeletion}>
-                {t('profile.delete.button')}
-            </DangerButton>
+            <DangerButton onClick={confirmUserDeletion}>{t('profile.delete.button')}</DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
@@ -93,18 +86,13 @@ export default function DeleteUserForm(
                             name="password"
                             ref={passwordInput}
                             value={data.password}
-                            onChange={(e) =>
-                                setData('password', e.target.value)
-                            }
+                            onChange={(e) => setData('password', e.target.value)}
                             className="mt-1 block w-3/4"
                             isFocused
                             placeholder={t('profile.delete.confirmation.password')}
                         />
 
-                        <InputError
-                            message={errors.password}
-                            className="mt-2"
-                        />
+                        <InputError message={errors.password} className="mt-2" />
                     </div>
 
                     <div className="mt-6 flex justify-end">

@@ -1,12 +1,17 @@
-import {Config, ParameterValue, RouteParams} from "ziggy-js";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Config, ParameterValue, RouteParams } from 'ziggy-js';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export function useRouter() {
-    const {currentLocale} = useLaravelReactI18n();
+    const { currentLocale } = useLaravelReactI18n();
     const router = route();
 
     return {
-        route: (name: string, params?: RouteParams<string> | undefined, absolute?: boolean, config?: Config) => {
+        route: (
+            name: string,
+            params?: RouteParams<string> | undefined,
+            absolute?: boolean,
+            config?: Config,
+        ) => {
             const localizedName = `${currentLocale()}.${name}`;
             if (router.has(localizedName)) {
                 return route(localizedName, params, absolute, config);
@@ -25,6 +30,6 @@ export function useRouter() {
         has(name: string) {
             const localizedName = `${currentLocale()}.${name}`;
             return router.has(localizedName) || router.has(name);
-        }
-    }
+        },
+    };
 }

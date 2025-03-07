@@ -2,52 +2,44 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import {Link, usePage} from '@inertiajs/react';
-import {PropsWithChildren, ReactNode, useState} from 'react';
-import {useLaravelReactI18n} from "laravel-react-i18n";
-import {useRouter} from "@/hooks/useRouter";
+import { Link, usePage } from '@inertiajs/react';
+import { PropsWithChildren, ReactNode, useState } from 'react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { useRouter } from '@/hooks/useRouter';
 
-export default function Authenticated(
-    {
-        header,
-        children,
-    }: PropsWithChildren<{ header?: ReactNode }>) {
+export default function Authenticated({
+    header,
+    children,
+}: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
-    const {route, current} = useRouter();
-    const {t} = useLaravelReactI18n();
+    const { route, current } = useRouter();
+    const { t } = useLaravelReactI18n();
 
     const routes = [
         {
             title: t('dashboard.title'),
             name: 'dashboard',
-        }
-    ]
+        },
+    ];
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <nav
-                className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
+            <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo
-                                        className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
+                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                                 </Link>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                {routes.map(({title, name}) => (
-                                    <NavLink
-                                        key={name}
-                                        href={route(name)}
-                                        active={current(name)}
-                                    >
+                                {routes.map(({ title, name }) => (
+                                    <NavLink key={name} href={route(name)} active={current(name)}>
                                         {title}
                                     </NavLink>
                                 ))}
@@ -82,9 +74,7 @@ export default function Authenticated(
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link
-                                            href={route('profile.edit')}
-                                        >
+                                        <Dropdown.Link href={route('profile.edit')}>
                                             {t('navigation.profile')}
                                         </Dropdown.Link>
                                         <Dropdown.Link
@@ -102,9 +92,7 @@ export default function Authenticated(
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
                                 onClick={() =>
-                                    setShowingNavigationDropdown(
-                                        (previousState) => !previousState,
-                                    )
+                                    setShowingNavigationDropdown((previousState) => !previousState)
                                 }
                                 className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
                             >
@@ -116,9 +104,7 @@ export default function Authenticated(
                                 >
                                     <path
                                         className={
-                                            !showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                            !showingNavigationDropdown ? 'inline-flex' : 'hidden'
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -127,9 +113,7 @@ export default function Authenticated(
                                     />
                                     <path
                                         className={
-                                            showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
+                                            showingNavigationDropdown ? 'inline-flex' : 'hidden'
                                         }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -142,18 +126,10 @@ export default function Authenticated(
                     </div>
                 </div>
 
-                <div
-                    className={
-                        (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
-                    }
-                >
+                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="space-y-1 pb-3 pt-2">
-                        {routes.map(({title, name}) => (
-                            <ResponsiveNavLink
-                                key={name}
-                                href={route(name)}
-                                active={current(name)}>
+                        {routes.map(({ title, name }) => (
+                            <ResponsiveNavLink key={name} href={route(name)} active={current(name)}>
                                 {title}
                             </ResponsiveNavLink>
                         ))}
@@ -164,20 +140,14 @@ export default function Authenticated(
                             <div className="text-base font-medium text-gray-800 dark:text-gray-200">
                                 {user.name}
                             </div>
-                            <div className="text-sm font-medium text-gray-500">
-                                {user.email}
-                            </div>
+                            <div className="text-sm font-medium text-gray-500">{user.email}</div>
                         </div>
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
                                 {t('navigation.profile')}
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
-                                href={route('logout')}
-                                as="button"
-                            >
+                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 {t('navigation.logout')}
                             </ResponsiveNavLink>
                         </div>
@@ -187,9 +157,7 @@ export default function Authenticated(
 
             {header && (
                 <header className="bg-white shadow dark:bg-gray-800">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        {header}
-                    </div>
+                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{header}</div>
                 </header>
             )}
 

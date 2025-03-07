@@ -1,14 +1,14 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import GuestLayout from '@/Layouts/GuestLayout';
-import {Head, Link, useForm} from '@inertiajs/react';
-import {FormEventHandler} from 'react';
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-export default function VerifyEmail({status}: { status?: string }) {
-    const {route} = useRouter();
-    const {post, processing} = useForm({});
-    const {t} = useLaravelReactI18n();
+export default function VerifyEmail({ status }: { status?: string }) {
+    const { route } = useRouter();
+    const { post, processing } = useForm({});
+    const { t } = useLaravelReactI18n();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ export default function VerifyEmail({status}: { status?: string }) {
 
     return (
         <GuestLayout>
-            <Head title={t('auth.verify-email.title')}/>
+            <Head title={t('auth.verify-email.title')} />
 
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
                 {t('auth.verify-email.content')}
