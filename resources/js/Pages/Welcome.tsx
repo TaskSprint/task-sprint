@@ -7,7 +7,6 @@ export default function Welcome({
     auth,
     laravelVersion,
     phpVersion,
-
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
     const { route } = useRouter();
     const handleImageError = () => {
