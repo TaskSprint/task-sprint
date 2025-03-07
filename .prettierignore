@@ -1,0 +1,10 @@
+node_modules
+dist
+.env*
+vendor
+public
+.git
+package-lock.json
+composer.lock
+storage
+lang/php_*.json

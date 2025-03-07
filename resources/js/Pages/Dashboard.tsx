@@ -1,9 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head} from '@inertiajs/react';
-import {useLaravelReactI18n} from "laravel-react-i18n";
+import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function Dashboard() {
-    const {t} = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
     return (
         <AuthenticatedLayout
@@ -13,12 +13,11 @@ export default function Dashboard() {
                 </h2>
             }
         >
-            <Head title={t('dashboard.title')}/>
+            <Head title={t('dashboard.title')} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div
-                        className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             {t('dashboard.content')}
                         </div>
