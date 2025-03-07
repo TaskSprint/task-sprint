@@ -10,7 +10,7 @@ class LocaleString implements CastsAttributes
 {
     public function get($model, $key, $value, $attributes): ?LocaleStringValueObject
     {
-        return new LocaleStringValueObject(isset($value) ? json_decode($value) : []);
+        return new LocaleStringValueObject(isset($value) ? json_decode($value, true) : []);
     }
 
     public function set($model, $key, $value, $attributes)
