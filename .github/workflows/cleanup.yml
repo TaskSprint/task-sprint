@@ -7,6 +7,7 @@ on:
 
 jobs:
   prettier:
+    if: ${{ github.event.review.state == 'APPROVED' }}
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
