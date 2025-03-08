@@ -6,6 +6,15 @@ on:
     types: [ submitted, edited ]
 
 jobs:
+  check-github:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check github object
+        env:
+          GITHUB: ${{ toJSON(github) }}
+        run: echo "$GITHUB"
+        continue-on-error: true
+
   prettier:
     if: ${{ github.event.review.state == 'APPROVED' }}
     runs-on: ubuntu-latest
@@ -14,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.ref }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -47,7 +56,6 @@ jobs:
         id: prettify
         if: ${{ steps.add_auto_prettify_label.outcome == 'success' }}
         run: npm run prettier:format
-        continue-on-error: true
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -56,4 +64,5 @@ jobs:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
-          branch: ${{ github.event.pull_request.base.ref }}
+          branch: ${{ github.event.pull_request.head.ref }}
+
