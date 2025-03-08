@@ -48,41 +48,9 @@ jobs:
         if: ${{ steps.add_auto_prettify_label.outcome == 'success' }}
         run: npm run prettier:format
 
-      - name: Commit changes by actor
-        id: commit_changes_by_actor
-        if: ${{ steps.prettify.outcome == 'success' }}
-        uses: stefanzweifel/git-auto-commit-action@v5
-        continue-on-error: true
-        with:
-          commit_message: "[BOT] 🖌️ Auto prettify"
-          push_options: ""
-          skip_dirty_check: false
-
-  prettier-commit-fix:
-    needs: [ prettier ]
-    if: ${{ steps.commit_changes_by_actor.outcome == 'failure' }}
-    runs-on: ubuntu-latest
-    permissions: write-all
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Prettify
-        run: npm run prettier:format
-
       - name: Commit changes by event issue user
         uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ steps.prettify.outcome == 'success' }}
         with:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
