@@ -55,3 +55,4 @@ jobs:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
+          create_branch: true
