@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -48,11 +48,12 @@ jobs:
         if: ${{ steps.add_auto_prettify_label.outcome == 'success' }}
         run: npm run prettier:format
 
-      - name: Commit changes by event issue user
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         if: ${{ steps.prettify.outcome == 'success' }}
         with:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
-          commit_author: "${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.id }}+${{ github.event.pull_request.user.login }}@users.noreply.github.com>"
+          branch: ${{ github.event.pull_request.base.ref }}
+
