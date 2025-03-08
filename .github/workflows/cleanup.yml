@@ -60,7 +60,7 @@ jobs:
 
   prettier-commit-fix:
     needs: [ prettier ]
-    if: ${{ needs.prettier.steps.commit_changes_by_actor.outcome == 'failure' }}
+    if: ${{ steps.commit_changes_by_actor.outcome == 'failure' }}
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -77,6 +77,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Prettify
+        run: npm run prettier:format
 
       - name: Commit changes by event issue user
         uses: stefanzweifel/git-auto-commit-action@v5
