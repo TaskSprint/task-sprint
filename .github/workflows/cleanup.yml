@@ -6,15 +6,6 @@ on:
     types: [ submitted, edited ]
 
 jobs:
-  check-github:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check github object
-        env:
-          GITHUB: ${{ toJSON(github) }}
-        run: echo "$GITHUB"
-        continue-on-error: true
-
   prettier:
     if: ${{ github.event.review.state == 'APPROVED' }}
     runs-on: ubuntu-latest
