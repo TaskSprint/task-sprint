@@ -48,11 +48,21 @@ jobs:
         if: ${{ steps.add_auto_prettify_label.outcome == 'success' }}
         run: npm run prettier:format
 
-      - name: Commit changes
+      - name: Commit changes by actor
+        id: commit_changes_by_actor
         if: ${{ steps.prettify.outcome == 'success' }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        continue-on-error: true
+        with:
+          commit_message: "[BOT] 🖌️ Auto prettify"
+          push_options: ""
+          skip_dirty_check: false
+
+      - name: Commit changes by event issue user
+        if: ${{ steps.prettify.outcome == 'success' && steps.commit_changes_by_actor.outcome == 'failure' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
-          create_branch: true
+          commit_author: "${{ github.event.issue.user.login }} <${{ github.event.issue.user.login.id }}+${{ github.event.issue.user.login }}@users.noreply.github.com>"
