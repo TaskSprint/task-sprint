@@ -65,4 +65,4 @@ jobs:
           commit_message: "[BOT] 🖌️ Auto prettify"
           push_options: ""
           skip_dirty_check: false
-          commit_author: "${{ github.event.issue.user.login }} <${{ github.event.issue.user.login.id }}+${{ github.event.issue.user.login }}@users.noreply.github.com>"
+          commit_author: "${{ github.event.issue.user.login }} <${{ github.event.issue.user.id }}+${{ github.event.issue.user.login }}@users.noreply.github.com>"
