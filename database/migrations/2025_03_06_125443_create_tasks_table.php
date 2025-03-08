@@ -15,12 +15,15 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description');
             $table->decimal('price');
+            $table->string('currency_code');
             $table->jsonb('address');
             $table->date('estimated_date');
             $table->enum('status', array_column(TaskStatus::cases(), 'value'))
                 ->default(TaskStatus::Pending->value);
-            $table->foreignIdFor(User::class, 'customer_id');
-            $table->foreignIdFor(Currency::class, 'currency_code');
+            $table->foreignIdFor(User::class, 'customer_id')->constrained()->cascadeOnDelete();
+            $table->foreign('currency_code')
+                ->references('code')
+                ->on(new Currency()->getTable());
             $table->timestamps();
         });
     }

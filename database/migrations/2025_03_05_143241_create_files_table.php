@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->integer('size');
             $table->string('path');
             $table->string('disk');
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->morphs('fileable');
             $table->timestamps();
         });

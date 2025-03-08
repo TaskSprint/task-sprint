@@ -1,0 +1,59 @@
+name: Cleanup Actions
+
+on:
+  pull_request:
+  pull_request_review:
+    types: [ submitted, edited ]
+
+jobs:
+  prettier:
+    if: ${{ github.event.review.state == 'APPROVED' }}
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier check
+        id: prettier_check
+        run: npm run prettier:check
+        continue-on-error: true
+
+      - name: Add auto-prettify label
+        id: add_auto_prettify_label
+        if: ${{ steps.prettier_check.outcome == 'failure' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["🖌️ auto prettify"]
+            })
+
+      - name: Prettify
+        id: prettify
+        if: ${{ steps.add_auto_prettify_label.outcome == 'success' }}
+        run: npm run prettier:format
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ steps.prettify.outcome == 'success' }}
+        with:
+          commit_message: "[BOT] 🖌️ Auto prettify"
+          push_options: ""
+          skip_dirty_check: false
+          branch: ${{ github.event.pull_request.head.ref }}
+
