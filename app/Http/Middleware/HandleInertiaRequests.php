@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUndefinedClassInspection */
+
+/** @noinspection PhpUndefinedNamespaceInspection */
 
 namespace App\Http\Middleware;
 
@@ -16,14 +19,6 @@ class HandleInertiaRequests extends Middleware
     protected $rootView = 'app';
 
     /**
-     * Determine the current asset version.
-     */
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
-
-    /**
      * Define the props that are shared by default.
      *
      * @return array<string, mixed>
@@ -35,10 +30,11 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'ziggy' => fn () => [
+            'ziggy' => fn() => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'locale' => app()->getLocale(),
         ];
     }
 }

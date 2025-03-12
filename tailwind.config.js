@@ -1,7 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-
-const { heroui } = require('@heroui/react');
+import {heroui} from '@heroui/theme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -21,5 +20,6 @@ export default {
         },
     },
 
+    darkMode: 'class',
     plugins: [forms, heroui()],
 };

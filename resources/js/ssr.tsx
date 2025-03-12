@@ -2,9 +2,10 @@ import { createInertiaApp } from '@inertiajs/react';
 import createServer from '@inertiajs/react/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import ReactDOMServer from 'react-dom/server';
-import { route, RouteName } from 'ziggy-js';
+// noinspection ES6PreferShortImport
+import { route } from '../../vendor/tightenco/ziggy/';
 import { LaravelReactI18nProvider } from 'laravel-react-i18n';
-import { HeroUIProvider } from '@heroui/react';
+import { Providers } from '@/providers';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -18,7 +19,7 @@ createServer((page) =>
         setup: ({ App, props }) => {
             /* eslint-disable */
             // @ts-expect-error
-            global.route<RouteName> = (name, params, absolute) =>
+            global.route = (name, params, absolute) =>
                 route(name, params as any, absolute, {
                     ...page.props.ziggy,
                     location: new URL(page.props.ziggy.location),
@@ -27,12 +28,13 @@ createServer((page) =>
 
             return (
                 <LaravelReactI18nProvider
+                    locale={page.props.locale}
                     fallbackLocale={'en'}
                     files={import.meta.glob('/lang/*.json', { eager: true })}
                 >
-                    <HeroUIProvider>
+                    <Providers>
                         <App {...props} />
-                    </HeroUIProvider>
+                    </Providers>
                 </LaravelReactI18nProvider>
             );
         },

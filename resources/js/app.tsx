@@ -5,7 +5,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { LaravelReactI18nProvider } from 'laravel-react-i18n';
-import { HeroUIProvider } from '@heroui/react';
+import { Providers } from '@/providers';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -21,12 +21,13 @@ createInertiaApp({
 
         createRoot(el).render(
             <LaravelReactI18nProvider
+                locale={props.initialPage.props.locale}
                 fallbackLocale={'en'}
                 files={import.meta.glob('/lang/*.json')}
             >
-                <HeroUIProvider>
+                <Providers>
                     <App {...props} />
-                </HeroUIProvider>
+                </Providers>
             </LaravelReactI18nProvider>,
         );
     },
