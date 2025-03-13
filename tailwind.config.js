@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-import {heroui} from '@heroui/theme';
+import { heroui } from '@heroui/theme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
