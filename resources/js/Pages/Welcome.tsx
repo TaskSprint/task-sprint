@@ -1,12 +1,16 @@
 import { PageProps } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+
+import React from 'react';
+import LastTasks from '@/Components/LastTasks';
 
 export default function Welcome({
     auth,
     laravelVersion,
     phpVersion,
+    lastTasks,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
     const { route } = useRouter();
     const handleImageError = () => {
@@ -16,6 +20,7 @@ export default function Welcome({
         document.getElementById('background')?.classList.add('!hidden');
     };
     const { t } = useLaravelReactI18n();
+
 
     return (
         <>
@@ -335,6 +340,10 @@ export default function Welcome({
                                 </div>
                             </div>
                         </main>
+
+                        <div className="">
+                            <LastTasks tasks={lastTasks} />
+                        </div>
 
                         <footer className="py-16 text-center text-sm text-black dark:text-white/70">
                             Laravel v{laravelVersion} (PHP v{phpVersion})
