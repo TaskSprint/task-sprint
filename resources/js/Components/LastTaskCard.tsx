@@ -1,5 +1,5 @@
 import SubCategory from '@/App/Models';
-
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 type TaskProps = {
     id: number;
     name: string;
@@ -23,6 +23,8 @@ export default function LastTaskCard({
                                      subCategory,
                                      customer
                                  }: TaskProps) {
+    const { t } = useLaravelReactI18n();
+
     return (
 
 
@@ -40,7 +42,8 @@ export default function LastTaskCard({
             {/* Bottom block with date and price */}
             <div className="flex flex-col items-start gap-2 w-[6.69rem] h-[3.56rem]">
                 <p className="text-gray-400 font-manrope font-semibold text-[0.75rem] leading-[1rem] whitespace-nowrap">
-                    Виконати до {estimated_date}
+                    {t('lastTasks.estimation', { estimated: estimated_date })}
+
                 </p>
                 <p className="text-black font-manrope font-semibold text-[1.5rem] leading-[2.06rem] whitespace-nowrap">
                     {price} ₴
