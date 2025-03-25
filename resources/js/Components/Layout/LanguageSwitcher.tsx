@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
                     ) : (
                         <button
                             onClick={() => handleLanguageClick(lang)}
-                            className="text-muted hover:text-muted/75 cursor-pointer uppercase transition-colors duration-200"
+                            className="cursor-pointer uppercase text-muted transition-colors duration-200 hover:text-muted/75"
                         >
                             {lang}
                         </button>
