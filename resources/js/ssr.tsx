@@ -28,7 +28,7 @@ createServer((page) =>
 
             return (
                 <LaravelReactI18nProvider
-                    locale={page.props.locale}
+                    locale={page.props.locale?.current}
                     fallbackLocale={'en'}
                     files={import.meta.glob('/lang/*.json', { eager: true })}
                 >

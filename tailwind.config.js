@@ -1,6 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
-import { heroui } from '@heroui/theme';
+import {heroui} from '@heroui/theme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,13 +12,34 @@ export default {
     ],
 
     theme: {
+        fontFamily: {
+            kreadon: ['Kreadon', ...defaultTheme.fontFamily.sans],
+        },
         extend: {
             fontFamily: {
-                sans: [...defaultTheme.fontFamily.sans],
+                sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                muted: '#717171',
             },
         },
     },
 
     darkMode: 'class',
-    plugins: [forms, heroui()],
+    plugins: [
+        heroui({
+            themes: {
+                light: {
+                    colors: {
+                        primary: '#00CCFF',
+                    },
+                },
+                dark: {
+                    colors: {
+                        primary: '#0090c1',
+                    },
+                },
+            },
+        }),
+    ],
 };

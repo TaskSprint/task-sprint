@@ -1,9 +1,11 @@
 import { Config, ParameterValue, RouteParams } from 'ziggy-js';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { usePage } from '@inertiajs/react';
 
 export function useRouter() {
     const { currentLocale } = useLaravelReactI18n();
     const router = route();
+    const { locale } = usePage().props;
 
     return {
         route: (
@@ -17,6 +19,33 @@ export function useRouter() {
                 return route(localizedName, params, absolute, config);
             } else {
                 return route(name, params, absolute, config);
+            }
+        },
+        localizedRoute: (
+            lang: string,
+            name?: string,
+            params?: RouteParams<string> | undefined,
+            absolute?: boolean,
+            config?: Config,
+        ) => {
+            if (!locale?.available.includes(lang)) {
+                throw new Error(`Locale ${lang} is not available`);
+            }
+
+            if (!name) {
+                const current = new URL(window.location.href);
+                const pathSegments = current.pathname.split('/').filter((s) => s);
+                if (locale?.available.includes(pathSegments[0])) {
+                    pathSegments[0] = lang;
+                } else {
+                    pathSegments.unshift(lang);
+                }
+
+                current.pathname = `/${pathSegments.join('/')}`;
+                return current.href;
+            } else {
+                const localizedName = `${lang}.${name}`;
+                return route(localizedName, params, absolute, config);
             }
         },
         current: (name: string, params?: RouteParams<string> | ParameterValue | undefined) => {
