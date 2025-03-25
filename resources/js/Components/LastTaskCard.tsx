@@ -1,14 +1,18 @@
+import Category from '@/App/Models';
+
 type TaskProps = {
     id: number;
     name: string;
     description: string;
     price: string;
+    category?: Category;
     currency_code: string;
     address: Record<string, any>;
     estimated_date: string;
     status: string;
     User: { id: number; name: string };
 };
+import LastTasks from '@/Components/LastTasks';
 
 export default function LastTaskCard({
                                      id, name,
@@ -17,34 +21,33 @@ export default function LastTaskCard({
                                      currency_code,
                                      address,
                                      estimated_date,
-                                     status,
+                                     category,
                                      customer
                                  }: TaskProps) {
     return (
 
 
-            <div className="w-[353px] h-[179px] flex flex-col justify-center items-start p-[0px_20px] gap-[40px] bg-white border-2 border-gray-400 rounded-[23px]">
-                {/* Верхний блок с заголовком и категорией */}
-                <div className="flex flex-col items-start gap-[8px] w-[220px] h-[54px]">
-
-                    <h3 className="text-black font-manrope font-semibold text-[20px] leading-[27px]">
-                        {name}
-                    </h3>
-                    <p className="text-black font-manrope font-semibold text-[14px] leading-[19px]">
-                        {description}   {/* должна быть категория category.name */}
-                    </p>
-                </div>
-
-                {/* Нижний блок с датой и ценой */}
-                <div className="flex flex-col items-start gap-[8px] w-[107px] h-[57px]">
-                    <p className="text-gray-400 font-manrope font-semibold text-[12px] text-nowrap leading-[16px]">
-                        Виконати до {estimated_date}
-                    </p>
-                    <p className="text-black font-manrope font-semibold text-[24px] leading-[33px]">
-                        {price}
-                    </p>
-                </div>
+        <div className="w-[22.06rem] h-[11.19rem] flex flex-col justify-center items-start px-5 gap-10 bg-white border-2 border-gray-400 rounded-[1.44rem]">
+            {/* Top block with title and category */}
+            <div className="flex flex-col items-start gap-2 w-[13.75rem] h-[3.38rem]">
+                <h3 className="text-black font-manrope font-semibold text-[1.25rem] leading-[1.69rem]">
+                    {name}
+                </h3>
+                <p className="text-black font-manrope font-semibold text-[0.88rem] leading-[1.19rem]">
+                    {category.name}
+                </p>
             </div>
+
+            {/* Bottom block with date and price */}
+            <div className="flex flex-col items-start gap-2 w-[6.69rem] h-[3.56rem]">
+                <p className="text-gray-400 font-manrope font-semibold text-[0.75rem] leading-[1rem] whitespace-nowrap">
+                    Виконати до {estimated_date}
+                </p>
+                <p className="text-black font-manrope font-semibold text-[1.5rem] leading-[2.06rem]">
+                    {price}
+                </p>
+            </div>
+        </div>
 
     );
 }

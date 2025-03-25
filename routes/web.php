@@ -24,6 +24,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'It'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -35,6 +36,7 @@ Route::localized(function () {
                     'price' => '1500.00',
                     'currency_code' => 'EUR',
                     'address' => ['city' => 'Львов', 'street' => 'Шевченко', 'house' => '22'],
+                    'category' => ['name' => 'Сантехніка'],
                     'estimated_date' => '2025-03-22',
                     'status' => 'completed',
                     'customer' => ['id' => 2, 'name' => 'Олег Сидоров']
@@ -46,6 +48,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Електрика'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -57,6 +60,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Доставка'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -69,6 +73,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Сантехніка'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -81,6 +86,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Доставка'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -93,6 +99,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Сантехніка'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
@@ -105,6 +112,7 @@ Route::localized(function () {
                     'price' => '500.00',
                     'currency_code' => 'USD',
                     'address' => ['city' => 'Киев', 'street' => 'Грушевского', 'house' => '10'],
+                    'category' => ['name' => 'Електрика'],
                     'estimated_date' => '2025-03-20',
                     'status' => 'pending',
                     'customer' => ['id' => 1, 'name' => 'Иван Петров']
