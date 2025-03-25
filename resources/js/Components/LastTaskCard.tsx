@@ -1,18 +1,17 @@
-import Category from '@/App/Models';
+import SubCategory from '@/App/Models';
 
 type TaskProps = {
     id: number;
     name: string;
     description: string;
     price: string;
-    category?: Category;
+    subCategory?: SubCategory;
     currency_code: string;
     address: Record<string, any>;
     estimated_date: string;
     status: string;
     User: { id: number; name: string };
 };
-import LastTasks from '@/Components/LastTasks';
 
 export default function LastTaskCard({
                                      id, name,
@@ -21,7 +20,7 @@ export default function LastTaskCard({
                                      currency_code,
                                      address,
                                      estimated_date,
-                                     category,
+                                     subCategory,
                                      customer
                                  }: TaskProps) {
     return (
@@ -34,7 +33,7 @@ export default function LastTaskCard({
                     {name}
                 </h3>
                 <p className="text-black font-manrope font-semibold text-[0.88rem] leading-[1.19rem]">
-                    {category.name}
+                    {subCategory.category.name}
                 </p>
             </div>
 
@@ -43,8 +42,8 @@ export default function LastTaskCard({
                 <p className="text-gray-400 font-manrope font-semibold text-[0.75rem] leading-[1rem] whitespace-nowrap">
                     Виконати до {estimated_date}
                 </p>
-                <p className="text-black font-manrope font-semibold text-[1.5rem] leading-[2.06rem]">
-                    {price}
+                <p className="text-black font-manrope font-semibold text-[1.5rem] leading-[2.06rem] whitespace-nowrap">
+                    {price} ₴
                 </p>
             </div>
         </div>
