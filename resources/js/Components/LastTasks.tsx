@@ -39,30 +39,38 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={scrollLeft}
-                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 bg-white"
+                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696]"
                     >
                         <svg
-                            width="0.44rem"
-                            height="0.88rem"
+                            width="0.5rem"
+                            height="0.875rem"
                             viewBox="0 0 7 14"
-                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <path d="M6 13L1 7L6 1" stroke="#969696" strokeWidth="2" />
+                            <path
+                                d="M6 13L1 7L6 1"
+                                stroke="currentColor"
+                                fill="none"
+                                strokeWidth="2"
+                            />
                         </svg>
                     </button>
                     <button
                         onClick={scrollRight}
-                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 bg-white"
+                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696]"
                     >
                         <svg
-                            width="0.44rem"
-                            height="0.88rem"
+                            width="0.5rem"
+                            height="0.875rem"
                             viewBox="0 0 7 14"
-                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <path d="M1 13L6 7L1 1" stroke="#969696" strokeWidth="2" />
+                            <path
+                                d="M1 13L6 7L1 1"
+                                stroke="currentColor"
+                                fill="none"
+                                strokeWidth="2"
+                            />
                         </svg>
                     </button>
                 </div>
