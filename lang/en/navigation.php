@@ -6,4 +6,7 @@ return [
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
     'logout' => 'Log Out',
+    'search' => 'Search',
+    'find' => 'Find',
+    'create' => 'Create task',
 ];
