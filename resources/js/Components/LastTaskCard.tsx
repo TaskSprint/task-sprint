@@ -1,55 +1,32 @@
-import SubCategory from '@/App/Models';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-type TaskProps = {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
-    subCategory?: SubCategory;
-    currency_code: string;
-    address: Record<string, any>;
-    estimated_date: string;
-    status: string;
-    User: { id: number; name: string };
-};
+import Task from '@/types/models/task';
 
-export default function LastTaskCard({
-                                     id, name,
-                                     description,
-                                     price,
-                                     currency_code,
-                                     address,
-                                     estimated_date,
-                                     subCategory,
-                                     customer
-                                 }: TaskProps) {
+export default function LastTaskCard({ name, price, estimated_date, subCategory }: Readonly<Task>) {
     const { t } = useLaravelReactI18n();
 
     return (
-
-
-        <div className="w-[22.06rem] h-[11.19rem] flex flex-col justify-center items-start px-5 gap-10 bg-white border-2 border-gray-400 rounded-[1.44rem]">
+        <div className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 bg-white px-5">
             {/* Top block with title and category */}
-            <div className="flex flex-col items-start gap-2 w-[13.75rem] h-[3.38rem]">
-                <h3 className="text-black font-manrope font-semibold text-[1.25rem] leading-[1.69rem]">
+            <div className="flex flex-col items-start gap-2">
+                <h3 className="font-manrope line-clamp-1 overflow-ellipsis break-all text-xl font-semibold leading-7 text-black">
                     {name}
                 </h3>
-                <p className="text-black font-manrope font-semibold text-[0.88rem] leading-[1.19rem]">
-                    {subCategory.category.name}
-                </p>
+                {subCategory?.category && (
+                    <p className="font-manrope line-clamp-1 overflow-ellipsis break-all text-sm font-semibold leading-5 text-black">
+                        {subCategory.category.name}
+                    </p>
+                )}
             </div>
 
             {/* Bottom block with date and price */}
-            <div className="flex flex-col items-start gap-2 w-[6.69rem] h-[3.56rem]">
-                <p className="text-gray-400 font-manrope font-semibold text-[0.75rem] leading-[1rem] whitespace-nowrap">
+            <div className="flex flex-col items-start gap-2">
+                <p className="font-manrope whitespace-nowrap text-xs font-semibold leading-4 text-gray-400">
                     {t('lastTasks.estimation', { estimated: estimated_date })}
-
                 </p>
-                <p className="text-black font-manrope font-semibold text-[1.5rem] leading-[2.06rem] whitespace-nowrap">
+                <p className="font-manrope whitespace-nowrap text-2xl font-semibold leading-8 text-black">
                     {price} ₴
                 </p>
             </div>
         </div>
-
     );
 }

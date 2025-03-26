@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Task;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -132,25 +131,9 @@ Route::localized(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-
-
-
-//    Route::get('/last-tasks', function () {
-//        return Inertia::render('LastTasks', [
-//            'tasks' => Task::with(['customer', 'order', 'currency'])
-//                ->orderBy('created_at', 'desc')
-//                ->limit(30)
-//                ->get()
-//        ]);
-//    });
-
-
-
-
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::fallback(FallbackController::class);
 
