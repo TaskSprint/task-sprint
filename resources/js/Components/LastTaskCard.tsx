@@ -5,7 +5,7 @@ export default function LastTaskCard({ name, price, estimated_date, subCategory 
     const { t } = useLaravelReactI18n();
 
     return (
-        <div className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 dark:border-[#C6C6C6] bg-white dark:bg-[#2C2C2C] px-5">
+        <div className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 bg-white px-5 dark:border-[#C6C6C6] dark:bg-[#2C2C2C]">
             {/* Top block with title and category */}
             <div className="flex flex-col items-start gap-2">
                 <h3 className="line-clamp-1 overflow-ellipsis break-all text-xl font-semibold leading-7 text-black dark:text-white">
@@ -21,7 +21,7 @@ export default function LastTaskCard({ name, price, estimated_date, subCategory 
             {/* Bottom block with date and price */}
             <div className="flex flex-col items-start gap-2">
                 <p className="whitespace-nowrap text-xs font-semibold leading-4 text-gray-400 dark:text-gray-300">
-                    {t('lastTasks.estimation', { estimated: estimated_date })}
+                    {t('last-tasks.estimation', { estimated: estimated_date })}
                 </p>
                 <p className="whitespace-nowrap text-2xl font-semibold leading-8 text-black dark:text-white">
                     {price} ₴

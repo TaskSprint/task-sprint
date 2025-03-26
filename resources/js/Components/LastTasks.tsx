@@ -4,8 +4,6 @@ import Task from '@/types/models/task';
 import { ScrollShadow } from '@heroui/scroll-shadow';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-import ThemeToggle from '@/Components/ThemeToggle';
-
 interface LastTasksProps {
     tasks: Task[];
 }
@@ -35,19 +33,19 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
 
     const { t } = useLaravelReactI18n();
 
-
     return (
-        <div className="absolute flex h-[19.25rem] w-full flex-col items-start gap-4 bg-white dark:bg-[#2C2C2C] px-9 py-7">
+        <div className="absolute flex h-[19.25rem] w-full flex-col items-start gap-4 bg-white px-9 py-7 dark:bg-[#2C2C2C]">
             {/* Top row with title and arrows */}
             <div className="flex h-[3.25rem] w-full items-center justify-between">
-                <h2 className="text-2xl font-semibold leading-8 text-black dark:text-white">{t('lastTasks.lastOrders')}</h2>
-                <ThemeToggle />
+                <h2 className="text-2xl font-semibold leading-8 text-black dark:text-white">
+                    {t('last-tasks.last_orders')}
+                </h2>
 
                 {/* Arrow buttons */}
                 <div className="flex items-center gap-4">
                     <button
                         onClick={scrollLeft}
-                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 dark:border-[#C6C6C6] bg-white dark:bg-[#2C2C2C] text-[#969696]"
+                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696] dark:border-[#C6C6C6] dark:bg-[#2C2C2C]"
                     >
                         <svg
                             width="0.5rem"
@@ -65,7 +63,7 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                     </button>
                     <button
                         onClick={scrollRight}
-                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 dark:border-[#C6C6C6] bg-white dark:bg-[#2C2C2C] text-[#969696]"
+                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696] dark:border-[#C6C6C6] dark:bg-[#2C2C2C]"
                     >
                         <svg
                             width="0.5rem"
@@ -91,9 +89,9 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                 className="flex w-full gap-10 overflow-hidden scroll-smooth"
             >
                 {tasks && tasks.length > 0 ? (
-                    tasks.map((task) => <LastTaskCard id={task.id} {...task} />)
+                    tasks.map((task) => <LastTaskCard key={task.id} {...task} />)
                 ) : (
-                    <p className="text-gray-400 dark:text-gray-300">{t('lastTasks.noOrders')}</p>
+                    <p className="text-gray-400 dark:text-gray-300">{t('last-tasks.no_orders')}</p>
                 )}
             </ScrollShadow>
         </div>
