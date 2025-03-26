@@ -3,6 +3,8 @@ import { Head, Link } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
+import React from 'react';
+
 export default function Welcome({
     auth,
     laravelVersion,
