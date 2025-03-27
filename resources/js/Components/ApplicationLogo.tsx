@@ -3,21 +3,23 @@ import { SVGAttributes } from 'react';
 export interface ApplicationLogoProps extends SVGAttributes<SVGElement> {
     logoColor?: string;
     logoClassName?: string;
+    isFullSize?: boolean;
 }
 
 export default function ApplicationLogo({
     logoColor,
     logoClassName,
+    isFullSize = false,
     ...props
 }: ApplicationLogoProps) {
     return (
         <svg
-            {...props}
             width="32"
             height="32"
             version="1.1"
-            viewBox="0 0 32 32"
+            viewBox={isFullSize ? '2.67 2.67 26.67 26.67' : '0 0 32 32'}
             xmlns="http://www.w3.org/2000/svg"
+            {...props}
         >
             <g stroke-width=".72731">
                 <rect
