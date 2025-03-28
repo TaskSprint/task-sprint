@@ -16,7 +16,11 @@ export function Info() {
                 </p>
             </div>
             <div className="flex flex-col items-center">
-                <Image alt="Employee receive" src="/images/employee-receive.png" className="size-40" />
+                <Image
+                    alt="Employee receive"
+                    src="/images/employee-receive.png"
+                    className="size-40"
+                />
                 <h3 className="text-center text-xl font-semibold text-foreground">
                     {t('info.employee-receive.title')}
                 </h3>
