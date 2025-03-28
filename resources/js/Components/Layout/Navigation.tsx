@@ -2,7 +2,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/navbar';
 import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import SearchBar from '@/Components/Layout/SearchBar';
-import Button from '@/Components/shared/Button';
+import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import SolarKeyMinimalisticSquare3Linear from '~icons/solar/key-minimalistic-square-3-linear';
 import SolarLogin2Linear from '~icons/solar/login-2-linear';

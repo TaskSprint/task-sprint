@@ -21,7 +21,7 @@ export default function ApplicationLogo({
             xmlns="http://www.w3.org/2000/svg"
             {...props}
         >
-            <g stroke-width=".72731">
+            <g strokeWidth=".72731">
                 <rect
                     className={logoClassName ? `text-primary ${logoClassName}` : 'text-primary'}
                     x="2.667"
