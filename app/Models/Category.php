@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Category extends Model
 {
+    protected $guarded = ['id'];
+
     public function icon(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable');
