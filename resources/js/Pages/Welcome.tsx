@@ -25,7 +25,7 @@ export default function Welcome({
         <>
 
             <div className="">
-                <CategoriesComponent categories={categories} />
+                <CategoriesComponent />
             </div>
 
         </>
