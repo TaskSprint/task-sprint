@@ -24,7 +24,7 @@ class FileTestController extends Controller
         $file = $request->file('file');
 
         if ($file) {
-            FileService::create(auth()->user(), $file, 'avatar');
+            FileService::create(auth()->user()->avatar(), $file);
         } else {
             FileService::delete(auth()->user()->avatar);
         }

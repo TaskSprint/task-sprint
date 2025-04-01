@@ -16,30 +16,29 @@ use Throwable;
 class FileService
 {
     /**
+     * @param MorphOneOrMany<File, Model, ?File> $relation
+     *
      * @throws Throwable
      */
-    public function create(Model $model, UploadedFile $file, string $relation, ?string $disk = null, int $attempts = 5): File
+    public function create(MorphOneOrMany $relation, UploadedFile $file, ?string $disk = null, int $attempts = 5): File
     {
-        if (!$model->$relation() instanceof MorphOneOrMany
-            || !$model->$relation()->getRelated() instanceof File) {
-            throw new InvalidArgumentException("Invalid relation: $relation");
+        if (!$relation->getRelated() instanceof File) {
+            throw new InvalidArgumentException("Invalid relation: {$relation->getRelated()->getMorphClass()}, expected " . File::class);
         }
 
-        /** @var MorphOneOrMany<File, Model, ?File> $fileRelation */
-        $fileRelation = $model->$relation();
-
-        if ($fileRelation instanceof MorphOne && $fileRelation->exists()) {
-            $this->delete($fileRelation->first());
+        if ($relation instanceof MorphOne && $relation->exists()) {
+            $this->delete($relation->first());
         }
 
-        return DB::transaction(function () use ($model, $file, $fileRelation, $disk) {
+        return DB::transaction(function () use ($file, $relation, $disk) {
+            $relationClass = $relation->getMorphClass();
             $path =
                 (Str::startsWith($file->getClientMimeType(), "image/")
                     ? "images"
                     : "files")
-                . '/' . $model->getTable();
+                . '/' . new $relationClass()->getTable();
 
-            $fileModel = $fileRelation->create([
+            $fileModel = $relation->create([
                 'name' => $file->getClientOriginalName(),
                 'mime_type' => $file->getClientMimeType(),
                 'size' => $file->getSize(),

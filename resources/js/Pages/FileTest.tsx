@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 
 export default function FileTest({ file }: PageProps<{ file?: string }>) {
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing } = useForm<{ file: File | null }>({
         file: null,
     });
 
@@ -12,7 +12,7 @@ export default function FileTest({ file }: PageProps<{ file?: string }>) {
 
     const [didMount, setDidMount] = useState(false);
 
-    const handleFileChange = (file = null) => {
+    const handleFileChange = (file: File | null = null) => {
         if (!file) {
             setData('file', null);
             return;
@@ -43,7 +43,7 @@ export default function FileTest({ file }: PageProps<{ file?: string }>) {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={(event) => handleFileChange(event.target.files[0])}
+                    onChange={(event) => handleFileChange(event.target.files?.[0])}
                     disabled={processing}
                 />
             )}
