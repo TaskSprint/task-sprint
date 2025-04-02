@@ -19,7 +19,7 @@ class FileTestController extends Controller
     /**
      * @throws Throwable
      */
-    public function update(Request $request)
+    public function store(Request $request)
     {
         $file = $request->file('file');
 
@@ -29,6 +29,6 @@ class FileTestController extends Controller
             FileService::delete(auth()->user()->avatar);
         }
 
-        return redirect(route('file-test.update'));
+        return redirect(route('file-test.index'));
     }
 }

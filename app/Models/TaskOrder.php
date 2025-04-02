@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TaskOrder extends Model
 {
     public $incrementing = false;
-    protected $guarded = ['id'];
     protected $primaryKey = 'task_id';
 
     public function task(): BelongsTo

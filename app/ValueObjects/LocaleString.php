@@ -7,6 +7,12 @@ use Illuminate\Support\Arr;
 
 class LocaleString implements ArrayAccess
 {
+    public ?string $current {
+        get {
+            return $this->get();
+        }
+    }
+
     public function __construct(public array $data = [])
     {
     }

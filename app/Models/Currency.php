@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Currency extends Model
 {
     public $incrementing = false;
-    protected $guarded = ['id'];
     protected $primaryKey = 'code';
 
     public function tasks(): HasMany

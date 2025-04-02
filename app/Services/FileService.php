@@ -60,8 +60,12 @@ class FileService
     /**
      * @throws Throwable
      */
-    public function delete(File $file, int $attempts = 5): void
+    public function delete(?File $file, int $attempts = 5): void
     {
+        if (!$file) {
+            return;
+        }
+
         DB::transaction(function () use ($file) {
             $file->delete();
             Storage::disk($file->disk)->delete($file->path);
