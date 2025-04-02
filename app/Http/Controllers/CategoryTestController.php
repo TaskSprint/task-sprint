@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CategoryService;
+use App\Facades\Models\CategoryService;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
