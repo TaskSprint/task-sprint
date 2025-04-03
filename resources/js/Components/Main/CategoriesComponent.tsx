@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Category from "@/types/models/category";
 import {useLaravelReactI18n} from "laravel-react-i18n";
-
+import {Image} from "@heroui/image";
+import { Button } from "@heroui/button";
 interface CategoriesProps {
     categories: Category[];
 }
@@ -68,24 +69,25 @@ const CategoriesComponent = () => {
     const { t } = useLaravelReactI18n();
 
     return (
-        <div className="flex flex-col items-center p-6 gap-6 bg-gray-900 text-white">
-            <h2 className="text-2xl font-semibold">{t('categories.popular_categories')}</h2>
+        <div className="flex flex-col items-center p-6 gap-6  ">
+            <h2 className="text-2xl font-semibold">{t("categories.popular_categories")}</h2>
             <div className="grid grid-cols-4 gap-4">
                 {categories.map((category, index) => (
-                    <div
+                    <Button
                         key={index}
-                        className="flex flex-col items-center justify-center w-48 h-48 bg-primary rounded-2xl p-4 text-center shadow-lg"
+                        className="flex flex-col items-center justify-center w-48 h-48 bg-primary rounded-2xl p-4 text-center shadow-lg transition-transform transform hover:scale-105 active:scale-95"
                     >
-                        <div
-                            className="w-45 h-45"
-                            dangerouslySetInnerHTML={{ __html: category.icon }}
-                        />
-                        <span className="text-lg font-bold mt-2">{category.name}</span>
-                    </div>
+                        {category.icon.startsWith("http") ? (
+                            <Image src={category.icon} alt={category.name} className="w-16 h-16" />
+                        ) : (
+                            <div className="w-16 h-16" dangerouslySetInnerHTML={{ __html: category.icon }} />
+                        )}
+                        <span className="text-lg font-bold mt-2 text-[#FFFFFF]">{category.name}</span>
+                    </Button>
                 ))}
             </div>
             <a href="#" className="text-primary underline text-lg">
-                {t('categories.all_categories')}
+                {t("categories.all_categories")}
             </a>
         </div>
     );
