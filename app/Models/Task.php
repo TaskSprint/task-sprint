@@ -6,9 +6,16 @@ use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Task extends Model
 {
+    use CascadesDeletes;
+
+    protected array $cascadeDeletes = ['order'];
+
+    protected $guarded = ['id'];
+
     public function subCategory(): BelongsTo
     {
         return $this->belongsTo(SubCategory::class);
