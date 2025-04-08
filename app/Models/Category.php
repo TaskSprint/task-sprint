@@ -6,9 +6,13 @@ use App\Casts\LocaleString;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Category extends Model
 {
+    use CascadesDeletes;
+
+    protected $cascadeDeletes = ['icon', 'subCategories'];
     protected $guarded = ['id'];
 
     public function icon(): MorphOne
@@ -18,7 +22,7 @@ class Category extends Model
 
     public function subCategories(): HasMany
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(SubCategory::class);
     }
 
     protected function casts(): array

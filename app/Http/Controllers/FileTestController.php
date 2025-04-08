@@ -26,7 +26,7 @@ class FileTestController extends Controller
         if ($file) {
             FileService::create(auth()->user()->avatar(), $file);
         } else {
-            FileService::delete(auth()->user()->avatar);
+            auth()->user()->avatar?->delete();
         }
 
         return redirect(route('file-test.index'));

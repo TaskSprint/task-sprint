@@ -56,19 +56,4 @@ class FileService
             return $fileModel;
         }, $attempts);
     }
-
-    /**
-     * @throws Throwable
-     */
-    public function delete(?File $file, int $attempts = 5): void
-    {
-        if (!$file) {
-            return;
-        }
-
-        DB::transaction(function () use ($file) {
-            $file->delete();
-            Storage::disk($file->disk)->delete($file->path);
-        }, $attempts);
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\Models\CategoryService;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Throwable;
@@ -13,6 +14,7 @@ class CategoryTestController extends Controller
 {
     public function index()
     {
+        Debugbar::info(Category::first()->subCategories()->toSql());
         return Inertia::render('CategoryTest', [
             'categories' => CategoryResource::collection(
                 Category::with('icon')
@@ -64,7 +66,7 @@ class CategoryTestController extends Controller
      */
     public function destroy(Category $category)
     {
-        CategoryService::delete($category);
+        $category->delete();
         return redirect(route('category-test.index'));
     }
 }

@@ -184,27 +184,4 @@ abstract class BaseModelService
 
         return $model;
     }
-
-    /**
-     * @param TModel $model
-     * @throws Throwable
-     * @noinspection PhpDocSignatureInspection
-     */
-    public function delete(Model $model, int $attempts = 5): void
-    {
-        foreach ($this->files as $file) {
-            FileService::delete($model->$file, $attempts);
-        }
-        foreach ($this->fileCollections as $fileCollection) {
-            if ($model->{$fileCollection}) {
-                foreach ($model->{$fileCollection} as $file) {
-                    FileService::delete($file, $attempts);
-                }
-            }
-        }
-
-        DB::transaction(function () use ($model) {
-            $model->delete();
-        }, $attempts);
-    }
 }
