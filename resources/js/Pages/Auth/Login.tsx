@@ -49,14 +49,14 @@ export default function Login({
                     <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">{t('auth.login.title')}</h2>
 
 
-                    <div className="">
+                    <div className="rounded-[15px]">
 
                         <TextInput
                             id="email"
                             type="email"
                             name="email"
                             value={data.email}
-                            className="flex h-[1.875rem] w-[15.625rem] text-[0.75rem] flex-row items-center gap-[0.625rem] rounded-[0.9375rem] border border-[#2D2D2D] bg-white dark:bg-white px-[1.25rem]"
+                            className="flex h-[1.875rem] w-[15.625rem] text-[0.75rem] flex-row items-center gap-[0.625rem] rounded-[1rem] border border-[#2D2D2D] bg-white dark:bg-white px-[1.25rem]"
                             placeholder={t('auth.login.email')}
                             autoComplete="username"
                             isFocused={true}
@@ -66,14 +66,14 @@ export default function Login({
                         <InputError message={errors.email} className="mt-2" />
                     </div>
 
-                    <div className="">
+                    <div className="rounded-[0.9375rem]">
 
                         <TextInput
                             id="password"
                             type="password"
                             name="password"
                             value={data.password}
-                            className="flex h-[1.875rem] w-[15.625rem] text-[0.75rem] flex-row items-center gap-[0.625rem] rounded-[0.9375rem] border border-[#2D2D2D] bg-white dark:bg-white px-[1.25rem] "
+                            className="flex h-[1.875rem] w-[15.625rem] text-[0.75rem] flex-row items-center gap-[0.625rem] rounded-[1rem] border border-[#2D2D2D] bg-white dark:bg-white px-[1.25rem] "
                             placeholder={t('auth.login.password')}
                             autoComplete="current-password"
                             onChange={(e) => setData('password', e.target.value)}
