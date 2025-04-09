@@ -6,9 +6,16 @@ use App\Casts\LocaleString;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class SubCategory extends Model
 {
+    use CascadesDeletes;
+
+    protected array $cascadeDeletes = ['tasks'];
+
+    protected $guarded = ['id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -13,7 +13,7 @@ export default function LastTaskCard({ name, price, estimated_date, subCategory 
                 </h3>
                 {subCategory?.category && (
                     <p className="line-clamp-1 overflow-ellipsis break-all text-sm font-semibold leading-5 text-black dark:text-white">
-                        {subCategory.category.name}
+                        {subCategory.category.name.current}
                     </p>
                 )}
             </div>
