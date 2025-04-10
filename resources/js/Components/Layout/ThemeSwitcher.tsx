@@ -16,7 +16,7 @@ export default function ThemeSwitcher() {
     return (
         <button
             onClick={handleThemeChange}
-            className="h-full cursor-pointer transition-colors duration-200 hover:text-muted"
+            className="hover:text-muted h-full cursor-pointer transition-colors duration-200"
         >
             <SolarSunBold className="hidden size-full dark:block" />
             <SolarMoonLinear className="size-full dark:hidden" />

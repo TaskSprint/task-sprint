@@ -8,7 +8,7 @@ export function Info() {
         <div className="flex flex-wrap justify-center gap-12 p-9">
             <div className="flex flex-col items-center">
                 <Image alt="Create task" src="/images/create-task.png" className="size-40" />
-                <h3 className="text-center text-xl font-semibold text-foreground">
+                <h3 className="text-foreground text-center text-xl font-semibold">
                     {t('info.task.create.title')}
                 </h3>
                 <p className="text-center text-sm font-medium text-[#7E7E7E]">
@@ -21,7 +21,7 @@ export function Info() {
                     src="/images/employee-receive.png"
                     className="size-40"
                 />
-                <h3 className="text-center text-xl font-semibold text-foreground">
+                <h3 className="text-foreground text-center text-xl font-semibold">
                     {t('info.employee-receive.title')}
                 </h3>
                 <p className="text-center text-sm font-medium text-[#7E7E7E]">
@@ -30,7 +30,7 @@ export function Info() {
             </div>
             <div className="flex flex-col items-center">
                 <Image alt="Close task" src="/images/close-task.png" className="size-40" />
-                <h3 className="text-center text-xl font-semibold text-foreground">
+                <h3 className="text-foreground text-center text-xl font-semibold">
                     {t('info.task.close.title')}
                 </h3>
                 <p className="text-center text-sm font-medium text-[#7E7E7E]">

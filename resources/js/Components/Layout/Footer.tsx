@@ -29,7 +29,7 @@ export function Footer() {
                     <ul className="flex h-9 gap-6">
                         <li className="flex h-full">
                             <Link
-                                className="transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
                                 <MdiInstagram className="aspect-square h-full w-fit" />
@@ -37,7 +37,7 @@ export function Footer() {
                         </li>
                         <li className="flex h-full">
                             <Link
-                                className="transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
                                 <MdiFacebook className="aspect-square h-full w-fit" />
@@ -45,7 +45,7 @@ export function Footer() {
                         </li>
                         <li className="flex h-full">
                             <Link
-                                className="transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
                                 <MdiTwitter className="aspect-square h-full w-fit" />
@@ -59,37 +59,37 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
@@ -100,37 +100,37 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
@@ -141,37 +141,37 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    className="inline-flex items-center gap-2.5 py-2.5 font-semibold transition hover:text-foreground/75 active:scale-95 active:text-foreground/50"
+                                    className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
-                                    <MaterialSymbolsArrowForwardIosRounded className="h-4 text-muted" />
+                                    <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
                                     Lorem ipsum
                                 </Link>
                             </li>
@@ -179,7 +179,7 @@ export function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="flex w-full justify-center bg-foreground text-background">
+            <div className="bg-foreground text-background flex w-full justify-center">
                 <div className="w-full max-w-[90rem] px-6 py-2.5 sm:px-[6.25rem]">
                     <p>All rights reserved</p>
                 </div>
