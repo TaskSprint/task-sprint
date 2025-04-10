@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'title' => 'Вхід',
+    'title_page' => 'Вхід',
+    'title' => 'Увійти',
     'email' => 'Електронна пошта',
     'password' => 'Пароль',
     'remember_me' => 'Запам\'ятати мене',

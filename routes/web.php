@@ -16,6 +16,7 @@ Route::localized(function () {
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
+
     })->name('home');
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');

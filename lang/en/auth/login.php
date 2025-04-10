@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'title' => 'Log in test',
+    'title_page' => 'Log in',
+    'title' => 'Log in',
     'email' => 'Email',
     'password' => 'Password',
     'remember_me' => 'Remember me',
