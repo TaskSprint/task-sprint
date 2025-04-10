@@ -12,10 +12,10 @@ export default function Welcome({
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
     const { route } = useRouter();
     const handleImageError = () => {
-        document.getElementById('screenshot-container')?.classList.add('!hidden');
-        document.getElementById('docs-card')?.classList.add('!row-span-1');
-        document.getElementById('docs-card-content')?.classList.add('!flex-row');
-        document.getElementById('background')?.classList.add('!hidden');
+        document.getElementById('screenshot-container')?.classList.add('hidden!');
+        document.getElementById('docs-card')?.classList.add('row-span-1!');
+        document.getElementById('docs-card-content')?.classList.add('flex-row!');
+        document.getElementById('background')?.classList.add('hidden!');
     };
     const { t } = useLaravelReactI18n();
 
@@ -25,7 +25,7 @@ export default function Welcome({
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <img
                     id="background"
-                    className="absolute -left-20 top-0 max-w-[877px]"
+                    className="absolute top-0 -left-20 max-w-[877px]"
                     src="https://laravel.com/assets/img/welcome/background.svg"
                     alt=""
                 />
@@ -49,7 +49,7 @@ export default function Welcome({
                                 {auth.user ? (
                                     <Link
                                         href={route('dashboard')}
-                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-hidden focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                     >
                                         {t('navigation.dashboard')}
                                     </Link>
@@ -57,13 +57,13 @@ export default function Welcome({
                                     <>
                                         <Link
                                             href={route('login')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-hidden focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                         >
                                             {t('navigation.login')}
                                         </Link>
                                         <Link
                                             href={route('register')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-hidden focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                         >
                                             {t('navigation.register')}
                                         </Link>
@@ -77,7 +77,7 @@ export default function Welcome({
                                 <a
                                     href="https://laravel.com/docs"
                                     id="docs-card"
-                                    className="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10"
+                                    className="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-hidden focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
                                 >
                                     <div
                                         id="screenshot-container"
@@ -94,7 +94,7 @@ export default function Welcome({
                                             alt="Laravel documentation screenshot"
                                             className="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-cover object-top drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
                                         />
-                                        <div className="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"></div>
+                                        <div className="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-linear-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"></div>
                                     </div>
 
                                     <div className="relative flex items-center gap-6 lg:items-end">
@@ -149,7 +149,7 @@ export default function Welcome({
 
                                 <a
                                     href="https://laracasts.com"
-                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20] lg:pb-10"
+                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-hidden focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
                                 >
                                     <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
                                         <svg
@@ -191,7 +191,7 @@ export default function Welcome({
 
                                 <a
                                     href="https://laravel-news.com"
-                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20] lg:pb-10"
+                                    className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-hidden focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
                                 >
                                     <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
                                         <svg
@@ -233,7 +233,7 @@ export default function Welcome({
                                     </svg>
                                 </a>
 
-                                <div className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] dark:bg-zinc-900 dark:ring-zinc-800 lg:pb-10">
+                                <div className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800">
                                     <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
                                         <svg
                                             className="size-5 sm:size-6"
@@ -256,35 +256,35 @@ export default function Welcome({
                                             {t('welcome.vibrant_ecosystem_content_1')}{' '}
                                             <a
                                                 href="https://forge.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
                                             >
                                                 {t('welcome.forge')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://vapor.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.vapor')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://nova.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.nova')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://envoyer.io"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.envoyer')}
                                             </a>
                                             , {t('welcome.and')}{' '}
                                             <a
                                                 href="https://herd.laravel.com"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.herd')}
                                             </a>{' '}
@@ -292,42 +292,42 @@ export default function Welcome({
                                             with powerful open source libraries like{' '}
                                             <a
                                                 href="https://laravel.com/docs/billing"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.cashier')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://laravel.com/docs/dusk"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.dusk')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://laravel.com/docs/broadcasting"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.echo')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://laravel.com/docs/horizon"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.horizon')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://laravel.com/docs/sanctum"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.sanctum')}
                                             </a>
                                             ,{' '}
                                             <a
                                                 href="https://laravel.com/docs/telescope"
-                                                className="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
+                                                className="rounded-xs underline hover:text-black focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
                                             >
                                                 {t('welcome.telescope')}
                                             </a>

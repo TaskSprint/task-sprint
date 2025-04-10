@@ -10,7 +10,7 @@ export function Footer() {
     const { t } = useLaravelReactI18n();
 
     return (
-        <footer className="flex flex-col items-center">
+        <footer className="shadow-footer flex flex-col items-center">
             <div className="flex w-full max-w-[90rem] flex-wrap gap-12 px-6 py-[3.25rem] sm:gap-28 sm:px-[6.25rem]">
                 <div className="flex w-[26.25rem] flex-col gap-4">
                     <div className="inline-flex h-9 items-center gap-1">
