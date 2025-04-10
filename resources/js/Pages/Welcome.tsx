@@ -6,10 +6,10 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 
 export default function Welcome({
-                                    auth,
-                                    laravelVersion,
-                                    phpVersion,
-                                }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+    auth,
+    laravelVersion,
+    phpVersion,
+}: PageProps<{ laravelVersion: string; phpVersion: string }>) {
     const { route } = useRouter();
     const handleImageError = () => {
         document.getElementById('screenshot-container')?.classList.add('!hidden');
