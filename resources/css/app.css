@@ -40,6 +40,18 @@
     }
 }
 
+@layer base {
+    @font-face {
+        font-family: 'Manrope';
+        src: url("/public/fonts/Manrope.ttf");
+    }
+
+    @font-face {
+        font-family: 'Kreadon';
+        src: url("/public/fonts/Kreadon.ttf");
+    }
+}
+
 .background-gradient {
     background: radial-gradient(263.72% 183.45% at -55.42% -56.49%, rgba(94, 137, 255, 0.5) 0%, rgba(0, 204, 255, 0.5) 53%, rgba(82, 227, 202, 0.5) 100%);
 
