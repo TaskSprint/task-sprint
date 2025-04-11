@@ -71,7 +71,7 @@ const CategoriesComponent = () => {
                 {categories.map((category) => (
                     <Button
                         key={category.name}
-                        className="flex h-48 w-48 transform flex-col items-center justify-center rounded-2xl bg-primary p-4 text-center shadow-lg transition-transform hover:scale-105 active:scale-95"
+                        className="bg-primary flex h-48 w-48 transform flex-col items-center justify-center rounded-2xl p-4 text-center shadow-lg transition-transform hover:scale-105 active:scale-95"
                     >
                         {category.icon.startsWith('http') ? (
                             <Image src={category.icon} alt={category.name} className="h-16 w-16" />
@@ -87,7 +87,7 @@ const CategoriesComponent = () => {
                     </Button>
                 ))}
             </div>
-            <Link href="#" className="text-lg text-primary underline">
+            <Link href="#" className="text-primary text-lg underline">
                 {t('categories.all_categories')}
             </Link>
         </div>

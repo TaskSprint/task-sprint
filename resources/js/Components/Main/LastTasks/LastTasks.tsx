@@ -37,7 +37,7 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
         <div className="absolute flex h-[19.25rem] w-full flex-col items-start gap-4 bg-white px-9 py-7 dark:bg-[#2C2C2C]">
             {/* Top row with title and arrows */}
             <div className="flex h-[3.25rem] w-full items-center justify-between">
-                <h2 className="text-2xl font-semibold leading-8 text-black dark:text-white">
+                <h2 className="text-2xl leading-8 font-semibold text-black dark:text-white">
                     {t('last-tasks.last_orders')}
                 </h2>
 

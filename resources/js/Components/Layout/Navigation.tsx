@@ -16,7 +16,8 @@ export default function Navigation() {
 
     return (
         <Navbar
-            className="h-20 shadow-md"
+            className="h-navbar-height shadow-md"
+            height="var(--spacing-navbar-height)"
             classNames={{
                 wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem]',
             }}
@@ -24,7 +25,7 @@ export default function Navigation() {
             <NavbarBrand className="h-full py-1">
                 <Link
                     href={route('home')}
-                    className="inline-flex items-center font-kreadon text-xl font-medium"
+                    className="font-kreadon inline-flex items-center text-xl font-medium"
                 >
                     <ApplicationLogo className="aspect-square h-full w-fit text-white" />
                     TaskSprint
@@ -52,6 +53,8 @@ export default function Navigation() {
                         <Button
                             className="border border-[#131313] text-base font-medium dark:border-white"
                             variant="bordered"
+                            as={Link}
+                            href={route('login')}
                         >
                             <SolarKeyMinimalisticSquare3Linear />
                             {t('navigation.login')}
@@ -61,6 +64,8 @@ export default function Navigation() {
                         <Button
                             className="border-0 bg-black text-base font-medium text-white dark:border dark:border-white dark:bg-transparent"
                             variant="bordered"
+                            as={Link}
+                            href={route('register')}
                         >
                             <SolarLogin2Linear />
                             {t('navigation.register')}

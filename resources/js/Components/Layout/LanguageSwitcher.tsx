@@ -17,13 +17,13 @@ export default function LanguageSwitcher() {
             {locale?.available.map((lang) => (
                 <li key={lang} className="group">
                     {lang === locale?.current ? (
-                        <span className="uppercase text-[#C6C6C6] dark:text-foreground">
+                        <span className="dark:text-foreground text-[#C6C6C6] uppercase">
                             {lang}
                         </span>
                     ) : (
                         <button
                             onClick={() => handleLanguageClick(lang)}
-                            className="cursor-pointer uppercase text-muted transition-colors duration-200 hover:text-muted/75"
+                            className="text-muted hover:text-muted/75 cursor-pointer uppercase transition-colors duration-200"
                         >
                             {lang}
                         </button>
