@@ -1,9 +1,11 @@
 import { Button as HeroUiButton, ButtonProps } from '@heroui/button';
 import { As, forwardRef } from '@heroui/system';
 import { cn } from '@heroui/theme';
+import { useDOMRef } from '@heroui/react-utils';
 
 const Button = forwardRef<typeof HeroUiButton, ButtonProps>(({ className, ...props }, ref) => {
     const Component: As = HeroUiButton;
+    const domRef = useDOMRef(ref);
 
     return (
         <Component
@@ -16,7 +18,7 @@ const Button = forwardRef<typeof HeroUiButton, ButtonProps>(({ className, ...pro
                 'rounded-[1.25rem] px-6 py-2.5 text-xl font-semibold',
                 className,
             )}
-            ref={ref}
+            ref={domRef}
         />
     );
 });

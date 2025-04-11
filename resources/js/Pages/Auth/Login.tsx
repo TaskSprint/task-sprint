@@ -35,7 +35,7 @@ export default function Login({
             <Head title={t('auth.login.title_page')} />
 
             <AppLayout>
-                <div className="mx-auto grid h-full w-full max-w-[60rem] grid-cols-2 bg-white dark:bg-[#2C2C2C]">
+                <div className="bg-surface mx-auto grid h-full w-full max-w-[60rem] grid-cols-2">
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">{status}</div>
                     )}
