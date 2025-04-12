@@ -43,7 +43,7 @@ export default function Login({
                     <div className="flex flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
                         <form
                             onSubmit={submit}
-                            className="flex max-w-64 flex-col items-start gap-10"
+                            className="flex max-w-64 flex-col items-start gap-5"
                         >
                             <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
                                 {t('auth.login.title')}
