@@ -1,7 +1,7 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-export default function SupportButton() {
+export default function Support() {
     const { t } = useLaravelReactI18n();
 
     return (
