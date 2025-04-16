@@ -1,12 +1,16 @@
-import Button from "@/Components/Shared/Button";
-import {useLaravelReactI18n} from "laravel-react-i18n";
-const { t } = useLaravelReactI18n();
+import Button from '@/Components/Shared/Button';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
-export default function App() {
+export default function SupportButton() {
+    const { t } = useLaravelReactI18n();
+
     return (
-        <div className="flex p-[4.5rem] gap-6 items-center justify-center flex-col">
-            <h2 className="text-[2rem] font-semibold">{t('welcome.any_questions')}</h2>
-            <Button className="text-white text-[1.25rem] font-semibold" color="primary">
+        <div className="flex flex-col items-center justify-center gap-9 px-2 py-28">
+            <h2 className="text-center text-[2rem] font-semibold">{t('welcome.any_questions')}</h2>
+            <Button
+                className="h-fit rounded-[2.25rem] px-16 py-5 text-xl font-semibold text-white"
+                color="primary"
+            >
                 {t('welcome.support')}
             </Button>
         </div>

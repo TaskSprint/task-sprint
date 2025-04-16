@@ -45,5 +45,5 @@ return [
     'telescope' => 'Telescope',
     'and_more' => 'та інше',
     'any_questions' => 'Залишились питання?',
-    'support' => 'Підтримка',
+    'support' => 'Служба підтримки',
 ];
