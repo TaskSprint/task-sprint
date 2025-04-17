@@ -28,8 +28,9 @@ class TaskOrderPolicy
 
     public function update(?User $user, TaskOrder $taskOrder): bool
     {
-        return $user?->hasPermissionTo('update task order') && $taskOrder->employee_id === $user?->id ||
-            $user?->hasPermissionTo('edit task order') && $taskOrder->task->customer_id === $user?->id ||
+        return
+            $user?->hasPermissionTo('edit task order') &&
+            ($taskOrder->employee_id === $user?->id || $taskOrder->task->customer_id === $user?->id) ||
             $user?->hasPermissionTo('force edit task order');
     }
 
