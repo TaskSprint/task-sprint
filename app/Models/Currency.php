@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Casts\LocaleString;
+use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Currency extends Model
 {
-    use CascadesDeletes;
+    use PolicyChecks, CascadesDeletes;
 
     public $incrementing = false;
     protected array $cascadeDeletes = ['tasks'];

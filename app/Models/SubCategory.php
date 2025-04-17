@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\LocaleString;
+use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class SubCategory extends Model
 {
-    use CascadesDeletes;
+    use PolicyChecks, CascadesDeletes;
 
     protected array $cascadeDeletes = ['tasks'];
 

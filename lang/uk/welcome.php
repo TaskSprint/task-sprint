@@ -44,6 +44,9 @@ return [
     'sanctum' => 'Sanctum',
     'telescope' => 'Telescope',
     'and_more' => 'та інше',
+    'roles_question' => 'Шукайте фахівців або вигідні замовлення',
+    'specialists' => 'Шукати фахівців',
+    'orders' => 'Шукати замовлення',
     'any_questions' => 'Залишились питання?',
     'support' => 'Служба підтримки',
 ];

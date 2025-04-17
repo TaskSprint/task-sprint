@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\LocaleString;
+use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -10,7 +11,7 @@ use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Category extends Model
 {
-    use CascadesDeletes;
+    use PolicyChecks, CascadesDeletes;
 
     protected $cascadeDeletes = ['icon', 'subCategories'];
     protected $guarded = ['id'];

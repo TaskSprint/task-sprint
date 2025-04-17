@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Enums\TaskOrderStatus;
+use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TaskOrder extends Model
 {
+    use PolicyChecks;
+
     public $incrementing = false;
     protected $primaryKey = 'task_id';
 

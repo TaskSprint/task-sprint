@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Models\PolicyChecks;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasRoles, CascadesDeletes;
+    use HasFactory, Notifiable, HasRoles, PolicyChecks, CascadesDeletes;
 
     protected array $cascadeDeletes = ['avatar', 'files', 'tasks', 'taskOrders'];
 
