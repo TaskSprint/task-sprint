@@ -4,7 +4,6 @@ import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 import React from 'react';
-import Roles from '@/Components/RolesButton';
 
 export default function Welcome({
     auth,
@@ -338,7 +337,6 @@ export default function Welcome({
                                 </div>
                             </div>
                         </main>
-                        <Roles />
 
                         <footer className="py-16 text-center text-sm text-black dark:text-white/70">
                             Laravel v{laravelVersion} (PHP v{phpVersion})
