@@ -73,7 +73,7 @@ const Categories = () => {
                 {categories.map((category) => (
                     <Button
                         key={category.name}
-                        className="bg-primary flex aspect-square size-full transform flex-col items-center justify-center p-4 text-center shadow-lg !transition duration-300 hover:scale-105 active:scale-95"
+                        className="bg-primary flex aspect-square size-full transform flex-col items-center justify-center p-4 text-center shadow-lg duration-300 hover:scale-105 active:scale-95"
                     >
                         {isSvg(category.icon) ? (
                             <SafeHtml

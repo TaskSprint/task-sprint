@@ -15,7 +15,7 @@ const Button = forwardRef<typeof HeroUiButton, ButtonProps>(({ className, ...pro
                 !props.color &&
                     props.variant === 'bordered' &&
                     'border-[#C6C6C6] dark:border-white',
-                'rounded-[1.25rem] px-6 py-2.5 text-xl font-semibold',
+                'rounded-[1.25rem] px-6 py-2.5 text-xl font-semibold !transition',
                 className,
             )}
             ref={domRef}

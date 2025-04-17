@@ -17,7 +17,7 @@ export default function SearchBar() {
                 variant="bordered"
                 placeholder={t('navigation.search')}
             />
-            <Button className="min-w-fit rounded-l-none rounded-r-[1.25rem] bg-[#C6C6C6] px-6 py-2.5 text-[#131313] dark:bg-white">
+            <Button className="min-w-fit rounded-l-none rounded-r-[1.25rem] bg-[#C6C6C6] px-6 py-2.5 text-[#131313] !transition dark:bg-white">
                 {t('navigation.find')}
             </Button>
         </div>
