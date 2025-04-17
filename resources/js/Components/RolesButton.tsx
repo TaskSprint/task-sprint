@@ -1,27 +1,21 @@
 import Button from "@/Components/Shared/Button";
+import {Link} from '@heroui/link';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 
-export default function App() {
+export default function Roles() {
+    const { t } = useLaravelReactI18n();
     return (
-        <div className="flex p-[4.5rem] gap-6 items-center justify-center flex-col">
-            <h2 className="text-[2rem] font-semibold">Шукайте фахівців або вигідні замовлення</h2>
-            <div className="w-8xl gap-9"  >
-                <Button className="text-white text-[1.25rem] font-semibold" color="primary">
-                    Знайти фахівця
-                </Button>
-                <Button className="text-white text-[1.25rem] font-semibold" color="primary">
-                    Стати фахівцем
-                </Button>
+        <div className="flex w-[959px] h-[220px] py-[11px] ml-[20px] mt-[20px] gap-[36px] items-center justify-center flex-col">
+            <h2 className="text-[2rem] font-semibold items-center">{t('welcome.roles_question')}</h2>
+            <div className="flex hug justify-center w-[640px] h-[69px] gap-8">
+                    <Button as={Link} href="#" className="text-white text-[1.25rem] font-semibold" color="primary">
+                        {t('welcome.specialists')}
+                    </Button>
+                    <Button as={Link} href="#" className="text-white text-[1.25rem] font-semibold" color="primary">
+                        {t('welcome.orders')}
+                    </Button>
             </div>
         </div>
     );
 }
-/*
-width: 959;
-height: 220;
-top: 260px;
-left: 20px;
-padding-top: 11px;
-padding-bottom: 11px;
-gap: 36px;
-*/

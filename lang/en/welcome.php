@@ -44,4 +44,7 @@ return [
     'sanctum' => 'Sanctum',
     'telescope' => 'Telescope',
     'and_more' => 'and more',
+    'roles_question' => 'Search for specialists or profitable orders',
+    'specialists' => 'Search specialists',
+    'orders' => 'Search orders',
 ];
