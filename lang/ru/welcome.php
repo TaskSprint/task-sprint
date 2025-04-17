@@ -44,4 +44,6 @@ return [
     'sanctum' => 'Sanctum',
     'telescope' => 'Telescope',
     'and_more' => 'и другое',
+    'any_questions' => 'Остались вопросы?',
+    'support' => 'Служба поддержки',
 ];
