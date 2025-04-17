@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Models\PolicyChecks;
 use DateTimeInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
+    use PolicyChecks;
+
     protected $guarded = ['id'];
 
     protected static function booted(): void
