@@ -22,26 +22,26 @@ class CurrencyPolicy
 
     public function create(?User $user): bool
     {
-        return $user?->hasPermissionTo('create currency');
+        return (bool)$user?->hasPermissionTo('create currency');
     }
 
     public function update(?User $user, Currency $currency): bool
     {
-        return $user?->hasPermissionTo('edit currency');
+        return (bool)$user?->hasPermissionTo('edit currency');
     }
 
     public function delete(?User $user, Currency $currency): bool
     {
-        return $user?->hasPermissionTo('delete currency');
+        return (bool)$user?->hasPermissionTo('delete currency');
     }
 
     public function restore(?User $user, Currency $currency): bool
     {
-        return $user?->hasPermissionTo('restore currency');
+        return (bool)$user?->hasPermissionTo('restore currency');
     }
 
     public function forceDelete(?User $user, Currency $currency): bool
     {
-        return $user?->hasPermissionTo('force delete currency');
+        return (bool)$user?->hasPermissionTo('force delete currency');
     }
 }

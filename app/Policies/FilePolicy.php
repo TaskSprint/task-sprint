@@ -43,11 +43,11 @@ class FilePolicy
 
     public function restore(?User $user, File $file): bool
     {
-        return $user?->hasPermissionTo('restore file');
+        return (bool)$user?->hasPermissionTo('restore file');
     }
 
     public function forceDelete(?User $user, File $file): bool
     {
-        return $user?->hasPermissionTo('force delete file');
+        return (bool)$user?->hasPermissionTo('force delete file');
     }
 }

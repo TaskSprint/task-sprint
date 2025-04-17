@@ -38,11 +38,11 @@ class UserPolicy
 
     public function restore(?User $user, User $model): bool
     {
-        return $user?->hasPermissionTo('restore user');
+        return (bool)$user?->hasPermissionTo('restore user');
     }
 
     public function forceDelete(?User $user, User $model): bool
     {
-        return $user?->hasPermissionTo('force delete user');
+        return (bool)$user?->hasPermissionTo('force delete user');
     }
 }

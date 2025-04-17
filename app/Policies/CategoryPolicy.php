@@ -22,26 +22,26 @@ class CategoryPolicy
 
     public function create(?User $user): bool
     {
-        return $user?->hasPermissionTo('create category');
+        return (bool)$user?->hasPermissionTo('create category');
     }
 
     public function update(?User $user, Category $category): bool
     {
-        return $user?->hasPermissionTo('edit category');
+        return (bool)$user?->hasPermissionTo('edit category');
     }
 
     public function delete(?User $user, Category $category): bool
     {
-        return $user?->hasPermissionTo('delete category');
+        return (bool)$user?->hasPermissionTo('delete category');
     }
 
     public function restore(?User $user, Category $category): bool
     {
-        return $user?->hasPermissionTo('restore category');
+        return (bool)$user?->hasPermissionTo('restore category');
     }
 
     public function forceDelete(?User $user, Category $category): bool
     {
-        return $user?->hasPermissionTo('force delete category');
+        return (bool)$user?->hasPermissionTo('force delete category');
     }
 }

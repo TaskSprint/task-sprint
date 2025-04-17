@@ -22,26 +22,26 @@ class SubCategoryPolicy
 
     public function create(?User $user): bool
     {
-        return $user?->hasPermissionTo('create sub-category');
+        return (bool)$user?->hasPermissionTo('create sub-category');
     }
 
     public function update(?User $user, SubCategory $subCategory): bool
     {
-        return $user?->hasPermissionTo('edit sub-category');
+        return (bool)$user?->hasPermissionTo('edit sub-category');
     }
 
     public function delete(?User $user, SubCategory $subCategory): bool
     {
-        return $user?->hasPermissionTo('delete sub-category');
+        return (bool)$user?->hasPermissionTo('delete sub-category');
     }
 
     public function restore(?User $user, SubCategory $subCategory): bool
     {
-        return $user?->hasPermissionTo('restore sub-category');
+        return (bool)$user?->hasPermissionTo('restore sub-category');
     }
 
     public function forceDelete(?User $user, SubCategory $subCategory): bool
     {
-        return $user?->hasPermissionTo('force delete sub-category');
+        return (bool)$user?->hasPermissionTo('force delete sub-category');
     }
 }

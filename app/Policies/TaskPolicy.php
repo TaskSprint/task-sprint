@@ -22,7 +22,7 @@ class TaskPolicy
 
     public function create(?User $user): bool
     {
-        return $user?->hasPermissionTo('create task');
+        return (bool)$user?->hasPermissionTo('create task');
     }
 
     public function update(?User $user, Task $task): bool
@@ -39,16 +39,16 @@ class TaskPolicy
 
     public function restore(?User $user, Task $task): bool
     {
-        return $user?->hasPermissionTo('restore task');
+        return (bool)$user?->hasPermissionTo('restore task');
     }
 
     public function forceDelete(?User $user, Task $task): bool
     {
-        return $user?->hasPermissionTo('force delete task');
+        return (bool)$user?->hasPermissionTo('force delete task');
     }
 
     public function assign(?User $user, Task $task): bool
     {
-        return $user?->hasPermissionTo('assign to tasks') && $task->order === null;
+        return (bool)$user?->hasPermissionTo('assign to tasks') && $task->order === null;
     }
 }

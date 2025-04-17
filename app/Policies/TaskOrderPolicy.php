@@ -23,7 +23,7 @@ class TaskOrderPolicy
 
     public function create(?User $user): bool
     {
-        return $user?->hasPermissionTo('create task order');
+        return (bool)$user?->hasPermissionTo('create task order');
     }
 
     public function update(?User $user, TaskOrder $taskOrder): bool
@@ -39,13 +39,13 @@ class TaskOrderPolicy
             $user?->hasPermissionTo('force delete task order');
     }
 
-    public function restore(User $user, TaskOrder $taskOrder): bool
+    public function restore(?User $user, TaskOrder $taskOrder): bool
     {
-        return $user?->hasPermissionTo('restore task order');
+        return (bool)$user?->hasPermissionTo('restore task order');
     }
 
-    public function forceDelete(User $user, TaskOrder $taskOrder): bool
+    public function forceDelete(?User $user, TaskOrder $taskOrder): bool
     {
-        return $user?->hasPermissionTo('force delete task order');
+        return (bool)$user?->hasPermissionTo('force delete task order');
     }
 }
