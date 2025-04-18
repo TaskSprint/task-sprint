@@ -27,20 +27,20 @@ class FileService
         }
 
         if ($relation instanceof MorphOne && $relation->exists()) {
-            $this->delete($relation->first());
+            $relation->first()->delete();
         }
 
         return DB::transaction(function () use ($file, $relation, $disk) {
             $relationClass = $relation->getMorphClass();
             $path =
-                (Str::startsWith($file->getClientMimeType(), "image/")
+                (Str::startsWith($file->getMimeType(), "image/")
                     ? "images"
                     : "files")
                 . '/' . new $relationClass()->getTable();
 
             $fileModel = $relation->create([
                 'name' => $file->getClientOriginalName(),
-                'mime_type' => $file->getClientMimeType(),
+                'mime_type' => $file->getMimeType(),
                 'size' => $file->getSize(),
                 'path' => $file->hashName($path),
                 'disk' => $disk ?? config('filesystems.default'),

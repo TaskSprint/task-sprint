@@ -128,21 +128,27 @@ abstract class BaseModelService
     {
         $localizedAttributes = [];
         foreach ($this->localizedAttributes as $localizedAttribute) {
+            $localeString = isset($model)
+                ? ($model->$localizedAttribute ?? new LocaleString())
+                : new LocaleString();
             if (!array_key_exists($localizedAttribute, $attributes)) {
                 $values = collect($attributes)
                     ->only(collect(config('localized-routes.supported_locales'))
                         ->map(fn($locale) => "{$localizedAttribute}_$locale"));
                 if ($values->count() > 1) {
-                    $localeString = isset($model)
-                        ? ($model->$localizedAttribute ?? new LocaleString())
-                        : new LocaleString();
                     foreach ($values as $key => $value) {
                         $locale = str($key)->chopStart("{$localizedAttribute}_")->toString();
                         $localeString[$locale] = $value;
                     }
                     $localizedAttributes[$localizedAttribute] = $localeString;
                 }
+                continue;
             }
+            
+            foreach ($attributes[$localizedAttribute] as $locale => $value) {
+                $localeString[$locale] = $value;
+            }
+            $localizedAttributes[$localizedAttribute] = $localeString;
         }
         return $localizedAttributes;
     }
