@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'search_orders' => 'Search Orders',
+    'search_orders' => 'Search Task',
     'favourite_specialists' => 'Favourite Specialists',
     'in_progress' => 'In Progress',
-    'new_task' => 'New Order',
+    'new_task' => 'New Task',
 
     'reviews' => 'reviews',
     'positive' => 'positive',
