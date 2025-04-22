@@ -7,7 +7,7 @@ export function TitleLogo() {
     const { t } = useLaravelReactI18n();
 
     return (
-        <div className="flex flex-col w-[60rem] h-[26rem] justify-self-start gap-41 px-14 py-12
+        <div className="flex flex-col w-full min-h-[26rem] justify-between gap-6 px-14 py-12
             bg-[url(/images/title-logo.png)] bg-cover bg-center opacity-85 mt-20 ml-56 ">
             <div  className="inline-flex h-9 items-center gap-2.5">
                 <ApplicationLogo
