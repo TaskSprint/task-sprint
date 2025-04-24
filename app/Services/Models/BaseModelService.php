@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionNamedType;
 use Throwable;
 
 /**
@@ -53,13 +54,15 @@ abstract class BaseModelService
 
         foreach ($methods as $method) {
             if ($method->isPublic() &&
-                $method->getReturnType()?->getName() === MorphOne::class &&
+                $method->getReturnType() instanceof ReflectionNamedType &&
+                $method->getReturnType()->getName() === MorphOne::class &&
                 $this->model->{$method->getName()}()->getRelated() instanceof File
             ) {
                 $this->files[] = $method->getName();
             }
 
             if ($method->isPublic() &&
+                $method->getReturnType() instanceof ReflectionNamedType &&
                 $method->getReturnType()?->getName() === MorphMany::class &&
                 $this->model->{$method->getName()}()->getRelated() instanceof File
             ) {
@@ -109,14 +112,17 @@ abstract class BaseModelService
                 if ($attributes[$file]) {
                     FileService::create($model->$file(), $attributes[$file], attempts: $attempts);
                 } else {
-                    FileService::delete($model->$file, $attempts);
+                    $model->$file()->delete();
                 }
             }
         }
         foreach ($this->fileCollections as $fileCollection) {
-            if (array_key_exists($fileCollection, $attributes) && $attributes[$fileCollection]) {
-                foreach ($attributes[$fileCollection] as $file) {
-                    FileService::create($model->$fileCollection(), $file, attempts: $attempts);
+            if (array_key_exists($fileCollection, $attributes)) {
+                $model->$fileCollection()->delete();
+                if ($attributes[$fileCollection]) {
+                    foreach ($attributes[$fileCollection] as $file) {
+                        FileService::create($model->$fileCollection(), $file, attempts: $attempts);
+                    }
                 }
             }
         }
@@ -128,21 +134,27 @@ abstract class BaseModelService
     {
         $localizedAttributes = [];
         foreach ($this->localizedAttributes as $localizedAttribute) {
+            $localeString = isset($model)
+                ? ($model->$localizedAttribute ?? new LocaleString())
+                : new LocaleString();
             if (!array_key_exists($localizedAttribute, $attributes)) {
                 $values = collect($attributes)
                     ->only(collect(config('localized-routes.supported_locales'))
                         ->map(fn($locale) => "{$localizedAttribute}_$locale"));
                 if ($values->count() > 1) {
-                    $localeString = isset($model)
-                        ? ($model->$localizedAttribute ?? new LocaleString())
-                        : new LocaleString();
                     foreach ($values as $key => $value) {
                         $locale = str($key)->chopStart("{$localizedAttribute}_")->toString();
                         $localeString[$locale] = $value;
                     }
                     $localizedAttributes[$localizedAttribute] = $localeString;
                 }
+                continue;
             }
+
+            foreach ($attributes[$localizedAttribute] as $locale => $value) {
+                $localeString[$locale] = $value;
+            }
+            $localizedAttributes[$localizedAttribute] = $localeString;
         }
         return $localizedAttributes;
     }

@@ -14,6 +14,7 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permissions = [
+            'view admin panel' => Permission::firstOrCreate(['name' => 'view admin panel']),
             'assign to tasks' => Permission::firstOrCreate(['name' => 'assign to tasks']),
             'category' => [
                 'create category' => Permission::firstOrCreate(['name' => 'create category']),

@@ -10,7 +10,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "awcodes/filament-badgeable-column": "^2.3",
+        "bezhansalleh/filament-language-switch": "^3.1",
+        "charrafimed/global-search-modal": "^3.7",
         "codezero/laravel-localized-routes": "^4.0",
+        "filament/filament": "^3.3",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^11.31",
         "laravel/octane": "^2.8",
@@ -47,7 +51,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

@@ -1,11 +1,9 @@
 import React, { FormEventHandler } from 'react';
-import { useForm } from '@inertiajs/react';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import Navigation from '@/Components/Layout/Navigation';
 
 export default function Support() {
     const { t } = useLaravelReactI18n();
@@ -21,15 +19,17 @@ export default function Support() {
             onSuccess: () => reset(),
         });
     };
-    
+
     return (
         <>
             <Head title={t('support.title')} />
-            <Navigation />
 
-            <div className="flex flex-col items-center justify-center min-h-screen px-4 py-12 bg-gray-50 dark:bg-gray-900">
-                <form onSubmit={submit} className="w-full max-w-md space-y-6 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md">
-                    <h1 className="text-xl font-semibold text-center text-black dark:text-white">
+            <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-12 dark:bg-gray-900">
+                <form
+                    onSubmit={submit}
+                    className="w-full max-w-md space-y-6 rounded-2xl bg-white p-6 shadow-md dark:bg-gray-800"
+                >
+                    <h1 className="text-center text-xl font-semibold text-black dark:text-white">
                         {t('support.contact_us')}
                     </h1>
 
@@ -65,13 +65,13 @@ export default function Support() {
                             value={data.message}
                             onChange={(e) => setData('message', e.target.value)}
                             placeholder={t('support.message')}
-                            className="w-full h-32 px-4 py-2 text-sm border border-gray-300 rounded-xl dark:bg-white dark:text-black focus:ring-2 focus:ring-indigo-500"
+                            className="h-32 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 dark:bg-white dark:text-black"
                         />
                         <InputError message={errors.message} className="mt-1" />
                     </div>
 
                     <Button
-                        className="w-full bg-indigo-600 text-white hover:bg-indigo-700 rounded-xl py-2 text-sm"
+                        className="w-full rounded-xl bg-indigo-600 py-2 text-sm text-white hover:bg-indigo-700"
                         disabled={processing}
                     >
                         {t('support.submit')}

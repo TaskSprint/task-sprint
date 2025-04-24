@@ -13,25 +13,25 @@ trait PolicyChecks
 
     public static function bootPolicyChecks(): void
     {
-        if (self::checkIsInSeeder()) {
+        if (static::checkIsInSeeder()) {
             return;
         }
 
-        if (self::checkPolicy('view', self::class)) {
-            self::retrieved(function ($model) {
-                if ($model->checkViewPolicy && self::checkPolicy('view', $model)) {
+        if (static::checkPolicy('view', static::class)) {
+            static::retrieved(function ($model) {
+                if ($model->checkViewPolicy && static::checkPolicy('view', $model)) {
                     Gate::authorize('view', $model);
                 }
             });
         }
 
-        self::makeEvent('creating', 'create');
-        self::makeEvent('updating', 'update');
-        self::makeEvent('deleting', 'delete');
+        static::makeEvent('creating', 'create');
+        static::makeEvent('updating', 'update');
+        static::makeEvent('deleting', 'delete');
 
         if (collect(class_uses_recursive(static::class))->contains(SoftDeletes::class)) {
-            self::makeEvent('restoring', 'restore');
-            self::makeEvent('forceDeleting', 'forceDelete');
+            static::makeEvent('restoring', 'restore');
+            static::makeEvent('forceDeleting', 'forceDelete');
         }
     }
 
@@ -50,9 +50,9 @@ trait PolicyChecks
 
     protected static function makeEvent(string $method, string $authority): void
     {
-        if (self::checkPolicy($authority, self::class)) {
-            self::{$method}(function ($model) use ($authority) {
-                if (self::checkPolicy($authority, $model)) {
+        if (static::checkPolicy($authority, static::class)) {
+            static::{$method}(function ($model) use ($authority) {
+                if (static::checkPolicy($authority, $model)) {
                     Gate::authorize($authority, $model);
                 }
             });

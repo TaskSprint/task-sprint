@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Traits\Models\PolicyChecks;
 use Database\Factories\UserFactory;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser, HasAvatar
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasRoles, PolicyChecks, CascadesDeletes;
@@ -41,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->hasPermissionTo('view admin panel');
+    }
+
     public function avatar(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable');
@@ -59,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function taskOrders(): HasMany
     {
         return $this->hasMany(TaskOrder::class);
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar?->getTemporaryUrl();
     }
 
     /**
