@@ -16,10 +16,10 @@ export default function Navigation() {
 
     return (
         <Navbar
-            className="h-navbar-height shadow-md"
+            className="h-navbar-height w-full shadow-md"
             height="var(--spacing-navbar-height)"
             classNames={{
-                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem]',
+                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem] overflow-hidden',
             }}
         >
             <NavbarBrand className="h-full py-1">

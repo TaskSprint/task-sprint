@@ -9,17 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::localized(function () {
-    
-
-    Route::get('/', function () {
-        return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
-
-    })->name('home');
+    Route::get('/', fn() => Inertia::render('Main'))->name('home');
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
