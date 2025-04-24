@@ -47,4 +47,9 @@ class File extends Model
             $expiration ?? now()->addDay()->endOfHour(),
             ['ResponseContentDisposition' => 'attachment; filename="' . urlencode($this->name) . '"']);
     }
+
+    public function getDirectory(): string
+    {
+        return str($this->path)->beforeLast('/')->__toString();
+    }
 }

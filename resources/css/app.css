@@ -5,6 +5,10 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@source '../../app/Filament/**/*.php';
+@source '../../resources/views/filament/**/*.blade.php';
+@source '../../vendor/filament/**/*.blade.php';
+@source '../../vendor/awcodes/filament-badgeable-column/resources/**/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
 

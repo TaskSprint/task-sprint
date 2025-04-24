@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\ProfileController;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
