@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Image } from '@heroui/image';
-import { Button } from '@heroui/button';
 import { Link } from '@inertiajs/react';
+import Button from '@/Components/Shared/Button';
+import SafeHtml from '@/Components/SafeHtml';
+import isSvg from 'is-svg';
 
 const categoriesFromDatabase = [
     {
@@ -59,7 +61,7 @@ const categoriesFromDatabase = [
     },
 ];
 
-const CategoriesComponent = () => {
+const Categories = () => {
     const [categories] = useState(categoriesFromDatabase);
 
     const { t } = useLaravelReactI18n();
@@ -67,19 +69,22 @@ const CategoriesComponent = () => {
     return (
         <div className="flex flex-col items-center gap-6 p-6">
             <h2 className="text-2xl font-semibold">{t('categories.popular_categories')}</h2>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-4">
                 {categories.map((category) => (
                     <Button
                         key={category.name}
-                        className="bg-primary flex h-48 w-48 transform flex-col items-center justify-center rounded-2xl p-4 text-center shadow-lg transition-transform hover:scale-105 active:scale-95"
+                        className="bg-primary flex aspect-square size-full transform flex-col items-center justify-center p-4 text-center shadow-lg duration-300 hover:scale-105 active:scale-95"
                     >
-                        {category.icon.startsWith('http') ? (
-                            <Image src={category.icon} alt={category.name} className="h-16 w-16" />
-                        ) : (
-                            <div
-                                className="h-16 w-16"
-                                dangerouslySetInnerHTML={{ __html: category.icon }}
+                        {isSvg(category.icon) ? (
+                            <SafeHtml
+                                className="size-16"
+                                html={category.icon}
+                                classNames={{
+                                    content: 'size-full aspect-square',
+                                }}
                             />
+                        ) : (
+                            <Image src={category.icon} alt={category.name} className="h-16 w-16" />
                         )}
                         <span className="mt-2 text-lg font-bold text-[#FFFFFF]">
                             {category.name}
@@ -94,4 +99,4 @@ const CategoriesComponent = () => {
     );
 };
 
-export default CategoriesComponent;
+export default Categories;

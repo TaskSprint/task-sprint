@@ -23,9 +23,9 @@ export function Title() {
             </div>
             <div className="relative flex flex-col items-start justify-center gap-4 text-left">
                 <div>
-                    <h2 className="text-4xl font-bold text-white">{t('welcome.online_service')}</h2>
+                    <h2 className="text-4xl font-bold text-white">{t('main.online_service')}</h2>
                     <h4 className="text text-[1rem] font-medium text-white">
-                        {t('welcome.declaration')}
+                        {t('main.declaration')}
                     </h4>
                 </div>
                 <Button
@@ -33,7 +33,7 @@ export function Title() {
                     href="#"
                     className="h-fit rounded-[2.25rem] bg-white px-14 py-2.5 text-xl font-semibold text-black"
                 >
-                    {t('welcome.how_works')}
+                    {t('main.how_works')}
                 </Button>
             </div>
         </div>

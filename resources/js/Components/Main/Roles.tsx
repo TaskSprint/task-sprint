@@ -7,7 +7,7 @@ export default function Roles() {
     return (
         <div className="flex w-full flex-col items-center justify-center gap-9 px-2 py-9">
             <h2 className="items-center text-center text-[2rem] font-semibold">
-                {t('welcome.roles_question')}
+                {t('main.roles_question')}
             </h2>
             <div className="flex flex-wrap justify-center gap-8">
                 <Button
@@ -16,7 +16,7 @@ export default function Roles() {
                     className="h-fit rounded-[2.25rem] px-16 py-5 text-xl font-semibold text-white"
                     color="primary"
                 >
-                    {t('welcome.specialists')}
+                    {t('main.specialists')}
                 </Button>
                 <Button
                     as={Link}
@@ -24,7 +24,7 @@ export default function Roles() {
                     className="h-fit rounded-[2.25rem] px-16 py-5 text-xl font-semibold text-white"
                     color="primary"
                 >
-                    {t('welcome.orders')}
+                    {t('main.orders')}
                 </Button>
             </div>
         </div>

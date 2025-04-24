@@ -6,7 +6,7 @@ export function Info() {
 
     return (
         <div className="flex flex-wrap justify-center gap-12 p-9">
-            <div className="flex flex-col items-center">
+            <div className="flex grow basis-40 flex-col items-center">
                 <Image alt="Create task" src="/images/create-task.png" className="size-40" />
                 <h3 className="text-foreground text-center text-xl font-semibold">
                     {t('info.task.create.title')}
@@ -15,7 +15,7 @@ export function Info() {
                     {t('info.task.create.description')}
                 </p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex grow basis-40 flex-col items-center">
                 <Image
                     alt="Employee receive"
                     src="/images/employee-receive.png"
@@ -28,7 +28,7 @@ export function Info() {
                     {t('info.employee-receive.description')}
                 </p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex grow basis-40 flex-col items-center">
                 <Image alt="Close task" src="/images/close-task.png" className="size-40" />
                 <h3 className="text-foreground text-center text-xl font-semibold">
                     {t('info.task.close.title')}
