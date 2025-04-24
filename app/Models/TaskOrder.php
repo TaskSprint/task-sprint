@@ -14,6 +14,8 @@ class TaskOrder extends Model
     public $incrementing = false;
     protected $primaryKey = 'task_id';
 
+    protected $guarded = [];
+
     public function task(): BelongsTo
     {
         return $this->belongsTo(Task::class);

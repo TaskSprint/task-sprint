@@ -3,49 +3,84 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers\SubCategoriesRelationManager;
 use App\Models\Category;
-use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Features\SupportFileUploads\FileUploadConfiguration;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make(fn() => __('categories.name'))
+                Grid::make()
                     ->schema([
-                        ...collect(config('localized-routes.supported_locales'))->map(function ($locale) {
-                            return
-                                Forms\Components\TextInput::make("name.$locale")
-                                    ->label($locale)
-                                    ->required();
-                        })
+                        Fieldset::make(fn() => __('categories.name'))
+                            ->schema([
+                                ...collect(config('localized-routes.supported_locales'))->map(function ($locale) {
+                                    return
+                                        TextInput::make("name.$locale")
+                                            ->label($locale)
+                                            ->required();
+                                })
+                            ]),
+
+                        FileUpload::make('icon')
+                            ->label('categories.icon')
+                            ->translateLabel()
+                            ->disk(FileUploadConfiguration::disk())
+                            ->directory(FileUploadConfiguration::path())
+                            ->storeFiles(false)
+                            ->visibility('private')
+                            ->image()
+                            ->required(),
+
+                        ColorPicker::make('color')
+                            ->label('categories.color')
+                            ->translateLabel()
+                            ->default('#00CCFF')
+                            ->required(),
+                    ])->columnSpan(2),
+
+                Section::make(fn() => __('categories.meta'))
+                    ->schema([
+                        Placeholder::make('created_at')
+                            ->label('categories.created_at')
+                            ->translateLabel()
+                            ->content(fn(?Category $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+
+                        Placeholder::make('updated_at')
+                            ->label('categories.updated_at')
+                            ->translateLabel()
+                            ->content(fn(?Category $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                    ])
+                    ->columnSpan([
+                        "default" => 2,
+                        "lg" => 1,
                     ]),
-                Forms\Components\ColorPicker::make('color')
-                    ->label('categories.color')
-                    ->translateLabel()
-                    ->default('#00CCFF')
-                    ->required(),
-                Forms\Components\FileUpload::make('icon')
-                    ->label('categories.icon')
-                    ->translateLabel()
-                    ->disk(FileUploadConfiguration::disk())
-                    ->directory(FileUploadConfiguration::path())
-                    ->storeFiles(false)
-                    ->visibility('private')
-                    ->image()
-                    ->required(),
+            ])->columns([
+                "default" => 2,
+                "lg" => 3,
             ]);
     }
 
@@ -79,11 +114,12 @@ class CategoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -91,8 +127,18 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SubCategoriesRelationManager::class
         ];
+    }
+
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        return $record->name;
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
     }
 
     public static function getPages(): array
@@ -110,6 +156,11 @@ class CategoryResource extends Resource
     }
 
     public static function getPluralModelLabel(): string
+    {
+        return __('categories.categories');
+    }
+
+    public static function getNavigationGroup(): ?string
     {
         return __('categories.categories');
     }

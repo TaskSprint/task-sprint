@@ -8,4 +8,7 @@ return [
     'color' => 'Колір',
     'categories' => 'Категорії',
     'category' => 'Категорію',
+    'created_at' => 'Час створення',
+    'updated_at' => 'Час зміни',
+    'meta' => 'Метадані',
 ];

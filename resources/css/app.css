@@ -8,6 +8,7 @@
 @source '../../app/Filament/**/*.php';
 @source '../../resources/views/filament/**/*.blade.php';
 @source '../../vendor/filament/**/*.blade.php';
+@source '../../vendor/awcodes/filament-badgeable-column/resources/**/*.blade.php'
 
 @custom-variant dark (&:is(.dark *));
 

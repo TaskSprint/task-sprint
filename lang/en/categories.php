@@ -8,4 +8,7 @@ return [
     'color' => 'Color',
     'categories' => 'Categories',
     'category' => 'Category',
+    'created_at' => 'Created Time',
+    'updated_at' => 'Last Modified Time',
+    'meta' => 'Metadata',
 ];

@@ -19,6 +19,7 @@ class TaskService extends BaseModelService
             'currency_code',
             'address',
             'estimated_date',
+            'sub_category_id',
         ], [
             'customer_id',
         ]);
