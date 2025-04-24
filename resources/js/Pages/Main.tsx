@@ -7,6 +7,7 @@ import LastTasks from '@/Components/Main/LastTasks/LastTasks';
 import Support from '@/Components/Main/Support';
 import Roles from '@/Components/Main/Roles';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { Title } from '@/Components/Main/Title';
 
 export default function Main() {
     const { t } = useLaravelReactI18n();
@@ -16,6 +17,7 @@ export default function Main() {
             <Head title={t('main.home')} />
 
             <div className="bg-surface h-full w-full max-w-[60rem]">
+                <Title />
                 <Categories />
                 <Roles />
                 <Info />
