@@ -33,7 +33,7 @@ export default function TasksInProgress() {
 
             <div className="flex flex-col justify-center items-start gap-[1.875rem] py-[2.5rem] px-[6.25rem]">
                 {tasks.map((task, index) => (
-                    <div key={index} className="flex flex-row items-start gap-[1.25rem] w-[33.9rem] ">
+                    <div key={index} className="flex flex-row items-start gap-[1.25rem]">
 
                         {task.image.startsWith('http') ? (
                             <Image src={task.image} alt={task.title} className="w-[5rem] h-[5rem] rounded-full bg-cover bg-center" />
@@ -44,17 +44,18 @@ export default function TasksInProgress() {
                             />
                         )}
 
-                        <div className="flex flex-col items-start gap-[0.625rem] w-[27.625rem] ">
-                            <div className="text-[26px] leading-[36px] font-semibold text-black dark:text-white break-all">
+                        <div className="flex flex-col items-start gap-[0.625rem]">
+
+                            <div className="text-[1.625rem] leading-[2.25rem] font-semibold text-black dark:text-white break-all">
                                 {task.title}
                             </div>
-                            <div className="text-[18px] leading-[25px] font-medium text-black dark:text-white">
+
+                            <div className="text-[1.125rem] leading-[1.5rem] font-medium text-black dark:text-white">
                                 {t('tasks-in-progress.complete_order_by')}  {task.deadline}
                             </div>
-                            <Button className="min-w-[19rem] min-h-[4rem] flex justify-center items-center bg-[0] border-2 border-[#00CCFF] rounded-[36px]">
-                                      <span className="text-[#00CCFF] text-[20px] leading-[27px] font-semibold ">
-                                        {t('tasks-in-progress.view_task')}
-                                      </span>
+
+                            <Button className="w-[19rem] h-[4rem] p-0 border-2 border-primary bg-[0] rounded-[2.25rem] text-primary text-[1.25rem] leading-[1.6rem] font-semibold">
+                                    {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
                     </div>
@@ -62,12 +63,10 @@ export default function TasksInProgress() {
             </div>
 
 
-            <Button className="w-[41.75rem] h-[4.3rem] mx-auto border-[2px] bg-[0] border-[#929292] dark:border-[#A7A7A7]  rounded-[2.25rem] flex justify-center items-center">
-                      <span className="text-[20px] leading-[27px] font-semibold text-[#929292] dark:text-[#A7A7A7]">
-                        {t('tasks-in-progress.archive_orders')}
-                      </span>
-            </Button>
 
+            <Button className="px-[7.5rem] py[2.5rem] w-[41.75rem] h-[4.3rem] border-2 bg-[0] border-muted dark:border-[#A7A7A7] justify-center rounded-[2.25rem] text-[1.25rem] leading-[1.688rem] font-semibold text-muted dark:text-[#A7A7A7]">
+                        {t('tasks-in-progress.archive_orders')}
+            </Button>
 
 
         </>

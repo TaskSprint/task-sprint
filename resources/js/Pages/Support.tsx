@@ -21,7 +21,7 @@ export default function Support() {
             onSuccess: () => reset(),
         });
     };
-
+    
     return (
         <>
             <Head title={t('support.title')} />
