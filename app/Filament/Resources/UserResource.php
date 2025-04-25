@@ -61,10 +61,6 @@ class UserResource extends Resource
                             ->translateLabel()
                             ->required(),
 
-                        DatePicker::make('email_verified_at')
-                            ->label('users.email_verified_at')
-                            ->translateLabel(),
-
                         Select::make('roles')
                             ->label('users.roles')
                             ->multiple()
@@ -78,7 +74,6 @@ class UserResource extends Resource
                                 : __('users.dont_fill_to_preserve'))
                             ->schema([
                                 TextInput::make('password')
-                                    ->dehydrated(false)
                                     ->label('users.password')
                                     ->translateLabel()
                                     ->password()
@@ -106,6 +101,11 @@ class UserResource extends Resource
                             ->label('users.updated_at')
                             ->translateLabel()
                             ->content(fn(?User $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+
+                        Placeholder::make('email_verified_at')
+                            ->label('users.email_verified_at')
+                            ->translateLabel()
+                            ->content(fn(?User $record): string => $record?->email_verified_at?->diffForHumans() ?? '-'),
                     ])
                     ->columnSpan([
                         "default" => 2,
