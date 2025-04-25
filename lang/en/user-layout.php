@@ -21,7 +21,7 @@ return [
 
     'profile_link' => 'Profile Link',
     'profile_link_text' => 'Share your public profile on other platforms to show clients your competence and reliability!',
-    'copy_link' => 'Copy the link or press Ctrl+C',
+    'copy_link' => 'Click to copy the link',
 
     'copied' => 'Link copied!',
 ];

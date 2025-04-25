@@ -27,8 +27,8 @@ export default function TasksInProgress() {
     ];
 
     return (
-        <>
-            <div className="flex flex-col items-start justify-center gap-[1.875rem] px-[6.25rem] py-[2.5rem]">
+        <div className="px-[6.25rem]">
+            <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
                 {tasks.map((task, index) => (
                     <div key={index} className="flex flex-row items-start gap-[1.25rem]">
                         {task.image.startsWith('http') ? (
@@ -61,10 +61,10 @@ export default function TasksInProgress() {
                 ))}
             </div>
 
-            <Button className="py[2.5rem] border-muted text-muted h-[4.3rem] w-[41.75rem] justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] text-[1.25rem] leading-[1.688rem] font-semibold dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
+            <Button className="py[2.5rem] border-muted text-muted h-[4.3rem] w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] text-[1.25rem] leading-[1.688rem] font-semibold dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
                 {t('tasks-in-progress.archive_orders')}
             </Button>
-        </>
+        </div>
     );
 }
 
