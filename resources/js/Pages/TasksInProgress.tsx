@@ -53,7 +53,7 @@ export default function TasksInProgress() {
                                 {t('tasks-in-progress.complete_order_by')} {task.deadline}
                             </div>
 
-                            <Button className="border-primary text-primary h-[4rem] w-[19rem] rounded-[2.25rem] border-2 bg-[0] p-0 text-[1.25rem] leading-[1.6rem] font-semibold">
+                            <Button className="border-primary text-primary p-[2rem]  rounded-[2.25rem] border-2 bg-[0] text-[1.25rem] leading-[1.6rem] font-semibold">
                                 {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
