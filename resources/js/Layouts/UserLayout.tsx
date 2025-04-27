@@ -147,7 +147,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                         </div>
 
                         <Button
-                            className="h-[2.5rem] w-[18.375rem] rounded-full border border-[#929292] bg-[#] px-[1rem] dark:border-[#A7A7A7]"
+                            className="rounded-full border border-muted bg-[#] px-[1rem] dark:border-[#A7A7A7]"
                             onPress={(): void => {
                                 navigator.clipboard.writeText(profileLink).then(() =>
                                     addToast({
