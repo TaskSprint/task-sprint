@@ -4,6 +4,7 @@ import { Image } from '@heroui/image';
 import React from 'react';
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
+import { Divider } from '@heroui/divider';
 
 export default function TasksInProgress() {
     const { t } = useLaravelReactI18n();
@@ -27,25 +28,21 @@ export default function TasksInProgress() {
     ];
 
     return (
-        <div className="px-[6.25rem]">
-            <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
-                {tasks.map((task, index) => (
-                    <div key={index} className="flex flex-row items-start gap-[1.25rem]">
-                        {task.image.startsWith('http') ? (
-                            <Image
-                                src={task.image}
-                                alt={task.title}
-                                className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
-                            />
-                        ) : (
-                            <div
-                                className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
-                                dangerouslySetInnerHTML={{ __html: task.image }}
-                            />
-                        )}
+        <div className="mx-auto flex flex-col gap-[2.5rem] py-[2.5rem] 2xl:px-[6.25rem]">
+            <div className="flex flex-col justify-center gap-[1.875rem] px-9 2xl:px-0">
+                {tasks.map((task) => (
+                    <div
+                        key={task.title}
+                        className="flex w-full flex-col flex-wrap items-center gap-[1.25rem] sm:flex-row sm:flex-nowrap sm:items-start"
+                    >
+                        <Image
+                            src={task.image}
+                            alt={task.title}
+                            className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
+                        />
 
-                        <div className="flex flex-col items-start gap-[0.625rem]">
-                            <div className="text-[1.625rem] leading-[2.25rem] font-semibold break-all text-black dark:text-white">
+                        <div className="flex w-full flex-col items-center gap-[0.625rem] sm:items-start">
+                            <div className="text-center text-[1.625rem] leading-[2.25rem] font-semibold break-all text-black dark:text-white">
                                 {task.title}
                             </div>
 
@@ -53,7 +50,7 @@ export default function TasksInProgress() {
                                 {t('tasks-in-progress.complete_order_by')} {task.deadline}
                             </div>
 
-                            <Button className="border-primary text-primary p-[2rem]  rounded-[2.25rem] border-2 bg-[0] text-[1.25rem] leading-[1.6rem] font-semibold">
+                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
                                 {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
@@ -61,9 +58,13 @@ export default function TasksInProgress() {
                 ))}
             </div>
 
-            <Button className="py[2.5rem] border-muted text-muted h-[4.3rem] w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] text-[1.25rem] leading-[1.688rem] font-semibold dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
-                {t('tasks-in-progress.archive_orders')}
-            </Button>
+            <Divider className="bg-muted 2xl:hidden" />
+
+            <div className="px-9 2xl:px-0">
+                <Button className="border-muted text-muted w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] py-6 text-[1.25rem] leading-[1.688rem] font-semibold sm:h-fit sm:py-5 dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
+                    {t('tasks-in-progress.archive_orders')}
+                </Button>
+            </div>
         </div>
     );
 }

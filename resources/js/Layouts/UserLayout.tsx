@@ -8,41 +8,41 @@ import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import { addToast } from '@heroui/toast';
 
-export default function UserLayout({ children }: { children: React.ReactNode }) {
+export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
     const profileLink = `${window.location.origin}/profile`;
 
     return (
-        <div className="item-center bg-surface mx-auto flex h-full max-w-[84rem] text-white">
-            <main className="flex w-full flex-col px-5">
-                <div className="flex h-36 w-full flex-wrap items-end gap-6 pb-[1.875rem]">
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] py-[0.9375rem] text-center text-[1.25rem] leading-[1.6875rem] font-medium text-black dark:text-white">
+        <div className="item-center bg-surface mx-auto flex h-full w-full flex-col text-white 2xl:max-w-[96rem] 2xl:flex-row">
+            <main className="flex w-full flex-col 2xl:px-5">
+                <div className="flex w-full flex-col justify-center gap-6 px-9 py-[1.875rem] lg:flex-row lg:flex-wrap lg:items-end 2xl:h-36 2xl:px-0">
+                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
                         {t('user-layout.in_progress')}
                     </Button>
 
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] py-[0.9375rem] text-center text-[1.25rem] leading-[1.6875rem] font-medium text-black dark:text-white">
+                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
                         {t('user-layout.new_task')}
                     </Button>
 
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] py-[0.9375rem] text-center text-[1.25rem] leading-[1.6875rem] font-medium text-black dark:text-white">
+                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
                         {t('user-layout.favourite_specialists')}
                     </Button>
 
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] py-[0.9375rem] text-center text-[1.25rem] leading-[1.6875rem] font-medium text-black dark:text-white">
+                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
                         {t('user-layout.search_orders')}
                     </Button>
                 </div>
 
                 <Divider className="bg-muted" />
 
-                <div className="w-full pb-12">{children}</div>
+                <div className="w-full 2xl:pb-12">{children}</div>
             </main>
 
-            <Divider orientation="vertical" className="bg-muted" />
+            <Divider className="bg-muted 2xl:w-divider 2xl:h-full" />
 
-            <div className="flex max-w-min flex-col px-5 pb-12">
-                <div className="flex h-36 w-full items-end justify-center px-6 pb-[1.875rem]">
-                    <div className="flex w-full items-center justify-between gap-12">
+            <div className="flex flex-col pb-12 2xl:max-w-min 2xl:px-5">
+                <div className="flex w-full max-w-md items-end justify-center px-9 py-[1.875rem] 2xl:h-36">
+                    <div className="flex w-full items-center justify-between gap-8">
                         <div>
                             <div className="text-[2.5rem] leading-none font-medium text-black dark:text-white">
                                 12456
@@ -70,7 +70,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                 <Divider className="bg-muted" />
 
                 <div className="flex flex-col gap-[1.875rem] pt-[1.875rem]">
-                    <div className="flex flex-col gap-[0.625rem] px-6">
+                    <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex h-[2.75rem] gap-[0.625rem]">
                             <SolarMoneyBagLinear className="text-primary h-[2.75rem] w-[2.75rem]" />
                             <div className="text-[2rem] leading-[2.75rem] font-medium text-black dark:text-white">
@@ -115,7 +115,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
 
                     <Divider className="bg-muted" />
 
-                    <div className="flex flex-col gap-[0.625rem] px-6">
+                    <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex items-start gap-[0.625rem]">
                             <MynauiShare className="text-primary h-[2.75rem] w-[2.75rem]" />
                             <div className="text-[2rem] leading-[2.75rem] font-medium text-black dark:text-white">
@@ -132,7 +132,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
 
                     <Divider className="bg-muted" />
 
-                    <div className="flex flex-col gap-[0.625rem] px-6">
+                    <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex items-start gap-[0.625rem]">
                             <IconamoonProfileLight className="text-primary h-[2.75rem] w-[2.75rem]" />
                             <div className="flex items-center text-[2rem] leading-[120%] font-medium text-black dark:text-white">
@@ -147,7 +147,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
                         </div>
 
                         <Button
-                            className="rounded-full border border-muted bg-[#] px-[1rem] dark:border-[#A7A7A7]"
+                            className="border-muted rounded-full border bg-[#] px-[1rem] dark:border-[#A7A7A7]"
                             onPress={(): void => {
                                 navigator.clipboard.writeText(profileLink).then(() =>
                                     addToast({
