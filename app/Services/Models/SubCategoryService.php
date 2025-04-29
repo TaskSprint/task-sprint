@@ -9,10 +9,13 @@ use App\Models\SubCategory;
  */
 class SubCategoryService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(SubCategory::class, [
-            'category_id',
-        ]);
-    }
+    protected string $class = SubCategory::class;
+    protected array $attributes = [
+        'category_id',
+    ];
+    protected array $searchAttributes = [
+        'name',
+        'category.name',
+        'keywords.name',
+    ];
 }

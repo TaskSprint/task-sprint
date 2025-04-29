@@ -9,10 +9,11 @@ use App\Models\Category;
  */
 class CategoryService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(Category::class, [
-            'color',
-        ]);
-    }
+    protected string $class = Category::class;
+    protected array $attributes = [
+        'color'
+    ];
+    protected array $searchAttributes = [
+        'name',
+    ];
 }
