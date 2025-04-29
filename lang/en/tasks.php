@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'name' => 'Name',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'meta' => 'Metadata',
+    'tasks' => 'Tasks',
+    'task' => 'Task',
+    'category' => 'Category',
+    'sub_category' => 'Sub Category',
+    'description' => 'Description',
+    'status' => 'Status',
+    'price' => 'Price',
+    'currency' => 'Currency',
+    'estimated_date' => 'Estimated Date',
+    'customer' => 'Customer',
+    'pending' => 'Pending',
+    'pending_for_executor' => 'Pending for Executor',
+    'in_progress' => 'In Progress',
+    'completed' => 'Completed',
+    'canceled' => 'Canceled',
+    'region' => 'Region',
+    'city' => 'City',
+    'street' => 'Street',
+    'building' => 'Building',
+    'address' => 'Address',
+];

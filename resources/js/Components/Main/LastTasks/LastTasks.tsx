@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useRef } from 'react';
 import LastTaskCard from '@/Components/Main/LastTasks/LastTaskCard';
 import Task from '@/types/models/task';
 import { ScrollShadow } from '@heroui/scroll-shadow';
@@ -23,18 +23,10 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
         }
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (scrollRef.current) {
-                scrollRef.current.dispatchEvent(new Event('scroll'));
-            }
-        }, 5);
-    }, []);
-
     const { t } = useLaravelReactI18n();
 
     return (
-        <div className="absolute flex h-[19.25rem] w-full flex-col items-start gap-4 bg-white px-9 py-7 dark:bg-[#2C2C2C]">
+        <div className="flex h-[19.25rem] w-full flex-col items-start gap-4 bg-white px-9 py-7 dark:bg-[#2C2C2C]">
             {/* Top row with title and arrows */}
             <div className="flex h-[3.25rem] w-full items-center justify-between">
                 <h2 className="text-2xl leading-8 font-semibold text-black dark:text-white">
@@ -45,7 +37,7 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={scrollLeft}
-                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696] dark:border-[#C6C6C6] dark:bg-[#2C2C2C]"
+                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 text-[#969696] dark:border-[#C6C6C6]"
                     >
                         <svg
                             width="0.5rem"
@@ -63,7 +55,7 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                     </button>
                     <button
                         onClick={scrollRight}
-                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 bg-white text-[#969696] dark:border-[#C6C6C6] dark:bg-[#2C2C2C]"
+                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 text-[#969696] dark:border-[#C6C6C6]"
                     >
                         <svg
                             width="0.5rem"

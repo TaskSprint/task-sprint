@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'name' => 'Название',
+    'created_at' => 'Дата создания',
+    'updated_at' => 'Дата изменения',
+    'meta' => 'Метаданные',
+    'tasks' => 'Задачи',
+    'task' => 'Задачу',
+    'category' => 'Категория',
+    'sub_category' => 'Подкатегория',
+    'description' => 'Описание',
+    'status' => 'Статус',
+    'price' => 'Цена',
+    'currency' => 'Валюта',
+    'estimated_date' => 'Предполагаемая дата',
+    'customer' => 'Клиент',
+    'pending' => 'В ожидании',
+    'pending_for_executor' => 'В ожидании исполнителя',
+    'in_progress' => 'В процессе',
+    'completed' => 'Завершено',
+    'canceled' => 'Отменено',
+    'region' => 'Область',
+    'city' => 'Город',
+    'street' => 'Улица',
+    'building' => 'Здание',
+    'address' => 'Адрес',
+];

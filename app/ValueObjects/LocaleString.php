@@ -4,8 +4,9 @@ namespace App\ValueObjects;
 
 use ArrayAccess;
 use Illuminate\Support\Arr;
+use Livewire\Wireable;
 
-class LocaleString implements ArrayAccess
+class LocaleString implements ArrayAccess, Wireable
 {
     public ?string $current {
         get {
@@ -17,12 +18,17 @@ class LocaleString implements ArrayAccess
     {
     }
 
+    public static function fromLivewire($value): static
+    {
+        return new static($value);
+    }
+
     public function __toString(): string
     {
         return $this->get() ?? '';
     }
 
-    public function get($locale = null): ?string
+    public function get(?string $locale = null): ?string
     {
         $current = $locale ?? app()->getLocale();
 
@@ -36,12 +42,17 @@ class LocaleString implements ArrayAccess
         return $this->data[$fallback] ?? Arr::first($this->data);
     }
 
-    public function offsetSet($offset, $value): void
+    public function __get(string $name)
     {
-        $this->set($value, $offset);
+        return $this->get($name);
     }
 
-    public function set($value, $locale = null): void
+    public function __set(string $name, string $value)
+    {
+        $this->set($value, $name);
+    }
+
+    public function set(string $value, ?string $locale = null): void
     {
         $currentLocale = $locale ?? app()->getLocale();
         $supportedLocales = config('localized-routes.supported_locales');
@@ -50,6 +61,11 @@ class LocaleString implements ArrayAccess
         }
 
         $this->data[$currentLocale] = $value;
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        $this->set($value, $offset);
     }
 
     public function offsetExists($offset): bool
@@ -65,5 +81,10 @@ class LocaleString implements ArrayAccess
     public function offsetGet($offset): ?string
     {
         return $this->get($offset);
+    }
+
+    public function toLivewire(): array
+    {
+        return $this->data;
     }
 }

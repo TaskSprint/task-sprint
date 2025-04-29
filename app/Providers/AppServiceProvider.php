@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Barryvdh\Debugbar\Facades\Debugbar;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -24,5 +25,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+            $switch
+                ->locales(config('localized-routes.supported_locales'));
+        });
     }
 }
