@@ -43,7 +43,8 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                             as={Link}
                                 key={tab.title}
                                 href={tab.link}
-                                className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
+                                className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem]
+                                ${window.location.pathname.endsWith(tab.link)? 'bg-primary text-black dark:text-white' : ' '}`}>
                                 {t(tab.title)}
                         </Button>
                     ))}
