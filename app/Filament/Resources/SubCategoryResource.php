@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubCategoryResource\Pages;
+use App\Filament\Resources\SubCategoryResource\RelationManagers\KeywordsRelationManager;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Filament\Forms\Components\Fieldset;
@@ -125,6 +126,13 @@ class SubCategoryResource extends Resource
         ];
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            KeywordsRelationManager::class
+        ];
+    }
+
     public static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['category']);
@@ -137,7 +145,7 @@ class SubCategoryResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'category.name'];
+        return ['name', 'category.name', 'keywords.name'];
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
