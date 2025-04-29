@@ -38,6 +38,10 @@ Route::localized(function () {
         Route::get('/profile/in-progress', function () {
             return Inertia::render('TasksInProgress');
         })->name('profile.in-progress');
+
+        Route::get('/profile/new-task', function () {
+            return Inertia::render('NewTask');
+        })->name('profile.new-task');
     });
 });
 

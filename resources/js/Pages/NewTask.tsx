@@ -2,6 +2,8 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 import { Divider } from '@heroui/divider';
+import AppLayout from "@/Layouts/AppLayout";
+import UserLayout from "@/Layouts/UserLayout";
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();
@@ -106,3 +108,9 @@ export default function NewTask() {
         </>
     );
 }
+
+NewTask.layout = (page: React.ReactNode) => (
+    <AppLayout>
+        <UserLayout>{page}</UserLayout>
+    </AppLayout>
+);

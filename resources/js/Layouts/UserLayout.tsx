@@ -1,36 +1,53 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider } from '@heroui/divider';
+import { Link } from '@inertiajs/react'
 import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
 import TablerReceipt from '~icons/tabler/receipt';
 import SolarCardOutline from '~icons/solar/card-outline';
 import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import { addToast } from '@heroui/toast';
+import React from "react";
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
     const profileLink = `${window.location.origin}/profile`;
 
+    const tabs = [
+        {
+            title: 'user-layout.in_progress',
+            link: '/profile/in-progress',
+        },
+        {
+            title: 'user-layout.new_task',
+            link: '/profile/new-task',
+        },
+        {
+            title: 'user-layout.favourite_specialists',
+            link: '/profile/favourite-specialists',
+        },
+        {
+            title: 'user-layout.search_orders',
+            link: '/profile/search-orders',
+        },
+    ];
+
     return (
         <div className="item-center bg-surface mx-auto flex h-full w-full flex-col text-white 2xl:max-w-[96rem] 2xl:flex-row">
             <main className="flex w-full flex-col 2xl:px-5">
                 <div className="flex w-full flex-col justify-center gap-6 px-9 py-[1.875rem] lg:flex-row lg:flex-wrap lg:items-end 2xl:h-36 2xl:px-0">
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
-                        {t('user-layout.in_progress')}
-                    </Button>
 
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
-                        {t('user-layout.new_task')}
-                    </Button>
+                    {tabs.map((tab) => (
+                        <Button
+                            as={Link}
+                                key={tab.title}
+                                href={tab.link}
+                                className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
+                                {t(tab.title)}
+                        </Button>
+                    ))}
 
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
-                        {t('user-layout.favourite_specialists')}
-                    </Button>
-
-                    <Button className="h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium text-black lg:py-[0.9375rem] dark:text-white">
-                        {t('user-layout.search_orders')}
-                    </Button>
                 </div>
 
                 <Divider className="bg-muted" />
