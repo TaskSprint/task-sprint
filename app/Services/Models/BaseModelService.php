@@ -5,6 +5,7 @@ namespace App\Services\Models;
 use App\Facades\FileService;
 use App\Models\File;
 use App\ValueObjects\LocaleString;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;

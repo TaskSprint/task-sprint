@@ -1,18 +1,19 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { Input } from '@heroui/input';
+import Button from '@/Components/Shared/Button';
+import LogosGoogleIcon from '~icons/logos/google-icon';
+import LogosFacebook from '~icons/logos/facebook';
 
 export default function Register() {
     const { route } = useRouter();
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        phone: '',
+        city: '',
         password: '',
         password_confirmation: '',
     });
@@ -27,94 +28,154 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
+        <>
             <Head title={t('auth.register.title')} />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value={t('auth.register.name')} />
+            <div className="mx-auto grid h-full w-full max-w-[60rem] grid-cols-2 bg-white dark:bg-[#2C2C2C]">
+                <div className="flex flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
+                    <form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
+                        <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
+                            {t('auth.register.title')}
+                        </h2>
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                        <Input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={data.name}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.register.name')}
+                            autoComplete="name"
+                            autoFocus
+                            onChange={(e) => setData('name', e.target.value)}
+                            isRequired
+                            isInvalid={errors.name ? true : undefined}
+                            errorMessage={errors.name}
+                        />
 
-                    <InputError message={errors.name} className="mt-2" />
+                        <Input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.login.email')}
+                            autoComplete="username"
+                            autoFocus
+                            onChange={(e) => setData('email', e.target.value)}
+                            isRequired
+                            isInvalid={errors.email ? true : undefined}
+                            errorMessage={errors.email}
+                        />
+
+                        <Input
+                            id="phone"
+                            type="tel"
+                            name="phone"
+                            inputMode="tel"
+                            value={data.phone}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.register.phone')}
+                            autoComplete="current-phone"
+                            onChange={(e) => setData('phone', e.target.value)}
+                            isRequired
+                            isInvalid={errors.phone ? true : undefined}
+                            errorMessage={errors.phone}
+                        />
+
+                        <Input
+                            id="city"
+                            type="text"
+                            name="city"
+                            value={data.city}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.register.city')}
+                            onChange={(e) => setData('city', e.target.value)}
+                            isRequired
+                            isInvalid={errors.city ? true : undefined}
+                            errorMessage={errors.city}
+                        />
+
+                        <Input
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.register.password')}
+                            autoComplete="current-password"
+                            onChange={(e) => setData('password', e.target.value)}
+                            isRequired
+                            isInvalid={errors.password ? true : undefined}
+                            errorMessage={errors.password}
+                        />
+
+                        <Input
+                            id="password_confirmation"
+                            type="password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
+                            variant="bordered"
+                            classNames={{
+                                inputWrapper:
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                            }}
+                            placeholder={t('auth.register.confirm_password')}
+                            onChange={(e) => setData('password_confirmation', e.target.value)}
+                            isRequired
+                            isInvalid={errors.password_confirmation ? true : undefined}
+                            errorMessage={errors.password_confirmation}
+                        />
+
+                        <div className="flex w-full flex-col items-start justify-center gap-1">
+                            <Button
+                                type="submit"
+                                className="flex h-[1.875rem] w-full flex-row items-center justify-center gap-[0.625rem] rounded-[0.9375rem] bg-[#4E4E4E] px-[1.25rem] text-[0.75rem] text-white"
+                                disabled={processing}
+                            >
+                                {t('auth.register.button')}
+                            </Button>
+
+                            <Link
+                                href={route('login')}
+                                className="text-[0.75rem] text-black dark:text-white"
+                            >
+                                {t('auth.register.already_registered')}
+                            </Link>
+                        </div>
+
+                        <div className="ml-auto flex h-9 w-full justify-end gap-2.5 overflow-hidden">
+                            <Link href="#">
+                                <LogosGoogleIcon className="aspect-square h-full w-fit" />
+                            </Link>
+
+                            <Link href="#">
+                                <LogosFacebook className="aspect-square h-full w-fit" />
+                            </Link>
+                        </div>
+                    </form>
                 </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value={t('auth.register.email')} />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value={t('auth.register.password')} />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value={t('auth.register.confirm_password')}
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                    >
-                        {t('auth.register.already_registered')}
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        {t('auth.register.button')}
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+            </div>
+        </>
     );
 }

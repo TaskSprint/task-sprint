@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useRef } from 'react';
 import LastTaskCard from '@/Components/Main/LastTasks/LastTaskCard';
 import Task from '@/types/models/task';
 import { ScrollShadow } from '@heroui/scroll-shadow';
@@ -22,14 +22,6 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
             scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
         }
     };
-
-    useEffect(() => {
-        setTimeout(() => {
-            if (scrollRef.current) {
-                scrollRef.current.dispatchEvent(new Event('scroll'));
-            }
-        }, 5);
-    }, []);
 
     const { t } = useLaravelReactI18n();
 

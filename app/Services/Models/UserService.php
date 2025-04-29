@@ -3,6 +3,7 @@
 namespace App\Services\Models;
 
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +23,11 @@ class UserService extends BaseModelService
     public function create(array $attributes, int $attempts = 5): Model
     {
         $attributes = $this->updatePassword($attributes);
+        /**
+         * @var User $model
+         */
         $model = parent::create($attributes, $attempts);
+        $model->sendEmailVerificationNotification();
         return $this->addRoles($model, $attributes);
     }
 
