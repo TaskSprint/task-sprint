@@ -3,14 +3,14 @@ import { Link } from '@heroui/link';
 import { Avatar } from '@heroui/avatar';
 import { Divider } from '@heroui/divider';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import UserLayout from '@/Layouts/UserLayout';
+import HeartCheckbox from '@/Components/Icons/HeartCheckbox';
 
 export default function Favorite() {
     const { t } = useLaravelReactI18n();
-    const absence = 2; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
-    const [checked, setChecked] = useState(false);
+    const absenceTime = 2; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
 
     return (
         <div className="border-muted flex flex-col justify-between gap-3 border-b px-9 py-10 md:flex-row">
@@ -26,23 +26,12 @@ export default function Favorite() {
                         <Link color="foreground" className="text-2xl font-bold">
                             Коваль А.
                         </Link>
-                        <div className="relative size-8">
-                            <input
-                                type="checkbox"
-                                checked={checked}
-                                className="peer absolute inset-0 z-1 size-full cursor-pointer opacity-0"
-                                onChange={() => setChecked(!checked)}
-                            />
-                            <svg
-                                viewBox="0 0 24 24"
-                                className="size-full fill-transparent stroke-sky-400 stroke-[3px] transition-all peer-checked:fill-sky-400 peer-active:scale-90"
-                            >
-                                <path d="M12 21s-6-4.35-9-8.15C-1 6.6 4.8 0 12 6.2 19.2 0 25 6.6 21 12.85 18 16.65 12 21 12 21z" />
-                            </svg>
-                        </div>
+                        <p>
+                            <HeartCheckbox />
+                        </p>
                     </div>
                     <h3 className="content-start text-base font-medium text-gray-500">
-                        Був(ла) на сайті {absence} години назад
+                        {t('fav-employees.last-visit', { absence: absenceTime } )}
                     </h3>
                 </div>
             </div>
@@ -54,17 +43,17 @@ export default function Favorite() {
                     className="h-fit w-full rounded-full text-xl font-semibold md:px-10 md:py-5"
                     color="primary"
                 >
-                    Запропонувати роботу
+                    {t('fav-employees.offer')}
                 </Button>
                 <div className="flex flex-row items-center gap-2.5 font-medium">
                     <div className="flex flex-col">
                         <h2 className="text-[2rem]">12456</h2>
-                        <h3 className="text-primary text-xl">відгуків</h3>
+                        <h3 className="text-primary text-xl">{t('fav-employees.reviews')}</h3>
                     </div>
                     <Divider className="bg-primary h-11" orientation="vertical" />
                     <div className="flex flex-col">
                         <h2 className="text-[2rem]">100%</h2>
-                        <h3 className="text-xl text-gray-500">позитивних</h3>
+                        <h3 className="text-xl text-gray-500">{t('fav-employees.positive')}</h3>
                     </div>
                 </div>
             </div>
