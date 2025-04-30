@@ -55,6 +55,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->favicon(fn() => asset('favicon.svg'))
             ->brandLogo(fn() => view('filament.logo'))
             ->brandLogoHeight("2rem")
             ->colors([
