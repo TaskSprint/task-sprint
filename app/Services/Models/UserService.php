@@ -11,14 +11,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(User::class, [
-            'name',
-            'email',
-            'password',
-        ]);
-    }
+    protected string $class = User::class;
+    protected array $attributes = [
+        'name',
+        'email',
+        'password',
+    ];
+    protected array $searchAttributes = [
+        'name',
+        'email',
+    ];
 
     public function create(array $attributes, int $attempts = 5): Model
     {

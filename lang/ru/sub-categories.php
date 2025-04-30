@@ -8,4 +8,5 @@ return [
     'sub-categories' => 'Подкатегории',
     'sub-category' => 'Подкатегорию',
     'category' => 'Категория',
+    'keywords' => 'Ключевые слова',
 ];

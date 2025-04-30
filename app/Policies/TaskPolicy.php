@@ -49,6 +49,6 @@ class TaskPolicy
 
     public function assign(?User $user, Task $task): bool
     {
-        return (bool)$user?->hasPermissionTo('assign to tasks') && $task->order === null;
+        return $user?->hasPermissionTo('assign to tasks') && $task->order === null;
     }
 }

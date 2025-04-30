@@ -7,9 +7,11 @@ use App\Models\File;
 use App\ValueObjects\LocaleString;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
@@ -25,66 +27,96 @@ abstract class BaseModelService
      */
     protected string $class;
     protected array $attributes;
-    protected array $authCreatedAttributes;
-    protected array $authUpdatedAttributes;
+    protected array $authCreationAttributes;
+    protected array $authUpdateAttributes;
+    protected array $searchAttributes;
 
     /**
      * @var TModel
      * @noinspection PhpDocFieldTypeMismatchInspection
      */
     protected Model $model;
-    protected array $files = [];
-    protected array $fileCollections = [];
-    protected array $localizedAttributes = [];
+    protected array $files;
+    protected array $fileCollections;
+    protected array $localizedAttributes;
+
+    private array $reflectionMethods;
 
     /**
-     * @param class-string<TModel> $class
      * @throws ReflectionException
-     * @noinspection PhpExpressionResultUnusedInspection
      */
-    protected function __construct(string $class, array $attributes, array $authCreatedAttributes = [], array $authUpdatedAttributes = [])
+    public function __construct()
     {
-        $this->class = $class;
-        $this->attributes = $attributes;
-        $this->authCreatedAttributes = $authCreatedAttributes;
-        $this->authUpdatedAttributes = $authUpdatedAttributes;
+        if (!isset($this->class)) {
+            throw new InvalidArgumentException('Class not set');
+        }
 
-        $this->model = new $class;
-        $reflection = new ReflectionClass($class);
-        $methods = $reflection->getMethods();
+        $this->initProperties();
 
-        foreach ($methods as $method) {
-            if ($method->isPublic() &&
-                $method->getReturnType() instanceof ReflectionNamedType &&
-                $method->getReturnType()->getName() === MorphOne::class &&
-                $this->model->{$method->getName()}()->getRelated() instanceof File
-            ) {
-                $this->files[] = $method->getName();
-            }
+        $this->initFiles();
+        $this->initFileCollections();
+        $this->initLocalizedAttributes();
+    }
 
-            if ($method->isPublic() &&
-                $method->getReturnType() instanceof ReflectionNamedType &&
-                $method->getReturnType()?->getName() === MorphMany::class &&
-                $this->model->{$method->getName()}()->getRelated() instanceof File
-            ) {
-                $this->fileCollections[] = $method->getName();
-            }
+    /**
+     * @throws ReflectionException
+     */
+    private function initProperties(): void
+    {
+        $this->attributes = $this->attributes ?? [];
+        $this->authCreationAttributes = $this->authCreationAttributes ?? [];
+        $this->authUpdateAttributes = $this->authUpdateAttributes ?? [];
+        $this->searchAttributes = $this->searchAttributes ?? [];
 
-            if ($method->getName() === 'casts') {
-                if (!$method->isPublic()) {
-                    $method->setAccessible(true);
-                }
+        $this->model = new $this->class;
+        $reflectionClass = new ReflectionClass($this->class);
+        $this->reflectionMethods = $reflectionClass->getMethods();
+    }
 
-                $casts = $method->invoke($this->model);
-                $this->localizedAttributes = collect($casts)
-                    ->filter(fn($cast) => $cast === \App\Casts\LocaleString::class)
-                    ->keys()
-                    ->toArray();
+    private function initFiles(): void
+    {
+        if (!isset($this->files)) {
+            $this->files = collect($this->reflectionMethods)
+                ->filter(fn($method) => $method->isPublic())
+                ->filter(fn($method) => $method->getReturnType() instanceof ReflectionNamedType)
+                ->filter(fn($method) => $method->getReturnType()->getName() === MorphOne::class)
+                ->filter(fn($method) => $this->model->{$method->getName()}()->getRelated() instanceof File)
+                ->map(fn($method) => $method->getName())
+                ->toArray();
+        }
+    }
 
-                if (!$method->isPublic()) {
-                    $method->setAccessible(false);
-                }
-            }
+    private function initFileCollections(): void
+    {
+        if (!isset($this->fileCollections)) {
+            $this->fileCollections = collect($this->reflectionMethods)
+                ->filter(fn($method) => $method->isPublic())
+                ->filter(fn($method) => $method->getReturnType() instanceof ReflectionNamedType)
+                ->filter(fn($method) => $method->getReturnType()?->getName() === MorphMany::class)
+                ->filter(fn($method) => $this->model->{$method->getName()}()->getRelated() instanceof File)
+                ->map(fn($method) => $method->getName())
+                ->toArray();
+        }
+    }
+
+    private function initLocalizedAttributes(): void
+    {
+        if (!isset($this->localizedAttributes)) {
+            $this->localizedAttributes = collect($this->reflectionMethods)
+                ->filter(fn($method) => $method->getName() === 'casts')
+                ->flatMap(function ($method) {
+                    if (!$method->isPublic()) {
+                        $method->setAccessible(true);
+                    }
+                    $result = $method->invoke($this->model);
+                    if (!$method->isPublic()) {
+                        $method->setAccessible(false);
+                    }
+                    return $result;
+                })
+                ->filter(fn($cast) => $cast === \App\Casts\LocaleString::class)
+                ->keys()
+                ->toArray();
         }
     }
 
@@ -101,7 +133,7 @@ abstract class BaseModelService
             $model->update(collect($attributes)
                 ->only($this->attributes)
                 ->merge($localizedAttributes)
-                ->merge(collect($this->authUpdatedAttributes)
+                ->merge(collect($this->authUpdateAttributes)
                     ->mapWithKeys(fn($attribute) => [$attribute => auth()->id()])
                 )
                 ->toArray()
@@ -172,10 +204,10 @@ abstract class BaseModelService
             return call_user_func([$this->class, 'create'], collect($attributes)
                 ->only($this->attributes)
                 ->merge($localizedAttributes)
-                ->merge(collect($this->authCreatedAttributes)
+                ->merge(collect($this->authCreationAttributes)
                     ->mapWithKeys(fn($attribute) => [$attribute => auth()->id()])
                 )
-                ->merge(collect($this->authUpdatedAttributes)
+                ->merge(collect($this->authUpdateAttributes)
                     ->mapWithKeys(fn($attribute) => [$attribute => auth()->id()])
                 )
                 ->toArray()
@@ -196,5 +228,46 @@ abstract class BaseModelService
         }
 
         return $model;
+    }
+
+    /**
+     * @param string $search
+     * @param Builder<TModel>|null $query
+     * @return Builder<TModel>
+     */
+    public function search(string $search, ?Builder $query = null): Builder
+    {
+        $query = $query ?? $this->class::query();
+        return $query->where(function ($query) use ($search) {
+            foreach ($this->searchAttributes as $attribute) {
+                $searchAttribute = str($attribute);
+                $query->when($searchAttribute->contains('.'),
+                    fn($query) => $query->orWhereHas($searchAttribute->beforeLast('.')->toString(),
+                        fn($query) => $this->searchExpression(
+                            $searchAttribute->afterLast('.')->toString(), $search, $query
+                        )
+                    ),
+                    fn($query) => $query->orWhere(
+                        fn($query) => $this->searchExpression($attribute, $search, $query)
+                    )
+                );
+            }
+        });
+    }
+
+    /**
+     * @param string $attribute
+     * @param string $search
+     * @param Builder<TModel> $query
+     * @return Builder<TModel>
+     */
+    protected function searchExpression(string $attribute, string $search, Builder $query): Builder
+    {
+        $escapedSearch = str_replace(
+            ['\\', '%', '_', '['],
+            ['\\\\', '\\%', '\\_', '\\['],
+            $search);
+
+        return $query->whereLike($attribute, "%$escapedSearch%");
     }
 }
