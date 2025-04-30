@@ -13,7 +13,7 @@ const Categories = ({ categories }: { categories: Category[] }) => {
     return (
         <div className="flex flex-col items-center gap-6 p-6">
             <h2 className="text-2xl font-semibold">{t('categories.popular_categories')}</h2>
-            <div className="sm: grid w-full grid-cols-2 gap-4 sm:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))]">
+            <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))]">
                 {categories.map((category) => (
                     <Button
                         key={category.id}
