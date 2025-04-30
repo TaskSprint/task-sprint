@@ -2,7 +2,7 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Link } from '@heroui/link';
 
-export default function Support() {
+export default function SupportButton() {
     const { t } = useLaravelReactI18n();
 
     return (

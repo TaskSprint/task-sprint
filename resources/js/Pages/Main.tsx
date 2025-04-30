@@ -4,7 +4,7 @@ import React from 'react';
 import Categories from '@/Components/Main/Categories';
 import { Info } from '@/Components/Main/Info';
 import LastTasks from '@/Components/Main/LastTasks/LastTasks';
-import Support from '@/Components/Main/Support';
+import Support from '@/Components/Main/SupportButton';
 import Roles from '@/Components/Main/Roles';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Title } from '@/Components/Main/Title';
