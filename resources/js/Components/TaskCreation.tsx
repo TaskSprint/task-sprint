@@ -1,10 +1,9 @@
 import Button from '@/Components/Shared/Button';
 import { Link } from '@heroui/link';
-import { Avatar } from "@heroui/avatar";
+import { Avatar } from '@heroui/avatar';
 import { Divider } from "@heroui/divider";
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import HeartCheckbox from "@/Components/Icons/HeartCheckbox";
-
 
 export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
@@ -15,7 +14,10 @@ export default function TaskCreationPage() {
 
 
 
-        <div className="flex flex-row w-[60rem] h-60 border-b gap-3 ml-3.5 py-10 px-25 dark:bg-[#2c2c2c]">
+
+
+
+    <div className="flex flex-row w-[60rem] h-60 border-b gap-3 ml-3.5 py-10 px-25 dark:bg-[#2c2c2c]">
              <div className="flex flex-row gap-5 w-[45rem] h-[10rem] items-start">
                  <a><Avatar className="size-max justify-start content-start"
                             src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
