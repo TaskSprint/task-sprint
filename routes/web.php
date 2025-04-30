@@ -35,12 +35,16 @@ Route::localized(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+        Route::get('/profile/favorite', function () {
+            return Inertia::render('Profile/Favorite');
+        })->name('profile.favorites');
+
         Route::get('/profile/in-progress', function () {
-            return Inertia::render('TasksInProgress');
+            return Inertia::render('Profile/InProgress');
         })->name('profile.in-progress');
 
         Route::get('/profile/new-task', function () {
-            return Inertia::render('NewTask');
+            return Inertia::render('Profile/NewTask');
         })->name('profile.new-task');
     });
 });
