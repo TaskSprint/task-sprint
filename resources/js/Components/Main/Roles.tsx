@@ -6,7 +6,7 @@ export default function Roles() {
     const { t } = useLaravelReactI18n();
     return (
         <div className="flex w-full flex-col items-center justify-center gap-9 px-2 py-9">
-            <h2 className="items-center text-center text-[2rem] font-semibold">
+            <h2 className="items-center text-center text-[2rem] font-semibold dark:text-white">
                 {t('main.roles_question')}
             </h2>
             <div className="flex flex-wrap justify-center gap-8">
