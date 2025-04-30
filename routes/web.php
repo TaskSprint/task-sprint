@@ -42,6 +42,11 @@ Route::localized(function () {
         Route::get('/profile/new-task', function () {
             return Inertia::render('NewTask');
         })->name('profile.new-task');
+
+        Route::get('/profile/task-archive', function () {
+            return Inertia::render('TasksArchive');
+        })->name('profile.task-archive');
+
     });
 });
 

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'complete_order_by' => 'Complete the task by',
+    'estimation' => 'Complete the task by :estimated',
     'view_task' => 'View task',
     'archive_orders' => 'Task archive',
 ];
