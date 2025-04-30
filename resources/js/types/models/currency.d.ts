@@ -1,10 +1,8 @@
 import LocaleString from '@/types/locale-string';
 
-export default interface Category {
-    id: number;
+export default interface Currency {
+    code: string;
     name: LocaleString;
-    color: string;
-    icon?: string;
     updatedAt: string;
     createdAt: string;
 }

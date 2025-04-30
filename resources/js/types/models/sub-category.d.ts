@@ -5,6 +5,6 @@ export default interface SubCategory {
     id: number;
     name: LocaleString;
     category?: Category;
-    updated_at: string;
-    created_at: string;
+    updatedAt: string;
+    createdAt: string;
 }

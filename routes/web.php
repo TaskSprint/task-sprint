@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,7 @@ Route::localized(function () {
         return Inertia::render('Support'); // 'Support' — имя React-компонента
     })->name('support');
 
-    Route::get('/', fn() => Inertia::render('Main'))->name('home');
+    Route::get('/', [MainController::class, 'index'])->name('home');
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
@@ -25,8 +26,6 @@ Route::localized(function () {
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
-
-
         Route::get('/file-test', [FileTestController::class, 'index'])->name('file-test.index');
         Route::post('/file-test', [FileTestController::class, 'update'])
             ->name('file-test.update');
