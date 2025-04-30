@@ -1,14 +1,14 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider } from '@heroui/divider';
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/react';
 import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
 import TablerReceipt from '~icons/tabler/receipt';
 import SolarCardOutline from '~icons/solar/card-outline';
 import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import { addToast } from '@heroui/toast';
-import React from "react";
+import React from 'react';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
@@ -37,18 +37,16 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
         <div className="item-center bg-surface mx-auto flex h-full w-full flex-col text-white 2xl:max-w-[96rem] 2xl:flex-row">
             <main className="flex w-full flex-col 2xl:px-5">
                 <div className="flex w-full flex-col justify-center gap-6 px-9 py-[1.875rem] lg:flex-row lg:flex-wrap lg:items-end 2xl:h-36 2xl:px-0">
-
                     {tabs.map((tab) => (
                         <Button
                             as={Link}
-                                key={tab.title}
-                                href={tab.link}
-                                className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem]
-                                ${window.location.pathname.endsWith(tab.link)? 'bg-primary text-black dark:text-white' : ' '}`}>
-                                {t(tab.title)}
+                            key={tab.title}
+                            href={tab.link}
+                            className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem] ${window.location.pathname.endsWith(tab.link) ? 'bg-primary text-black dark:text-white' : ' '}`}
+                        >
+                            {t(tab.title)}
                         </Button>
                     ))}
-
                 </div>
 
                 <Divider className="bg-muted" />
