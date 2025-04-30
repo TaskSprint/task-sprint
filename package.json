@@ -9,13 +9,9 @@
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
-        "@iconify-json/iconamoon": "^1.2.2",
-        "@iconify-json/logos": "^1.2.4",
         "@iconify-json/material-symbols": "^1.2.17",
         "@iconify-json/mdi": "^1.2.3",
-        "@iconify-json/mynaui": "^1.2.9",
         "@iconify-json/solar": "^1.2.2",
-        "@iconify-json/tabler": "^1.2.17",
         "@inertiajs/react": "^2.0.0",
         "@svgr/core": "^8.1.0",
         "@svgr/plugin-jsx": "^8.1.0",
@@ -41,6 +37,7 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "@heroui/avatar": "^2.2.14-beta.2",
         "@heroui/button": "^2.2.18-beta.2",
         "@heroui/card": "^2.2.17-beta.2",
         "@heroui/divider": "^2.2.13-beta.2",
