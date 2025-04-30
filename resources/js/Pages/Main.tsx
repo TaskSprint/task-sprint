@@ -8,8 +8,17 @@ import Support from '@/Components/Main/Support';
 import Roles from '@/Components/Main/Roles';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Title } from '@/Components/Main/Title';
+import Category from '@/types/models/category';
+import { PageProps } from '@/types';
+import Task from '@/types/models/task';
 
-export default function Main() {
+export default function Main({
+    categories,
+    tasks,
+}: PageProps<{
+    categories: Category[];
+    tasks: Task[];
+}>) {
     const { t } = useLaravelReactI18n();
 
     return (
@@ -18,10 +27,10 @@ export default function Main() {
 
             <div className="bg-surface h-full w-full max-w-[60rem]">
                 <Title />
-                <Categories />
+                <Categories categories={categories} />
                 <Roles />
                 <Info />
-                <LastTasks tasks={[]} />
+                <LastTasks tasks={tasks} />
                 <Support />
             </div>
         </>

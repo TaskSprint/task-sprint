@@ -5,6 +5,7 @@ namespace App\Providers;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->locales(config('localized-routes.supported_locales'));
         });
+
+        JsonResource::withoutWrapping();
     }
 }
