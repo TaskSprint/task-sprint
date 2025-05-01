@@ -75,7 +75,7 @@ export default function Archive() {
 
                             <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">
                                 <div className="flex w-full flex-col-reverse items-center justify-between gap-2.5 sm:flex-row sm:gap-12">
-                                    <div className="text-center text-[1.625rem] leading-[2.25rem] font-semibold sm:text-start">
+                                    <div className="text-muted text-center text-[1.625rem] leading-[2.25rem] font-semibold sm:text-start">
                                         {task.title}
                                     </div>
                                     <div className="text-[2rem] leading-[2.75rem] font-semibold">
@@ -83,7 +83,7 @@ export default function Archive() {
                                     </div>
                                 </div>
 
-                                <div className="text-center text-[1.125rem] font-medium break-all sm:text-start">
+                                <div className="text-muted text-center text-[1.125rem] font-medium break-all sm:text-start">
                                     {t('task-archive.created', { created: task.created_at })}
                                 </div>
 
