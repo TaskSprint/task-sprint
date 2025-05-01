@@ -17,4 +17,6 @@ return [
     'admin' => 'Admin',
     'dont_fill_to_preserve' => 'Leave empty to preserve the current password',
     'avatar' => 'Avatar',
+    'phone' => 'Phone',
+    'city' => 'City',
 ];

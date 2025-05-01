@@ -4,6 +4,7 @@ namespace App\Traits\Models;
 
 use Gate;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Seeder;
 use Illuminate\Events\Dispatcher;
 
@@ -13,7 +14,7 @@ trait PolicyChecks
 
     public static function bootPolicyChecks(): void
     {
-        if (static::checkIsInSeeder()) {
+        if (static::checkIsInSeeder() || static::checkIsInMigration()) {
             return;
         }
 
@@ -42,6 +43,13 @@ trait PolicyChecks
             is_subclass_of($item['class'], Seeder::class));
     }
 
+    protected static function checkIsInMigration(): bool
+    {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        return collect($backtrace)->contains(fn($item) => isset($item['class']) &&
+            is_subclass_of($item['class'], Migration::class));
+    }
+
     protected static function checkPolicy(string $ability, $model): bool
     {
         $policy = Gate::getPolicyFor($model);
@@ -52,7 +60,7 @@ trait PolicyChecks
     {
         if (static::checkPolicy($authority, static::class)) {
             static::{$method}(function ($model) use ($authority) {
-                if (static::checkPolicy($authority, $model)) {
+                if (static::checkPolicy($authority, $model) && static::checkBacktrace()) {
                     Gate::authorize($authority, $model);
                 }
             });
@@ -66,6 +74,6 @@ trait PolicyChecks
             isset($item['class']) &&
             $item['function'] === 'invokeListeners' &&
             $item['class'] === Dispatcher::class)->count();
-        return $invokeListenerCount > 1;
+        return $invokeListenerCount <= 1;
     }
 }

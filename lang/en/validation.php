@@ -162,6 +162,7 @@ return [
     'url' => 'The :attribute field must be a valid URL.',
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
+    'phone' => 'The :attribute field must be a valid phone number, example: +380951234567, and only for ukrainian numbers 0951234567.',
 
     /*
     |--------------------------------------------------------------------------
@@ -191,6 +192,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'name',
+        'email' => 'email',
+        'phone' => 'phone',
+        'city' => 'city',
+        'password' => 'password',
+        'password_confirmation' => 'password Confirmation',
+    ],
 
 ];
