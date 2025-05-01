@@ -1,13 +1,14 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Divider, Image } from '@heroui/react';
+import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
-import { Link } from '@inertiajs/react'
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
+import { useRouter } from '../../hooks/useRouter';
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();
+    const { route } = useRouter();
 
     const tasks = [
         {
@@ -50,7 +51,9 @@ export default function InProgress() {
                             </div>
 
                             <div className="text-[1.125rem] leading-[1.5rem] font-medium text-black dark:text-white">
-                                {t('tasks-in-progress.estimation', { estimated: task.estimated_date })}
+                                {t('tasks-in-progress.estimation', {
+                                    estimated: task.estimated_date,
+                                })}
                             </div>
 
                             <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
@@ -66,8 +69,9 @@ export default function InProgress() {
             <div className="px-9 2xl:px-0">
                 <Button
                     as={Link}
-                    href="/profile/task-archive"
-                    className="border-muted text-muted w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] py-6 text-[1.25rem] leading-[1.688rem] font-semibold sm:h-fit sm:py-5 dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
+                    href={route('profile.archive')}
+                    className="border-muted text-muted w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] py-6 text-[1.25rem] leading-[1.688rem] font-semibold sm:h-fit sm:py-5 dark:border-[#A7A7A7] dark:text-[#A7A7A7]"
+                >
                     {t('tasks-in-progress.archive_orders')}
                 </Button>
             </div>

@@ -4,9 +4,11 @@ import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import UserLayout from '@/Layouts/UserLayout';
 import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
+import { useRouter } from '@/hooks/useRouter';
 
 export default function Archive() {
     const { t } = useLaravelReactI18n();
+    const { route } = useRouter();
 
     const tasks = [
         {
@@ -44,7 +46,7 @@ export default function Archive() {
 
                 <Breadcrumbs className="gap-[1.2rem]">
                     <BreadcrumbItem
-                        href="/profile/in-progress"
+                        href={route('profile.in-progress')}
                         className="text-muted text-[1.25rem] leading-[1.688rem] font-medium dark:text-[#A7A7A7]"
                     >
                         {t('task-archive.in_progress')}
@@ -58,31 +60,34 @@ export default function Archive() {
 
             <Divider className="bg-muted" />
 
-            <div className="px-[6.25rem]">
+            <div className="px-9">
                 <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
                     {tasks.map((task) => (
-                        <div className="flex w-full items-start gap-[1.25rem]" key={task.id}>
+                        <div
+                            className="flex w-full flex-col items-center gap-[1.25rem] sm:flex-row sm:items-start"
+                            key={task.id}
+                        >
                             <img
                                 src={task.image}
                                 alt={task.title}
                                 className="h-[5rem] w-[5rem] rounded-full"
                             />
 
-                            <div className="flex w-full flex-col items-start gap-[0.3125rem]">
-                                <div className="flex w-full justify-between gap-[5.75rem]">
-                                    <div className="text-[1.625rem] leading-[2.25rem] font-semibold text-black dark:text-white">
+                            <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">
+                                <div className="flex w-full flex-col-reverse items-center justify-between gap-2.5 sm:flex-row sm:gap-12">
+                                    <div className="text-center text-[1.625rem] leading-[2.25rem] font-semibold sm:text-start">
                                         {task.title}
                                     </div>
-                                    <div className="text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
+                                    <div className="text-[2rem] leading-[2.75rem] font-semibold">
                                         {task.price}
                                     </div>
                                 </div>
 
-                                <div className="text-[1.125rem] leading-[1.5625rem] font-medium break-all text-black dark:text-white">
+                                <div className="text-center text-[1.125rem] font-medium break-all sm:text-start">
                                     {t('task-archive.created', { created: task.created_at })}
                                 </div>
 
-                                <Button className="bg-primary ml-auto flex items-center rounded-[2.25rem] py-[1.875rem] text-[1.25rem] leading-[1.6875rem] font-semibold text-white">
+                                <Button className="bg-primary flex w-full items-center rounded-full text-white sm:ml-auto sm:w-fit sm:py-[1.875rem] sm:text-[1.25rem] sm:font-semibold">
                                     {t('task-archive.repeat-task')}
                                 </Button>
                             </div>
