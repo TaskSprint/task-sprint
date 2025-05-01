@@ -1,4 +1,4 @@
-import { Image } from '@heroui/image';
+import { Image } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export function Info() {

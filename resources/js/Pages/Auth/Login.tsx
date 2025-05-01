@@ -3,10 +3,9 @@ import { Head, useForm } from '@inertiajs/react';
 import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Input } from '@heroui/input';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
-import { Link } from '@heroui/link';
+import { Input, Link } from '@heroui/react';
 
 export default function Login({
     status,
@@ -39,6 +38,9 @@ export default function Login({
             <div className="bg-surface/50 mx-auto grid h-full w-full max-w-[60rem] grid-cols-2 backdrop-blur">
                 <div className="flex flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
                     <form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
+                        {status && (
+                            <div className="text-sm font-medium text-green-600">{status}</div>
+                        )}
                         <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
                             {t('auth.login.title')}
                         </h2>

@@ -1,10 +1,9 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
-import { Divider } from '@heroui/divider';
 import AppLayout from '@/Layouts/AppLayout';
 import UserLayout from '@/Layouts/UserLayout';
-import { Image } from '@heroui/image';
+import { Divider, Image } from '@heroui/react';
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();

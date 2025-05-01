@@ -1,11 +1,11 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Input } from '@heroui/input';
 import Button from '@/Components/Shared/Button';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
+import { Input, Link } from '@heroui/react';
 
 export default function Register() {
     const { route } = useRouter();

@@ -1,22 +1,14 @@
-import { HeroUIProvider } from '@heroui/system';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ToastProvider } from '@heroui/toast';
+import { HeroUIProvider, ToastProvider } from '@heroui/react';
 import { router } from '@inertiajs/react';
-import { useCallback } from 'react';
 import { RouterOptions } from '@react-types/shared';
+import { ReactNode } from 'react';
 
-export function Providers({ children }: Readonly<{ children: React.ReactNode }>) {
-    const navigate = useCallback((path: string, options?: RouterOptions) => {
-        console.log(path, options);
-        router.visit(path, {
-            ...options,
-            preserveScroll: true,
-            preserveState: true,
-        });
-    }, []);
-
+export function Providers({ children }: Readonly<{ children: ReactNode }>) {
     return (
-        <HeroUIProvider navigate={navigate}>
+        <HeroUIProvider
+            navigate={(path: string, options?: RouterOptions) => router.visit(path, options)}
+        >
             <ToastProvider />
             <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
                 {children}
