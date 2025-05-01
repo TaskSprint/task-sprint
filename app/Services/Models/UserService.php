@@ -3,7 +3,6 @@
 namespace App\Services\Models;
 
 use App\Models\User;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +14,8 @@ class UserService extends BaseModelService
     protected array $attributes = [
         'name',
         'email',
+        'phone',
+        'city',
         'password',
     ];
     protected array $searchAttributes = [
