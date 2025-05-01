@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::localized(function () {
-
     Route::get('/support', function () {
         return Inertia::render('Support'); // 'Support' — имя React-компонента
     })->name('support');
@@ -45,6 +44,10 @@ Route::localized(function () {
         Route::get('/profile/new-task', function () {
             return Inertia::render('Profile/NewTask');
         })->name('profile.new-task');
+
+        Route::get('/profile/archive', function () {
+            return Inertia::render('Profile/Archive');
+        })->name('profile.archive');
     });
 });
 

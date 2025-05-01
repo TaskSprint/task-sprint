@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'complete_order_by' => 'Виконати замовлення до',
+    'estimation' => 'Виконати замовлення до :estimated',
     'view_task' => 'Подивитись замовлення',
     'archive_orders' => 'Архів замовлень',
 ];
