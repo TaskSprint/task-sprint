@@ -7,13 +7,14 @@ use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class SubCategory extends Model
 {
     use PolicyChecks, CascadesDeletes;
 
-    protected array $cascadeDeletes = ['tasks'];
+    protected array $cascadeDeletes = ['tasks', 'keywords'];
 
     protected $guarded = ['id'];
 
@@ -30,6 +31,11 @@ class SubCategory extends Model
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function keywords(): MorphMany
+    {
+        return $this->morphMany(Keyword::class, 'keywordable');
     }
 
     protected function casts(): array

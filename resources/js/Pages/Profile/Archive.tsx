@@ -1,11 +1,11 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
-import { Divider } from '@heroui/divider';
-import AppLayout from "@/Layouts/AppLayout";
-import UserLayout from "@/Layouts/UserLayout";
-import {Breadcrumbs, BreadcrumbItem} from "@heroui/breadcrumbs";
-export default function TasksArchive() {
+import AppLayout from '@/Layouts/AppLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
+
+export default function Archive() {
     const { t } = useLaravelReactI18n();
 
     const tasks = [
@@ -38,7 +38,6 @@ export default function TasksArchive() {
     return (
         <>
             <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] py-[2.5rem]">
-
                 <div className="flex h-[2.75rem] w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('task-archive.title')}
                 </div>
@@ -46,31 +45,28 @@ export default function TasksArchive() {
                 <Breadcrumbs className="gap-[1.2rem]">
                     <BreadcrumbItem
                         href="/profile/in-progress"
-                        className="text-[1.25rem] leading-[1.688rem] font-medium text-muted dark:text-[#A7A7A7]">
+                        className="text-muted text-[1.25rem] leading-[1.688rem] font-medium dark:text-[#A7A7A7]"
+                    >
                         {t('task-archive.in_progress')}
                     </BreadcrumbItem>
 
                     <BreadcrumbItem className="text-[1.25rem] leading-[1.688rem] font-medium text-black dark:text-white">
                         {t('task-archive.task_archive')}
                     </BreadcrumbItem>
-
                 </Breadcrumbs>
-
             </div>
 
             <Divider className="bg-muted" />
 
-
             <div className="px-[6.25rem]">
                 <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
                     {tasks.map((task) => (
-                        <div className="flex w-full items-start gap-[1.25rem]"
-                             key={task.id}>
-                                <img
-                                    src={task.image}
-                                    alt={task.title}
-                                    className="h-[5rem] w-[5rem] rounded-full"
-                                />
+                        <div className="flex w-full items-start gap-[1.25rem]" key={task.id}>
+                            <img
+                                src={task.image}
+                                alt={task.title}
+                                className="h-[5rem] w-[5rem] rounded-full"
+                            />
 
                             <div className="flex w-full flex-col items-start gap-[0.3125rem]">
                                 <div className="flex w-full justify-between gap-[5.75rem]">
@@ -86,11 +82,9 @@ export default function TasksArchive() {
                                     {t('task-archive.created', { created: task.created_at })}
                                 </div>
 
-                                <Button className="ml-auto bg-primary flex items-center  rounded-[2.25rem] py-[1.875rem] text-[1.25rem] leading-[1.6875rem] font-semibold text-white">
+                                <Button className="bg-primary ml-auto flex items-center rounded-[2.25rem] py-[1.875rem] text-[1.25rem] leading-[1.6875rem] font-semibold text-white">
                                     {t('task-archive.repeat-task')}
                                 </Button>
-
-
                             </div>
                         </div>
                     ))}
@@ -100,7 +94,7 @@ export default function TasksArchive() {
     );
 }
 
-TasksArchive.layout = (page: React.ReactNode) => (
+Archive.layout = (page: React.ReactNode) => (
     <AppLayout>
         <UserLayout>{page}</UserLayout>
     </AppLayout>

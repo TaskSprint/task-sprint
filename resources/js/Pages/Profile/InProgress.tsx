@@ -1,13 +1,12 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Image } from '@heroui/image';
+import { Divider, Image } from '@heroui/react';
 import React from 'react';
 import { Link } from '@inertiajs/react'
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
-import { Divider } from '@heroui/divider';
 
-export default function TasksInProgress() {
+export default function InProgress() {
     const { t } = useLaravelReactI18n();
 
     const tasks = [
@@ -76,7 +75,7 @@ export default function TasksInProgress() {
     );
 }
 
-TasksInProgress.layout = (page: React.ReactNode) => (
+InProgress.layout = (page: React.ReactNode) => (
     <AppLayout>
         <UserLayout>{page}</UserLayout>
     </AppLayout>

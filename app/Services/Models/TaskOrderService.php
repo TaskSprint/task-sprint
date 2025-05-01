@@ -9,12 +9,10 @@ use App\Models\TaskOrder;
  */
 class TaskOrderService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(TaskOrder::class, [
-            'task_id',
-            'status',
-            'employee_id',
-        ]);
-    }
+    protected string $class = TaskOrder::class;
+    protected array $attributes = [
+        'task_id',
+        'status',
+        'employee_id',
+    ];
 }

@@ -2,11 +2,16 @@ import Category from '@/types/models/category';
 import { useForm, usePage } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
 import { FormEventHandler, useEffect, useState } from 'react';
-import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card';
-import { Divider } from '@heroui/divider';
-import { Input } from '@heroui/input';
-import { Button } from '@heroui/button';
-import { Image } from '@heroui/image';
+import {
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Divider,
+    Image,
+    Input,
+} from '@heroui/react';
 
 export function CategoryTestCard({ category }: Readonly<{ category: Category }>) {
     const { props } = usePage();

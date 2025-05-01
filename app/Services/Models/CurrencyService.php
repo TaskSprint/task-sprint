@@ -9,10 +9,11 @@ use App\Models\Currency;
  */
 class CurrencyService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(Currency::class, [
-            'code',
-        ]);
-    }
+    protected string $class = Currency::class;
+    protected array $attributes = [
+        'code',
+    ];
+    protected array $searchAttributes = [
+        'code',
+    ];
 }

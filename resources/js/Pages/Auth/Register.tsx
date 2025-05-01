@@ -1,11 +1,11 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Input } from '@heroui/input';
 import Button from '@/Components/Shared/Button';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
+import { Input, Link } from '@heroui/react';
 
 export default function Register() {
     const { route } = useRouter();
@@ -31,8 +31,8 @@ export default function Register() {
         <>
             <Head title={t('auth.register.title')} />
 
-            <div className="mx-auto grid h-full w-full max-w-[60rem] grid-cols-2 bg-white dark:bg-[#2C2C2C]">
-                <div className="flex flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
+            <div className="bg-surface/50 mx-auto flex h-full w-full max-w-[60rem] justify-center backdrop-blur">
+                <div className="flex h-full w-full max-w-[30rem] flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
                     <form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
                         <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
                             {t('auth.register.title')}

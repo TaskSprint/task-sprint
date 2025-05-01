@@ -5,6 +5,6 @@ export default interface Category {
     name: LocaleString;
     color: string;
     icon?: string;
-    updated_at: string;
-    created_at: string;
+    updatedAt: string;
+    createdAt: string;
 }

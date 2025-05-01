@@ -225,7 +225,7 @@ class TaskResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'description', 'customer.name', 'subCategory.name'];
+        return ['name', 'description', 'customer.name', 'subCategory.name', 'subCategory.keywords.name'];
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array

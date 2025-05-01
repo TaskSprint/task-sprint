@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/navbar';
+import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
 import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import SearchBar from '@/Components/Layout/SearchBar';
@@ -7,7 +7,6 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import SolarKeyMinimalisticSquare3Linear from '~icons/solar/key-minimalistic-square-3-linear';
 import SolarLogin2Linear from '~icons/solar/login-2-linear';
 import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
-import { Link } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
 
 export default function Navigation() {
@@ -24,6 +23,7 @@ export default function Navigation() {
         >
             <NavbarBrand className="h-full py-1">
                 <Link
+                    color="foreground"
                     href={route('home')}
                     className="font-kreadon inline-flex items-center text-xl font-medium"
                 >

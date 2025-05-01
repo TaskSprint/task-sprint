@@ -1,8 +1,7 @@
 import { HTMLAttributes, useEffect } from 'react';
-import { forwardRef } from '@heroui/system';
+import { cn, forwardRef } from '@heroui/react';
 import { useDOMRef } from '@heroui/react-utils';
 import DOMPurify from 'isomorphic-dompurify';
-import { cn } from '@heroui/theme';
 
 interface SafeHtmlProps extends HTMLAttributes<HTMLDivElement> {
     classNames?: {

@@ -8,4 +8,5 @@ return [
     'sub-categories' => 'Sub categories',
     'sub-category' => 'Sub category',
     'category' => 'Category',
+    'keywords' => 'Keywords',
 ];

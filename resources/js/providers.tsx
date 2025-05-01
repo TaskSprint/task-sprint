@@ -1,11 +1,14 @@
-import { HeroUIProvider } from '@heroui/system';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { HeroUIProvider, ToastProvider } from '@heroui/react';
 import { router } from '@inertiajs/react';
-import { ToastProvider } from '@heroui/toast';
+import { RouterOptions } from '@react-types/shared';
+import { ReactNode } from 'react';
 
-export function Providers({ children }: Readonly<{ children: React.ReactNode }>) {
+export function Providers({ children }: Readonly<{ children: ReactNode }>) {
     return (
-        <HeroUIProvider navigate={router.visit}>
+        <HeroUIProvider
+            navigate={(path: string, options?: RouterOptions) => router.visit(path, options)}
+        >
             <ToastProvider />
             <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
                 {children}

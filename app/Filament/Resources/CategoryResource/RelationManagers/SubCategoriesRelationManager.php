@@ -19,6 +19,11 @@ class SubCategoriesRelationManager extends RelationManager
         return __('sub-categories.sub-category');
     }
 
+    public static function getPluralModelLabel(): string
+    {
+        return __('sub-categories.sub-categories');
+    }
+
     public function form(Form $form): Form
     {
         return $form

@@ -1,8 +1,16 @@
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import Task from '@/types/models/task';
+import { usePage } from '@inertiajs/react';
 
-export default function LastTaskCard({ name, price, estimated_date, subCategory }: Readonly<Task>) {
+export default function LastTaskCard({
+    name,
+    price,
+    estimatedDate,
+    subCategory,
+    currency,
+}: Readonly<Task>) {
     const { t } = useLaravelReactI18n();
+    const { locale } = usePage().props;
 
     return (
         <div className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 dark:border-[#C6C6C6]">
@@ -11,9 +19,9 @@ export default function LastTaskCard({ name, price, estimated_date, subCategory 
                 <h3 className="line-clamp-1 text-xl leading-7 font-semibold break-all text-ellipsis text-black dark:text-white">
                     {name}
                 </h3>
-                {subCategory?.category && (
+                {subCategory && (
                     <p className="line-clamp-1 text-sm leading-5 font-semibold break-all text-ellipsis text-black dark:text-white">
-                        {subCategory.category.name.current}
+                        {subCategory.name.current}
                     </p>
                 )}
             </div>
@@ -21,10 +29,18 @@ export default function LastTaskCard({ name, price, estimated_date, subCategory 
             {/* Bottom block with date and price */}
             <div className="flex flex-col items-start gap-2">
                 <p className="text-xs leading-4 font-semibold whitespace-nowrap text-gray-400 dark:text-gray-300">
-                    {t('last-tasks.estimation', { estimated: estimated_date })}
+                    {t('last-tasks.estimation', {
+                        estimated: new Date(estimatedDate).toLocaleDateString(locale?.current, {
+                            dateStyle: 'full',
+                        }),
+                    })}
                 </p>
                 <p className="text-2xl leading-8 font-semibold whitespace-nowrap text-black dark:text-white">
-                    {price} ₴
+                    {Intl.NumberFormat(locale?.current, {
+                        style: 'currency',
+                        currencyDisplay: 'narrowSymbol',
+                        currency: currency?.code ?? 'UAH',
+                    }).format(price)}
                 </p>
             </div>
         </div>
