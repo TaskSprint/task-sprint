@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -31,6 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser, Has
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'city',
         'password',
     ];
 
@@ -84,6 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser, Has
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'phone' => E164PhoneNumberCast::class . ':UA',
         ];
     }
 }
