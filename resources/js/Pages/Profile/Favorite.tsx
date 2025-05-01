@@ -1,7 +1,5 @@
 import Button from '@/Components/Shared/Button';
-import { Link } from '@heroui/link';
-import { Avatar } from '@heroui/avatar';
-import { Divider } from '@heroui/divider';
+import { Avatar, Divider, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ReactNode } from 'react';
 import AppLayout from '@/Layouts/AppLayout';

@@ -1,8 +1,7 @@
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Button from '@/Components/Shared/Button';
-import { Link } from '@heroui/link';
-import { Image } from '@heroui/image';
+import { Image, Link } from '@heroui/react';
 
 export function Title() {
     const { t } = useLaravelReactI18n();

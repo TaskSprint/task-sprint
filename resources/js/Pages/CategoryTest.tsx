@@ -1,9 +1,6 @@
-import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card';
-import { Divider } from '@heroui/divider';
+import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Input } from '@heroui/react';
 import { useForm, usePage } from '@inertiajs/react';
-import { Input } from '@heroui/input';
 import { useRouter } from '@/hooks/useRouter';
-import { Button } from '@heroui/button';
 import { FormEventHandler, useEffect, useRef } from 'react';
 import Category from '@/types/models/category';
 import { PageProps } from '@/types';

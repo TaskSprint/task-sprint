@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Image } from '@heroui/image';
-import { Link } from '@inertiajs/react';
+import { Image, Link } from '@heroui/react';
 import Button from '@/Components/Shared/Button';
 import SafeHtml from '@/Components/SafeHtml';
 import isSvg from 'is-svg';
