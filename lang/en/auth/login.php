@@ -8,4 +8,8 @@ return [
     'remember_me' => 'Remember me',
     'forgot_password' => 'Forgot your password?',
     'button' => 'Log in',
+    'no-account' => [
+        'title' => "No account?\nJoin us!",
+        'description' => 'After registering, you will have the opportunity to both fulfill orders and request services.',
+    ]
 ];

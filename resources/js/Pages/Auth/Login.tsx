@@ -1,11 +1,12 @@
 import Button from '@/Components/Shared/Button';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Input } from '@heroui/input';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
+import { Link } from '@heroui/link';
 
 export default function Login({
     status,
@@ -35,9 +36,7 @@ export default function Login({
         <>
             <Head title={t('auth.login.title_page')} />
 
-            <div className="bg-surface mx-auto grid h-full w-full max-w-[60rem] grid-cols-2">
-                {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
-
+            <div className="bg-surface/50 mx-auto grid h-full w-full max-w-[60rem] grid-cols-2 backdrop-blur">
                 <div className="flex flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
                     <form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
                         <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
@@ -110,6 +109,24 @@ export default function Login({
                             </Link>
                         </div>
                     </form>
+                </div>
+                <div className="flex w-full max-w-sm flex-col justify-center">
+                    <div className="flex flex-col gap-10 px-4 pt-10 pb-20">
+                        <h3 className="text-xl font-medium whitespace-pre-line">
+                            {t('auth.login.no-account.title')}
+                        </h3>
+                        <p className="text-sm font-medium">
+                            {t('auth.login.no-account.description')}
+                        </p>
+                        <Button
+                            as={Link}
+                            href={route('register')}
+                            color="primary"
+                            className="h-fit w-fit rounded-full px-11 py-4 text-sm text-black"
+                        >
+                            {t('auth.register.button')}
+                        </Button>
+                    </div>
                 </div>
             </div>
         </>
