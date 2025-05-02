@@ -2,6 +2,48 @@
 
 return [
     'top-employees' => 'TOP specialists in this category',
-    'status' => 'Status',
-
+    'last-visit' => 'Was on site :absence back',
+    'offer' => 'Offer a job',
+    'reviews' => 'reviews',
+    'positive' => 'positive',
+    'select-category' => 'Select the appropriate order category',
+    'all-categories' => 'All categories',
+    'furniture-work' => 'Furniture work',
+    'furniture-assembly' => 'Furniture assembly',
+    'table-assembly' => 'Table assembly',
+    'order-details' => 'Order details',
+    'briefly' => 'What do you need to do (briefly)?',
+    'description' => 'Describe your order in detail',
+    'confidential-data' => '+ Confidential data',
+    'add-file' => '+ Add file',
+    'order-address' => 'Order fulfillment address',
+    'city' => 'City',
+    'district' => 'District',
+    'street' => 'Street',
+    'house' => 'House',
+    'adrs-details' => 'Additional details',
+    'fulfill-date' => 'Order fulfillment date',
+    'fulfill-time' => 'When do you need to fulfill the order?',
+    'any-time' => 'Any time',
+    '1-part' => 'From 8:00 to 12:00',
+    '2-part' => 'From 12:00 to 16:00',
+    '3-part' => 'From 16:00 to 22:00',
+    'payment' => 'Payment for work',
+    'method' => 'Payment Method',
+    'card' => 'Card',
+    'cash' => 'Cash',
+    'option-1' => 'Option-1',
+    'option-2' => 'Option-2',
+    'option-3' => 'Option-3',
+    'select-options' => 'select several options',
+    'proposed' => 'Proposed remuneration:',
+    'currency' => 'UAH',
+    'negotiable' => 'Price is negotiable',
+    'warnings' => 'This cost is indicated only for a preliminary estimate of the budget of your order. It does not
+        include materials and additional work. The exact cost will be able to tell the specialist after discussing
+        the details of the work. After the order is completed, you will be able to indicate the actual amount of payment
+        for the specialist`s work, excluding the cost of the material.',
+    'rules' => 'By publishing the order, you agree to display your contact details to the specialist who will be
+        selected to fulfill your order',
+    'publish' => 'Publish'
 ];

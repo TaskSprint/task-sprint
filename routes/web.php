@@ -24,6 +24,10 @@ Route::localized(function () {
         return Inertia::render('Dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+    Route::get('/task-creation', function () {
+        return Inertia::render('TaskCreation');
+    })->middleware(['auth', 'verified'])->name('task-creation');
+
     Route::middleware('auth')->group(function () {
 
 

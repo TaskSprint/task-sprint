@@ -1,0 +1,255 @@
+import Button from '@/Components/Shared/Button';
+import { Link } from '@heroui/link';
+import { Breadcrumbs, BreadcrumbItem } from '@heroui/react';
+import {Textarea} from "@heroui/input";
+import { Avatar } from '@heroui/avatar';
+import { Divider } from "@heroui/divider";
+import {Select, SelectItem} from "@heroui/react";
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import HeartCheckbox from "@/Components/Icons/HeartCheckbox";
+import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
+import React from 'react';
+import { RadioGroup, Radio } from '@heroui/radio';
+import DateScroller from '@/Components/DateSelector';
+
+
+export default function TaskCreationPage() {
+    const { t } = useLaravelReactI18n();
+    const absenceTime = "2 години"; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
+
+    const cities = [
+        {key: "kyiv", label: "Київ"},
+        {key: "odessa", label: "Одеса"},
+        {key: "kharkov", label: "Харків"}
+    ];
+
+    const districts = [
+        {key: "pecherskiiy", label: "Печерський"},
+        {key: "obolonskiiy", label: "Обольнський"},
+        {key: "podolskiiy", label: "Поділський"}
+    ];
+
+    const [selected, setSelected] = React.useState("3-part")
+    const [selected2, setSelected2] = React.useState("cash")
+
+    const [selected3, setSelected3] = React.useState("option-1")
+
+    return (
+        <div className="flex flex-row min-w-[87.5rem] min-h-[112rem]  dark:bg-[#2c2c2c]">
+            {/* первый столбик */ }
+            <div className="flex flex-col w-[60rem] gap-6.25">
+                {/* первый блок */ }
+                <div className="flex flex-col h-[12.25rem] pt-15 pb-10 gap-2.5 items-center dark:text-white border-[#C6C6C6] border-b">
+                    <h2 className="font-semibold text-[2rem]">{t('task-creation.select-category')}</h2>
+                    <Breadcrumbs
+                        className="gap-2.5 h-[1.75rem] text-[1.25rem] font-medium"
+                        size="lg"
+                    >
+                        <BreadcrumbItem className="gap-2.5 h-[1.6875rem] text-[1.25rem] font-medium">{t('task-creation.all-categories')}</BreadcrumbItem>
+                        <BreadcrumbItem className="gap-2.5 h-[1.6875rem] text-[1.25rem] font-medium">{t('task-creation.furniture-work')}</BreadcrumbItem>
+                        <BreadcrumbItem className="gap-2.5 h-[1.6875rem] text-[1.25rem] font-medium">{t('task-creation.furniture-assembly')}</BreadcrumbItem>
+                        <BreadcrumbItem className="gap-2.5 h-[1.6875rem] text-[1.25rem] font-medium">{t('task-creation.table-assembly')}</BreadcrumbItem>
+                    </Breadcrumbs>
+                </div>
+                {/* второй блок */ }
+                <div className="flex flex-col gap-6.25 py-10 items-center border-b">
+                    <h2 className="font-semibold text-[2rem] dark:text-white">{t('task-creation.order-details')}</h2>
+                    <div className="flex flex-col gap-2.5 items-center">
+                        <h4 className="font-medium text-base pb-2.5 dark:text-white">{t('task-creation.briefly')}</h4>
+                        <Textarea
+                            className="min-w-[28.625rem]"
+                            variant="bordered"
+                            radius="lg"
+                        />
+                    </div>
+                    <div className="flex flex-col gap-5 mb-3  items-center">
+                        <h4 className="font-medium text-base mt-3 pb-2.5">{t('task-creation.description')}:</h4>
+                        <Textarea
+                            className="min-w-[40rem] h-[12rem]"
+                            variant="bordered"
+                            radius="lg"
+                            minRows={8}
+                        />
+                        <div className="flex flex-row h-5.5 min-w-[20.0625rem] gap-17.5">
+                            <Link
+                                href="#"
+                                className="text-base font-medium text-[#929292] dark:text-[#A7A7A7]">
+                                {t('task-creation.confidential-data')}
+                            </Link>
+                            <Link
+                                href="#"
+                                className="text-base font-medium text-primary">
+                                {t('task-creation.add-file')}
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                {/* третий блок */ }
+                <div className="flex flex-col py-10 items-center border-b gap-6.25">
+                    <h2 className="font-semibold text-[2rem] dark:text-white">{t('task-creation.order-address')}</h2>
+                    {/* 1 строка */ }
+                    <div className="flex flex-row w-125 h-10 gap-2.5 items-center justify-between">
+                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.city')}</h4>
+                        <div className="flex flex-row w-100 gap-4 justify-end">
+                            <Select
+                                radius="full"
+                                labelPlacement="outside"
+                                variant="bordered"
+                                defaultSelectedKeys={['kyiv']}
+                                size="lg"
+                                className="min-w-48">
+                                {cities.map((city) => (
+                                    <SelectItem key={city.key}>{city.label}</SelectItem>
+                                ))}
+                            </Select>
+                        </div>
+                    </div>
+                    {/* 2 строка */ }
+                    <div className="flex flex-row w-125 h-10 gap-2.5 items-center justify-between">
+                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.district')}</h4>
+                        <div className="w-100 gap-4 justify-end">
+                            <Select
+                                radius="full"
+                                labelPlacement="outside"
+                                variant="bordered"
+                                defaultSelectedKeys={['pecherskiiy']}
+                                size="lg"
+                                className="min-w-48">
+                                {districts.map((district) => (
+                                    <SelectItem key={district.key}>{district.label}</SelectItem>
+                                ))}
+                            </Select>
+                        </div>
+                    </div>
+                    {/* 3 строка */ }
+                    <div className="flex flex-row w-125 h-10 gap-2.5 items-center justify-between">
+                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.street')}</h4>
+                        <div className="w-100 h-full justify-end">
+                            <Textarea
+                                className="mb-1"
+                                placeholder="Наприклад: вул. Казимира Малевича"
+                                variant="bordered"
+                                radius="full"
+                                size="lg"
+                                minRows={1}
+                            />
+                        </div>
+                    </div>
+                    {/* 4 строка */ }
+                    <div className="flex flex-row w-125 h-10 items-start justify-between">
+                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.house')}</h4>
+                        <div className="w-100 justify-end">
+                            <Textarea
+                                className="mb-1"
+                                placeholder="Наприклад: будинок 234-А, кв. 12"
+                                variant="bordered"
+                                radius="full"
+                                size="lg"
+                                minRows={1}
+                            />
+                        </div>
+                    </div>
+                    {/* 5 строка */ }
+                    <div className="flex flex-row w-125 h-10 items-start mb-6 justify-between">
+                        <h4 className="w-20 font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.adrs-details')}</h4>
+                        <div className="w-100 justify-end">
+                            <Textarea
+                                className="text-base mb-1"
+                                placeholder="Наприклад: код-домофону - 111"
+                                variant="bordered"
+                                radius="full"
+                                size="lg"
+                                minRows={1}
+                            />
+                        </div>
+                    </div>
+                </div>
+                        {/* четвертый блок */ }
+                    <div className="flex flex-col gap-6.25 py-10 items-center border-b">
+                        <h2 className="font-semibold text-[2rem]">{t('task-creation.fulfill-date')}</h2>
+                        <DateScroller />
+                        <h4 className="font-medium text-base dark:text-white">{t('task-creation.briefly')}</h4>
+                        <div className="h-5.5">
+                            <RadioGroup
+                                value = { selected }
+                                onValueChange = { setSelected }
+                                orientation="horizontal"
+                                defaultValue="3-part"
+                                color="primary"
+                                >
+                                    <Radio value="any-time">{t('task-creation.any-time')}</Radio>
+                                    <Radio value="1-part">{t('task-creation.1-part')}</Radio>
+                                    <Radio value="2-part">{t('task-creation.2-part')}</Radio>
+                                    <Radio value="3-part">{t('task-creation.3-part')}</Radio>
+                            </RadioGroup>
+                        </div>
+                    </div>
+                        {/* пятый блок */ }
+                    <div className="flex flex-col min-h-[39.125rem] gap-6.25 py-10 items-center border-b">
+                        <h2 className="font-semibold text-[2rem]">{t('task-creation.payment')}</h2>
+                        <div className="flex flex-col gap-6.25 w-[48.5rem] h-10 content-start justify-between">
+                            <div className="flex flex-row w-125 h-10 gap-5.75 justify-items-start justify-between">
+                                <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.payment-details')}</h4>
+                                <div className="w-100 justify-end">
+                                    <Textarea
+                                        className="mb-1"
+                                        variant="bordered"
+                                        radius="full"
+                                        size="lg"
+                                        minRows={1}
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex flex-row w-125 h-10 gap-5.75 justify-items-start justify-between">
+                                <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.method')}</h4>
+                                <div className="w-125 h-[6rem] ml-4 justify-end gap-[3,375rem]">
+                                    <RadioGroup
+                                        value = { selected2 }
+                                        onValueChange = { setSelected2 }
+                                        defaultValue="cash"
+                                        color="primary"
+                                    >
+                                        <Radio value="cash">{t('task-creation.cash')}</Radio>
+                                        <Radio value="card">{t('task-creation.card')}</Radio>
+                                    </RadioGroup>
+                                </div>
+                            </div>
+                            <div className="flex flex-row w-125 h-10  mt-5  gap-5.75 justify-items-start justify-between">
+                                <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.select-options')}</h4>
+                                <div className="w-125 h-[6rem] justify-end">
+                                    <div className="w-125 h-[6rem] ml-7 justify-end">
+                                        <RadioGroup
+                                            value = { selected3 }
+                                            onValueChange = { setSelected3 }
+                                            defaultValue="cash"
+                                            color="primary"
+                                        >
+                                            <Radio value="cash">{t('task-creation.option-1')}</Radio>
+                                            <Radio value="cash">{t('task-creation.option-2')}</Radio>
+                                            <Radio value="card">{t('task-creation.option-3')}</Radio>
+                                        </RadioGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>{t('task-creation.payment')}</h4>
+                <div><Button>{t('task-creation.publish')}</Button><h4>{t('task-creation.rules')}</h4></div>
+            </div>
+            {/* второй столбик */ }
+            <div  className="flex flex-col ml-2.25 border-s-1 border-[#C6C6C6] py-15 px-1.5 gap-y-6.25 w-[24.8rem] min-h-[112rem] content-start items-center">
+                <h3 className="flex flex-col text-xl font-semibold w-[23.875rem] h-[1.6875rem] dark:text-white text-center">{t('task-creation.top-employees')}</h3>
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployeesSM />
+                        <Link href="#" underline="always" className="text-center text-xl font-medium text-[#929292] dark:text-[#A7A7A7]">
+                            {t('task-creation.show-more')}
+                        </Link>
+            </div>
+        </div>
+    );
+}
+
