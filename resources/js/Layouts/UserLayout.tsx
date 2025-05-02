@@ -9,27 +9,29 @@ import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import { addToast } from '@heroui/toast';
 import React from 'react';
+import { useRouter } from '@/hooks/useRouter';
+import { cn } from '@heroui/react';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
+    const { current, route } = useRouter();
     const profileLink = `${window.location.origin}/profile`;
 
     const tabs = [
         {
             title: 'user-layout.in_progress',
-            link: '/profile/in-progress',
+            link: 'profile.in-progress',
         },
         {
             title: 'user-layout.new_task',
-            link: '/profile/new-task',
+            link: 'profile.new-task',
         },
         {
             title: 'user-layout.favourite_specialists',
-            link: '/profile/favourite-specialists',
+            link: 'profile.favorite',
         },
         {
             title: 'user-layout.search_orders',
-            link: '/profile/search-orders',
         },
     ];
 
@@ -41,8 +43,13 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                         <Button
                             as={Link}
                             key={tab.title}
-                            href={tab.link}
-                            className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem] ${window.location.pathname.endsWith(tab.link) ? 'bg-primary text-black dark:text-white' : ' '}`}
+                            href={tab.link ? route(tab.link) : undefined}
+                            className={cn(
+                                'h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem]',
+                                tab.link &&
+                                    current(tab.link) &&
+                                    'bg-primary text-black dark:text-white',
+                            )}
                         >
                             {t(tab.title)}
                         </Button>

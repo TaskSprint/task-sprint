@@ -24,9 +24,7 @@ export default function Favorite() {
                         <Link color="foreground" className="cursor-pointer text-2xl font-bold">
                             Коваль А.
                         </Link>
-                        <p>
-                            <HeartCheckbox />
-                        </p>
+                        <HeartCheckbox />
                     </div>
                     <h3 className="text-muted content-start text-base font-medium">
                         {t('fav-employees.last-visit', { absence: absenceTime })}

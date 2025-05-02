@@ -35,7 +35,7 @@ Route::localized(function () {
 
         Route::get('/profile/favorite', function () {
             return Inertia::render('Profile/Favorite');
-        })->name('profile.favorites');
+        })->name('profile.favorite');
 
         Route::get('/profile/in-progress', function () {
             return Inertia::render('Profile/InProgress');
