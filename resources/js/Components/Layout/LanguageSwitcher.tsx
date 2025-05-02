@@ -8,10 +8,13 @@ export default function LanguageSwitcher() {
     const { setLocale } = useLaravelReactI18n();
 
     const handleLanguageClick = (lang: string) => {
-        router.visit(localizedRoute(lang), {
-            preserveScroll: true,
-            preserveState: true,
-        });
+        const newRoute = localizedRoute(lang);
+        if (newRoute) {
+            router.visit(newRoute, {
+                preserveScroll: true,
+                preserveState: true,
+            });
+        }
         setLocale(lang);
     };
 
