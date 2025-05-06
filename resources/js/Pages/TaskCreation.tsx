@@ -2,11 +2,8 @@ import Button from '@/Components/Shared/Button';
 import { Link } from '@heroui/link';
 import { Breadcrumbs, BreadcrumbItem } from '@heroui/react';
 import {Textarea} from "@heroui/input";
-import { Avatar } from '@heroui/avatar';
-import { Divider } from "@heroui/divider";
 import {Select, SelectItem} from "@heroui/react";
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import HeartCheckbox from "@/Components/Icons/HeartCheckbox";
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import React from 'react';
 import { RadioGroup, Radio } from '@heroui/radio';
@@ -20,7 +17,10 @@ export default function TaskCreationPage() {
     const cities = [
         {key: "kyiv", label: "Київ"},
         {key: "odessa", label: "Одеса"},
-        {key: "kharkov", label: "Харків"}
+        {key: "kharkov", label: "Харків"},
+        {key: "zaporizha", label: "Запоріжжюя"},
+        {key: "lviv", label: "Львів"},
+        {key: "donetsk", label: "Донецк"}
     ];
 
     const districts = [
@@ -232,9 +232,9 @@ export default function TaskCreationPage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <h4>{t('task-creation.payment')}</h4>
-                <div><Button>{t('task-creation.publish')}</Button><h4>{t('task-creation.rules')}</h4></div>
+                        <h4>{t('task-creation.payment')}</h4>
+                    <div><Button>{t('task-creation.publish')}</Button><h4>{t('task-creation.rules')}</h4></div>
+                </div>
             </div>
             {/* второй столбик */ }
             <div  className="flex flex-col ml-2.25 border-s-1 border-[#C6C6C6] py-15 px-1.5 gap-y-6.25 w-[24.8rem] min-h-[112rem] content-start items-center">
