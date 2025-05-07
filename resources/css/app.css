@@ -32,7 +32,7 @@
 
 @utility autofill-color-* {
     @variant autofill {
-        -webkit-text-fill-color: --value(--color-*, [color])
+        -webkit-text-fill-color: --value(--color-*, [color]);
     }
 }
 
