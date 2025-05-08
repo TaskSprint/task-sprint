@@ -11,22 +11,29 @@ const days = [
     { date: 21, label: "Пʼятниця" },
 ];
 
+
 export default function DateScroller() {
-    const [selectedDate, setSelectedDate] = useState(17);
+    const todayDate = 17;
+    const [selectedDate, setSelectedDate] = useState(todayDate);
+
 
     const handleLeftClick = () => {
         // Заготовка под смещение влево
-        console.log("Сдвиг влево");
+        console.log("Сдвиг влево")
+
     };
 
     const handleRightClick = () => {
         // Заготовка под смещение вправо
         console.log("Сдвиг вправо");
+
     };
 
     return (
         <div className="flex items-center gap-5">
-            <button onClick={handleLeftClick} className="text-white hover:scale-110 transition rounded-[2.5rem] dark:bg-[#00CCFF] mr-5">
+            <button
+                onClick={handleLeftClick}
+                className="flex flex-col items-center justify-center rounded-full bg-cyan-400 text-white border dark:text-white">
                 <ChevronLeft size={48} />
             </button>
             {days.map(({ date, label }) => (
@@ -35,12 +42,14 @@ export default function DateScroller() {
                     onClick={() => setSelectedDate(date)}
                     className={cn('flex flex-col items-center justify-center px-5 py-2.5 rounded-xl cursor-pointer transition ', selectedDate === date ? "bg-cyan-400 text-white" : "border text-black dark:text-white")}
                 >
-                    <span className="text-xs text-gray-500">Березень</span>
+                    <span className="text-sm text-gray-500">Березень</span>
                     <span className="text-lg font-bold">{date}</span>
                     <span className="text-sm">{label}</span>
                 </div>
             ))}
-            <button onClick={handleRightClick} className="text-white hover:scale-110 transition rounded-[2.5rem] dark:bg-[#00CCFF] ml-5">
+            <button
+                onClick={handleRightClick}
+                className="flex flex-col items-center justify-center rounded-full bg-cyan-400 text-white border dark:text-white">
                 <ChevronRight size={48} />
             </button>
         </div>
