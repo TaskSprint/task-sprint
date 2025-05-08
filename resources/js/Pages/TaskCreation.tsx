@@ -8,6 +8,7 @@ import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import React from 'react';
 import { RadioGroup, Radio } from '@heroui/radio';
 import DateScroller from '@/Components/DateSelector';
+import {Checkbox} from "@heroui/react";
 
 
 export default function TaskCreationPage() {
@@ -36,9 +37,9 @@ export default function TaskCreationPage() {
     return (
         <div className="flex flex-row min-w-[87.5rem] min-h-[112rem]  dark:bg-[#2c2c2c]">
             {/* первый столбик */ }
-            <div className="flex flex-col w-[60rem] gap-6.25">
+            <div className="flex flex-col w-[60rem]">
                 {/* первый блок */ }
-                <div className="flex flex-col min-h-[12.25rem] pt-15 pb-10 gap-2.5 items-center dark:text-white border-[#C6C6C6] border-b">
+                <div className="flex flex-col min-h-[12.25rem] pt-10 pb-10 gap-2.5 items-center dark:text-white border-[#C6C6C6] border-b">
                     <h2 className="font-semibold text-[2rem]">{t('task-creation.select-category')}</h2>
                     <Breadcrumbs
                         className="gap-2.5 h-[1.75rem] text-[1.25rem] font-medium"
@@ -51,7 +52,7 @@ export default function TaskCreationPage() {
                     </Breadcrumbs>
                 </div>
                 {/* второй блок */ }
-                <div className="flex flex-col gap-6.25 py-10 items-center border-b">
+                <div className="flex flex-col gap-6.25 pt-10 py-10 items-center border-b">
                     <h2 className="font-semibold text-[2rem] dark:text-white">{t('task-creation.order-details')}</h2>
                     <div className="flex flex-col gap-2.5 items-center">
                         <h4 className="font-medium text-base pb-2.5 dark:text-white">{t('task-creation.briefly')}</h4>
@@ -98,6 +99,7 @@ export default function TaskCreationPage() {
                                 variant="bordered"
                                 defaultSelectedKeys={['kyiv']}
                                 size="lg"
+                                color="primary"
                                 className="min-w-48">
                                 {cities.map((city) => (
                                     <SelectItem key={city.key}>{city.label}</SelectItem>
@@ -113,9 +115,10 @@ export default function TaskCreationPage() {
                                 radius="full"
                                 labelPlacement="outside"
                                 variant="bordered"
+                                color="primary"
                                 defaultSelectedKeys={['pecherskiiy']}
                                 size="lg"
-                                className="min-w-48">
+                                className="min-w-48 ">
                                 {districts.map((district) => (
                                     <SelectItem key={district.key}>{district.label}</SelectItem>
                                 ))}
@@ -190,67 +193,98 @@ export default function TaskCreationPage() {
                     </div>
                         {/* пятый блок */ }
                     <div className="flex flex-col min-h-[39.125rem] gap-6.25 py-10 border-b items-center">
-                        <h2 className="font-semibold text-[2rem] justify-items-centercenter">{t('task-creation.payment')}</h2>
-                        <div className="flex flex-col gap-2.5 min-w-[48.5rem] h-[17.625rem]">
-                            <div className="flex flex-col w-125 h-10 gap-5.75 justify-start">
-                                <div className="flex flex-row w-125 h-10 gap-5.75 justify-between">
-                                    <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.payment-details')}</h4>
-                                    <div className="w-100 justify-end">
-                                        <Textarea
-                                            className="mb-1"
-                                            variant="bordered"
-                                            radius="full"
-                                            size="lg"
-                                            minRows={1}
-                                        />
-                                    </div>
-                                </div>
-                                    <div className="flex flex-row w-125 h-10 gap-5.75 mt-2 justify-between">
-                                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.method')}</h4>
-                                        <div className="flex flex-row w-125 h-[6rem] ml-5 gap-[3,375rem]">
-                                            <RadioGroup
-                                                value = { selected2 }
-                                                onValueChange = { setSelected2 }
-                                                defaultValue="cash"
+                        <h2 className="font-semibold text-[2rem]">{t('task-creation.payment')}</h2>
+                        <div className="flex flex-col min-w-[48.5rem] min-h-[15.625rem] justify-between">
+                            <div className="flex w-125 h-10 gap-5.75">
+                                <div className="flex flex-col w-125 h-10 gap-8">
+                                    <div className="flex flex-row w-125 h-10 gap-5.75 justify-between">
+                                        <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.payment-details')}</h4>
+                                        <div className="w-100 justify-end">
+                                            <Textarea
+                                                className="mb-1"
+                                                variant="bordered"
+                                                radius="full"
+                                                size="lg"
                                                 color="primary"
-                                            >
-                                                <Radio value="cash">{t('task-creation.cash')}</Radio>
-                                                <Radio value="card">{t('task-creation.card')}</Radio>
-                                            </RadioGroup>
+                                                minRows={1}
+                                            />
                                         </div>
                                     </div>
-                                        <div className="flex flex-row w-125 h-10 mt-2 gap-5.75 justify-between">
-                                            <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white w-[4.9375rem] h-[4.125rem]">{t('task-creation.select-options')}</h4>
-                                            <div className="flex flex-row w-100 h-[6rem] gap-[3.375rem] ml-7.5 content-end">
+
+                                        <div className="flex flex-row w-125 h-10 gap-5.75 mt-2 justify-between">
+                                            <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white">{t('task-creation.method')}</h4>
+                                            <div className="flex flex-row w-125 h-[6rem] ml-5 gap-[3,375rem]">
                                                 <RadioGroup
-                                                    value = { selected3 }
-                                                    onValueChange = { setSelected3 }
+                                                    value = { selected2 }
+                                                    onValueChange = { setSelected2 }
                                                     defaultValue="cash"
                                                     color="primary"
                                                 >
-                                                    <Radio value="cash">{t('task-creation.option-1')}</Radio>
-                                                    <Radio value="cash">{t('task-creation.option-2')}</Radio>
-                                                    <Radio value="card">{t('task-creation.option-3')}</Radio>
+                                                    <Radio value="cash">{t('task-creation.cash')}</Radio>
+                                                    <Radio value="card">{t('task-creation.card')}</Radio>
                                                 </RadioGroup>
                                             </div>
                                         </div>
-                            </div>
-                            <div className="w-[15.6875rem] h-[8.375rem] bg-[#00CCFF] opacity-[10%] rounded-[1.25rem] px-[2rem] py-[1rem] gap-2.5">
-                                <div>
-                                    <h5 className="font-[400] text-[1rem]">{t('task-creation.proposed')}</h5>
+
+                                            <div className="flex flex-row w-125 h-10 mt-2 gap-5.75 justify-between">
+                                                <h4 className="font-medium text-base pb-2.5 mt-1 dark:text-white w-[4.9375rem] h-[4.125rem]">{t('task-creation.select-options')}</h4>
+                                                <div className="flex flex-row w-100 h-[6rem] gap-[3.375rem] ml-7.5 content-end">
+                                                    <RadioGroup
+                                                        value = { selected3 }
+                                                        onValueChange = { setSelected3 }
+                                                        defaultValue="option1"
+                                                        color="primary"
+                                                    >
+                                                        <Radio value="option1">{t('task-creation.option-1')}</Radio>
+                                                        <Radio value="option2">{t('task-creation.option-2')}</Radio>
+                                                        <Radio value="option3">{t('task-creation.option-3')}</Radio>
+                                                    </RadioGroup>
+                                                </div>
+                                            </div>
                                 </div>
-                            </div>
-                                <div className="flex flex-col w-[48.5rem] h-[4.75rem] mt-[13rem]">
-                                    <h4 className="mt-1 font-medium text-[0.875rem]">{t('task-creation.warnings')}</h4>
-                                </div>
-                                    <div className="flex flex-row w-[44rem] h-[4.3125rem] max-h-10 mb-5 gap-5.75 items-center justify-between mt-[3rem]">
-                                        <Button className="flex flex-col ml-10 mt-1 text-xl font-semibold bg-primary rounded-[2rem] py-[1.3125rem] px-[5.46875rem] color-[#FFFFFF]">{t('task-creation.publish')}</Button>
-                                        <h4 className="font-medium text-[0.875rem]">{t('task-creation.rules')}</h4>
+
+                                <div className="flex flex-col w-[15.6875rem] min-h-[9rem] bg-cyan-700/10 items-start rounded-[1.25rem] py-[1rem] px-[2rem] ml-4">
+                                    <h5 className="font-[400] text-[1rem] text-black dark:text-white text-center">{t('task-creation.proposed')}</h5>
+                                    <div className="flex h-10 my-3 gap-2 justify-start items-center">
+                                        <div className="w-[8.375rem] items-start">
+                                            <Textarea
+                                                className="mb-1"
+                                                variant="bordered"
+                                                radius="full"
+                                                size="lg"
+                                                minRows={1}
+                                                placeholder="1000"
+                                                color="primary"
+                                            />
+                                        </div>
+                                        <h4 className="pb-2.5 mt-1 font-[500] text-[1.25rem] text-black text-center dark:text-white">
+                                            {t('task-creation.currency')}
+                                        </h4>
                                     </div>
+                                    <div className="flex gap-2.5 items-start">
+                                        <Checkbox defaultSelected
+                                                  size="sm"
+                                                  radius="lg"
+                                                  color="primary"
+                                                  className="mr-2">
+                                            <h4 className="text-base font-medium text-[#00CCFF]">{t('task-creation.negotiable')}</h4>
+                                        </Checkbox>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                            <div className="w-[48rem] h-[4.75rem]">
+                                <h4 className="mt-1 font-medium text-[0.875rem]">{t('task-creation.warnings')}</h4>
+                            </div>
+                                <div className="flex flex-row w-[44rem] h-[4.3125rem] max-h-10 mb-5 gap-5.75 items-center justify-between mt-[3rem]">
+                                    <Button className="flex flex-row ml-10 mt-1 text-xl font-semibold bg-primary rounded-[2rem] py-[1.3125rem] px-[5.46875rem]
+                                     color-[#FFFFFF] hover:color-[#FFFFFF]">{t('task-creation.publish')}</Button>
+                                    <h4 className="font-medium text-[0.875rem]">{t('task-creation.rules')}</h4>
+                                </div>
                     </div>
                 </div>
-                {/* второй столбик */ }
+
+            {/* второй столбик */ }
                 <div  className="flex flex-col ml-2.25 border-s-1 border-[#C6C6C6] py-15 px-1.5 gap-y-6.25 w-[24.8rem] min-h-[112rem] content-start items-center">
                     <h3 className="flex flex-col text-xl font-semibold w-[23.875rem] h-[1.6875rem] dark:text-white text-center">{t('task-creation.top-employees')}</h3>
                         <FavoriteEmployeesSM />

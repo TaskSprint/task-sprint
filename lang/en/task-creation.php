@@ -36,7 +36,7 @@ return [
     'option-2' => 'Option-2',
     'option-3' => 'Option-3',
     'select-options' => 'select several options',
-    'proposed' => 'Proposed remuneration:',
+    'proposed' => 'Approximate cost:',
     'currency' => 'UAH',
     'negotiable' => 'Price is negotiable',
     'warnings' => 'This cost is indicated only for a preliminary estimate of the budget of your order. It does not
