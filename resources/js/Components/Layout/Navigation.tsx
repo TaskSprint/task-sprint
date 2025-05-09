@@ -14,6 +14,7 @@ import SolarBellOutline from '~icons/solar/bell-outline';
 import SolarDocumentLinear from '~icons/solar/document-linear';
 import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
 
+
 export default function Navigation() {
     const { t } = useLaravelReactI18n();
     const { route } = useRouter();
@@ -41,7 +42,7 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button className="border text-base font-medium" variant="bordered">
+                    <Button className="border-1 border-[#131313] dark:border-white text-base font-medium bg-white dark:bg-black">
                         {t('navigation.create')}
                     </Button>
                 </NavbarItem>
@@ -105,8 +106,7 @@ export default function Navigation() {
                     <>
                         <NavbarItem>
                             <Button
-                                className="border border-[#131313] text-base font-medium dark:border-white"
-                                variant="bordered"
+                                className="border-1 border-[#131313] bg-white dark:bg-black dark:border-[#00CCFF] text-base font-medium"
                                 as={Link}
                                 href={route('login')}
                             >
@@ -116,8 +116,7 @@ export default function Navigation() {
                         </NavbarItem>
                         <NavbarItem>
                             <Button
-                                className="border-0 bg-black text-base font-medium text-white dark:border dark:border-white dark:bg-transparent"
-                                variant="bordered"
+                                className="border-1 border-[#131313] bg-black text-base font-medium text-white dark:text-black dark:border-[#00CCFF] dark:bg-[#00CCFF]"
                                 as={Link}
                                 href={route('register')}
                             >
