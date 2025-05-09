@@ -26,7 +26,7 @@ export default function Navigation() {
             className="h-navbar-height w-full shadow-md"
             height="var(--spacing-navbar-height)"
             classNames={{
-                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem] overflow-hidden',
+                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem] overflow-x-clip',
             }}
         >
             <NavbarBrand className="h-full py-1">
@@ -41,11 +41,14 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button className="border text-base font-medium" variant="bordered">
+                    <Button
+                        className="h-11 rounded-full border text-base font-medium"
+                        variant="bordered"
+                    >
                         {t('navigation.create')}
                     </Button>
                 </NavbarItem>
-                <NavbarItem>
+                <NavbarItem className="h-full max-h-full">
                     <SearchBar />
                 </NavbarItem>
                 <NavbarItem>

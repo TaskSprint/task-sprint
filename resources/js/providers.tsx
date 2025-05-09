@@ -3,16 +3,19 @@ import { HeroUIProvider, ToastProvider } from '@heroui/react';
 import { router } from '@inertiajs/react';
 import { RouterOptions } from '@react-types/shared';
 import { ReactNode } from 'react';
+import { InertiaNuqsAdapter } from '@/Components/Adapters/InertiaNuqsAdapter';
 
 export function Providers({ children }: Readonly<{ children: ReactNode }>) {
     return (
-        <HeroUIProvider
-            navigate={(path: string, options?: RouterOptions) => router.visit(path, options)}
-        >
-            <ToastProvider />
-            <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
-                {children}
-            </NextThemesProvider>
-        </HeroUIProvider>
+        <InertiaNuqsAdapter>
+            <HeroUIProvider
+                navigate={(path: string, options?: RouterOptions) => router.visit(path, options)}
+            >
+                <ToastProvider />
+                <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+                    {children}
+                </NextThemesProvider>
+            </HeroUIProvider>
+        </InertiaNuqsAdapter>
     );
 }

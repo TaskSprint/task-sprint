@@ -15,7 +15,6 @@ class SubCategoryService extends BaseModelService
     ];
     protected array $searchAttributes = [
         'name',
-        'category.name',
         'keywords.name',
     ];
 }
