@@ -1,6 +1,7 @@
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Button, Input } from '@heroui/react';
 
+
 export default function SearchBar() {
     const { t } = useLaravelReactI18n();
 

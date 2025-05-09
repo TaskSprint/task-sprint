@@ -14,6 +14,7 @@ import SolarBellOutline from '~icons/solar/bell-outline';
 import SolarDocumentLinear from '~icons/solar/document-linear';
 import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
 
+
 export default function Navigation() {
     const { t } = useLaravelReactI18n();
     const { route } = useRouter();
