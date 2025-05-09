@@ -1,11 +1,17 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Link, Textarea } from '@heroui/react';
-import React from 'react';
-import StarRating from '@/Components/StarRating';
+import React, { useState } from 'react';
+import MarkStarRating from '@/Components/MarkStarRating';
 
 export default function EmployeeReviewPopup() {
     const { t } = useLaravelReactI18n();
+
+    const [rating, setRating] = useState<number>(0);
+
+    const handleRatingChange = (newRating: number) => {
+        setRating(newRating);
+    }
 
     return (
         <div className="flex flex-col min-w-[57.5625rem] min-h-[34.375rem] items-center justify-center border-b dark:bg-[#00CCFF33] gap-6.25 py-10 px-25">
@@ -25,15 +31,15 @@ export default function EmployeeReviewPopup() {
                 <div className="flex min-w-[28.1875rem] gap-17.5">
                     <div className="flex flex-col gap-2.5 items-center">
                         <h3>{t('employee-review.quality')}</h3>
-                        <StarRating totalReviews={100} positiveReviews={74} />
+                        <MarkStarRating maxRating={5} onRatingChange={handleRatingChange} />
                     </div>
                     <div className="flex flex-col gap-2.5 items-center">
                         <h3>{t('employee-review.punctuality')}</h3>
-                        <StarRating totalReviews={100} positiveReviews={75} />
+                        <MarkStarRating maxRating={5} onRatingChange={handleRatingChange} />
                     </div>
                     <div className="flex flex-col gap-2.5 items-center">
                         <h3>{t('employee-review.politeness')}</h3>
-                        <StarRating totalReviews={100} positiveReviews={64} />
+                        <MarkStarRating maxRating={5} onRatingChange={handleRatingChange} />
                     </div>
                 </div>
                     <div className="flex justify-between gap-9 items-center">
