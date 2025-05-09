@@ -243,7 +243,7 @@ export default function TaskCreationPage() {
                                             </div>
                                 </div>
 
-                                <div className="flex flex-col w-[15.6875rem] min-h-[9rem] bg-cyan-700/10 items-start rounded-[1.25rem] py-[1rem] px-[2rem] ml-4">
+                                <div className="flex flex-col w-[15.6875rem] min-h-[9rem] bg-[#00CCFF1A] items-start rounded-[1.25rem] py-[1rem] px-[2rem] ml-4">
                                     <h5 className="font-[400] text-[1rem] text-black dark:text-white text-center">{t('task-creation.proposed')}</h5>
                                     <div className="flex h-10 my-3 gap-2 justify-start items-center">
                                         <div className="w-[8.375rem] items-start">
