@@ -41,7 +41,12 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button className="border text-base font-medium" variant="bordered">
+                    <Button
+                        as={Link}
+                        href={route('task-creation')}
+                        className="border text-base font-medium"
+                        variant="bordered"
+                    >
                         {t('navigation.create')}
                     </Button>
                 </NavbarItem>

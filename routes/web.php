@@ -20,11 +20,15 @@ Route::localized(function () {
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
     Route::delete('/category-test/{category}', [CategoryTestController::class, 'destroy'])->name('category-test.destroy');
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Dashboard');
+        })->name('dashboard');
 
-    Route::middleware('auth')->group(function () {
+        Route::get('/task-creation', function () {
+            return Inertia::render('TaskCreation');
+        })->name('task-creation');
+
         Route::get('/file-test', [FileTestController::class, 'index'])->name('file-test.index');
         Route::post('/file-test', [FileTestController::class, 'update'])
             ->name('file-test.update');
