@@ -1,7 +1,7 @@
 import { FC, useRef } from 'react';
 import LastTaskCard from '@/Components/Main/LastTasks/LastTaskCard';
 import Task from '@/types/models/task';
-import { ScrollShadow } from '@heroui/scroll-shadow';
+import { ScrollShadow } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 interface LastTasksProps {

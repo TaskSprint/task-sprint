@@ -1,16 +1,16 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
 import MdiInstagram from '~icons/mdi/instagram';
 import MdiFacebook from '~icons/mdi/facebook';
 import MdiTwitter from '~icons/mdi/twitter';
 import MaterialSymbolsArrowForwardIosRounded from '~icons/material-symbols/arrow-forward-ios-rounded';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { Link } from '@heroui/react';
 
 export function Footer() {
     const { t } = useLaravelReactI18n();
 
     return (
-        <footer className="shadow-footer flex w-full flex-col items-center">
+        <footer className="shadow-footer flex w-full flex-col items-center overflow-x-auto">
             <div className="flex w-full max-w-[90rem] flex-wrap gap-12 px-6 py-[3.25rem] sm:gap-28 sm:px-[6.25rem]">
                 <div className="flex w-[26.25rem] flex-col gap-4">
                     <div className="inline-flex h-9 items-center gap-1">
@@ -29,6 +29,7 @@ export function Footer() {
                     <ul className="flex h-9 gap-6">
                         <li className="flex h-full">
                             <Link
+                                color="foreground"
                                 className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
@@ -37,6 +38,7 @@ export function Footer() {
                         </li>
                         <li className="flex h-full">
                             <Link
+                                color="foreground"
                                 className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
@@ -45,6 +47,7 @@ export function Footer() {
                         </li>
                         <li className="flex h-full">
                             <Link
+                                color="foreground"
                                 className="hover:text-foreground/75 active:text-foreground/50 transition active:scale-95"
                                 href="#"
                             >
@@ -59,6 +62,7 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -68,6 +72,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -77,6 +82,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -86,6 +92,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -100,6 +107,7 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -109,6 +117,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -118,6 +127,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -127,6 +137,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -141,6 +152,7 @@ export function Footer() {
                         <ul className="flex flex-col gap-5">
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -150,6 +162,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -159,6 +172,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >
@@ -168,6 +182,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link
+                                    color="foreground"
                                     className="hover:text-foreground/75 active:text-foreground/50 inline-flex items-center gap-2.5 py-2.5 font-semibold transition active:scale-95"
                                     href="#"
                                 >

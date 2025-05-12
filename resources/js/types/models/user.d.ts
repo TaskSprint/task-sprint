@@ -1,8 +1,9 @@
 export default interface User {
     id: number;
+    avatar?: string;
     name: string;
     email: string;
-    email_verified_at: string;
-    created_at: string;
-    updated_at: string;
+    emailVerifiedAt: string;
+    createdAt: string;
+    updatedAt: string;
 }

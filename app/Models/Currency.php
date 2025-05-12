@@ -15,6 +15,7 @@ class Currency extends Model
     public $incrementing = false;
     protected array $cascadeDeletes = ['tasks'];
     protected $primaryKey = 'code';
+    protected $keyType = 'string';
 
     public function tasks(): HasMany
     {

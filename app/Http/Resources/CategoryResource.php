@@ -15,9 +15,11 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'color' => $this->color,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'icon' => $this->whenLoaded('icon', fn() => $this->icon?->getTemporaryUrl()),
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+            'icon' => $this->whenLoaded('icon', fn() => $this->icon?->mime_type === "image/svg+xml"
+                ? $this->icon?->getText()
+                : $this->icon?->getTemporaryUrl()),
         ];
     }
 }

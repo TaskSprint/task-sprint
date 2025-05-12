@@ -7,7 +7,6 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
@@ -58,6 +57,20 @@ class UserResource extends Resource
 
                         TextInput::make('email')
                             ->label('users.email')
+                            ->email()
+                            ->unique()
+                            ->translateLabel()
+                            ->required(),
+
+                        TextInput::make('phone')
+                            ->label('users.phone')
+                            ->translateLabel()
+                            ->tel()
+                            ->unique()
+                            ->required(),
+
+                        TextInput::make('city')
+                            ->label('users.city')
                             ->translateLabel()
                             ->required(),
 
@@ -143,6 +156,19 @@ class UserResource extends Resource
 
                 TextColumn::make('email')
                     ->label('users.email')
+                    ->translateLabel()
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('phone')
+                    ->label('users.phone')
+                    ->translateLabel()
+                    ->formatStateUsing(fn($state) => $state->formatInternational())
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('city')
+                    ->label('users.city')
                     ->translateLabel()
                     ->searchable()
                     ->sortable(),

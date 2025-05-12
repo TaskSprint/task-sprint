@@ -1,9 +1,9 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
-import { Divider } from '@heroui/divider';
-import AppLayout from "@/Layouts/AppLayout";
-import UserLayout from "@/Layouts/UserLayout";
+import AppLayout from '@/Layouts/AppLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { Divider, Image } from '@heroui/react';
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();
@@ -62,20 +62,13 @@ export default function NewTask() {
 
             <div className="px-[6.25rem]">
                 <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
-                    {tasks.map((task, index) => (
-                        <div key={index} className="flex w-full items-start gap-[1.25rem]">
-                            {task.image.startsWith('http') ? (
-                                <img
-                                    src={task.image}
-                                    alt={task.title}
-                                    className="r h-[5rem] w-[5rem] rounded-full"
-                                />
-                            ) : (
-                                <div
-                                    className="h-[5rem] w-[5rem] rounded-full"
-                                    dangerouslySetInnerHTML={{ __html: task.image }}
-                                />
-                            )}
+                    {tasks.map((task) => (
+                        <div key={task.title} className="flex w-full items-start gap-[1.25rem]">
+                            <Image
+                                src={task.image}
+                                alt={task.title}
+                                className="r h-[5rem] w-[5rem] rounded-full"
+                            />
 
                             <div className="flex w-full flex-col items-start gap-[0.3125rem]">
                                 <div className="flex w-full justify-between gap-[5.75rem]">

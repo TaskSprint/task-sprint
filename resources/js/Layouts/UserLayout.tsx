@@ -1,14 +1,12 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Divider } from '@heroui/divider';
-import { Link } from '@inertiajs/react'
+import { addToast, Divider, Link } from '@heroui/react';
 import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
 import TablerReceipt from '~icons/tabler/receipt';
 import SolarCardOutline from '~icons/solar/card-outline';
 import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
-import { addToast } from '@heroui/toast';
-import React from "react";
+import React from 'react';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
@@ -34,21 +32,19 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
     ];
 
     return (
-        <div className="item-center bg-surface mx-auto flex h-full w-full flex-col text-white 2xl:max-w-[96rem] 2xl:flex-row">
+        <div className="item-center bg-surface mx-auto flex h-full w-full flex-col 2xl:max-w-[96rem] 2xl:flex-row">
             <main className="flex w-full flex-col 2xl:px-5">
                 <div className="flex w-full flex-col justify-center gap-6 px-9 py-[1.875rem] lg:flex-row lg:flex-wrap lg:items-end 2xl:h-36 2xl:px-0">
-
                     {tabs.map((tab) => (
                         <Button
                             as={Link}
-                                key={tab.title}
-                                href={tab.link}
-                                className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem]
-                                ${window.location.pathname.endsWith(tab.link)? 'bg-primary text-black dark:text-white' : ' '}`}>
-                                {t(tab.title)}
+                            key={tab.title}
+                            href={tab.link}
+                            className={`h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem] ${window.location.pathname.endsWith(tab.link) ? 'bg-primary' : ' '}`}
+                        >
+                            {t(tab.title)}
                         </Button>
                     ))}
-
                 </div>
 
                 <Divider className="bg-muted" />
@@ -62,9 +58,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                 <div className="flex w-full max-w-md items-end justify-center px-9 py-[1.875rem] 2xl:h-36">
                     <div className="flex w-full items-center justify-between gap-8">
                         <div>
-                            <div className="text-[2.5rem] leading-none font-medium text-black dark:text-white">
-                                12456
-                            </div>
+                            <div className="text-[2.5rem] leading-none font-medium">12456</div>
 
                             <div className="text-primary text-[1.25rem] leading-none font-medium">
                                 {t('user-layout.reviews')}
@@ -74,9 +68,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                         <Divider orientation="vertical" className="bg-primary h-11" />
 
                         <div>
-                            <div className="text-[2.5rem] leading-none font-medium text-black dark:text-white">
-                                100%
-                            </div>
+                            <div className="text-[2.5rem] leading-none font-medium">100%</div>
 
                             <div className="text-muted dark:text[#A7A7A7] text-[1.25rem] leading-none font-medium">
                                 {t('user-layout.positive')}
@@ -91,26 +83,26 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                     <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex h-[2.75rem] gap-[0.625rem]">
                             <SolarMoneyBagLinear className="text-primary h-[2.75rem] w-[2.75rem]" />
-                            <div className="text-[2rem] leading-[2.75rem] font-medium text-black dark:text-white">
+                            <div className="text-[2rem] leading-[2.75rem] font-medium">
                                 {t('user-layout.my_balance')}
                             </div>
                         </div>
 
                         <div className="flex w-fit gap-[3.125rem]">
                             <div className="flex flex-1 flex-col gap-2">
-                                <div className="dark:text[#A7A7A7] text-[1.125rem] leading-[1.5rem] font-medium text-[#929292]">
+                                <div className="dark:text[#A7A7A7] text-muted text-[1.125rem] leading-[1.5rem] font-medium">
                                     {t('user-layout.specialist')}
                                 </div>
-                                <div className="text-[1.125rem] leading-[1.5rem] font-medium text-black dark:text-white">
+                                <div className="text-[1.125rem] leading-[1.5rem] font-medium">
                                     1000 грн
                                 </div>
                             </div>
 
                             <div className="flex flex-1 flex-col gap-2">
-                                <div className="dark:text[#A7A7A7] text-[1.125rem] leading-[1.5rem] font-medium text-[#929292]">
+                                <div className="dark:text[#A7A7A7] text-muted text-[1.125rem] leading-[1.5rem] font-medium">
                                     {t('user-layout.customer')}
                                 </div>
-                                <div className="text-[1.125rem] leading-[1.5rem] font-medium text-black dark:text-white">
+                                <div className="text-[1.125rem] leading-[1.5rem] font-medium">
                                     1000 грн
                                 </div>
                             </div>
@@ -136,7 +128,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                     <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex items-start gap-[0.625rem]">
                             <MynauiShare className="text-primary h-[2.75rem] w-[2.75rem]" />
-                            <div className="text-[2rem] leading-[2.75rem] font-medium text-black dark:text-white">
+                            <div className="text-[2rem] leading-[2.75rem] font-medium">
                                 {t('user-layout.invite_friends')}
                             </div>
                         </div>
@@ -153,7 +145,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                     <div className="flex flex-col gap-[0.625rem] px-9">
                         <div className="flex items-start gap-[0.625rem]">
                             <IconamoonProfileLight className="text-primary h-[2.75rem] w-[2.75rem]" />
-                            <div className="flex items-center text-[2rem] leading-[120%] font-medium text-black dark:text-white">
+                            <div className="flex items-center text-[2rem] leading-[120%] font-medium">
                                 {t('user-layout.profile_link')}
                             </div>
                         </div>

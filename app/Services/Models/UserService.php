@@ -3,7 +3,6 @@
 namespace App\Services\Models;
 
 use App\Models\User;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,14 +10,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserService extends BaseModelService
 {
-    public function __construct()
-    {
-        parent::__construct(User::class, [
-            'name',
-            'email',
-            'password',
-        ]);
-    }
+    protected string $class = User::class;
+    protected array $attributes = [
+        'name',
+        'email',
+        'phone',
+        'city',
+        'password',
+    ];
+    protected array $searchAttributes = [
+        'name',
+        'email',
+    ];
 
     public function create(array $attributes, int $attempts = 5): Model
     {

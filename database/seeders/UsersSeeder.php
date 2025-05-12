@@ -16,6 +16,8 @@ class UsersSeeder extends Seeder
             [
                 'name' => config('user.admin.name'),
                 'password' => bcrypt(config('user.admin.password')),
+                'phone' => config('user.admin.phone'),
+                'city' => config('user.admin.city'),
             ]
         )->assignRole('admin')->markEmailAsVerified();
     }

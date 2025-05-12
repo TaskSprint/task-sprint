@@ -1,28 +1,32 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Image } from '@heroui/image';
+import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
-import { Divider } from '@heroui/divider';
+import { useRouter } from '../../hooks/useRouter';
 
-export default function TasksInProgress() {
+export default function InProgress() {
     const { t } = useLaravelReactI18n();
+    const { route } = useRouter();
 
     const tasks = [
         {
+            id: 1,
             title: 'Створити сайт для магазину одягу',
-            deadline: '15 квітня',
+            estimated_date: '15 квітня',
             image: 'https://www.colorland.com/sites/default/files/styles/optimized/public/article/A%20man%20wearing%20a%20hat%2C%20taking%20a%20photo%20at%20sunset.jpg?itok=RL_hlVbF',
         },
         {
+            id: 2,
             title: 'Редизайн мобільного додатку',
-            deadline: '20 травня',
+            estimated_date: '20 травня',
             image: 'https://www.digitalphoto.de/media/digitalphoto/styles/tec_frontend_large/public/images/2018/09/adobestock_101692534.jpeg?itok=lMmBoMR5',
         },
         {
+            id: 3,
             title: 'Лендінг для курсу',
-            deadline: '1 червня',
+            estimated_date: '1 червня',
             image: 'https://www.nationalgeographic.it/upload/ngi-hero/cover-1685960847724-Hero_100.jpg',
         },
     ];
@@ -32,7 +36,7 @@ export default function TasksInProgress() {
             <div className="flex flex-col justify-center gap-[1.875rem] px-9 2xl:px-0">
                 {tasks.map((task) => (
                     <div
-                        key={task.title}
+                        key={task.id}
                         className="flex w-full flex-col flex-wrap items-center gap-[1.25rem] sm:flex-row sm:flex-nowrap sm:items-start"
                     >
                         <Image
@@ -47,7 +51,9 @@ export default function TasksInProgress() {
                             </div>
 
                             <div className="text-[1.125rem] leading-[1.5rem] font-medium text-black dark:text-white">
-                                {t('tasks-in-progress.complete_order_by')} {task.deadline}
+                                {t('tasks-in-progress.estimation', {
+                                    estimated: task.estimated_date,
+                                })}
                             </div>
 
                             <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
@@ -61,7 +67,11 @@ export default function TasksInProgress() {
             <Divider className="bg-muted 2xl:hidden" />
 
             <div className="px-9 2xl:px-0">
-                <Button className="border-muted text-muted w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] py-6 text-[1.25rem] leading-[1.688rem] font-semibold sm:h-fit sm:py-5 dark:border-[#A7A7A7] dark:text-[#A7A7A7]">
+                <Button
+                    as={Link}
+                    href={route('profile.archive')}
+                    className="border-muted text-muted w-full justify-center rounded-[2.25rem] border-2 bg-[0] px-[7.5rem] py-6 text-[1.25rem] leading-[1.688rem] font-semibold sm:h-fit sm:py-5 dark:border-[#A7A7A7] dark:text-[#A7A7A7]"
+                >
                     {t('tasks-in-progress.archive_orders')}
                 </Button>
             </div>
@@ -69,7 +79,7 @@ export default function TasksInProgress() {
     );
 }
 
-TasksInProgress.layout = (page: React.ReactNode) => (
+InProgress.layout = (page: React.ReactNode) => (
     <AppLayout>
         <UserLayout>{page}</UserLayout>
     </AppLayout>

@@ -1,5 +1,5 @@
 import Button from '@/Components/Shared/Button';
-import { Link } from '@heroui/link';
+import { Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function Roles() {

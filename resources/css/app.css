@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@config "../../tailwind.config.js";
+@plugin '../../hero.ts';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -19,7 +19,7 @@
     --font-sans: Manrope, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-muted: #717171;
+    --color-muted: #A7A7A7;
 
     --spacing-navbar-height: 5rem;
 
@@ -28,6 +28,12 @@
 
 @theme inline {
     --color-surface: var(--color-surface);
+}
+
+@utility autofill-color-* {
+    @variant autofill {
+        -webkit-text-fill-color: --value(--color-*, [color]);
+    }
 }
 
 /*

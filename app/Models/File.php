@@ -48,6 +48,11 @@ class File extends Model
             ['ResponseContentDisposition' => 'attachment; filename="' . urlencode($this->name) . '"']);
     }
 
+    public function getText(): string
+    {
+        return Storage::disk($this->disk)->get($this->path);
+    }
+
     public function getDirectory(): string
     {
         return str($this->path)->beforeLast('/')->__toString();
