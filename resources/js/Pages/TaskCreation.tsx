@@ -115,7 +115,7 @@ export default function TaskCreationPage() {
                     <h2 className="text-[2rem] font-semibold">
                         {t('task-creation.order-address')}
                     </h2>
-                    <div className="grid grid-cols-1 flex-row items-center justify-between gap-2.5 sm:grid-cols-[auto_minmax(0,25rem)] [&>h4]:mt-4 sm:[&>h4]:mt-0">
+                    <div className="grid w-full grid-cols-1 flex-row items-center justify-between gap-2.5 sm:w-auto sm:grid-cols-[auto_minmax(0,25rem)] [&>h4]:mt-4 sm:[&>h4]:mt-0">
                         <h4 className="text-base font-medium">{t('task-creation.city')}</h4>
                         <Select
                             radius="full"
@@ -293,7 +293,7 @@ export default function TaskCreationPage() {
                 </div>
             </div>
 
-            <div className="border-muted flex flex-col items-center gap-y-6.25 border-t px-4 py-15 xl:border-t-0 xl:border-l">
+            <div className="border-muted flex flex-col items-center gap-y-6.25 border-t px-4 py-10 xl:border-t-0 xl:border-l">
                 <h3 className="flex flex-col text-center text-xl font-semibold dark:text-white">
                     {t('task-creation.top-employees')}
                 </h3>
