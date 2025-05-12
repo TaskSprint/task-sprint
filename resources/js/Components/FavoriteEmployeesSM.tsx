@@ -8,41 +8,41 @@ export default function FavoriteEmployeesSM() {
     const absenceTime = '2 години'; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
 
     return (
-        <div className="border-primary dark:color-white relative flex min-h-[15rem] w-[21.25rem] flex-col items-start gap-2.5 rounded-[1.25rem] border-1">
-            <div className="mb-5 flex h-[9rem] flex-row">
+        <div className="border-primary relative flex w-full flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5">
+            <div className="flex w-full flex-col gap-2.5 sm:flex-row">
                 <div>
                     <Avatar
-                        className="mt-3.5 ml-2.75 size-21.5 content-start justify-start"
+                        className="aspect-square size-21.5"
                         src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
                         as={Link}
                         href="#"
-                    ></Avatar>
+                    />
                 </div>
-                <div className="mt-6 ml-3.25 flex h-11.5 w-[10.75rem] flex-col gap-5">
-                    <div className="flex h-5 flex-row gap-2.5">
+                <div className="flex flex-col gap-2 pt-1">
+                    <div className="flex items-center gap-2.5">
                         <h2>
                             <Link
                                 className="text-xl font-bold focus:text-gray-500 dark:text-white"
                                 href="#"
                             >
-                                Коваль А.
+                                <div className="inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                                    Коваль А.
+                                </div>
                             </Link>
                         </h2>
-                        <p>
-                            <HeartCheckbox />
-                        </p>
+                        <HeartCheckbox />
                     </div>
-                    <h3 className="h-[1.1875rem] w-[13.3125rem] content-start text-[0.875rem] font-medium text-[#929292] dark:text-[#A7A7A7]">
+                    <h3 className="text-muted inline-block w-full content-start overflow-hidden text-[0.875rem] font-medium text-nowrap text-ellipsis whitespace-nowrap">
                         {t('task-creation.last-visit', { absence: absenceTime })}
                     </h3>
-                    <div className="flex h-[2.875rem] w-[14rem] flex-row items-center gap-2.5 pl-1.75 font-medium">
+                    <div className="flex flex-row items-center gap-2.5 font-medium">
                         <div className="flex flex-col">
                             <h2 className="text-[1.25rem] dark:text-white">12456</h2>
                             <h3 className="text-primary text-[0.75rem]">
                                 {t('task-creation.reviews')}
                             </h3>
                         </div>
-                        <Divider className="bg-primary max-h-11.5" orientation="vertical" />
+                        <Divider className="bg-primary" orientation="vertical" />
                         <div className="flex flex-col">
                             <h2 className="text-[1.25rem] dark:text-white">100%</h2>
                             <h3 className="text-[0.75rem] text-gray-500 dark:text-[#A7A7A7]">
@@ -52,15 +52,16 @@ export default function FavoriteEmployeesSM() {
                     </div>
                 </div>
             </div>
-            <p className="">
-                <Button
-                    as={Link}
-                    href="#"
-                    className="bg-primary ml-10.25 flex flex-col rounded-[2.25rem] px-4 py-3 text-xl font-semibold"
-                >
+            <Button
+                as={Link}
+                href="#"
+                color="primary"
+                className="w-full rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white"
+            >
+                <div className="inline-block w-full overflow-hidden text-center text-ellipsis whitespace-nowrap">
                     {t('task-creation.offer')}
-                </Button>
-            </p>
+                </div>
+            </Button>
         </div>
     );
 }
