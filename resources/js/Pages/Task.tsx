@@ -586,10 +586,10 @@ export default function Task() {
 
                     <Divider className="bg-muted"/>
 
-                    <div className="flex flex-col gap-[1.875rem] pt-[1.875rem] px-[3.125rem] ">
+                    <div className="flex flex-col gap-[1.875rem] pt-[1.875rem] ">
 
 
-                        <div className="flex-col items-start gap-[0.625rem] ">
+                        <div className="flex-col items-start gap-[0.625rem]  px-[3.125rem] ">
 
                             <div className="flex items-center gap-[0.625rem] w-full">
                                 <SolarMoneyBagLinear className="h-[1.5rem] w-[1.5rem] text-black dark:text-white">
@@ -616,7 +616,7 @@ export default function Task() {
 
                         <Divider className="bg-muted" />
 
-                        <div className="flex flex-col gap-[0.625rem]">
+                        <div className="flex flex-col gap-[0.625rem] px-[3.125rem] ">
                             <div className="flex items-start gap-[0.625rem]">
                                 <MynauiShare className="text-primary aspect-square size-[2.75rem] min-w-[2.75rem]" />
                                 <div className="text-[2rem] leading-[2.75rem] font-medium text-black dark:text-white">
@@ -633,7 +633,7 @@ export default function Task() {
 
                         <Divider className="bg-muted" />
 
-                        <div className="flex flex-col gap-[0.625rem]">
+                        <div className="flex flex-col gap-[0.625rem] px-[3rem] ">
                             <div className="flex items-start gap-[0.625rem]">
                                 <IconamoonProfileLight className="text-primary aspect-square size-[2.75rem] min-w-[2.75rem]" />
                                 <div className="flex items-center text-[2rem] leading-[120%] font-medium text-black dark:text-white">
