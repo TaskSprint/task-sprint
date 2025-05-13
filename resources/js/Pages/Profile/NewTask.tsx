@@ -67,7 +67,7 @@ export default function NewTask() {
                             <Image
                                 src={task.image}
                                 alt={task.title}
-                                className="r h-[5rem] w-[5rem] rounded-full"
+                                className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full bg-cover bg-center"
                             />
 
                             <div className="flex w-full flex-col items-start gap-[0.3125rem]">

@@ -48,6 +48,12 @@ Route::localized(function () {
         Route::get('/profile/archive', function () {
             return Inertia::render('Profile/Archive');
         })->name('profile.archive');
+
+
+        Route::get('/task/{id}', function ($id) {
+            return Inertia::render('Task', ['id' => $id]);
+        })->name('task.show');
+
     });
 });
 
