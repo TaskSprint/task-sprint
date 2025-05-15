@@ -1,7 +1,6 @@
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Button, Input } from '@heroui/react';
 
-
 export default function SearchBar() {
     const { t } = useLaravelReactI18n();
 
@@ -16,7 +15,7 @@ export default function SearchBar() {
                 }}
                 placeholder={t('navigation.search')}
             />
-            <Button className="min-w-fit rounded-l-none rounded-r-[1.25rem] px-6 py-2.5 text-[#131313] text-[1rem] font-medium !transition bg-[#00CCFF]">
+            <Button className="min-w-fit rounded-l-none rounded-r-[1.25rem] bg-[#00CCFF] px-6 py-2.5 text-[1rem] font-medium text-[#131313] !transition">
                 {t('navigation.find')}
             </Button>
         </div>
