@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
+        "@iconify-json/ic": "^1.2.2",
         "@iconify-json/iconamoon": "^1.2.2",
         "@iconify-json/logos": "^1.2.4",
         "@iconify-json/material-symbols": "^1.2.17",

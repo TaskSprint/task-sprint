@@ -41,7 +41,10 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button className="border text-base font-medium" variant="bordered">
+                    <Button
+                        className="border-foreground border text-base font-medium"
+                        variant="bordered"
+                    >
                         {t('navigation.create')}
                     </Button>
                 </NavbarItem>
@@ -105,8 +108,8 @@ export default function Navigation() {
                     <>
                         <NavbarItem>
                             <Button
-                                className="border border-[#131313] text-base font-medium dark:border-white"
                                 variant="bordered"
+                                className="border-foreground dark:border-primary border text-base font-medium"
                                 as={Link}
                                 href={route('login')}
                             >
@@ -116,8 +119,7 @@ export default function Navigation() {
                         </NavbarItem>
                         <NavbarItem>
                             <Button
-                                className="border-0 bg-black text-base font-medium text-white dark:border dark:border-white dark:bg-transparent"
-                                variant="bordered"
+                                className="dark:bg-primary bg-black text-base font-medium text-white dark:text-black"
                                 as={Link}
                                 href={route('register')}
                             >

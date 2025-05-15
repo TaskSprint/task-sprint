@@ -3,6 +3,9 @@ import LastTaskCard from '@/Components/Main/LastTasks/LastTaskCard';
 import Task from '@/types/models/task';
 import { ScrollShadow } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import Button from '@/Components/Shared/Button';
+import IcRoundArrowBackIos from '~icons/ic/round-arrow-back-ios';
+import IcRoundArrowForwardIos from '~icons/ic/round-arrow-forward-ios';
 
 interface LastTasksProps {
     tasks: Task[];
@@ -35,42 +38,20 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
 
                 {/* Arrow buttons */}
                 <div className="flex items-center gap-4">
-                    <button
-                        onClick={scrollLeft}
-                        className="flex size-9 items-center justify-center rounded-full border-2 border-gray-400 text-[#969696] dark:border-[#C6C6C6]"
+                    <Button
+                        onPress={scrollLeft}
+                        color="primary"
+                        className="size-9 min-w-fit rounded-full p-2 text-white"
                     >
-                        <svg
-                            width="0.5rem"
-                            height="0.875rem"
-                            viewBox="0 0 7 14"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M6 13L1 7L6 1"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeWidth="2"
-                            />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={scrollRight}
-                        className="flex h-[2.19rem] w-[2.19rem] items-center justify-center rounded-full border-2 border-gray-400 text-[#969696] dark:border-[#C6C6C6]"
+                        <IcRoundArrowBackIos className="size-full" />
+                    </Button>
+                    <Button
+                        onPress={scrollRight}
+                        color="primary"
+                        className="size-9 min-w-fit rounded-full p-2 text-white"
                     >
-                        <svg
-                            width="0.5rem"
-                            height="0.875rem"
-                            viewBox="0 0 7 14"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M1 13L6 7L1 1"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeWidth="2"
-                            />
-                        </svg>
-                    </button>
+                        <IcRoundArrowForwardIos className="size-full" />
+                    </Button>
                 </div>
             </div>
 
