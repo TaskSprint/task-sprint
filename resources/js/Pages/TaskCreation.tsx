@@ -148,7 +148,7 @@ export default function TaskCreationPage() {
 
                         <h4 className="text-base font-medium">{t('task-creation.street')}</h4>
                         <Input
-                            placeholder="Наприклад: вул. Казимира Малевича"
+                            placeholder={t('task-creation.exmp-str')}
                             variant="bordered"
                             radius="full"
                             size="lg"
@@ -157,7 +157,7 @@ export default function TaskCreationPage() {
 
                         <h4 className="text-base font-medium">{t('task-creation.house')}</h4>
                         <Input
-                            placeholder="Наприклад: будинок 234-А, кв. 12"
+                            placeholder={t('task-creation.exmp-home')}
                             variant="bordered"
                             radius="full"
                             size="lg"
@@ -166,7 +166,7 @@ export default function TaskCreationPage() {
 
                         <h4 className="text-base font-medium">{t('task-creation.adrs-details')}</h4>
                         <Input
-                            placeholder="Наприклад: код-домофону - 111"
+                            placeholder={t('task-creation.exmp-dtls')}
                             variant="bordered"
                             radius="full"
                             size="lg"
