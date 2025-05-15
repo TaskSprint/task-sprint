@@ -42,7 +42,7 @@ export default function Navigation() {
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
                     <Button
-                        className="h-11 border-foreground rounded-full border text-base font-medium"
+                        className="border-foreground h-11 rounded-full border text-base font-medium"
                         variant="bordered"
                     >
                         {t('navigation.create')}
