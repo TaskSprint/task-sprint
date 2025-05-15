@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const FullStar = () => (
     <svg viewBox="0 0 24 24" fill="#1FCDFE" width="24" height="24">
@@ -36,18 +36,18 @@ const MarkStarRating: React.FC<StarRatingProps> = ({ maxRating, onRatingChange }
 
     return (
         <div className="flex gap-1">
-            {[...Array(maxRating)].map((_, index) => {
+            {Array.from({ length: maxRating }, (_, index) => {
                 const isFilled = index < (hoveredIndex !== null ? hoveredIndex + 1 : rating);
                 return (
-                    <div
+                    <button
                         key={index}
                         onClick={() => handleClick(index)}
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={handleMouseLeave}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                     >
                         {isFilled ? <FullStar /> : <EmptyStar />}
-                    </div>
+                    </button>
                 );
             })}
         </div>
