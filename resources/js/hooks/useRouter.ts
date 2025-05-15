@@ -56,7 +56,18 @@ export function useRouter() {
 
         let current = name ?? router.current();
         if (!current) {
-            return undefined;
+            const current = new URL(window.location.href);
+            const pathSegments = current.pathname.split('/').filter((s) => s);
+
+            if (locale?.available.includes(pathSegments[0])) {
+                pathSegments[0] = lang;
+            } else {
+                pathSegments.unshift(lang);
+            }
+
+            current.pathname = `/${pathSegments.join('/')}`;
+
+            return current.href;
         }
 
         const currentParts = current.split('.');
@@ -90,6 +101,7 @@ export function useRouter() {
     };
 
     return {
+        router,
         route: routeCallback as typeof route,
         localizedRoute: localizedRoute as LocalizedRoute,
         current: current as typeof router.current,

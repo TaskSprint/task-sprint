@@ -16,7 +16,8 @@ const Categories = ({ categories }: { categories: Category[] }) => {
                 {categories.map((category) => (
                     <Button
                         key={category.id}
-                        className="bg-primary flex aspect-square size-full transform flex-col items-center justify-end gap-2 p-4 text-center text-lg font-bold shadow-lg duration-300 hover:scale-105 active:scale-95"
+                        color="primary"
+                        className="flex aspect-square size-full transform flex-col items-center justify-end gap-2 p-4 text-center text-lg font-bold text-white shadow-lg duration-300 hover:scale-105 active:scale-95"
                     >
                         {category.icon &&
                             (isSvg(category.icon) ? (
