@@ -60,7 +60,6 @@ const LastTasks: FC<LastTasksProps> = ({ tasks }) => {
                 orientation="horizontal"
                 ref={scrollRef}
                 className="flex w-full gap-10 overflow-hidden scroll-smooth"
-                onVisibilityChange={console.log}
             >
                 {tasks && tasks.length > 0 ? (
                     tasks.map((task) => <LastTaskCard key={task.id} {...task} />)
