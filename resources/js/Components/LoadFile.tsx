@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import {Alert} from "@heroui/react";
 
 interface UploadFileModalProps {
     isOpen: boolean;
@@ -13,7 +14,6 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
 
-
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
             setFile(e.target.files[0]);
@@ -22,7 +22,7 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
 
     const handleUpload = async () => {
         if (!file) {
-            alert('Оберіть файл');
+            alert('Select file');
             return;
         }
 
@@ -41,16 +41,15 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
                 if (onUploadSuccess) onUploadSuccess(data.filename);
                 onClose();
             } else {
-                alert('Помилка при завантаженні файла');
+                alert('Error downloading file');
             }
         } catch (err) {
             console.error(err);
-            alert('Серверна помилка');
+            alert('Server error');
         } finally {
             setLoading(false);
         }
     }
-
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
