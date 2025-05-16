@@ -1,9 +1,9 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';import { Link } from '@heroui/react';
-import {Chip} from "@heroui/chip";
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {Image} from "@heroui/image";
+import { Chip } from '@heroui/react';
 
 
-export default function Support() {
+export default function ProfilePortfolio() {
     const { t } = useLaravelReactI18n();
 
     return (
@@ -31,16 +31,22 @@ export default function Support() {
 
                         <div className="flex gap-4 size-7">
                             <Chip
+                                content={}
                                 color="primary"
                                 variant="bordered"
                                 size="lg"
+                                radius="sm"
+
                                 >
+                                <span className="text-sm"></span>
                                 UI-UX
                             </Chip>
                             <Chip
                                 color="primary"
                                 variant="bordered"
                                 size="lg"
+                                radius="sm"
+                            <img src="path/to/your/image.bmp" alt="Описание картинки" />
 
                             >
 
