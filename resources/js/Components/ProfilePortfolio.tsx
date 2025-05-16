@@ -46,7 +46,7 @@ export default function ProfilePortfolio() {
                                 variant="bordered"
                                 size="lg"
                                 radius="sm"
-                            <img src="path/to/your/image.bmp" alt="Описание картинки" />
+
 
                             >
 
