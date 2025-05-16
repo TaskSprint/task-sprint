@@ -3,7 +3,7 @@ import {
     BreadcrumbItem,
     Breadcrumbs,
     Checkbox,
-    Divider,
+    Divider, Form,
     Input,
     Link,
     Radio,
@@ -23,9 +23,19 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/Components/Shared/Carousel';
+import { useState } from 'react';
+import UploadFileModal from '@/Components/LoadFile';
 
 export default function TaskCreationPage() {
+
     const { t } = useLaravelReactI18n();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
+    const [selected, setSelected] = React.useState('3-part');
+    const [selected2, setSelected2] = React.useState('cash');
+    const [selected3, setSelected3] = React.useState('option-1');
+
+
 
     const cities = [
         { key: 'kyiv', label: 'Київ' },
@@ -41,11 +51,6 @@ export default function TaskCreationPage() {
         { key: 'obolonskiiy', label: 'Обольнський' },
         { key: 'podolskiiy', label: 'Поділський' },
     ];
-
-    const [selected, setSelected] = React.useState('3-part');
-    const [selected2, setSelected2] = React.useState('cash');
-
-    const [selected3, setSelected3] = React.useState('option-1');
 
     return (
         <div className="bg-surface flex min-h-full w-full max-w-[87.5rem] flex-col xl:flex-row">
@@ -102,12 +107,31 @@ export default function TaskCreationPage() {
                             minRows={8}
                         />
                         <div className="flex flex-row gap-17.5">
-                            <Link href="#" className="text-muted text-base font-medium">
+                            <Link className="text-muted text-base font-medium">
                                 {t('task-creation.confidential-data')}
                             </Link>
-                            <Link href="#" className="text-primary text-base font-medium">
-                                {t('task-creation.add-file')}
-                            </Link>
+                            <div>
+                                <Link
+                                    onPress={() => setIsModalOpen(true)}
+                                    className="text-sm dark:text-[#00CCFF] cursor-pointer "
+                                >
+                                    {t('task-creation.add-file')}
+                                </Link>
+
+                                {uploadedFilename && (
+                                    <div className="mt-2 text-sm text-[#00CCFF]">
+                                        {t('task-creation.add-loaded')} {uploadedFilename}
+                                    </div>
+                                )}
+
+                                <UploadFileModal
+                                    isOpen={isModalOpen}
+                                    onClose={() => setIsModalOpen(false)}
+                                    onUploadSuccess={(
+                                        filename: React.SetStateAction<string | null>,
+                                    ) => setUploadedFilename(filename)}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

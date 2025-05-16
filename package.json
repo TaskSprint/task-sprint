@@ -8,7 +8,7 @@
         "prettier:check": "prettier --check **/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,vue,astro,blade.php}"
     },
     "devDependencies": {
-        "@headlessui/react": "^2.0.0",
+        "@headlessui/react": "^2.2.3",
         "@iconify-json/iconamoon": "^1.2.2",
         "@iconify-json/logos": "^1.2.4",
         "@iconify-json/material-symbols": "^1.2.17",
