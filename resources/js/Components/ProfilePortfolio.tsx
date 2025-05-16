@@ -27,7 +27,7 @@ export default function Support() {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-center text-[2rem] font-semibold">{t('profile-portfolio.portfolio-folder')}</h2>
+                        <h2 className="text-center text-[1rem] font-semibold">{t('profile-portfolio.portfolio-folder')}</h2>
 
                         <div className="flex gap-4 size-7">
                             <Chip
