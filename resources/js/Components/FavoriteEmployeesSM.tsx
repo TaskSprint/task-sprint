@@ -25,7 +25,7 @@ export default function FavoriteEmployeesSM() {
                                 className="text-xl font-bold focus:text-gray-500 dark:text-white"
                                 href="#"
                             >
-                                <div className="inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                                <div className="inline-block w-full text-black dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
                                     Коваль А.
                                 </div>
                             </Link>
