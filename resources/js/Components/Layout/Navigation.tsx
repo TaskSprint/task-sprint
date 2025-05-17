@@ -26,7 +26,7 @@ export default function Navigation() {
             className="h-navbar-height w-full shadow-md"
             height="var(--spacing-navbar-height)"
             classNames={{
-                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem] overflow-x-clip',
+                wrapper: 'max-w-full px-[1.875rem] h-full py-[1.125rem] overflow-hidden',
             }}
         >
             <NavbarBrand className="h-full py-1">
@@ -41,14 +41,11 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button
-                        className="border-foreground h-11 rounded-full border text-base font-medium"
-                        variant="bordered"
-                    >
+                    <Button className="border text-base font-medium" variant="bordered">
                         {t('navigation.create')}
                     </Button>
                 </NavbarItem>
-                <NavbarItem className="h-full max-h-full">
+                <NavbarItem>
                     <SearchBar />
                 </NavbarItem>
                 <NavbarItem>
@@ -108,8 +105,8 @@ export default function Navigation() {
                     <>
                         <NavbarItem>
                             <Button
+                                className="border border-[#131313] text-base font-medium dark:border-white"
                                 variant="bordered"
-                                className="border-foreground dark:border-primary border text-base font-medium"
                                 as={Link}
                                 href={route('login')}
                             >
@@ -119,7 +116,8 @@ export default function Navigation() {
                         </NavbarItem>
                         <NavbarItem>
                             <Button
-                                className="dark:bg-primary bg-black text-base font-medium text-white dark:text-black"
+                                className="border-0 bg-black text-base font-medium text-white dark:border dark:border-white dark:bg-transparent"
+                                variant="bordered"
                                 as={Link}
                                 href={route('register')}
                             >
