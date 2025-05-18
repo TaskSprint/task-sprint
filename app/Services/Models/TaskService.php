@@ -26,9 +26,6 @@ class TaskService extends BaseModelService
 
     protected array $searchAttributes = [
         'name',
-        'description',
-        'subCategory.name',
-        'subCategory.category.name',
-        'subCategory.keywords.name',
+        'description'
     ];
 }

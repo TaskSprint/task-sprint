@@ -13,6 +13,9 @@ const Button = forwardRef<typeof HeroUiButton, ButtonProps>(({ className, ...pro
                 !props.color &&
                     props.variant === 'bordered' &&
                     'border-[#C6C6C6] dark:border-white',
+                props.color === 'primary'
+                    ? 'data-[focus-visible=true]:border-foreground dark:data-[focus-visible=true]:border-foreground data-[focus-visible=true]:border-2'
+                    : 'data-[focus-visible=true]:border-primary dark:data-[focus-visible=true]:border-primary data-[focus-visible=true]:border-2',
                 'rounded-[1.25rem] px-6 py-2.5 text-xl font-semibold !transition',
                 className,
             )}
