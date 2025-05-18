@@ -8,7 +8,7 @@ export default function FavoriteEmployeesSM() {
     const absenceTime = '2 години'; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
 
     return (
-        <div className="border-primary relative flex w-full flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5">
+        <div className="border-primary relative flex w-full flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
             <div className="flex w-full flex-col gap-2.5 sm:flex-row">
                 <div>
                     <Avatar
@@ -56,7 +56,7 @@ export default function FavoriteEmployeesSM() {
                 as={Link}
                 href="#"
                 color="primary"
-                className="w-full rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white"
+                className="w-full rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white dark:text-black"
             >
                 <div className="inline-block w-full overflow-hidden text-center text-ellipsis whitespace-nowrap">
                     {t('task-creation.offer')}
