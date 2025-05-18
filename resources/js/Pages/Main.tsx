@@ -13,9 +13,9 @@ import { PageProps } from '@/types';
 import Task from '@/types/models/task';
 
 export default function Main({
-    categories,
-    tasks,
-}: PageProps<{
+                                 categories,
+                                 tasks,
+                             }: PageProps<{
     categories: Category[];
     tasks: Task[];
 }>) {

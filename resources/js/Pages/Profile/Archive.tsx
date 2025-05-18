@@ -60,17 +60,17 @@ export default function Archive() {
 
             <Divider className="bg-muted" />
 
-            <div className="px-9">
+            <div className="2xl:px-[6.25rem]">
                 <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
                     {tasks.map((task) => (
                         <div
                             className="flex w-full flex-col items-center gap-[1.25rem] sm:flex-row sm:items-start"
                             key={task.id}
                         >
-                            <img
+                            <Image
                                 src={task.image}
                                 alt={task.title}
-                                className="h-[5rem] w-[5rem] rounded-full"
+                                className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full bg-cover bg-center"
                             />
 
                             <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">

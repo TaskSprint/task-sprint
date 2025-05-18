@@ -4,7 +4,7 @@ import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
-import { useRouter } from '../../hooks/useRouter';
+import { useRouter } from '@/hooks/useRouter';
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();
@@ -42,7 +42,7 @@ export default function InProgress() {
                         <Image
                             src={task.image}
                             alt={task.title}
-                            className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
+                            className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full bg-cover bg-center"
                         />
 
                         <div className="flex w-full flex-col items-center gap-[0.625rem] sm:items-start">
@@ -56,7 +56,10 @@ export default function InProgress() {
                                 })}
                             </div>
 
-                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                            <Button
+                                href={route("task.show", task.id)}
+                                as={Link}
+                            className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
                                 {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
