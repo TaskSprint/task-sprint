@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {Breadcrumbs, BreadcrumbItem} from "@heroui/breadcrumbs";
-import {Autocomplete,AutocompleteSection,AutocompleteItem} from "@heroui/autocomplete";
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 
 
