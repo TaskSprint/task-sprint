@@ -10,29 +10,36 @@ import MynauiShare from "~icons/mynaui/share";
 import IconamoonProfileLight from "~icons/iconamoon/profile-light";
 import MdiEyeOutline from '~icons/mdi/eye-outline'
 import CiFileBlankOutline from '~icons/ci/file-blank-outline'
-import IcBaselineAccessTime from '~icons/ic/baseline-access-time'
 import {Link} from "@inertiajs/react";
-import MageKey from '~icons/mage/key'
 import MynauiTelephone from '~icons/mynaui/telephone'
 import FamiconsPeopleOutline from '~icons/famicons/people-outline'
 import IconamoonAttentionCircle from '~icons/iconamoon/attention-circle'
-import ProiconsDelete from '~icons/proicons/delete'
 import { useRouter } from '@/hooks/useRouter';
 import HeartCheckbox from "@/Components/HeartCheckbox";
 import React from "react";
 import SystemUiconsCreate from '~icons/system-uicons/create'
+import { useState } from 'react'
+import IconParkOutlineTime from '~icons/icon-park-outline/time'
+import FluentDocument32Regular from '~icons/fluent/document-32-regular'
+import IconParkOutlineAttention from '~icons/icon-park-outline/attention'
+import IonPeopleOutline from '~icons/ion/people-outline'
+import ProiconsDelete from '~icons/proicons/delete'
+import ProiconsChat from '~icons/proicons/chat'
+import MageKey from '~icons/mage/key'
+import HugeiconsTimeHalfPass from '~icons/hugeicons/time-half-pass'
 
 export default function Task() {
     const { t } = useLaravelReactI18n();
+    const [showContactsCustomer, setContactsCustomer] = useState(false)
+    const [showContactsPerfomer, setContactsPerfomer] = useState(false)
 
-
-        // case Pending = 'pending';
-        // case PendingForExecutor = 'pending for executor';
-        // case InProgress = 'in progress';
-        // case Completed = 'completed';
-        // case Cancelled = 'cancelled';
-
-
+    const statusButtonText: Record<string, string> = {
+        'pending': 'Підтвердити замовлення',
+        'pending for executor': 'Розпочати виконання',
+        'InProgress': 'Закрити як виконане',
+        'completed': 'Створити схоже завдання',
+        'cancelled': 'Завдання скасовано',
+    };
 
     const task = {
         id: "76457324",
@@ -40,7 +47,7 @@ export default function Task() {
         estimated_date: '15 квітня',
         image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/stray228-profile_image-ceb0393a88eb8286-70x70.jpeg',
         price: '3000',
-        status: 'InProgress',
+        status: 'pending',
         customer:{
             name: 'Тiм К.',
             avatar: 'https://img01.rl0.ru/afisha/e1200x800i/daily.afisha.ru/uploads/images/2/53/253ce3bf3a76f3c678bc2b9bd3784f42.jpg'
@@ -159,6 +166,17 @@ export default function Task() {
 
 
 
+    const [visibleBlocks, setVisibleBlocks] = useState({});
+
+    const openComplaint = (index) => {
+        setVisibleBlocks((prev) => ({ ...prev, [index]: true }));
+    };
+
+    const closeComplaint = (index) => {
+        setVisibleBlocks((prev) => ({ ...prev, [index]: false }));
+    };
+
+
 
     return (
         <>
@@ -225,12 +243,12 @@ export default function Task() {
                             <div className="flex text-black dark:text-white">
                                 <div className="flex flex-col">
                                     <div className="flex items-center gap-[0.625rem]">
-                                        <IconamoonProfileLight/>
+                                        <IconParkOutlineTime/>
                                         Виконати до: {task.estimated_date}
                                     </div>
 
                                     <div className="flex items-center gap-[0.625rem]">
-                                        <IconamoonProfileLight/>
+                                        <FluentDocument32Regular/>
                                         файл.pdf
                                     </div>
                                 </div>
@@ -250,139 +268,172 @@ export default function Task() {
 
                         </div>
 
-                        <div className="flex items-center gap-[0.625rem]">
-                            <MynauiTelephone/>
+                        <div className="flex items-center text-black gap-[0.625rem] text-black dark:text-white ">
+                            <MageKey/>
                             Конфіденційна інформація
                         </div>
 
 
-
-                        <Button
-                            className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
-                            <MynauiTelephone/>
-                             Показати контакти
-                        </Button>
-
-                    </div>
-
-                    <Divider className="bg-muted" />
-
-
-
-
-                    <div className="w-full flex flex-col py-[2.5rem]  gap-[1.25rem] text-[1.25rem] leading-[1.375rem] 2xl:px-[5.5rem]">
-
-                        <div className="flex gap-[1.25rem]">
+                        {!showContactsCustomer && (
                             <Button
-                                className="text-white w-full rounded-[2.25rem] bg-primary py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
-                                <SolarMoneyBagLinear/>
-                                Закрити як виконане
+                                onClick={() => setContactsCustomer(!showContactsCustomer)}
+                                className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                                <MynauiTelephone/>
+                                 Показати контакти
                             </Button>
-
-                            <div
-                                className="flex gap-[0.625rem] items-start text-muted py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[1.2rem]">
-                                <IconamoonAttentionCircle/>
-                                Поскаржитись
-                            </div>
-
-                        </div>
+                        )}
 
 
-                            <div className="flex gap-[1.25rem] text-[1.25rem] leading-[1rem] text-black dark:text-white ">
-                                <div className="flex items-center gap-[0.625rem] text-nowrap">
-                                    <MynauiTelephone/>
-                                    Конфіденційна інформація
+
+
+                            {showContactsCustomer && (
+
+                                <div className="flex flex-col justify-center gap-[0.625rem] text-[1rem] font-medium leading-[1.375rem] text-muted">
+                                    <div className="flex">
+                                        Телефон замовника:
+                                        <div className="text-primary">{task.performer.phone}</div>
+                                    </div>
+
+                                    <div className="flex">
+                                        Email замовника:
+                                        <div className="text-primary">{task.performer.email}</div>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-[0.625rem] text-nowrap">
-                                    <MynauiTelephone/>
-                                    Подовжити замовлення
-                                </div>
-                                <div className="flex items-center gap-[0.625rem] text-nowrap">
-                                    <MdiEyeOutline/>
-                                    Видалити замовлення
-                                </div>
-                            </div>
+                            )}
+
 
                     </div>
 
                     <Divider className="bg-muted" />
 
 
-                    {complaints.map((complaint, index) => (
-                    <div className="w-full flex flex-col py-[2.5rem] bg-[rgba(0,220,255,0.1)] gap-[1.25rem] 2xl:px-[5.5rem]" key={index}>
 
-                        <div className="w-full text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
-                            {complaint.title}
+
+                        <div className="w-full flex flex-col py-[2.5rem]  gap-[1.25rem] text-[1.25rem] leading-[1.375rem] 2xl:px-[5.5rem]">
+
+                            <div className="flex gap-[1.25rem]">
+                                <Button
+                                    className="text-white w-full rounded-[2.25rem] bg-primary py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                                    <SolarMoneyBagLinear/>
+                                    {statusButtonText[task.status] ?? 'Невідомий статус'}
+                                </Button>
+
+                                <div onClick={() => openComplaint(0)}
+                                    className="flex gap-[0.625rem] items-start text-muted py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[1.2rem]">
+                                    <IconParkOutlineAttention/>
+                                    Поскаржитись
+                                </div>
+
+                            </div>
+
+
+                                <div className="flex gap-[1.25rem] text-[1.25rem] leading-[1rem] text-black dark:text-white ">
+                                    <div onClick={() => openComplaint(1)}
+                                         className="flex items-center gap-[0.625rem] text-nowrap">
+                                         <IonPeopleOutline/>
+                                        <div className="text-primary">Змінити фахівця</div>
+                                    </div>
+                                    <div onClick={() => openComplaint(2)}
+                                         className="flex items-center gap-[0.625rem] text-nowrap">
+                                         <HugeiconsTimeHalfPass/>
+                                         <div className="text-primary">Подовжити замовлення</div>
+                                    </div>
+                                    <div onClick={() => openComplaint(3)}
+                                         className="flex items-center gap-[0.625rem] text-nowrap">
+                                         <ProiconsDelete/>
+                                         <div className="text-primary">Видалити замовлення</div>
+                                    </div>
+                                </div>
+
                         </div>
 
-                        <div className="w-full max-w-[47.875rem] h-[1.6875rem] text-[1.25rem] font-semibold leading-[1.6875rem] text-black dark:text-white">
-                            {complaint.subtitle} :
-                        </div>
+                    <Divider className="bg-muted" />
 
 
+                    {complaints.map((complaint, index) =>
+                        visibleBlocks[index] ? (
+                            <div
+                                key={index}
+                                className="w-full flex flex-col py-[2.5rem] bg-[rgba(0,220,255,0.1)] gap-[1.25rem] 2xl:px-[5.5rem]"
+                            >
+                                <div className="w-full text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
+                                    {complaint.title}
+                                </div>
 
-                        {complaint.reasons && complaint.reasons.length > 0 ? (
-                            <RadioGroup className="gap-4 w-full">
-                                {complaint.reasons.map((reason, idx) => (
-                                    <Radio
-                                        value={reason}
-                                        key={idx}
-                                        className="w-full gap-[0.625rem] text-[1rem] leading-[1.375rem] font-medium text-center"
-                                    >
-                                        {reason}
-                                    </Radio>
-                                ))}
-                            </RadioGroup>
-                        ) : null}
+                                <div className="w-full max-w-[47.875rem] h-[1.6875rem] text-[1.25rem] font-semibold leading-[1.6875rem] text-black dark:text-white">
+                                    {complaint.subtitle}
+                                </div>
 
-
-                        {complaint.textareaPlaceholder && (
-                            <textarea
-                                placeholder={complaint.textareaPlaceholder}
-                                className="w-[18.375rem] h-fit px-[1rem] py-[0.625rem] border border-muted rounded-[1.25rem] text-[0.875rem] leading-[1.1875rem] font-normal placeholder:text-[#A7A7A7] placeholder:opacity-50 "
-                            />
-                        )}
-
-
-                        {complaint.note && (
-                            <div className="w-full text-[1rem] leading-[1.375rem] font-semibold text-muted">
-                                {complaint.note.split('support@tasksprint.tech')[0]}
-                                <a href="mailto:support@tasksprint.tech" className="text-primary">
-                                    support@tasksprint.tech
-                                </a>
-                            </div>
-                        )}
-
-
-                        {complaint.buttons && (
-                            <div className="flex items-center gap-[3.125rem] w-full">
-                                {complaint.buttons.map((btn, index) => {
-                                    if (btn.type === "submit") {
-                                        return (
-                                            <Button
-                                                key={index}
-                                                className="text-white w-full rounded-[2.25rem] bg-primary py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
+                                {complaint.reasons?.length > 0 && (
+                                    <RadioGroup className="gap-4 w-full">
+                                        {complaint.reasons.map((reason, idx) => (
+                                            <Radio
+                                                value={reason}
+                                                key={idx}
+                                                className="w-full gap-[0.625rem] text-[1rem] leading-[1.375rem] font-medium text-center"
                                             >
-                                                {btn.text}
-                                            </Button>
-                                        );
-                                    } else if (btn.type === "close") {
-                                        return (
-                                            <Link
-                                                key={index}
-                                                className="text-primary font-semibold text-[1.25rem] leading-[1.6875rem] bg-[0] text-primary"
-                                            >
-                                                {btn.text}
-                                            </Link>
-                                        );
-                                    }
-                                })}
+                                                {reason}
+                                            </Radio>
+                                        ))}
+                                    </RadioGroup>
+                                )}
+
+                                {complaint.textareaPlaceholder && (
+                                    <textarea
+                                        placeholder={complaint.textareaPlaceholder}
+                                        className="w-[18.375rem] h-fit px-[1rem] py-[0.625rem] border border-muted rounded-[1.25rem] text-[0.875rem] leading-[1.1875rem] font-normal placeholder:text-[#A7A7A7] placeholder:opacity-50 "
+                                    />
+                                )}
+
+                                {complaint.note && (
+                                    <div className="w-full text-[1rem] leading-[1.375rem] font-semibold text-muted">
+                                        {complaint.note.split("support@tasksprint.tech")[0]}
+                                        <a href="mailto:support@tasksprint.tech" className="text-primary">
+                                            support@tasksprint.tech
+                                        </a>
+                                    </div>
+                                )}
+
+                                <div className="flex items-center gap-[3.125rem] w-full">
+                                    {complaint.buttons.map((btn, btnIdx) => {
+                                        if (btn.type === "submit") {
+                                            if (index === 3 && btn.text === "Вибрати іншого фахівця") {
+                                                return (
+                                                    <Button
+                                                        key={btnIdx}
+                                                        className="text-white w-full rounded-[2.25rem] bg-primary py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
+                                                        onClick={() => openComplaint(1)}
+                                                    >
+                                                        {btn.text}
+                                                    </Button>
+                                                );
+                                            }
+
+                                            return (
+                                                <Button
+                                                    key={btnIdx}
+                                                    className="text-white w-full rounded-[2.25rem] bg-primary py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
+                                                    onClick={() => alert(btn.text)}
+                                                >
+                                                    {btn.text}
+                                                </Button>
+                                            );
+                                        } else {
+                                            return (
+                                                <button
+                                                    key={btnIdx}
+                                                    className="text-primary font-semibold text-[1.25rem] leading-[1.6875rem] bg-[0] cursor-pointer"
+                                                    onClick={() => closeComplaint(index)} // закрываем блок
+                                                >
+                                                    {btn.text}
+                                                </button>
+                                            );
+                                        }
+                                    })}
+                                </div>
                             </div>
-                        )}
-
-                    </div>
-
-                    ))}
+                        ) : null
+                    )}
 
                     <div className="w-full flex flex-col py-[2.5rem] gap-[0.625rem] 2xl:px-[5.5rem] ">
 
@@ -398,6 +449,7 @@ export default function Task() {
                     </div>
 
 
+                    {task.performer && (
                     <div
                         className="w-full flex flex-col py-[2.5rem] gap-[2.5rem] bg-[rgba(0,220,255,0.1)] 2xl:px-[5.5rem]">
 
@@ -451,9 +503,22 @@ export default function Task() {
                                     <div className="flex flex-col items-start gap-[1.375rem]">
 
                                         <Button  className="text-primary w-full rounded-[2.25rem] border-1 text-[1.25rem] border-primary bg-[0] py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
-                                            <SolarMoneyBagLinear/>
+                                            <ProiconsChat/>
                                             Написати
                                         </Button>
+
+
+                                        {!showContactsPerfomer && (
+                                            <Button
+                                                onClick={() => setContactsPerfomer(!showContactsPerfomer)}
+                                                className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                                                <MynauiTelephone/>
+                                                Показати контакти
+                                            </Button>
+                                        )}
+
+
+                                        {showContactsPerfomer && (
 
                                             <div className="flex flex-col justify-center gap-[0.625rem] text-[1rem] font-medium leading-[1.375rem] text-muted">
 
@@ -469,11 +534,17 @@ export default function Task() {
                                                 </div>
 
                                             </div>
+                                        )}
 
-                                            <div className="flex gap-[0.625rem] ">
+
+
+
+
+                                        <div onClick={() => openComplaint(1)}
+                                            className="flex gap-[0.625rem] ">
 
                                                 <div className="w-[1.625rem] h-[1.625rem] relative text-muted">
-                                                    <SolarMoneyBagLinear></SolarMoneyBagLinear>
+                                                    <IonPeopleOutline/>
                                                 </div>
 
                                                 <div className="text-[1.25rem] font-semibold leading-[1.6875rem] text-primary ">
@@ -484,9 +555,7 @@ export default function Task() {
                                     </div>
 
 
-
                                 </div>
-
 
 
                             </div>
@@ -502,7 +571,7 @@ export default function Task() {
                             </div>
 
                     </div>
-
+                    )}
 
 
                     <div className="w-full font-semibold text-[2rem] leading-[2.75rem] py-[2.5rem] text-center text-black dark:text-white 2xl:px-[5.5rem]">
