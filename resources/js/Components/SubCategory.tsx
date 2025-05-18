@@ -7,12 +7,6 @@ import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 export default function SubCategory() {
     const { t } = useLaravelReactI18n();
 
-    const animals = [
-        {label: "Cat", key: "cat", description: "The second most popular pet in the world"},
-        {label: "Dog", key: "dog", description: "The most popular pet in the world"},
-        {label: "Elephant", key: "elephant", description: "The largest land animal"},
-
-    ];
 
 
 
