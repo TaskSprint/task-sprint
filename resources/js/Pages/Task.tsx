@@ -25,12 +25,22 @@ import SystemUiconsCreate from '~icons/system-uicons/create'
 export default function Task() {
     const { t } = useLaravelReactI18n();
 
+
+        // case Pending = 'pending';
+        // case PendingForExecutor = 'pending for executor';
+        // case InProgress = 'in progress';
+        // case Completed = 'completed';
+        // case Cancelled = 'cancelled';
+
+
+
     const task = {
         id: "76457324",
         title: 'Створити сайт для магазину одягу',
         estimated_date: '15 квітня',
         image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/stray228-profile_image-ceb0393a88eb8286-70x70.jpeg',
         price: '3000',
+        status: 'InProgress',
         customer:{
             name: 'Тiм К.',
             avatar: 'https://img01.rl0.ru/afisha/e1200x800i/daily.afisha.ru/uploads/images/2/53/253ce3bf3a76f3c678bc2b9bd3784f42.jpg'

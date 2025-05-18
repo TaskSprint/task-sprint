@@ -53,7 +53,7 @@ export default function Login({
                             variant="bordered"
                             classNames={{
                                 inputWrapper:
-                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
+                                    'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-black bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.login.email')}
                             autoComplete="username"
