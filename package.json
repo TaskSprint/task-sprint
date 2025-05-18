@@ -28,6 +28,7 @@
         "autoprefixer": "^10.4.12",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
+        "embla-carousel-react": "^8.6.0",
         "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.4.31",
         "prettier": "^3.5.3",
@@ -38,17 +39,23 @@
         "tailwindcss": "^4.1.4",
         "typescript": "^5.0.2",
         "unplugin-icons": "^22.1.0",
+        "usehooks-ts": "^3.1.1",
         "vite": "^6.0.11"
     },
     "dependencies": {
         "@heroui/react": "^2.8.0-beta.2",
+        "@radix-ui/react-accordion": "^1.2.10",
         "@tailwindcss/vite": "^4.1.4",
+        "date-fns": "^4.1.0",
         "dompurify": "^3.2.5",
         "framer-motion": "^12.9.2",
         "is-svg": "^5.1.0",
         "isomorphic-dompurify": "^2.23.0",
         "laravel-react-i18n": "^2.0.5",
+        "lucide-react": "^0.511.0",
         "next-themes": "^0.4.6",
-        "tailwind-merge": "^3.0.2"
+        "nuqs": "^2.4.3",
+        "tailwind-merge": "^3.0.2",
+        "use-debounce": "^10.0.4"
     }
 }
