@@ -46,7 +46,7 @@ export default function Register() {
                             value={data.name}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
@@ -66,7 +66,7 @@ export default function Register() {
                             value={data.email}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
@@ -86,7 +86,7 @@ export default function Register() {
                             value={data.phone}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
@@ -105,7 +105,7 @@ export default function Register() {
                             value={data.city}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
@@ -123,7 +123,7 @@ export default function Register() {
                             value={data.password}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
@@ -142,7 +142,7 @@ export default function Register() {
                             value={data.password_confirmation}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
