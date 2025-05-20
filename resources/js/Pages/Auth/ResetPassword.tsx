@@ -4,7 +4,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
@@ -91,3 +91,4 @@ export default function ResetPassword({ token, email }: { token: string; email: 
         </GuestLayout>
     );
 }
+ResetPassword.layout = (page: React.ReactNode) => page;

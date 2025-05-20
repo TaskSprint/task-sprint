@@ -1,7 +1,7 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
@@ -49,3 +49,4 @@ export default function VerifyEmail({ status }: { status?: string }) {
         </GuestLayout>
     );
 }
+VerifyEmail.layout = (page: React.ReactNode) => page;

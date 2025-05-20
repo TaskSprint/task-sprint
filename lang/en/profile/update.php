@@ -7,8 +7,8 @@ return [
     'email' => 'Email',
     'verification' => [
         'content' => 'Your email address is unverified.',
-        'sent' => 'Click here to re-send the verification email.',
-        'button' => 'A new verification link has been sent to your email address.',
+        'sent' => 'A new verification link has been sent to your email address.',
+        'button' => 'Click here to re-send the verification email.',
     ],
     'button' => 'Save',
     'saved' => 'Saved.',

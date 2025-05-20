@@ -1,4 +1,5 @@
 import { SVGAttributes } from 'react';
+import { cn } from '@heroui/react';
 
 export interface ApplicationLogoProps extends SVGAttributes<SVGElement> {
     logoColor?: string;
@@ -7,6 +8,7 @@ export interface ApplicationLogoProps extends SVGAttributes<SVGElement> {
 }
 
 export default function ApplicationLogo({
+    className,
     logoColor,
     logoClassName,
     isFullSize = false,
@@ -19,11 +21,12 @@ export default function ApplicationLogo({
             version="1.1"
             viewBox={isFullSize ? '2.67 2.67 26.67 26.67' : '0 0 32 32'}
             xmlns="http://www.w3.org/2000/svg"
+            className={cn('text-white', className)}
             {...props}
         >
             <g strokeWidth=".72731">
                 <rect
-                    className={logoClassName ? `text-primary ${logoClassName}` : 'text-primary'}
+                    className={cn('text-primary', logoClassName)}
                     x="2.667"
                     y="2.667"
                     width="26.667"
@@ -52,7 +55,7 @@ export default function ApplicationLogo({
                 >
                     <stop stopColor="currentColor" offset="0" />
                     <stop
-                        className={logoClassName ? `text-primary ${logoClassName}` : 'text-primary'}
+                        className={cn('text-primary', logoClassName)}
                         stopColor={logoColor ?? 'currentColor'}
                         offset="1"
                     />

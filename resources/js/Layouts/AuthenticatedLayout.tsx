@@ -33,7 +33,7 @@ export default function Authenticated({
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    <ApplicationLogo className="block h-9 w-auto" />
                                 </Link>
                             </div>
 
@@ -55,7 +55,7 @@ export default function Authenticated({
                                                 type="button"
                                                 className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm leading-4 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-hidden dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
                                             >
-                                                {user.name}
+                                                {user?.name}
 
                                                 <svg
                                                     className="ms-2 -me-0.5 h-4 w-4"
@@ -138,9 +138,9 @@ export default function Authenticated({
                     <div className="border-t border-gray-200 pt-4 pb-1 dark:border-gray-600">
                         <div className="px-4">
                             <div className="text-base font-medium text-gray-800 dark:text-gray-200">
-                                {user.name}
+                                {user?.name}
                             </div>
-                            <div className="text-sm font-medium text-gray-500">{user.email}</div>
+                            <div className="text-sm font-medium text-gray-500">{user?.email}</div>
                         </div>
 
                         <div className="mt-3 space-y-1">

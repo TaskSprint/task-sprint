@@ -5,7 +5,8 @@ import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
-import { Input, Link } from '@heroui/react';
+import { Link } from '@heroui/react';
+import Input from '@/Components/Shared/Input';
 
 export default function Login({
     status,
@@ -17,10 +18,10 @@ export default function Login({
     const { route } = useRouter();
     const { t } = useLaravelReactI18n();
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, clearErrors } = useForm({
         email: '',
         password: '',
-        remember: false as boolean,
+        remember: true,
     });
 
     const submit: FormEventHandler = (e) => {
@@ -59,9 +60,9 @@ export default function Login({
                             placeholder={t('auth.login.email')}
                             autoComplete="username"
                             autoFocus
+                            onClearError={clearErrors}
                             onChange={(e) => setData('email', e.target.value)}
                             isRequired
-                            isInvalid={errors.email ? true : undefined}
                             errorMessage={errors.email}
                         />
 
@@ -78,9 +79,9 @@ export default function Login({
                             }}
                             placeholder={t('auth.login.password')}
                             autoComplete="current-password"
+                            onClearError={clearErrors}
                             onChange={(e) => setData('password', e.target.value)}
                             isRequired
-                            isInvalid={errors.password ? true : undefined}
                             errorMessage={errors.password}
                         />
 

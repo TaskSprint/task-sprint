@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
 export default function Dashboard() {
     const { t } = useLaravelReactI18n();
@@ -27,3 +28,4 @@ export default function Dashboard() {
         </AuthenticatedLayout>
     );
 }
+Dashboard.layout = (page: React.ReactNode) => page;
