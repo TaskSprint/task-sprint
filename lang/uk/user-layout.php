@@ -25,4 +25,7 @@ return [
 
     'copied' => 'Посилання скопійоване!',
 
+    'general-info-tab' => 'Загальна інформація',
+    'start-earning-tab' => 'Почати заробляти',
+    'reviews-tab' => 'Відгуки',
 ];

@@ -1,10 +1,9 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import UserLayout from '@/Layouts/UserLayout';
-import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
+import {BreadcrumbItem, Breadcrumbs, Divider, Image} from '@heroui/react';
 import { useRouter } from '@/hooks/useRouter';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 
 export default function Archive() {
     const { t } = useLaravelReactI18n();
@@ -67,10 +66,10 @@ export default function Archive() {
                             className="flex w-full flex-col items-center gap-[1.25rem] sm:flex-row sm:items-start"
                             key={task.id}
                         >
-                            <img
+                            <Image
                                 src={task.image}
                                 alt={task.title}
-                                className="h-[5rem] w-[5rem] rounded-full"
+                                className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full"
                             />
 
                             <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">
@@ -100,7 +99,5 @@ export default function Archive() {
 }
 
 Archive.layout = (page: React.ReactNode) => (
-    <AppLayout>
-        <UserLayout>{page}</UserLayout>
-    </AppLayout>
+        <DashboardLayout>{page}</DashboardLayout>
 );

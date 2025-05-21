@@ -2,9 +2,8 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
-import UserLayout from '@/Layouts/UserLayout';
-import AppLayout from '@/Layouts/AppLayout';
-import { useRouter } from '../../hooks/useRouter';
+import { useRouter } from '@/hooks/useRouter';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();

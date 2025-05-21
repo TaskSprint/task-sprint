@@ -48,6 +48,18 @@ Route::localized(function () {
         Route::get('/profile/archive', function () {
             return Inertia::render('Profile/Archive');
         })->name('profile.archive');
+
+
+        Route::get('/profile/general-info', function () {
+            return Inertia::render('Profile/GeneralInfo');
+        })->name('profile.general-info');
+
+        Route::get('/profile/become-employee', function () {
+            return Inertia::render('Profile/BecomeEmployee');
+        })->name('profile.become-employee');
+
+
+
     });
 });
 

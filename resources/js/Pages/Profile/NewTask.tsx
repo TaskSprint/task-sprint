@@ -4,6 +4,7 @@ import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import UserLayout from '@/Layouts/UserLayout';
 import { Divider, Image } from '@heroui/react';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();
@@ -67,7 +68,7 @@ export default function NewTask() {
                             <Image
                                 src={task.image}
                                 alt={task.title}
-                                className="r h-[5rem] w-[5rem] rounded-full"
+                                className="r h-[5rem] w-[5rem] min-w-[5rem] rounded-full"
                             />
 
                             <div className="flex w-full flex-col items-start gap-[0.3125rem]">
