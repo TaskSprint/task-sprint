@@ -1,16 +1,15 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
 import React, { PropsWithChildren } from 'react';
-import Button from "@/Components/Shared/Button";
-import {cn} from "@heroui/react";
-import {Divider} from "@heroui/divider";
-import {useRouter} from "@/hooks/useRouter";
-import {useLaravelReactI18n} from "laravel-react-i18n";
-import Navigation from "@/Components/Layout/Navigation";
-import {Footer} from "@/Components/Layout/Footer";
+import Button from '@/Components/Shared/Button';
+import { cn } from '@heroui/react';
+import { Divider } from '@heroui/divider';
+import { useRouter } from '@/hooks/useRouter';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import Navigation from '@/Components/Layout/Navigation';
+import { Footer } from '@/Components/Layout/Footer';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
-
     const { t } = useLaravelReactI18n();
     const { current, route } = useRouter();
 
@@ -32,14 +31,11 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         },
     ];
 
-
-
     return (
         <>
-        <Navigation />
+            <Navigation />
 
-
-        <main className="flex w-full flex-col background-gradient">
+            <main className="background-gradient flex w-full flex-col">
                 <div className="flex w-full flex-col justify-center gap-6 px-9 py-[1.875rem] lg:flex-row lg:flex-wrap lg:items-end 2xl:h-36 2xl:px-0">
                     {tabs.map((tab) => (
                         <Button
@@ -49,8 +45,8 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
                             className={cn(
                                 'h-fit rounded-[1.875rem] px-[1.25rem] text-center font-medium lg:py-[0.9375rem]',
                                 tab.link &&
-                                current(tab.link) &&
-                                'bg-primary text-black dark:text-white',
+                                    current(tab.link) &&
+                                    'bg-primary text-black dark:text-white',
                             )}
                         >
                             {t(tab.title)}
@@ -61,10 +57,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
                 <Divider className="bg-muted" />
 
                 <div className="w-full 2xl:pb-12">{children}</div>
-        </main>
+            </main>
 
-
-        <Footer />
+            <Footer />
         </>
     );
 }

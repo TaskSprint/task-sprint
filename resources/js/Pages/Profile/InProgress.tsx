@@ -3,8 +3,8 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
 import { useRouter } from '../../hooks/useRouter';
-import UserLayout from "@/Layouts/UserLayout";
-import AppLayout from "@/Layouts/AppLayout";
+import UserLayout from '@/Layouts/UserLayout';
+import AppLayout from '@/Layouts/AppLayout';
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();

@@ -4,7 +4,7 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ReactNode } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import HeartCheckbox from '@/Components/HeartCheckbox';
-import DashboardLayout from "@/Layouts/DashboardLayout";
+import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function Favorite() {
     const { t } = useLaravelReactI18n();
@@ -57,6 +57,4 @@ export default function Favorite() {
     );
 }
 
-Favorite.layout = (page: ReactNode) => (
-        <DashboardLayout>{page}</DashboardLayout>
-);
+Favorite.layout = (page: ReactNode) => <DashboardLayout>{page}</DashboardLayout>;

@@ -4,7 +4,7 @@ import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import UserLayout from '@/Layouts/UserLayout';
 import { Divider, Image } from '@heroui/react';
-import DashboardLayout from "@/Layouts/DashboardLayout";
+import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();
@@ -103,6 +103,4 @@ export default function NewTask() {
     );
 }
 
-NewTask.layout = (page: React.ReactNode) => (
-        <DashboardLayout>{page}</DashboardLayout>
-);
+NewTask.layout = (page: React.ReactNode) => <DashboardLayout>{page}</DashboardLayout>;

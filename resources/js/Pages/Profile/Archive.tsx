@@ -98,6 +98,4 @@ export default function Archive() {
     );
 }
 
-Archive.layout = (page: React.ReactNode) => (
-        <DashboardLayout>{page}</DashboardLayout>
-);
+Archive.layout = (page: React.ReactNode) => <DashboardLayout>{page}</DashboardLayout>;
