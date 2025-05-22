@@ -18,6 +18,7 @@ class SubCategoryResource extends JsonResource
             'updatedAt' => $this->updated_at,
 
             'category' => new CategoryResource($this->whenLoaded('category')),
+            'tasks' => TaskResource::collection($this->whenLoaded('tasks')),
         ];
     }
 }
