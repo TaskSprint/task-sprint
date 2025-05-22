@@ -53,13 +53,19 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Deploy to SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: Deploy files via SFTP
+        uses: pressidium/lftp-mirror-action@v1
         with:
-          username: ${{ secrets.SFTP_USERNAME }}
-          server: ${{ secrets.SFTP_SERVER }}
+          # SFTP credentials
+          host: ${{ secrets.SFTP_SERVER }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: './*'
-          remote_path: '/'
-          password: ${{ secrets.SFTP_PASSWORD }}
-          rsyncArgs: '-z'
+          user: ${{ secrets.SFTP_USERNAME }}
+          pass: ${{ secrets.SFTP_PASSWORD }}
+          # lftp settings
+          onlyNewer: true
+          settings: 'sftp:auto-confirm=yes'
+          # Mirror command options
+          localDir: '.'
+          remoteDir: '/'
+          reverse: true
+          options: '--verbose'
