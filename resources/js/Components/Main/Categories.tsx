@@ -21,12 +21,9 @@ const Categories = ({ categories }: { categories: Category[] }) => {
                     >
                         {category.icon &&
                             (isSvg(category.icon) ? (
-                                <SafeHtml
-                                    className="aspect-square h-full w-min"
+                                <SafeHtml<'svg'>
+                                    className="aspect-square h-full min-w-max"
                                     html={category.icon}
-                                    classNames={{
-                                        content: 'h-full w-fit aspect-square',
-                                    }}
                                 />
                             ) : (
                                 <Image

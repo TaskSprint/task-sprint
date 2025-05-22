@@ -1,55 +1,34 @@
-import { HTMLAttributes } from 'react';
+import { ComponentProps, ElementType, HTMLProps, ReactElement } from 'react';
 import { cn, forwardRef } from '@heroui/react';
-import { useDOMRef } from '@heroui/react-utils';
 import DOMPurify from 'isomorphic-dompurify';
+import parse, { attributesToProps, DOMNode, domToReact, Element } from 'html-react-parser';
 
-interface SafeHtmlProps extends HTMLAttributes<HTMLDivElement> {
-    classNames?: {
-        wrapper?: string;
-        content?: string | string[];
-    };
+type ElementProps<T> = T extends ElementType ? ComponentProps<T> : HTMLProps<T>;
+
+type SafeHtmlProps<T = HTMLElement> = Omit<ElementProps<T>, 'children'> & {
     html: string;
-}
+};
 
-const SafeHtml = forwardRef<'div', SafeHtmlProps>(
-    ({ className, classNames, html, ...props }, ref) => {
-        const domRef = useDOMRef<HTMLDivElement>(ref);
-
-        const addClassNames = (html: string) => {
-            const div = document.createElement('div');
-            div.innerHTML = html;
-
-            if (typeof classNames?.content === 'string' && div.firstElementChild) {
-                const contentClassName = cn(classNames?.content, div.firstElementChild.className);
-                if (div.firstElementChild.className !== contentClassName) {
-                    div.firstElementChild.classList.remove(...div.firstElementChild.classList);
-                    div.firstElementChild.classList.add(...contentClassName.split(' '));
-                }
-            }
-            if (Array.isArray(classNames?.content) && div.firstElementChild) {
-                classNames?.content.forEach((className, index) => {
-                    const domElement = div?.children[index];
-                    if (domElement) {
-                        const contentClassName = cn(className, domElement.className);
-                        if (domElement.className !== contentClassName) {
-                            domElement.classList.remove(...domElement.classList);
-                            domElement.classList.add(...contentClassName.split(' '));
-                        }
-                    }
-                });
-            }
-            return div.innerHTML;
-        };
-
-        return (
-            <div
-                {...props}
-                className={cn(className, classNames?.wrapper)}
-                ref={domRef}
-                dangerouslySetInnerHTML={{ __html: addClassNames(DOMPurify.sanitize(html)) }}
-            />
-        );
+const SafeHtml = forwardRef<any, Omit<SafeHtmlProps, 'ref'>>(
+    ({ className, html, ...props }, ref) => {
+        return parse(DOMPurify.sanitize(html), {
+            replace: (domNode) => {
+                const element = domNode as Element;
+                const Component = element.tagName as ElementType;
+                const attrs = attributesToProps(element.attribs);
+                return (
+                    <Component
+                        {...attrs}
+                        {...props}
+                        ref={ref}
+                        className={cn(element.attribs.class, className)}
+                    >
+                        {domToReact(element.children as DOMNode[])}
+                    </Component>
+                );
+            },
+        });
     },
-);
+) as <T = HTMLElement>(p: SafeHtmlProps<T>) => ReactElement;
 
 export default SafeHtml;
