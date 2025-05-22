@@ -12,7 +12,7 @@ export default function Favorite() {
 
     return (
         <div className="flex flex-col justify-between gap-3 border-b px-9 py-10 md:flex-row">
-            <div className="flex flex-col items-center gap-5 md:flex-row md:items-start">
+            <div className="flex flex-col max-w-[44.6875rem] max-h-[10.0625rem] items-center gap-5 md:flex-row md:items-start">
                 <Link className="cursor-pointer rounded-full">
                     <Avatar
                         className="size-max content-start justify-start"
