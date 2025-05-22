@@ -61,5 +61,5 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           local_path: './*'
           remote_path: '/'
-          sftp_only: true
           password: ${{ secrets.SFTP_PASSWORD }}
+          rsyncArgs: '-z'
