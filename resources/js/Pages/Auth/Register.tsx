@@ -5,11 +5,12 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import Button from '@/Components/Shared/Button';
 import LogosGoogleIcon from '~icons/logos/google-icon';
 import LogosFacebook from '~icons/logos/facebook';
-import { Input, Link } from '@heroui/react';
+import { Form, Link } from '@heroui/react';
+import Input from '@/Components/Shared/Input';
 
 export default function Register() {
     const { route } = useRouter();
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, clearErrors, reset } = useForm({
         name: '',
         email: '',
         phone: '',
@@ -33,7 +34,7 @@ export default function Register() {
 
             <div className="bg-surface/50 mx-auto flex h-full w-full max-w-[60rem] justify-center backdrop-blur">
                 <div className="flex h-full w-full max-w-[30rem] flex-col items-center justify-center bg-[#F1F1F1] dark:bg-[#313131]">
-                    <form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
+                    <Form onSubmit={submit} className="flex max-w-64 flex-col items-start gap-5">
                         <h2 className="text-[1.25rem] leading-[1.5rem] text-black dark:text-white">
                             {t('auth.register.title')}
                         </h2>
@@ -45,16 +46,16 @@ export default function Register() {
                             value={data.name}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.register.name')}
                             autoComplete="name"
                             autoFocus
-                            onChange={(e) => setData('name', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('name', e)}
                             isRequired
-                            isInvalid={errors.name ? true : undefined}
                             errorMessage={errors.name}
                         />
 
@@ -65,15 +66,15 @@ export default function Register() {
                             value={data.email}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.login.email')}
                             autoComplete="username"
-                            onChange={(e) => setData('email', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('email', e)}
                             isRequired
-                            isInvalid={errors.email ? true : undefined}
                             errorMessage={errors.email}
                         />
 
@@ -85,15 +86,15 @@ export default function Register() {
                             value={data.phone}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.register.phone')}
                             autoComplete="current-phone"
-                            onChange={(e) => setData('phone', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('phone', e)}
                             isRequired
-                            isInvalid={errors.phone ? true : undefined}
                             errorMessage={errors.phone}
                         />
 
@@ -104,14 +105,14 @@ export default function Register() {
                             value={data.city}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.register.city')}
-                            onChange={(e) => setData('city', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('city', e)}
                             isRequired
-                            isInvalid={errors.city ? true : undefined}
                             errorMessage={errors.city}
                         />
 
@@ -122,15 +123,15 @@ export default function Register() {
                             value={data.password}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.register.password')}
                             autoComplete="current-password"
-                            onChange={(e) => setData('password', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('password', e)}
                             isRequired
-                            isInvalid={errors.password ? true : undefined}
                             errorMessage={errors.password}
                         />
 
@@ -141,14 +142,14 @@ export default function Register() {
                             value={data.password_confirmation}
                             variant="bordered"
                             classNames={{
-                                input: 'autofill-color-[#606060]',
+                                input: 'autofill-color-[#606060] autofill:caret-[#606060]',
                                 inputWrapper:
                                     'rounded-[1rem] px-5 py-1.5 h-fit min-h-fit border border-[#2D2D2D] text-[#606060] bg-white opacity-75 text-xs hover:opacity-90 group-data-[focus=true]:opacity-100 transition',
                             }}
                             placeholder={t('auth.register.confirm_password')}
-                            onChange={(e) => setData('password_confirmation', e.target.value)}
+                            onClearError={clearErrors}
+                            onValueChange={(e) => setData('password_confirmation', e)}
                             isRequired
-                            isInvalid={errors.password_confirmation ? true : undefined}
                             errorMessage={errors.password_confirmation}
                         />
 
@@ -178,7 +179,7 @@ export default function Register() {
                                 <LogosFacebook className="aspect-square h-full w-fit" />
                             </Link>
                         </div>
-                    </form>
+                    </Form>
                 </div>
             </div>
         </>
