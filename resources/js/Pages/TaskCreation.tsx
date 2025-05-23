@@ -26,11 +26,14 @@ import {
 } from '@/Components/Shared/Carousel';
 import { useState } from 'react';
 import UploadFileModal from '@/Components/LoadFile';
+import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
+    const [isDescriptionModalOpen, setDescriptionModalOpen] = useState(false);
+    const [description, setDescription] = useState('');
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
     const [selected3, setSelected3] = React.useState('option-1');
@@ -105,13 +108,35 @@ export default function TaskCreationPage() {
                             minRows={8}
                         />
                         <div className="flex flex-row gap-17.5">
-                            <Link className="text-muted text-base font-medium">
-                                {t('task-creation.confidential-data')}
-                            </Link>
+                            <div>
+                                <Link
+                                    onPress={() => setDescriptionModalOpen(true)}
+                                    className="text-muted cursor-pointer text-base font-medium"
+                                >
+                                    {t('task-creation.confidential-data')}
+                                </Link>
+                                {uploadedFilename && (
+                                    <div className="mt-2 text-sm text-[#00CCFF]">
+                                        {t('task-creation.confidential-data')} {uploadedFilename}
+                                    </div>
+                                )}
+
+                                {description && (
+                                    <div className="text-sm text-gray-700">
+                                        <strong>Опис:</strong> {description}
+                                    </div>
+                                )}
+
+                                <DescriptionModal
+                                    isOpen={isDescriptionModalOpen}
+                                    onClose={() => setDescriptionModalOpen(false)}
+                                    onSave={(desc) => setDescription(desc)}
+                                />
+                            </div>
                             <div>
                                 <Link
                                     onPress={() => setIsModalOpen(true)}
-                                    className="cursor-pointer text-sm dark:text-[#00CCFF]"
+                                    className="cursor-pointer text-base dark:text-[#00CCFF] font-medium"
                                 >
                                     {t('task-creation.add-file')}
                                 </Link>
