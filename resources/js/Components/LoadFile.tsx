@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import {Alert} from "@heroui/react";
+import { Alert } from '@heroui/react';
 
 interface UploadFileModalProps {
     isOpen: boolean;
@@ -9,7 +9,11 @@ interface UploadFileModalProps {
     onUploadSuccess?: (filename: string) => void;
 }
 
-export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: UploadFileModalProps) {
+export default function UploadFileModal({
+    isOpen,
+    onClose,
+    onUploadSuccess,
+}: UploadFileModalProps) {
     const { t } = useLaravelReactI18n();
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
@@ -49,7 +53,7 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
@@ -67,7 +71,7 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
-                    <div className="flex items-center justify-center min-h-full p-4">
+                    <div className="flex min-h-full items-center justify-center p-4">
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-200"
@@ -77,30 +81,29 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel
-                                className="flex flex-col gap-3 w-full max-w-md transform overflow-hidden rounded-xl bg-surface p-6 text-left align-middle shadow-xl transition-all">
-                                <Dialog.Title className="text-lg font-medium dark:text-white text-center">
+                            <Dialog.Panel className="bg-surface flex w-full max-w-md transform flex-col gap-3 overflow-hidden rounded-xl p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Title className="text-center text-lg font-medium dark:text-white">
                                     {t('task-creation.add-title')}
                                 </Dialog.Title>
                                 <div className="mt-4 space-y-4">
                                     <input
                                         type="file"
                                         onChange={handleFileChange}
-                                        className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 bg-none dark:hover:!text-white text-[#00CCFF] dark:text-[#C7C7C7] cursor-pointer  disabled:opacity-50"
+                                        className="w-full cursor-pointer bg-none text-sm text-[#00CCFF] file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 disabled:opacity-50 dark:text-[#C7C7C7] dark:hover:!text-white"
                                     />
-                                    <div className="flex gap-2 items-center justify-center">
+                                    <div className="flex items-center justify-center gap-2">
                                         <button
                                             onClick={onClose}
-                                            className="px-4 py-2 text-sm dark:text-[#C7C7C7] cursor-pointer !bg-none rounded hover:!text-[#00CCFF]"
+                                            className="cursor-pointer rounded !bg-none px-4 py-2 text-sm hover:!text-[#00CCFF] dark:text-[#C7C7C7]"
                                         >
                                             {t('task-creation.add-abort')}
                                         </button>
                                         <button
                                             onClick={handleUpload}
                                             disabled={loading}
-                                            className="px-4 py-2 text-sm !bg-none dark:text-[#C7C7C7] cursor-pointer rounded hover:!text-[#00CCFF] disabled:opacity-50"
+                                            className="cursor-pointer rounded !bg-none px-4 py-2 text-sm hover:!text-[#00CCFF] disabled:opacity-50 dark:text-[#C7C7C7]"
                                         >
-                                            {t( 'task-creation.add-download')}
+                                            {t('task-creation.add-download')}
                                         </button>
                                     </div>
                                 </div>
@@ -110,8 +113,5 @@ export default function UploadFileModal({ isOpen, onClose, onUploadSuccess }: Up
                 </div>
             </Dialog>
         </Transition>
-
-
     );
 }
-

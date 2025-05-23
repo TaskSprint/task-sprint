@@ -3,7 +3,8 @@ import {
     BreadcrumbItem,
     Breadcrumbs,
     Checkbox,
-    Divider, Form,
+    Divider,
+    Form,
     Input,
     Link,
     Radio,
@@ -27,15 +28,12 @@ import { useState } from 'react';
 import UploadFileModal from '@/Components/LoadFile';
 
 export default function TaskCreationPage() {
-
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
     const [selected3, setSelected3] = React.useState('option-1');
-
-
 
     const cities = [
         { key: 'kyiv', label: 'Київ' },
@@ -113,7 +111,7 @@ export default function TaskCreationPage() {
                             <div>
                                 <Link
                                     onPress={() => setIsModalOpen(true)}
-                                    className="text-sm dark:text-[#00CCFF] cursor-pointer "
+                                    className="cursor-pointer text-sm dark:text-[#00CCFF]"
                                 >
                                     {t('task-creation.add-file')}
                                 </Link>
