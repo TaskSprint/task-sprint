@@ -1,55 +1,44 @@
-import { Avatar, Divider, Link } from '@heroui/react';
+import { Avatar, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import HeartCheckbox from '@/Components/HeartCheckbox';
+import StarRating from '@/Components/StarRating';
 
-export default function FavoriteEmployeesSM() {
+export default function TaskCard() {
     const { t } = useLaravelReactI18n();
-    const absenceTime = '2 години'; /*заглушка на время вместо CurrentTimeStamp - LastVisitTime*/
 
     return (
-        <div className="border-primary relative flex w-full flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
-            <div className="flex w-full flex-col gap-2.5 sm:flex-row">
-                <div>
+        <div className="w-full min-w-[45rem] min-h-[18.0625rem] flex-row items-center justify-center gap-8 overflow-hidden
+            rounded-[1.25rem] border-1 border-[#B3F0FF] dark:border-none p-4 bg-[#FFFFFF] dark:bg-[#313131]">
+            <div className="flex flex-row w-full gap-3 size-full  sm:flex-col">
+                <div className="absolute items-center max-w-32 mr-4">
                     <Avatar
-                        className="aspect-square size-21.5"
+                        className="aspect-square size-32 flex"
                         src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
                         as={Link}
                         href="#"
                     />
                 </div>
-                <div className="flex flex-col gap-2 pt-1">
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex flex-col w-full max-w-[40.125rem] min-h-[16.0625rem] ml-42 gap-3 items-start">
                         <h2>
                             <Link
-                                className="text-xl font-bold focus:text-gray-500 dark:text-white"
+                                className="text-[1.5rem] font-bold focus:text-gray-500 dark:text-white"
                                 href="#"
                             >
-                                <div className="inline-block w-full text-black dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
-                                    Коваль А.
+                                <div className="dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
+                                    Створеня клону сайту
                                 </div>
                             </Link>
                         </h2>
-                        <HeartCheckbox />
-                    </div>
-                    <h3 className="text-muted inline-block w-full content-start overflow-hidden text-[0.875rem] font-medium text-nowrap text-ellipsis whitespace-nowrap">
-                        {t('task-creation.last-visit', { absence: absenceTime })}
-                    </h3>
-                    <div className="flex flex-row items-center gap-2.5 font-medium">
-                        <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">12456</h2>
-                            <h3 className="text-primary text-[0.75rem]">
-                                {t('task-creation.reviews')}
-                            </h3>
-                        </div>
-                        <Divider className="bg-primary" orientation="vertical" />
-                        <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">100%</h2>
-                            <h3 className="text-[0.75rem] text-gray-500 dark:text-[#A7A7A7]">
-                                {t('task-creation.positive')}
-                            </h3>
+                        <h3 className="text-[1rem] font-bold">Антон П.</h3>
+                        <div className="flex flex-row text-[1rem] font-normal"><StarRating totalReviews={24} positiveReviews={22} /> / 24 відгуки - 89% позитивних</div>
+                        <h4 className="text-[0.875rem] font-semibold">Miсто: Київ</h4>
+                        <div className="flex flex-row border-primary border-2 min-w-[9.375rem]"></div>
+                        <h4 className="text-[0.875rem] font-semibold">Розробити копию сайта - з відтворенням основного функціоналу сайту-зразку, але з унікальним дизайном, використовуючи технології Laravel/HeroUI.</h4>
+                        <div className="flex flex-row border-primary border-2 min-w-[40.125rem]"></div>
+                        <div className="flex flex-row gap-30">
+                            <h5 className="font-semibold text-[1rem]">Зробити до 23.05.2025</h5>
+                            <h5 className="font-semibold text-[1rem]">Оплата:1000грн</h5>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import SubCategoryModel from '@/types/models/sub-category';
 import TaskCard from '@/Components/TaskCard';
 import Favorite from '@/Pages/Profile/Favorite';
+import FavoriteEmployees from '@/Components/FavoriteEmployees';
 
 
 export default function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
@@ -12,7 +13,7 @@ export default function SubCategory({ subCategory }: { subCategory: SubCategoryM
 
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
-            <Favorite />
+
             <div className="w-full items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
                 <Breadcrumbs className="px-10 text-[1rem] font-normal">
                     <BreadcrumbItem color="foreground">
@@ -28,6 +29,8 @@ export default function SubCategory({ subCategory }: { subCategory: SubCategoryM
             <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-center">
                 <div className="m-4 flex w-full flex-col gap-8 justify-center">
                     <TaskCard />
+                    <FavoriteEmployeesSM />
+                    <FavoriteEmployees />
                 </div>
                 <div className="border-l-blue-1 w-[22rem] items-center justify-center gap-6 border-l-1 bg-white pb-32 shadow dark:bg-transparent">
                     <div className="mt-6 mr-3.5 ml-5 flex flex-col justify-center gap-2.5">
