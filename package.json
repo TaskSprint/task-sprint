@@ -42,7 +42,9 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "@heroicons/react": "^2.2.0",
         "@heroui/react": "^2.8.0-beta.5",
+        "@inertiajs/inertia-react": "^0.8.1",
         "@radix-ui/react-accordion": "^1.2.10",
         "@tailwindcss/vite": "^4.1.4",
         "date-fns": "^4.1.0",

@@ -6,6 +6,5 @@ return [
     'filter' => 'Filter: Contractors/Customers',
     'sort' => 'Sort: by creation date',
     'top-specialist' => 'TOP specialists in this category',
-
-
+    'more' => 'Show more',
 ];
