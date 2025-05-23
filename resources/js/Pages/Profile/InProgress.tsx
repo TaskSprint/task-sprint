@@ -5,6 +5,7 @@ import React from 'react';
 import { useRouter } from '../../hooks/useRouter';
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
+import DashboardLayout from '@/Layouts/DashboardLayout';
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();
@@ -32,7 +33,7 @@ export default function InProgress() {
     ];
 
     return (
-        <div className="mx-auto flex flex-col gap-[2.5rem] py-[2.5rem] 2xl:px-[6.25rem]">
+        <div className="mx-auto flex flex-col gap-8 lg:px-[6.25rem]">
             <div className="flex flex-col justify-center gap-[1.875rem] px-9 2xl:px-0">
                 {tasks.map((task) => (
                     <div
@@ -81,6 +82,8 @@ export default function InProgress() {
 
 InProgress.layout = (page: React.ReactNode) => (
     <AppLayout>
-        <UserLayout>{page}</UserLayout>
+        <UserLayout>
+            <DashboardLayout>{page}</DashboardLayout>
+        </UserLayout>
     </AppLayout>
 );

@@ -5,6 +5,8 @@ import AppLayout from '@/Layouts/AppLayout';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
 import { useRouter } from '@/hooks/useRouter';
+import UserLayout from '@/Layouts/UserLayout';
+
 export default function Archive() {
     const { t } = useLaravelReactI18n();
     const { route } = useRouter();
@@ -98,4 +100,10 @@ export default function Archive() {
     );
 }
 
-Archive.layout = (page: React.ReactNode) => <DashboardLayout>{page}</DashboardLayout>;
+Archive.layout = (page: React.ReactNode) => (
+    <AppLayout>
+        <UserLayout>
+            <DashboardLayout>{page}</DashboardLayout>
+        </UserLayout>
+    </AppLayout>
+);
