@@ -1,15 +1,14 @@
 import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import {Breadcrumbs, BreadcrumbItem} from "@heroui/breadcrumbs";
+import {Breadcrumbs, BreadcrumbItem} from '@heroui/breadcrumbs';
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import SubCategoryModel from '@/types/models/sub-category';
 import TaskCard from '@/Components/TaskCard';
-import Favorite from '@/Pages/Profile/Favorite';
-import FavoriteEmployees from '@/Components/FavoriteEmployees';
-
+import {Card, Skeleton} from '@heroui/react';
 
 export default function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
     const { t } = useLaravelReactI18n();
+    const count = 7;
 
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
@@ -29,8 +28,13 @@ export default function SubCategory({ subCategory }: { subCategory: SubCategoryM
             <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-center">
                 <div className="m-4 flex w-full flex-col gap-8 justify-center">
                     <TaskCard />
-                    <FavoriteEmployeesSM />
-                    <FavoriteEmployees />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+
                 </div>
                 <div className="border-l-blue-1 w-[22rem] items-center justify-center gap-6 border-l-1 bg-white pb-32 shadow dark:bg-transparent">
                     <div className="mt-6 mr-3.5 ml-5 flex flex-col justify-center gap-2.5">
