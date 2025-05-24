@@ -35,7 +35,7 @@ export default function NewTask() {
 
     return (
         <>
-            <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] py-[2.5rem]">
+            <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] pb-8">
                 <div className="flex h-[2.75rem] w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('new-task.title')}
                 </div>
@@ -49,7 +49,7 @@ export default function NewTask() {
                 </Button>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-[1.56rem] py-[2.5rem]">
+            <div className="flex flex-col items-center justify-center gap-[1.56rem] py-8">
                 <div className="text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('new-task.popular_tasks')}
                 </div>
@@ -62,7 +62,7 @@ export default function NewTask() {
             <Divider className="bg-muted" />
 
             <div className="px-[6.25rem]">
-                <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
+                <div className="flex flex-col items-start justify-center gap-[1.875rem] pt-8">
                     {tasks.map((task) => (
                         <div key={task.title} className="flex w-full items-start gap-[1.25rem]">
                             <Image
@@ -103,4 +103,10 @@ export default function NewTask() {
     );
 }
 
-NewTask.layout = (page: React.ReactNode) => <DashboardLayout>{page}</DashboardLayout>;
+NewTask.layout = (page: React.ReactNode) => (
+    <AppLayout>
+        <UserLayout>
+            <DashboardLayout>{page}</DashboardLayout>
+        </UserLayout>
+    </AppLayout>
+);
