@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
+import { Textarea } from '@heroui/react';
 
 interface DescriptionModalProps {
     isOpen: boolean;
@@ -42,38 +43,40 @@ export default function DescriptionModal({ isOpen, onClose, onSave }: Descriptio
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                <Dialog.Title className="text-lg font-medium text-gray-900">
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-surface p-6 text-center align-middle shadow-xl transition-all">
+                                <Dialog.Title className="text-lg font-medium dark:text-white">
                                     Додатковий опис
                                 </Dialog.Title>
                                 <div className="mt-4">
-                  <textarea
-                      rows={4}
-                      className="w-full border rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-500"
-                      placeholder="Введіть додаткову інформацію..."
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                  />
+                                    <Textarea
+                                        rows={4}
+                                        variant="bordered"
+                                        className="w-full p-2 text-sm"
+                                        color="primary"
+                                        placeholder="Введіть додаткову інформацію..."
+                                        value={description}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
                                 </div>
 
-                                <div className="mt-4 flex justify-end gap-2">
-                                    <button
-                                        onClick={onClose}
-                                        className="px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300"
-                                    >
-                                        Скасувати
-                                    </button>
-                                    <button
-                                        onClick={handleSave}
-                                        className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-                                    >
-                                        Зберегти
-                                    </button>
-                                </div>
-                            </Dialog.Panel>
-                        </Transition.Child>
+                                    <div className="mt-4 flex items-center justify-center gap-20">
+                                        <button
+                                            onClick={onClose}
+                                            className="px-4 py-2 text-sm bg-none text-gray-500 rounded hover:text-primary cursor-pointer"
+                                        >
+                                            Скасувати
+                                        </button>
+                                        <button
+                                            onClick={handleSave}
+                                            className="px-4 py-2 text-sm text-primary rounded hover:text-gray-500 dark:hover:text-white cursor-pointer"
+                                        >
+                                            Зберегти
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
                     </div>
-                </div>
             </Dialog>
         </Transition>
     );

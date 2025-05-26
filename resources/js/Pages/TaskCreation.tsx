@@ -25,7 +25,7 @@ import {
     CarouselPrevious,
 } from '@/Components/Shared/Carousel';
 import { useState } from 'react';
-import UploadFileModal from '@/Components/LoadFile';
+import UploadFileModal from '@/Components/UploadFileModal';
 import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function TaskCreationPage() {
@@ -107,7 +107,7 @@ export default function TaskCreationPage() {
                             radius="lg"
                             minRows={8}
                         />
-                        <div className="flex flex-row gap-17.5">
+                        <div className="flex flex-row gap-20">
                             <div>
                                 <Link
                                     onPress={() => setDescriptionModalOpen(true)}
@@ -115,14 +115,9 @@ export default function TaskCreationPage() {
                                 >
                                     {t('task-creation.confidential-data')}
                                 </Link>
-                                {uploadedFilename && (
-                                    <div className="mt-2 text-sm text-[#00CCFF]">
-                                        {t('task-creation.confidential-data')} {uploadedFilename}
-                                    </div>
-                                )}
 
                                 {description && (
-                                    <div className="text-sm text-gray-700">
+                                    <div className="mt-2 text-sm text-[#00CCFF]">
                                         <strong>Опис:</strong> {description}
                                     </div>
                                 )}
@@ -142,7 +137,7 @@ export default function TaskCreationPage() {
                                 </Link>
 
                                 {uploadedFilename && (
-                                    <div className="mt-2 text-sm text-[#00CCFF]">
+                                    <div className="mt-2 text-sm dark:text-[#00CCFF]">
                                         {t('task-creation.add-loaded')} {uploadedFilename}
                                     </div>
                                 )}
