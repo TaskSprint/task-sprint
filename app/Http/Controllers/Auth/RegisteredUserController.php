@@ -34,12 +34,13 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = UserService::create($validated);
+        $user->givePermissionTo("edit user", "delete user");
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 
     /**

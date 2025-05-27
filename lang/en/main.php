@@ -10,4 +10,8 @@ return [
     'online_service' => 'Online service for ordering services',
     'declaration' => 'Over 100,000 verified professionals to complete your home or business tasks',
     'how_works' => 'How it works?',
+    'verified' => [
+        'title' => 'Email verified successfully',
+        'description' => 'Your email has been verified. Now you can create your first task.',
+    ],
 ];
