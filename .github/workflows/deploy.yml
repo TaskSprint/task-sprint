@@ -65,24 +65,6 @@ jobs:
           TARGET: ${{ secrets.DEPLOY_PATH }}
           ARGS: "-avz --exclude=.git --exclude=storage --exclude=public/storage --exclude=.env"
 
-      - name: Clean unused files
-        uses: appleboy/ssh-action@v1.2.2
-        continue-on-error: true
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            cd ${{ secrets.DEPLOY_PATH }}
-            if [ ! -d ".git" ]; then
-              git init
-              git remote add origin ${{ secrets.REPO_URL }}
-            fi
-            git fetch origin
-            git reset --hard origin/main
-            git clean -fd
-
       - name: Database Migrations and Seed
         uses: appleboy/ssh-action@v1.2.2
         with:
