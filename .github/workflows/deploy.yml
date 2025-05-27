@@ -16,22 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-
-      - name: Cache Composer dependencies
-        uses: actions/cache@v4
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Install Composer Dependencies
-        run: composer install --no-dev --optimize-autoloader --no-progress --prefer-dist --no-interaction
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -53,19 +37,37 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Deploy files via SFTP
-        uses: pressidium/lftp-mirror-action@v1
+      - name: Deploy to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          # SFTP credentials
-          host: ${{ secrets.SFTP_SERVER }}
-          port: ${{ secrets.SFTP_PORT }}
-          user: ${{ secrets.SFTP_USERNAME }}
-          pass: ${{ secrets.SFTP_PASSWORD }}
-          # lftp settings
-          onlyNewer: true
-          settings: 'sftp:auto-confirm=yes'
-          # Mirror command options
-          localDir: '.'
-          remoteDir: '/'
-          reverse: true
-          options: '--verbose'
+          username: ${{ secrets.SSH_USER }}
+          server: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          local_path: './*'
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          rsyncArgs: '-z --exclude=node_modules --exclude=vendor --exclude=storage --exclude=public/storage --exclude=.env'
+
+      - name: Install production dependencies
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            npm ci --production --prefer-offline --no-audit --progress=false
+            composer install --no-dev --optimize-autoloader --no-progress --prefer-dist --no-interaction
+
+      - name: Database Migrations and Seed
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            php artisan migrate
+            php artisan db:seed --class=DatabaseSeeder
