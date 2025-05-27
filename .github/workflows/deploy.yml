@@ -63,7 +63,7 @@ jobs:
           USER: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           TARGET: ${{ secrets.DEPLOY_PATH }}
-          ARGS: "-avz --exclude=node_modules --exclude=vendor --exclude=storage --exclude=public/storage --exclude=.env"
+          ARGS: "-avz --exclude=.git --exclude=storage --exclude=public/storage --exclude=.env"
 
       - name: Clean unused files
         uses: appleboy/ssh-action@v1.2.2
@@ -82,18 +82,6 @@ jobs:
             git fetch origin
             git reset --hard origin/main
             git clean -fd
-
-      - name: Install production dependencies
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            cd ${{ secrets.DEPLOY_PATH }}
-            npm ci --production --prefer-offline --no-audit --progress=false
-            composer install --no-dev --optimize-autoloader --no-progress --prefer-dist --no-interaction
 
       - name: Database Migrations and Seed
         uses: appleboy/ssh-action@v1.2.2
