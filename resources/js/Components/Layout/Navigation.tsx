@@ -42,6 +42,8 @@ export default function Navigation() {
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
                     <Button
+                        as={Link}
+                        href={route('task-creation')}
                         className="border-foreground h-11 rounded-full border text-base font-medium"
                         variant="bordered"
                     >
