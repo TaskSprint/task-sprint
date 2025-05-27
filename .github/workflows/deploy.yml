@@ -64,6 +64,17 @@ jobs:
           TARGET: ${{ secrets.DEPLOY_PATH }}
           ARGS: "-avz --exclude=node_modules --exclude=vendor --exclude=storage --exclude=public/storage --exclude=.env"
 
+      - name: Clean unused files
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            git clean -fd
+
       - name: Install production dependencies
         uses: appleboy/ssh-action@v1.2.2
         with:
@@ -87,3 +98,4 @@ jobs:
             cd ${{ secrets.DEPLOY_PATH }}
             php artisan migrate
             php artisan db:seed --class=DatabaseSeeder
+
