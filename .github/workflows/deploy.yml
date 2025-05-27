@@ -67,6 +67,7 @@ jobs:
 
       - name: Clean unused files
         uses: appleboy/ssh-action@v1.2.2
+        continue-on-error: true
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
@@ -74,6 +75,12 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
+            if [ ! -d ".git" ]; then
+              git init
+              git remote add origin ${{ secrets.REPO_URL }}
+            fi
+            git fetch origin
+            git reset --hard origin/main
             git clean -fd
 
       - name: Install production dependencies
