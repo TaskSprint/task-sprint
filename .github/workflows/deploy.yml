@@ -56,6 +56,7 @@ jobs:
 
       - name: Deploy to server
         uses: up9cloud/action-rsync@master
+        continue-on-error: true
         env:
           HOST: ${{ secrets.SSH_HOST }}
           PORT: ${{ secrets.SSH_PORT }}
@@ -98,4 +99,3 @@ jobs:
             cd ${{ secrets.DEPLOY_PATH }}
             php artisan migrate
             php artisan db:seed --class=DatabaseSeeder
-
