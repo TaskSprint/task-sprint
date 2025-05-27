@@ -34,7 +34,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-            
+
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader --no-progress --prefer-dist --no-interaction
 
@@ -55,15 +55,14 @@ jobs:
           NODE_ENV: production
 
       - name: Deploy to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ secrets.SSH_USER }}
-          server: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          local_path: './*'
-          remote_path: ${{ secrets.DEPLOY_PATH }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          rsyncArgs: '-z --exclude=node_modules --exclude=vendor --exclude=storage --exclude=public/storage --exclude=.env'
+        uses: up9cloud/action-rsync@master
+        env:
+          HOST: ${{ secrets.SSH_HOST }}
+          PORT: ${{ secrets.SSH_PORT }}
+          USER: ${{ secrets.SSH_USER }}
+          PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          ARGS: "-avz --exclude=node_modules --exclude=vendor --exclude=storage --exclude=public/storage --exclude=.env"
 
       - name: Install production dependencies
         uses: appleboy/ssh-action@v1.2.2
