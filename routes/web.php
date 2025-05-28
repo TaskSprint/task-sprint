@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Resources\SubCategoryResource;
+use App\Models\SubCategory;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +16,14 @@ Route::localized(function () {
     })->name('support');
 
     Route::get('/', [MainController::class, 'index'])->name('home');
+
+    Route::get('/sub-category/{subCategory}', function (SubCategory $subCategory) {
+        return Inertia::render('SubCategory', [
+            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks')),
+        ]);
+    })->name('sub-category');
+
+    Route::get('/sub-preview', fn () => Inertia::render('SubCategoryPreview'));
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
