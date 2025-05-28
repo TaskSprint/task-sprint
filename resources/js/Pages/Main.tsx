@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Categories from '@/Components/Main/Categories';
 import { Info } from '@/Components/Main/Info';
 import LastTasks from '@/Components/Main/LastTasks/LastTasks';
@@ -11,6 +11,18 @@ import Category from '@/types/models/category';
 import { PageProps } from '@/types';
 import Task from '@/types/models/task';
 import Support from '@/Components/Main/Support';
+import { parseAsNumberLiteral, useQueryState } from 'nuqs';
+import { addToast } from '@heroui/toast';
+
+const ToastTitle = () => {
+    const { t } = useLaravelReactI18n();
+    return t('main.verified.title');
+};
+
+const ToastDescription = () => {
+    const { t } = useLaravelReactI18n();
+    return t('main.verified.description');
+};
 
 export default function Main({
     categories,
@@ -20,6 +32,32 @@ export default function Main({
     tasks: Task[];
 }>) {
     const { t } = useLaravelReactI18n();
+    const [verified, setVerified] = useQueryState(
+        'verified',
+        parseAsNumberLiteral([0, 1]).withDefault(0).withOptions({
+            shallow: true,
+            clearOnDefault: true,
+        }),
+    );
+
+    useEffect(() => {
+        if (verified) {
+            addToast({
+                title: <ToastTitle />,
+                description: <ToastDescription />,
+                shouldShowTimeoutProgress: true,
+                color: 'success',
+
+                motionProps: {
+                    onAnimationComplete({ opacity }: { opacity: number }) {
+                        if (!opacity) {
+                            setVerified(0).then();
+                        }
+                    },
+                },
+            });
+        }
+    }, [verified]);
 
     return (
         <>
