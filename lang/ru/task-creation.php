@@ -21,7 +21,7 @@ return [
     'add-select' => 'Выберите файл',
     'add-title' => 'Добавить файл',
     'add-abort' => 'Отменить',
-    'add-download' => 'Загрузить',
+    'add-upload' => 'Загрузить',
     'order-address' => 'Адрес выполнения заказа',
     'city' => 'Город',
     'district' => 'Район',

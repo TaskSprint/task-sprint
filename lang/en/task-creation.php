@@ -20,7 +20,7 @@ return [
     'add-select' => 'Select file',
     'add-title' => 'Add file',
     'add-abort' => 'Cancel',
-    'add-download' => 'Download',
+    'add-upload' => 'Upload',
     'order-address' => 'Order fulfillment address',
     'city' => 'City',
     'district' => 'District',
