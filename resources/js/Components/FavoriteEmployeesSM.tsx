@@ -12,7 +12,7 @@ export default function FavoriteEmployeesSM() {
     const date = new Date('2025-05-19T14:00:00Z')
 
     return (
-        <div className="border-primary relative flex w-full max-h-[15rem] h-max flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
+        <div className="border-primary relative flex max-w-[21.25rem] max-h-[15rem] h-max flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
             <div className="flex w-full flex-col gap-2.5 sm:flex-row">
                 <div>
                     <Avatar

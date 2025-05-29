@@ -10,13 +10,12 @@ import AbsenceTime from '@/Components/AbsenceTime';
 export default function FavoriteEmployees() {
     const { t } = useLaravelReactI18n();
     const lastViz = new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toString();
-    // const lastTimeSpend = new Date(lastViz).getTime().toString();
     const date = new Date('2025-05-19T14:00:00Z')
 
 
         return (
-            <div className="flex flex-col items-center justify-center w-full h-full border-b px-9 py-10">
-                <div className="flex flex-col justify-between w-full max-w-[44.6875rem] max-h-[15.0625rem] gap-3 md:flex-row">
+            <div className="flex flex-col items-center justify-center min-w-[56.75rem] w-fit h-fit min-h-[15rem]  border-b border-gray-400 px-9 py-10">
+                <div className="flex flex-col justify-between w-fit min-w-[44.6875rem] min-h-[10.0625rem] h-fit gap-3 md:flex-row">
                     <div className="flex flex-col items-center gap-5 md:flex-row md:items-start">
                         <Link className="cursor-pointer rounded-full">
                             <Avatar
