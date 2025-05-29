@@ -362,7 +362,10 @@ export default function TaskCreationPage() {
                 >
                     {t('task-creation.show-more')}
                 </Link>
+
             </div>
         </div>
+
+
     );
 }

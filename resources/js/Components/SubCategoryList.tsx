@@ -1,5 +1,4 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/outline';
-
+import ChevronLeftIcon from '@/Components/ChevronLeftIcon';
 //применить => <SubCategoryListDemo subCategory={subCategory} />
 
 type SubCategoryProps = {
@@ -30,8 +29,8 @@ const { total, categories, tags } = subCategory;
                     <li className="text-gray-300">Всі послуги</li>
                     {categories.map((cat, idx) =>
                         typeof cat === "string" ? (
-                            <li key={idx} className="flex items-center gap-1 text-gray-300">
-                                <ChevronLeftIcon className="w-4 h-4" />
+                            <li key={idx} className="flex items-center gap-1 text-gray-300 cursor-pointer">
+                                <ChevronLeftIcon />
                                 {cat}
                             </li>
                         ) : (
@@ -56,7 +55,7 @@ const { total, categories, tags } = subCategory;
                     {tags.map((tag, idx) => (
                         <span
                             key={idx}
-                            className="border border-gray-500 rounded-full px-3 py-1 text-xs text-gray-200 hover:bg-gray-800 cursor-pointer"
+                            className="border border-gray-500 rounded-full px-3 py-1 text-xs text-gray-200 hover:bg-gray-300 cursor-pointer"
                         >
               {tag}
             </span>

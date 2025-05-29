@@ -76,7 +76,7 @@ const AbsenceTime: React.FC<AbsenceTimeProps> = ({ lastVisit }) => {
 
         } else {
             return (
-                <p>{timePassed}{timeName}</p>
+                <p>{timePassed} {timeName}</p>
             );
     }
 

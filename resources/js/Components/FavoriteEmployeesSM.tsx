@@ -5,19 +5,34 @@ import HeartCheckbox from '@/Components/HeartCheckbox';
 import AbsenceTime from '@/Components/AbsenceTime';
 import React from 'react';
 
-export default function FavoriteEmployeesSM() {
-    const { t } = useLaravelReactI18n();
-    const lastViz = new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toString();
-    const lastTimeSpend = new Date(lastViz).getTime().toString();
-    const date = new Date('2025-05-19T14:00:00Z')
+interface FavoriteEmployeeSMProps {
+    item: number;
+    name: string;
+    photo: string;
+    totalReviews: number;
+    positiveReviews: number;
+    lastVisit: string | Date;
+}
 
+
+const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item, name, photo,totalReviews, positiveReviews, lastVisit}) => {
+
+    const nameBanner = name;
+    const photoBanner = photo;
+    const totalReviewsBanner = totalReviews;
+    const positiveReviewsBanner = positiveReviews;
+
+    const lastVisitBanner = new Date(lastVisit);
+
+
+    const { t } = useLaravelReactI18n();
     return (
         <div className="border-primary relative flex max-w-[21.25rem] max-h-[15rem] h-max flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
             <div className="flex w-full flex-col gap-2.5 sm:flex-row">
                 <div>
                     <Avatar
                         className="aspect-square size-21.75 content-start justify-start"
-                        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                        src={photoBanner}
                         as={Link}
                         href="#"
                     />
@@ -30,7 +45,7 @@ export default function FavoriteEmployeesSM() {
                                 href="#"
                             >
                                 <div className="inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap text-black dark:text-white">
-                                    Коваль А.
+                                    {nameBanner}
                                 </div>
                             </Link>
                         </h2>
@@ -40,18 +55,18 @@ export default function FavoriteEmployeesSM() {
                         <h3 className="text-muted content-start font-medium">
                             <p>{t('task-creation.last-visit')} </p>
                         </h3>
-                        <AbsenceTime lastVisit={date} />
+                        <AbsenceTime lastVisit={lastVisitBanner} />
                     </div>
                     <div className="flex flex-row items-center gap-2.5 font-medium">
                         <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">12456</h2>
+                            <h2 className="text-[1.25rem] dark:text-white">{totalReviewsBanner}</h2>
                             <h3 className="text-primary text-[0.75rem]">
                                 {t('task-creation.reviews')}
                             </h3>
                         </div>
                         <Divider className="bg-primary" orientation="vertical" />
                         <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">100%</h2>
+                            <h2 className="text-[1.25rem] dark:text-white">{Math.round((positiveReviewsBanner/totalReviewsBanner)*100)}%</h2>
                             <h3 className="text-[0.75rem] text-gray-500 dark:text-[#A7A7A7]">
                                 {t('task-creation.positive')}
                             </h3>
@@ -71,4 +86,7 @@ export default function FavoriteEmployeesSM() {
             </Button>
         </div>
     );
-}
+};
+
+export default FavoriteEmployeeSM;
+

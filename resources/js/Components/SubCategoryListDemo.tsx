@@ -1,4 +1,5 @@
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import ChevronLeftIcon from '@/Components/ChevronLeftIcon';
+import React from "react";
 
 const mockSubCategory = {
     id: 1,
@@ -39,7 +40,7 @@ export function SubCategoryStandalone() {
     const { total, categories, tags } = mockSubCategory;
 
     return (
-        <aside className="dark:bg-none dark:text-white p-4 space-y-4 w-72 rounded-lg shadow-md">
+        <aside className="dark:bg-none dark:text-white p-4 space-y-4 w-72 rounded-lg shadow-md ml-9">
             <div className="flex flex-row items-center gap-2">
                 <span className="text-[#00CCFF] text-[2.25rem] font-bold">{total}</span>
                 <div className="flex flex-col items-start">
@@ -56,7 +57,7 @@ export function SubCategoryStandalone() {
                     {categories.map((cat, idx) =>
                         typeof cat === "string" ? (
                             <li key={idx} className="flex items-center gap-1 dark:text-gray-300">
-                                <ChevronLeftIcon className="w-4 h-4" />
+                                <ChevronLeftIcon />
                                 {cat}
                             </li>
                         ) : (
@@ -81,7 +82,7 @@ export function SubCategoryStandalone() {
                     {tags.map((tag, idx) => (
                         <span
                             key={idx}
-                            className="border border-gray-500 rounded-md px-3 py-1 text-xs dark:text-gray-200 hover:bg-gray-800 cursor-pointer"
+                            className="border border-gray-500 rounded-md px-3 py-1 text-xs dark:text-gray-200 hover:bg-gray-300 cursor-pointer"
                         >
               {tag}
             </span>
