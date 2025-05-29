@@ -6,6 +6,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { LaravelReactI18nProvider } from 'laravel-react-i18n';
 import { Providers } from '@/providers';
 import AppLayout from '@/Layouts/AppLayout';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ReactNode } from 'react';
 
 const appName = import.meta.env.VITE_APP_NAME ?? 'Laravel';
@@ -13,10 +14,14 @@ const appName = import.meta.env.VITE_APP_NAME ?? 'Laravel';
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
-        const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true });
-        let page: any = pages[`./Pages/${name}.tsx`];
-        page.default.layout =
-            page.default.layout ?? ((page: ReactNode) => <AppLayout>{page}</AppLayout>);
+        const page = resolvePageComponent(
+            `./Pages/${name}.tsx`,
+            import.meta.glob('./Pages/**/*.tsx'),
+        );
+        page.then((module: any) => {
+            module.default.layout =
+                module.default.layout ?? ((page: ReactNode) => <AppLayout>{page}</AppLayout>);
+        });
         return page;
     },
     setup({ el, App, props }) {

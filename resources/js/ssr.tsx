@@ -5,8 +5,9 @@ import ReactDOMServer from 'react-dom/server';
 import { route } from '../../vendor/tightenco/ziggy/';
 import { LaravelReactI18nProvider } from 'laravel-react-i18n';
 import { Providers } from '@/providers';
-import { ReactNode } from 'react';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import AppLayout from '@/Layouts/AppLayout';
+import { ReactNode } from 'react';
 
 const appName = import.meta.env.VITE_APP_NAME ?? 'Laravel';
 
@@ -16,10 +17,14 @@ createServer((page) =>
         render: ReactDOMServer.renderToString,
         title: (title) => `${title} - ${appName}`,
         resolve: (name) => {
-            const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true });
-            let page: any = pages[`./Pages/${name}.tsx`];
-            page.default.layout =
-                page.default.layout ?? ((page: ReactNode) => <AppLayout>{page}</AppLayout>);
+            const page = resolvePageComponent(
+                `./Pages/${name}.tsx`,
+                import.meta.glob('./Pages/**/*.tsx'),
+            );
+            page.then((module: any) => {
+                module.default.layout =
+                    module.default.layout ?? ((page: ReactNode) => <AppLayout>{page}</AppLayout>);
+            });
             return page;
         },
         setup: ({ App, props }) => {
