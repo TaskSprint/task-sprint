@@ -95,7 +95,7 @@ export default function Navigation() {
                             <Button
                                 variant="light"
                                 as={Link}
-                                href={route('profile.edit')}
+                                href={route('profile.general-info')}
                                 className="aspect-square size-11 h-full min-w-fit rounded-full p-0"
                             >
                                 <Avatar

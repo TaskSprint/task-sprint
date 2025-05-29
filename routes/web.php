@@ -4,8 +4,6 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Resources\SubCategoryResource;
-use App\Models\SubCategory;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,24 +15,6 @@ Route::localized(function () {
 
     Route::get('/', [MainController::class, 'index'])->name('home');
 
-    Route::get('/sub-category/{subCategory}', function (SubCategory $subCategory) {
-        return Inertia::render('SubCategory', [
-            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks')),
-        ]);
-    })->name('sub-category');
-
-    Route::get('/employees/{subCategory}', function (SubCategory $subCategory) {
-        return Inertia::render('EmploeesPage', [
-            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks'))
-        ]); // 'EmployeesPage' — имя React-компонента
-    })->name('employees');
-
-
-
-
-    Route::get('/sub-preview', fn () => Inertia::render('SubCategoryPreview'));
-
-    Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
@@ -72,12 +52,6 @@ Route::localized(function () {
         Route::get('/profile/archive', function () {
             return Inertia::render('Profile/Archive');
         })->name('profile.archive');
-
-
-        Route::get('/task/{id}', function ($id) {
-            return Inertia::render('Task', ['id' => $id]);
-        })->name('task.show');
-
     });
 });
 

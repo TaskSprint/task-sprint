@@ -2,10 +2,11 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import DashboardLayout from '@/Layouts/DashboardLayout';
+import UserLayout from '@/Layouts/UserLayout';
 import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
 import { useRouter } from '@/hooks/useRouter';
-import UserLayout from '@/Layouts/UserLayout';
+import { Image } from '@heroui/react';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 
 export default function Archive() {
     const { t } = useLaravelReactI18n();
