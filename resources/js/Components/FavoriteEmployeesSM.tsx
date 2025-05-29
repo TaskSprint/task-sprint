@@ -15,8 +15,9 @@ interface FavoriteEmployeeSMProps {
 }
 
 
-const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ name, photo,totalReviews, positiveReviews, lastVisit}) => {
+const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, photo,totalReviews, positiveReviews, lastVisit}) => {
 
+    const itemiId = item;
     const nameBanner = name;
     const photoBanner = photo;
     const totalReviewsBanner = totalReviews;
@@ -34,7 +35,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ name, photo,tot
                         className="aspect-square size-21.75 content-start justify-start"
                         src={photoBanner}
                         as={Link}
-                        href="#"
+                        href={"#"}
                     />
                 </div>
                 <div className="flex flex-col w-full pt-1 gap-2">
@@ -71,6 +72,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ name, photo,tot
                                 {t('task-creation.positive')}
                             </h3>
                         </div>
+                        <div className="text-white dadk:text-[#313131] text-[0.02rem]">{itemiId}</div>
                     </div>
                 </div>
             </div>
