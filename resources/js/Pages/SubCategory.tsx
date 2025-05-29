@@ -12,7 +12,7 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
     const { t } = useLaravelReactI18n();
     const count = 536;
     const date1 = new Date('2025-05-26T14:00:00Z')
-    const date2 = new Date('2025-05-27T19:00:00Z')
+    const date2 = new Date('2025-03-11T19:00:00Z')
     const date3 = new Date('2025-05-01T09:00:00Z')
     const date4 = new Date('2023-05-01T09:00:00Z')
     const bannersSM = [
@@ -37,7 +37,7 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
             photo: "https://i.pravatar.cc/150?u=a04258114e29026702d",
             totalReviews: 24,
             positiveReviews: 21,
-            lastVisit: new Date(date1),
+            lastVisit: new Date(date2),
         },
         {
             item: 4,
@@ -45,7 +45,7 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
             photo: "https://avatars.githubusercontent.com/u/30373425?v=4",
             totalReviews: 25,
             positiveReviews: 25,
-            lastVisit: new Date(date3),
+            lastVisit: new Date(date2),
         },{
             item: 5,
             name: "Коваль Д.",
