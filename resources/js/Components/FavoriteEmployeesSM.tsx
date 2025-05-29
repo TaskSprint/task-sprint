@@ -15,7 +15,7 @@ interface FavoriteEmployeeSMProps {
 }
 
 
-const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item, name, photo,totalReviews, positiveReviews, lastVisit}) => {
+const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ name, photo,totalReviews, positiveReviews, lastVisit}) => {
 
     const nameBanner = name;
     const photoBanner = photo;
