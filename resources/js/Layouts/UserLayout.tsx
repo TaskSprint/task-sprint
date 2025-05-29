@@ -16,10 +16,10 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
     const profileLink = `${window.location.origin}/profile`;
 
     return (
-        <div className="item-center bg-surface/50 mx-auto flex h-full w-full flex-col gap-8 sm:p-4 2xl:max-w-[96rem] 2xl:flex-row 2xl:p-8">
+        <div className="item-center bg-surface/50 mx-auto flex h-full w-full flex-col gap-8 sm:p-6 2xl:max-w-[96rem] 2xl:flex-row 2xl:p-8">
             <main className="w-full">{children}</main>
 
-            <div className="flex flex-col 2xl:flex-row">
+            <div className="flex flex-col 2xl:flex-row py-[1rem] h-full">
                 <Divider className="2xl:w-divider bg-muted 2xl:h-full" />
 
                 <div className="bg-surface flex flex-col px-9 pb-12 sm:rounded-b-[2rem] 2xl:max-w-min 2xl:rounded-r-[2rem] 2xl:rounded-bl-none">

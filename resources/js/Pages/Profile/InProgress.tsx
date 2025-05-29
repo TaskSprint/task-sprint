@@ -1,11 +1,11 @@
 import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider, Image, Link } from '@heroui/react';
+import { useRouter } from '@/hooks/useRouter';
 import React from 'react';
-import { useRouter } from '../../hooks/useRouter';
-import UserLayout from '@/Layouts/UserLayout';
+import DashboardLayout from "@/Layouts/DashboardLayout";
 import AppLayout from '@/Layouts/AppLayout';
-import DashboardLayout from '@/Layouts/DashboardLayout';
+import UserLayout from '@/Layouts/UserLayout';
 
 export default function InProgress() {
     const { t } = useLaravelReactI18n();
@@ -33,7 +33,7 @@ export default function InProgress() {
     ];
 
     return (
-        <div className="mx-auto flex flex-col gap-8 lg:px-[6.25rem]">
+        <div className="mx-auto flex flex-col gap-[2.5rem] py-[2.5rem] 2xl:px-[6.25rem]">
             <div className="flex flex-col justify-center gap-[1.875rem] px-9 2xl:px-0">
                 {tasks.map((task) => (
                     <div
@@ -43,7 +43,7 @@ export default function InProgress() {
                         <Image
                             src={task.image}
                             alt={task.title}
-                            className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
+                            className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full"
                         />
 
                         <div className="flex w-full flex-col items-center gap-[0.625rem] sm:items-start">
@@ -57,7 +57,8 @@ export default function InProgress() {
                                 })}
                             </div>
 
-                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
+                                    href={route("task.show", task.id)}>
                                 {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
@@ -79,6 +80,7 @@ export default function InProgress() {
         </div>
     );
 }
+
 
 InProgress.layout = (page: React.ReactNode) => (
     <AppLayout>
