@@ -4,7 +4,6 @@ import {
     Breadcrumbs,
     Checkbox,
     Divider,
-    Form,
     Input,
     Link,
     Radio,
@@ -15,7 +14,7 @@ import {
 } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
-import React from 'react';
+import React, { useState } from 'react';
 import DateSelector from '@/Components/DateSelector';
 import {
     Carousel,
@@ -24,7 +23,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/Components/Shared/Carousel';
-import { useState } from 'react';
 import UploadFileModal from '@/Components/UploadFileModal';
 import DescriptionModal from '@/Components/DescriptionModal';
 
@@ -32,7 +30,7 @@ export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
-    const [isDescriptionModalOpen, setDescriptionModalOpen] = useState(false);
+    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [description, setDescription] = useState('');
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
@@ -110,7 +108,7 @@ export default function TaskCreationPage() {
                         <div className="flex flex-row gap-20">
                             <div>
                                 <Link
-                                    onPress={() => setDescriptionModalOpen(true)}
+                                    onPress={() => setIsDescriptionModalOpen(true)}
                                     className="text-muted cursor-pointer text-base font-medium"
                                 >
                                     {t('task-creation.confidential-data')}
@@ -124,14 +122,14 @@ export default function TaskCreationPage() {
 
                                 <DescriptionModal
                                     isOpen={isDescriptionModalOpen}
-                                    onClose={() => setDescriptionModalOpen(false)}
+                                    onClose={() => setIsDescriptionModalOpen(false)}
                                     onSave={(desc) => setDescription(desc)}
                                 />
                             </div>
                             <div>
                                 <Link
                                     onPress={() => setIsModalOpen(true)}
-                                    className="cursor-pointer text-base dark:text-[#00CCFF] font-medium"
+                                    className="cursor-pointer text-base font-medium dark:text-[#00CCFF]"
                                 >
                                     {t('task-creation.add-file')}
                                 </Link>
@@ -341,14 +339,28 @@ export default function TaskCreationPage() {
                 </h3>
                 <div className="hidden flex-col gap-6.25 xl:flex">
                     {Array.from({ length: 6 }).map((_, i) => (
-                        <FavoriteEmployeesSM key={i} />
+                        <FavoriteEmployeesSM
+                            key={i}
+                            item={i}
+                            name={`Employee ${i}`}
+                            lastVisit={new Date()}
+                            positiveReviews={0}
+                            totalReviews={0}
+                        />
                     ))}
                 </div>
                 <Carousel className="w-full xl:hidden">
                     <CarouselContent className="-ml-4">
                         {Array.from({ length: 6 }).map((_, i) => (
                             <CarouselItem key={i} className="w-fit basis-2/3 pl-4">
-                                <FavoriteEmployeesSM />
+                                <FavoriteEmployeesSM
+                                    key={i}
+                                    item={i}
+                                    name={`Employee ${i}`}
+                                    lastVisit={new Date()}
+                                    positiveReviews={0}
+                                    totalReviews={0}
+                                />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
@@ -362,10 +374,7 @@ export default function TaskCreationPage() {
                 >
                     {t('task-creation.show-more')}
                 </Link>
-
             </div>
         </div>
-
-
     );
 }
