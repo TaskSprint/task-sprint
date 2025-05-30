@@ -58,6 +58,7 @@
         "dompurify": "^3.2.5",
         "embla-carousel-react": "^8.6.0",
         "framer-motion": "^12.9.2",
+        "html-react-parser": "^5.2.5",
         "is-svg": "^5.1.0",
         "isomorphic-dompurify": "^2.23.0",
         "laravel-react-i18n": "^2.0.5",
@@ -70,5 +71,10 @@
         "uncontrollable": "^9.0.0",
         "use-debounce": "^10.0.4",
         "usehooks-ts": "^3.1.1"
+    },
+    "overrides": {
+        "laravel-react-i18n": {
+            "react": "$react"
+        }
     }
 }

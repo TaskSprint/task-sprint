@@ -30,7 +30,7 @@ export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
-    const [isDescriptionModalOpen, setDescriptionModalOpen] = useState(false);
+    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [description, setDescription] = useState('');
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
@@ -108,7 +108,7 @@ export default function TaskCreationPage() {
                         <div className="flex flex-row gap-20">
                             <div>
                                 <Link
-                                    onPress={() => setDescriptionModalOpen(true)}
+                                    onPress={() => setIsDescriptionModalOpen(true)}
                                     className="text-muted cursor-pointer text-base font-medium"
                                 >
                                     {t('task-creation.confidential-data')}
@@ -122,7 +122,7 @@ export default function TaskCreationPage() {
 
                                 <DescriptionModal
                                     isOpen={isDescriptionModalOpen}
-                                    onClose={() => setDescriptionModalOpen(false)}
+                                    onClose={() => setIsDescriptionModalOpen(false)}
                                     onSave={(desc) => setDescription(desc)}
                                 />
                             </div>
