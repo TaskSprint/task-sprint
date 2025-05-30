@@ -77,6 +77,7 @@ export default function Navigation() {
                                     variant="light"
                                     as={Link}
                                     href={route('profile.in-progress')}
+                                    data-transition="user"
                                     className="aspect-square size-11 h-full min-w-fit rounded-full p-0"
                                 >
                                     <SolarDocumentLinear className="size-8" />
@@ -95,7 +96,8 @@ export default function Navigation() {
                             <Button
                                 variant="light"
                                 as={Link}
-                                href={route('profile.edit')}
+                                data-transition="user"
+                                href={route('profile.general-info')}
                                 className="aspect-square size-11 h-full min-w-fit rounded-full p-0"
                             >
                                 <Avatar

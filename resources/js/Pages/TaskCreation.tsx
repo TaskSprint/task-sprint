@@ -341,11 +341,11 @@ export default function TaskCreationPage() {
                     {Array.from({ length: 6 }).map((_, i) => (
                         <FavoriteEmployeesSM
                             key={i}
-                            item={i}
-                            name={`Employee ${i}`}
-                            lastVisit={new Date()}
-                            positiveReviews={0}
+                            item={i + 1}
+                            name={`Employee ${i + 1}`}
                             totalReviews={0}
+                            positiveReviews={0}
+                            lastVisit={new Date()}
                         />
                     ))}
                 </div>
@@ -354,12 +354,11 @@ export default function TaskCreationPage() {
                         {Array.from({ length: 6 }).map((_, i) => (
                             <CarouselItem key={i} className="w-fit basis-2/3 pl-4">
                                 <FavoriteEmployeesSM
-                                    key={i}
-                                    item={i}
-                                    name={`Employee ${i}`}
-                                    lastVisit={new Date()}
-                                    positiveReviews={0}
+                                    item={i + 1}
+                                    name={`Employee ${i + 1}`}
                                     totalReviews={0}
+                                    positiveReviews={0}
+                                    lastVisit={new Date()}
                                 />
                             </CarouselItem>
                         ))}

@@ -35,12 +35,12 @@ export default function NewTask() {
 
     return (
         <>
-            <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] pb-8">
-                <div className="flex h-[2.75rem] w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
+            <div className="flex w-full flex-col items-center justify-center gap-[1.56rem] px-9 pb-8 lg:px-[6.25rem]">
+                <div className="flex w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('new-task.title')}
                 </div>
 
-                <div className="text-muted w-[22.75rem] items-center text-center text-[0.875rem] leading-[1.19rem] font-medium dark:text-[#A7A7A7]">
+                <div className="text-muted w-full items-center text-center text-[0.875rem] leading-[1.19rem] font-medium dark:text-[#A7A7A7]">
                     {t('new-task.description')}
                 </div>
 
@@ -49,31 +49,34 @@ export default function NewTask() {
                 </Button>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-[1.56rem] py-8">
+            <div className="flex w-full flex-col items-center justify-center gap-[1.56rem] px-9 py-8 lg:px-[6.25rem]">
                 <div className="text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('new-task.popular_tasks')}
                 </div>
 
-                <div className="font-manrope text-muted text-[0.875rem] leading-[1.1875rem] font-medium dark:text-[#A7A7A7]">
+                <div className="font-manrope text-muted text-center text-[0.875rem] leading-[1.1875rem] font-medium dark:text-[#A7A7A7]">
                     {t('new-task.popular_tasks_description')}
                 </div>
             </div>
 
             <Divider className="bg-muted" />
 
-            <div className="px-[6.25rem]">
+            <div className="px-9 lg:px-[6.25rem]">
                 <div className="flex flex-col items-start justify-center gap-[1.875rem] pt-8">
                     {tasks.map((task) => (
-                        <div key={task.title} className="flex w-full items-start gap-[1.25rem]">
+                        <div
+                            key={task.title}
+                            className="flex w-full flex-col items-center gap-[1.25rem] lg:flex-row lg:items-start"
+                        >
                             <Image
                                 src={task.image}
                                 alt={task.title}
-                                className="r h-[5rem] w-[5rem] rounded-full"
+                                className="size-[5rem] min-w-[5rem] rounded-full"
                             />
 
-                            <div className="flex w-full flex-col items-start gap-[0.3125rem]">
-                                <div className="flex w-full justify-between gap-[5.75rem]">
-                                    <div className="text-[1.625rem] leading-[2.25rem] font-semibold text-black dark:text-white">
+                            <div className="flex w-full flex-col items-center gap-[0.3125rem] lg:items-start">
+                                <div className="flex w-full flex-col-reverse items-center justify-between gap-5 lg:flex-row">
+                                    <div className="text-center text-[1.625rem] leading-[2.25rem] font-semibold text-black lg:text-left dark:text-white">
                                         {task.title}
                                     </div>
                                     <div className="text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
@@ -81,16 +84,23 @@ export default function NewTask() {
                                     </div>
                                 </div>
 
-                                <div className="text-[1.125rem] leading-[1.5625rem] font-medium break-all text-black dark:text-white">
+                                <div className="text-center text-[1.125rem] leading-[1.5625rem] font-medium break-all text-black lg:text-left dark:text-white">
                                     {t('new-task.completed_today_by', { customer: task.customer })}
                                 </div>
 
-                                <div className="flex items-start gap-[0.625rem]">
-                                    <Button className="bg-primary flex items-center justify-center rounded-[2.25rem] py-[1.875rem] text-[1.25rem] leading-[1.6875rem] font-semibold text-white">
+                                <div className="flex w-full flex-col items-start gap-[0.625rem] lg:flex-row">
+                                    <Button
+                                        color="primary"
+                                        className="flex w-full items-center justify-center rounded-[2.25rem] text-[1.25rem] leading-[1.6875rem] font-semibold text-white lg:w-fit lg:py-[1.875rem]"
+                                    >
                                         {t('new-task.repeat-task')}
                                     </Button>
 
-                                    <Button className="border-primary text-primary flex items-center justify-center rounded-[2.25rem] border-2 bg-[0] py-[1.875rem] text-[1.25rem] leading-[1.6875rem] font-semibold">
+                                    <Button
+                                        variant="bordered"
+                                        color="primary"
+                                        className="border-primary flex w-full items-center justify-center rounded-[2.25rem] text-[1.25rem] leading-[1.6875rem] font-semibold lg:w-fit lg:py-[1.875rem]"
+                                    >
                                         {t('new-task.view-task')}
                                     </Button>
                                 </div>

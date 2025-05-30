@@ -24,4 +24,8 @@ return [
     'copy_link' => 'Click to copy the link',
 
     'copied' => 'Link copied!',
+
+    'general-info-tab' => 'General Information',
+    'start-earning-tab' => 'Start earning',
+    'reviews-tab' => 'Reviews',
 ];
