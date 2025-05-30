@@ -8,16 +8,21 @@ import React from 'react';
 interface FavoriteEmployeeSMProps {
     item: number;
     name: string;
-    photo: string;
+    photo?: string;
     totalReviews: number;
     positiveReviews: number;
     lastVisit: string | Date;
 }
 
-
-const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, photo,totalReviews, positiveReviews, lastVisit}) => {
-
-    const itemiId = item;
+const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
+    item,
+    name,
+    photo,
+    totalReviews,
+    positiveReviews,
+    lastVisit,
+}) => {
+    const itemId = item;
     const nameBanner = name;
     const photoBanner = photo;
     const totalReviewsBanner = totalReviews;
@@ -25,20 +30,19 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
 
     const lastVisitBanner = new Date(lastVisit);
 
-
     const { t } = useLaravelReactI18n();
     return (
-        <div className="border-primary relative flex max-w-[21.25rem] max-h-[15rem] h-max flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 bg-white dark:bg-[#313131]">
+        <div className="border-primary relative flex h-max max-h-[15rem] max-w-[21.25rem] flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 bg-white p-2.5 dark:bg-[#313131]">
             <div className="flex w-full flex-col gap-2.5 sm:flex-row">
                 <div>
                     <Avatar
                         className="aspect-square size-21.75 content-start justify-start"
                         src={photoBanner}
                         as={Link}
-                        href={"#"}
+                        href={'#'}
                     />
                 </div>
-                <div className="flex flex-col w-full pt-1 gap-2">
+                <div className="flex w-full flex-col gap-2 pt-1">
                     <div className="flex items-center gap-2.5">
                         <h2>
                             <Link
@@ -52,7 +56,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                         </h2>
                         <HeartCheckbox />
                     </div>
-                    <div className="flex flex-row items-start text-[0.875rem] gap-1 mb-1 min-w-[11rem]">
+                    <div className="mb-1 flex min-w-[11rem] flex-row items-start gap-1 text-[0.875rem]">
                         <h3 className="text-muted content-start font-medium">
                             <p>{t('task-creation.last-visit')} </p>
                         </h3>
@@ -67,12 +71,19 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                         </div>
                         <Divider className="bg-primary" orientation="vertical" />
                         <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">{Math.round((positiveReviewsBanner/totalReviewsBanner)*100)}%</h2>
+                            <h2 className="text-[1.25rem] dark:text-white">
+                                {totalReviewsBanner
+                                    ? Math.round((positiveReviewsBanner / totalReviewsBanner) * 100)
+                                    : 0}
+                                %
+                            </h2>
                             <h3 className="text-[0.75rem] text-gray-500 dark:text-[#A7A7A7]">
                                 {t('task-creation.positive')}
                             </h3>
                         </div>
-                        <div className="text-white dadk:text-[#313131] text-[0.02rem]">{itemiId}</div>
+                        <div className="dadk:text-[#313131] text-[0.02rem] text-white">
+                            {itemId}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,7 +91,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                 as={Link}
                 href="#"
                 color="primary"
-                className="w-full rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white dark:text-black justify-center"
+                className="w-full justify-center rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white dark:text-black"
             >
                 <div className="inline-block w-full overflow-hidden text-center text-ellipsis whitespace-nowrap">
                     {t('task-creation.offer')}
@@ -91,4 +102,3 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
 };
 
 export default FavoriteEmployeeSM;
-

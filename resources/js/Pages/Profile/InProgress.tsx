@@ -43,7 +43,7 @@ export default function InProgress() {
                         <Image
                             src={task.image}
                             alt={task.title}
-                            className="h-[5rem] w-[5rem] rounded-full bg-cover bg-center"
+                            className="size-[5rem] min-w-[5rem] rounded-full bg-cover bg-center"
                         />
 
                         <div className="flex w-full flex-col items-center gap-[0.625rem] sm:items-start">

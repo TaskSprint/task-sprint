@@ -14,7 +14,7 @@ const EmptyStar = () => (
 
 interface StarRatingProps {
     maxRating: number;
-    onRatingChange: (rating: number) => void;
+    onRatingChange?: (rating: number) => void;
 }
 
 const MarkStarRating: React.FC<StarRatingProps> = ({ maxRating, onRatingChange }) => {
@@ -23,7 +23,7 @@ const MarkStarRating: React.FC<StarRatingProps> = ({ maxRating, onRatingChange }
 
     const handleClick = (index: number) => {
         setRating(index + 1);
-        onRatingChange(index + 1); // Call the function to pass the new rating
+        onRatingChange?.(index + 1); // Call the function to pass the new rating
     };
 
     const handleMouseEnter = (index: number) => {

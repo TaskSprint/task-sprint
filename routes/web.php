@@ -23,7 +23,7 @@ Route::localized(function () {
         ]);
     })->name('sub-category');
 
-    Route::get('/sub-preview', fn () => Inertia::render('SubCategoryPreview'));
+    Route::get('/sub-preview', fn() => Inertia::render('SubCategory'));
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
@@ -63,6 +63,17 @@ Route::localized(function () {
             return Inertia::render('Profile/Archive');
         })->name('profile.archive');
 
+        Route::get('/task/{id}', function ($id) {
+            return Inertia::render('Task', ['id' => $id]);
+        })->name('task.show');
+
+        Route::get('/profile/general-info', function () {
+            return Inertia::render('Profile/GeneralInfo');
+        })->name('profile.general-info');
+
+        Route::get('/profile/become-employee', function () {
+            return Inertia::render('Profile/BecomeEmployee');
+        })->name('profile.become-employee');
 
         Route::get('/task/{id}', function ($id) {
             return Inertia::render('Task', ['id' => $id]);
