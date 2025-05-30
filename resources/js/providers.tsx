@@ -11,7 +11,7 @@ export function Providers({ children }: Readonly<{ children: ReactNode }>) {
             <HeroUIProvider
                 navigate={(path: string, options?: RouterOptions) => router.visit(path, options)}
             >
-                <ToastProvider />
+                <ToastProvider placement="top-center" toastOffset={80} />
                 <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
                     {children}
                 </NextThemesProvider>

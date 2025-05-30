@@ -2,7 +2,7 @@
 
 return [
     'top-employees' => 'ТОП-специалистов в этой категории',
-    'last-visit' => 'Был(а) на сайте :absence назад',
+    'last-visit' => 'Был(а) на сайте',
     'offer' => 'Предложить работу',
     'reviews' => 'отзывов',
     'positive' => 'положительных',
@@ -21,7 +21,7 @@ return [
     'add-select' => 'Выберите файл',
     'add-title' => 'Добавить файл',
     'add-abort' => 'Отменить',
-    'add-download' => 'Загрузить',
+    'add-upload' => 'Загрузить',
     'order-address' => 'Адрес выполнения заказа',
     'city' => 'Город',
     'district' => 'Район',
