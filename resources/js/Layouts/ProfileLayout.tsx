@@ -88,7 +88,7 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         tab: 'max-w-fit px-[0.75rem] ',
                     }}
                     variant="underlined"
-                    selectedKey={tabs.find((item) => current(item.link))!.link}
+                    selectedKey={tabs.find((item) => current(item.link))?.link ?? null}
                 >
                     {tabs.map((tab) => (
                         <Tab
