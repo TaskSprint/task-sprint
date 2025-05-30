@@ -8,18 +8,26 @@ import MynauiShare from '~icons/mynaui/share';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import { addToast } from '@heroui/toast';
 import React from 'react';
-import { useRouter } from '@/hooks/useRouter';
+import { cn } from '@heroui/react';
+import { usePageTransition } from '@/hooks/usePageTransition';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const { current, route } = useRouter();
     const profileLink = `${window.location.origin}/profile`;
+    const transitioning = usePageTransition({ transitionElement: 'user', segmentIndex: 0 });
 
     return (
         <div className="item-center bg-surface/50 mx-auto flex h-full w-full flex-col gap-8 sm:p-6 2xl:max-w-[96rem] 2xl:flex-row 2xl:p-8">
-            <main className="w-full">{children}</main>
+            <main
+                className={cn(
+                    'w-full',
+                    transitioning ? 'animate-page-fade-out' : 'animate-page-fade-in',
+                )}
+            >
+                {children}
+            </main>
 
-            <div className="flex flex-col 2xl:flex-row py-[1rem] h-full">
+            <div className="flex h-full flex-col py-[1rem] 2xl:flex-row">
                 <Divider className="2xl:w-divider bg-muted 2xl:h-full" />
 
                 <div className="bg-surface flex flex-col px-9 pb-12 sm:rounded-b-[2rem] 2xl:max-w-min 2xl:rounded-r-[2rem] 2xl:rounded-bl-none">
