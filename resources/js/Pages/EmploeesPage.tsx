@@ -4,8 +4,10 @@ import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import {  Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 import EmployeeCard from '@/Components/EmployeeCard';
+import { BreadcrumbItem, Breadcrumbs } from '@heroui/breadcrumbs';
+import SubCategoryModel from '@/types/models/sub-category';
 
-export function EmployeesPage() {
+export function EmployeesPage({ subCategory }: { subCategory: SubCategoryModel }) {
     let { t } = useLaravelReactI18n();
 
     let date1 = new Date('2025-05-26T14:00:00Z')
@@ -63,14 +65,23 @@ export function EmployeesPage() {
 
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
-            <div className="w-full items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
+            <div className="w-full min-h-[3.375rem] h-fit  items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
+               <Breadcrumbs className="px-10 text-[1rem] font-normal">
+                    <BreadcrumbItem color="foreground">
+                        {subCategory.category?.name.current}
+                    </BreadcrumbItem>
+                    <BreadcrumbItem color="foreground">{subCategory.name.current}</BreadcrumbItem>
+                </Breadcrumbs>
             </div>
             <div
-                className="mx-24 flex h-[3.375rem] w-full max-w-[78.5rem] items-center justify-between bg-[#FFFFFF] px-3 py-1 shadow dark:bg-[#373737] dark:text-gray-500">
-                </div>
+                className="mx-24 flex min-h-[3.375rem] h-fit w-full max-w-[78.5rem] items-center justify-between bg-[#FFFFFF] px-3 py-1 shadow dark:bg-[#373737] dark:text-gray-500">
+                <h3 className="p-3 text-[1rem] font-normal dark:text-gray-300">{t('sub-category.filter-contractors')}</h3>
+                <h3 className="p-3 text-[1rem] font-normal dark:text-gray-300">{t('sub-category.sort')}</h3>
+            </div>
+
             <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-start">
                 <div
-                    className="flex w-full max-w-[53.25rem] flex-col items-center justify-center gap-8 p-4 dark:border-r-white dark:border-r-1">
+                    className="flex w-full max-w-[53.25rem] flex-col items-center justify-center gap-5 p-8 dark:border-r-white dark:border-r-1">
                     <EmployeeCard />
                     <EmployeeCard />
                     <EmployeeCard />
@@ -83,27 +94,8 @@ export function EmployeesPage() {
                     </div>
                 </div>
                 <div className="flex h-full w-fit flex-col items-center justify-start gap-3 bg-white pb-32 shadow dark:bg-transparent">
-                    <div className="pl-13 pr-3 mt-6 flex flex-col justify-center gap-2.5">
-                        <h2 className="mx-auto items-center pl-2 text-center text-xl font-semibold dark:text-white">
-                            {t('sub-category.top-specialist')}
-                        </h2>
-                        <div className="flex flex-col gap-2.5">
-                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } />
-                            <FavoriteEmployeesSM item={1} photo={"https://i.pravatar.cc/150?u=a04258114e29026702d"} lastVisit={ new Date(date3)} name={"Ткач П."} positiveReviews={2645} totalReviews={ 1727 } />
-                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } />
-                            <FavoriteEmployeesSM item={1} photo={"https://i.pravatar.cc/150?u=a04258114e29026702d"} lastVisit={ new Date(date3)} name={"Ткач П."} positiveReviews={2645} totalReviews={ 1727 } />
-                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } />
-                            <FavoriteEmployeesSM item={1} photo={"https://i.pravatar.cc/150?u=a04258114e29026702d"} lastVisit={ new Date(date3)} name={"Ткач П."} positiveReviews={2645} totalReviews={ 1727 } />
-
-                        </div>
-
-                        <h3 className="href='#' text-center text-xl font-medium text-[#A7A7A7] underline">
-                            {t('sub-category.more')}
-                        </h3>
-                        <hr className="border-gray-700 border-1 w-full min-w-[19.25rem]" />
-                    </div>
                     <div>
-                        <div className="dark:bg-none flex justify-start items-start size-fit">
+                        <div className="dark:bg-none flex justify-start items-start size-fit pt-10">
                             <SubCategoryStandalone  />
                         </div>
                     </div>

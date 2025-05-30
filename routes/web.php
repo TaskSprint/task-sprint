@@ -23,8 +23,10 @@ Route::localized(function () {
         ]);
     })->name('sub-category');
 
-    Route::get('/employees', function () {
-        return Inertia::render('EmploeesPage'); // 'EmployeesPage' — имя React-компонента
+    Route::get('/employees/{subCategory}', function (SubCategory $subCategory) {
+        return Inertia::render('EmploeesPage', [
+            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks'))
+        ]); // 'EmployeesPage' — имя React-компонента
     })->name('employees');
 
 
