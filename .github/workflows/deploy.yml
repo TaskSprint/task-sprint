@@ -79,7 +79,7 @@ jobs:
           USER: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           TARGET: ${{ secrets.DEPLOY_PATH }}
-          ARGS: "-avz --exclude=.git --exclude=storage --exclude=public/storage --exclude=.env"
+          ARGS: "-avz --exclude=.git --exclude=node_modules --exclude=storage --exclude=public/storage --exclude=.env"
 
       - name: Laravel Cache and Optimizations
         uses: appleboy/ssh-action@v1.2.2
