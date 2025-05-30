@@ -59,8 +59,8 @@ const StarRating: React.FC<StarRatingProps> = ({ totalReviews, positiveReviews }
 
     return (
         <div className="flex flex-col items-center gap-1">
-            <div className="flex gap-1">
-                {Array.from({ length: totalReviews }, (_, i) => {
+            <div className="flex">
+                {Array.from({ length: 5 }, (_, i) => {
                     if ((i + 1) * 2 <= roundedPercent) {
                         return <FullStar key={i} />;
                     } else if (

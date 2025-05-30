@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Resources\SubCategoryResource;
+use App\Models\SubCategory;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,16 +17,28 @@ Route::localized(function () {
 
     Route::get('/', [MainController::class, 'index'])->name('home');
 
+    Route::get('/sub-category/{subCategory}', function (SubCategory $subCategory) {
+        return Inertia::render('SubCategory', [
+            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks')),
+        ]);
+    })->name('sub-category');
+
+    Route::get('/sub-preview', fn () => Inertia::render('SubCategoryPreview'));
+
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
     Route::delete('/category-test/{category}', [CategoryTestController::class, 'destroy'])->name('category-test.destroy');
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Dashboard');
+        })->name('dashboard');
 
-    Route::middleware('auth')->group(function () {
+        Route::get('/task-creation', function () {
+            return Inertia::render('TaskCreation');
+        })->name('task-creation');
+
         Route::get('/file-test', [FileTestController::class, 'index'])->name('file-test.index');
         Route::post('/file-test', [FileTestController::class, 'update'])
             ->name('file-test.update');
