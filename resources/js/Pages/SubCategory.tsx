@@ -98,17 +98,13 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
                             {t('sub-category.top-specialist')}
                         </h2>
                         <div className="flex flex-col gap-2.5">
-                            {bannersSM.map((banner) => (
-                                <FavoriteEmployeesSM
-                                    key={banner.item}
-                                    item={banner.item}
-                                    name={banner.name}
-                                    photo={banner.photo}
-                                    totalReviews={banner.totalReviews}
-                                    positiveReviews={banner.positiveReviews}
-                                    lastVisit={banner.lastVisit}
-                                />
-                            ))}
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+                            <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+
                         </div>
 
                         <h3 className="href='#' text-center text-xl font-medium text-[#A7A7A7] underline">

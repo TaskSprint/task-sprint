@@ -15,9 +15,9 @@ interface FavoriteEmployeeSMProps {
 }
 
 
-const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, photo,totalReviews, positiveReviews, lastVisit}) => {
+const FavoriteEmployeesSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, photo,totalReviews, positiveReviews, lastVisit}) => {
 
-    const itemiId = item;
+    const itemId = item;
     const nameBanner = name;
     const photoBanner = photo;
     const totalReviewsBanner = totalReviews;
@@ -33,7 +33,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                 <div>
                     <Avatar
                         className="aspect-square size-21.75 content-start justify-start"
-                        src={photoBanner}
+                        src={photo}
                         as={Link}
                         href={"#"}
                     />
@@ -46,7 +46,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                                 href="#"
                             >
                                 <div className="inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap text-black dark:text-white">
-                                    {nameBanner}
+                                    {name}
                                 </div>
                             </Link>
                         </h2>
@@ -56,23 +56,23 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
                         <h3 className="text-muted content-start font-medium">
                             <p>{t('task-creation.last-visit')} </p>
                         </h3>
-                        <AbsenceTime lastVisit={lastVisitBanner} />
+                        <AbsenceTime lastVisit={lastVisit} />
                     </div>
                     <div className="flex flex-row items-center gap-2.5 font-medium">
                         <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">{totalReviewsBanner}</h2>
+                            <h2 className="text-[1.25rem] dark:text-white">{totalReviews}</h2>
                             <h3 className="text-primary text-[0.75rem]">
                                 {t('task-creation.reviews')}
                             </h3>
                         </div>
                         <Divider className="bg-primary" orientation="vertical" />
                         <div className="flex flex-col">
-                            <h2 className="text-[1.25rem] dark:text-white">{Math.round((positiveReviewsBanner/totalReviewsBanner)*100)}%</h2>
+                            <h2 className="text-[1.25rem] dark:text-white">{Math.round((positiveReviews/totalReviews)*100)}%</h2>
                             <h3 className="text-[0.75rem] text-gray-500 dark:text-[#A7A7A7]">
                                 {t('task-creation.positive')}
                             </h3>
                         </div>
-                        <div className="text-white dadk:text-[#313131] text-[0.02rem]">{itemiId}</div>
+                        <div className="text-white dadk:text-[#313131] text-[0.02rem]">{item}</div>
                     </div>
                 </div>
             </div>
@@ -90,5 +90,5 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({ item , name, ph
     );
 };
 
-export default FavoriteEmployeeSM;
+export default FavoriteEmployeesSM;
 

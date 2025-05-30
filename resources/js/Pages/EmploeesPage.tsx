@@ -7,7 +7,7 @@ import {  Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 import EmployeeCard from '@/Components/EmployeeCard';
 
-export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
+export function EmployeesPage() {
     let { t } = useLaravelReactI18n();
 
     let date1 = new Date('2025-05-26T14:00:00Z')
@@ -66,18 +66,10 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
     return (
         <div className="flex h-full w-full flex-col items-center justify-center">
             <div className="w-full items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
-                <Breadcrumbs className="px-10 text-[1rem] font-normal">
-                    <BreadcrumbItem color="foreground">
-                        {subCategory.category?.name.current}
-                    </BreadcrumbItem>
-                    <BreadcrumbItem color="foreground">{subCategory.name.current}</BreadcrumbItem>
-                </Breadcrumbs>
             </div>
             <div
                 className="mx-24 flex h-[3.375rem] w-full max-w-[78.5rem] items-center justify-between bg-[#FFFFFF] px-3 py-1 shadow dark:bg-[#373737] dark:text-gray-500">
-                <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.filter')}</h3>
-                <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.sort')}</h3>
-            </div>
+                </div>
             <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-start">
                 <div
                     className="flex w-full max-w-[53.25rem] flex-col items-center justify-center gap-8 p-4 dark:border-r-white dark:border-r-1">

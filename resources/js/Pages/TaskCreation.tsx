@@ -37,6 +37,7 @@ export default function TaskCreationPage() {
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
     const [selected3, setSelected3] = React.useState('option-1');
+    let date3 = new Date('2025-05-01T09:00:00Z')
 
     const cities = [
         { key: 'kyiv', label: 'Київ' },
@@ -340,21 +341,16 @@ export default function TaskCreationPage() {
                     {t('task-creation.top-employees')}
                 </h3>
                 <div className="hidden flex-col gap-6.25 xl:flex">
-                    {Array.from({ length: 6 }).map((_, i) => (
-                        <FavoriteEmployeesSM key={i} />
-                    ))}
+                    <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
+
                 </div>
-                <Carousel className="w-full xl:hidden">
-                    <CarouselContent className="-ml-4">
-                        {Array.from({ length: 6 }).map((_, i) => (
-                            <CarouselItem key={i} className="w-fit basis-2/3 pl-4">
-                                <FavoriteEmployeesSM />
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                </Carousel>
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
+
                 <Link
                     href="#"
                     underline="always"
