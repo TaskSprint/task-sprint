@@ -2,7 +2,7 @@
 
 return [
     'top-employees' => 'TOP specialists in this category',
-    'last-visit' => 'Was on site :absence back',
+    'last-visit' => 'Was on site',
     'offer' => 'Offer a job',
     'reviews' => 'reviews',
     'positive' => 'positive',
@@ -20,7 +20,7 @@ return [
     'add-select' => 'Select file',
     'add-title' => 'Add file',
     'add-abort' => 'Cancel',
-    'add-download' => 'Download',
+    'add-upload' => 'Upload',
     'order-address' => 'Order fulfillment address',
     'city' => 'City',
     'district' => 'District',

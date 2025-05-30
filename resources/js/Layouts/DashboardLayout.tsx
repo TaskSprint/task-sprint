@@ -5,10 +5,12 @@ import { cn } from '@heroui/react';
 import { Divider } from '@heroui/divider';
 import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { usePageTransition } from '@/hooks/usePageTransition';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
     const { t } = useLaravelReactI18n();
     const { current, route } = useRouter();
+    const transitioning = usePageTransition({ segmentIndex: 1 });
 
     const tabs = [
         {
@@ -50,7 +52,14 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 
             <Divider className="bg-muted" />
 
-            <div className="w-full pt-8 2xl:pb-12">{children}</div>
+            <div
+                className={cn(
+                    'w-full pt-8 2xl:pb-12',
+                    transitioning ? 'animate-page-fade-out' : 'animate-page-fade-in',
+                )}
+            >
+                {children}
+            </div>
         </main>
     );
 }
