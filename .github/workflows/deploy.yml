@@ -105,5 +105,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            php artisan migrate --force
-            php artisan db:seed --class=DatabaseSeeder --force
+            php artisan migrate --force --silent
+            php artisan db:seed --class=DatabaseSeeder --force --silent
