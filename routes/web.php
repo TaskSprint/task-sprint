@@ -23,8 +23,16 @@ Route::localized(function () {
         ]);
     })->name('sub-category');
 
+    Route::get('/employees', function () {
+        return Inertia::render('EmploeesPage'); // 'EmployeesPage' — имя React-компонента
+    })->name('employees');
+
+
+
+
     Route::get('/sub-preview', fn () => Inertia::render('SubCategoryPreview'));
 
+    Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
