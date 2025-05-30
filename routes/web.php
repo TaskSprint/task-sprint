@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Resources\SubCategoryResource;
+use App\Models\SubCategory;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,6 +16,14 @@ Route::localized(function () {
     })->name('support');
 
     Route::get('/', [MainController::class, 'index'])->name('home');
+
+    Route::get('/sub-category/{subCategory}', function (SubCategory $subCategory) {
+        return Inertia::render('SubCategory', [
+            "subCategory" => new SubCategoryResource($subCategory->load('category', 'tasks')),
+        ]);
+    })->name('sub-category');
+
+    Route::get('/sub-preview', fn() => Inertia::render('SubCategory'));
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
     Route::post('/category-test', [CategoryTestController::class, 'store'])->name('category-test.store');
@@ -52,6 +62,23 @@ Route::localized(function () {
         Route::get('/profile/archive', function () {
             return Inertia::render('Profile/Archive');
         })->name('profile.archive');
+
+        Route::get('/task/{id}', function ($id) {
+            return Inertia::render('Task', ['id' => $id]);
+        })->name('task.show');
+
+        Route::get('/profile/general-info', function () {
+            return Inertia::render('Profile/GeneralInfo');
+        })->name('profile.general-info');
+
+        Route::get('/profile/become-employee', function () {
+            return Inertia::render('Profile/BecomeEmployee');
+        })->name('profile.become-employee');
+
+        Route::get('/task/{id}', function ($id) {
+            return Inertia::render('Task', ['id' => $id]);
+        })->name('task.show');
+
     });
 });
 
