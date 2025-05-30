@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import {Breadcrumbs, BreadcrumbItem} from '@heroui/breadcrumbs';
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
-import SubCategoryModel from '@/types/models/sub-category';
 import {  Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 import EmployeeCard from '@/Components/EmployeeCard';
@@ -115,4 +113,4 @@ export function EmployeesPage() {
     );
 }
 
-export default SubCategory;
+export default EmployeesPage;
