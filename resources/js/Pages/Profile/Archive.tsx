@@ -2,11 +2,10 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import UserLayout from '@/Layouts/UserLayout';
+import DashboardLayout from '@/Layouts/DashboardLayout';
 import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
 import { useRouter } from '@/hooks/useRouter';
-import { Image } from '@heroui/react';
-import DashboardLayout from "@/Layouts/DashboardLayout";
+import UserLayout from '@/Layouts/UserLayout';
 
 export default function Archive() {
     const { t } = useLaravelReactI18n();
@@ -41,7 +40,7 @@ export default function Archive() {
 
     return (
         <>
-            <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] py-[2.5rem]">
+            <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] pb-[2.5rem]">
                 <div className="flex h-[2.75rem] w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('task-archive.title')}
                 </div>
@@ -62,17 +61,17 @@ export default function Archive() {
 
             <Divider className="bg-muted" />
 
-            <div className="2xl:px-[6.25rem]">
-                <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem]">
+            <div className="px-9">
+                <div className="flex flex-col items-start justify-center gap-[1.875rem] py-[2.5rem] last:pb-0">
                     {tasks.map((task) => (
                         <div
                             className="flex w-full flex-col items-center gap-[1.25rem] sm:flex-row sm:items-start"
                             key={task.id}
                         >
-                            <Image
+                            <img
                                 src={task.image}
                                 alt={task.title}
-                                className="h-[5rem] w-[5rem] min-w-[5rem] rounded-full bg-cover bg-center"
+                                className="h-[5rem] w-[5rem] rounded-full"
                             />
 
                             <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">
