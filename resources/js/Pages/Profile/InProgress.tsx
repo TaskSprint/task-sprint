@@ -2,7 +2,7 @@ import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Divider, Image, Link } from '@heroui/react';
 import React from 'react';
-import { useRouter } from '../../hooks/useRouter';
+import { useRouter } from '@/hooks/useRouter';
 import UserLayout from '@/Layouts/UserLayout';
 import AppLayout from '@/Layouts/AppLayout';
 import DashboardLayout from '@/Layouts/DashboardLayout';
@@ -57,7 +57,9 @@ export default function InProgress() {
                                 })}
                             </div>
 
-                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
+                            <Button className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
+                                as={Link}
+                                href={route('task.show', task.id)}>
                                 {t('tasks-in-progress.view_task')}
                             </Button>
                         </div>
