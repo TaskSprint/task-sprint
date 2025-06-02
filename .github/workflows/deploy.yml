@@ -64,7 +64,6 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             if [ -f "artisan" ]; then
-              php artisan cache:clear
               php artisan config:clear
               php artisan route:clear
               php artisan view:clear
