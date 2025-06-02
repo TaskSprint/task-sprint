@@ -18,7 +18,7 @@ createInertiaApp({
             `./Pages/${name}.tsx`,
             import.meta.glob('./Pages/**/*.tsx'),
         );
-        
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         page.then((module: any) => {
             module.default.layout =
