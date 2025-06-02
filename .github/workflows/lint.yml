@@ -32,7 +32,6 @@ jobs:
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
-        if: ${{ steps.prettify.outcome == 'success' }}
         with:
           commit_message: "[BOT] 🔧 Auto lint fix"
           push_options: ""
