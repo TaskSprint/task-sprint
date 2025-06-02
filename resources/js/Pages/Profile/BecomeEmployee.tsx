@@ -74,10 +74,8 @@ export default function BecomeEmployee() {
 
                 <div className="flex flex-col items-center gap-[1.0625rem] text-[0.9375rem] leading-[1.25rem] text-muted">
                     <div className="relative w-[9.625rem] h-[9.625rem] group cursor-pointer">
-                        {/* Аватарка */}
                         <Avatar className="w-full h-full" />
 
-                        {/* Іконка по центру при наведенні */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <MaterialSymbolsUpload className="w-[3.5rem] h-[3.5rem] text-white" />
                         </div>
@@ -90,16 +88,16 @@ export default function BecomeEmployee() {
 
 
             <div className="flex flex-col items-start gap-[1.25rem] text-[1.5rem] leading-[2.0625rem] font-normal">
-                {/* Ім’я користувача та виконавця */}
 
-                <div className="grid grid-cols-[22rem_1fr] gap-y-6 w-full">
+                <div className="grid grid-cols-[22rem_1fr] gap-[1.25rem] w-full">
 
                     {/* 1. Ім’я користувача */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.name')}</span>
-                        <button onClick={() => setEditModal({ field: "name", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "name", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -115,9 +113,10 @@ export default function BecomeEmployee() {
                     {/* 2. Username */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.username')}</span>
-                        <button onClick={() => setEditModal({ field: "username", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "username", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem] text-primary">
@@ -131,9 +130,10 @@ export default function BecomeEmployee() {
                     {/* 3. Телефон */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.phone')}</span>
-                        <button onClick={() => setEditModal({ field: "phone", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "phone", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -147,9 +147,10 @@ export default function BecomeEmployee() {
                     {/* 4. Пошта */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.email')}</span>
-                        <button onClick={() => setEditModal({ field: "email", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "email", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -163,9 +164,10 @@ export default function BecomeEmployee() {
                     {/* 5. Локація */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.city')}</span>
-                        <button onClick={() => setEditModal({ field: "city", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "city", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -179,9 +181,10 @@ export default function BecomeEmployee() {
                     {/* 6. Години */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.preferred_hours')}</span>
-                        <button onClick={() => setEditModal({ field: "preferred_hours", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "preferred_hours", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -196,9 +199,10 @@ export default function BecomeEmployee() {
                     {/* 7. Спеціальність */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.specialization')}</span>
-                        <button onClick={() => setEditModal({ field: "specialization", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "specialization", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -213,9 +217,10 @@ export default function BecomeEmployee() {
                     {/* 8. Опис */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.about_me')}</span>
-                        <button onClick={() => setEditModal({ field: "about_me", isOpen: true })}>
+                        <Button onPress={() => setEditModal({ field: "about_me", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
@@ -230,9 +235,10 @@ export default function BecomeEmployee() {
                     {/* 9. Освіта */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.education')}</span>
-                        <button onClick={() => setEducationModalOpen({ field: "education", isOpen: true })}>
+                        <Button onPress={() => setEducationModalOpen({ field: "education", isOpen: true })}
+                                variant="light">
                             <LucidePencil />
-                        </button>
+                        </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
