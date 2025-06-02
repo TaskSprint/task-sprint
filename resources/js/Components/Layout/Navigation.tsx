@@ -1,18 +1,18 @@
-import { Avatar, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
-import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import SearchBar from '@/Components/Layout/SearchBar';
+import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
 import Button from '@/Components/Shared/Button';
+import { useRouter } from '@/hooks/useRouter';
+import { Avatar, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
+import { usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import SolarBellOutline from '~icons/solar/bell-outline';
+import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
+import SolarDocumentLinear from '~icons/solar/document-linear';
 import SolarKeyMinimalisticSquare3Linear from '~icons/solar/key-minimalistic-square-3-linear';
 import SolarLogin2Linear from '~icons/solar/login-2-linear';
-import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
-import { useRouter } from '@/hooks/useRouter';
-import { usePage } from '@inertiajs/react';
 import SolarUserCircleLinear from '~icons/solar/user-circle-linear';
-import SolarBellOutline from '~icons/solar/bell-outline';
-import SolarDocumentLinear from '~icons/solar/document-linear';
-import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
 
 export default function Navigation() {
     const { t } = useLaravelReactI18n();

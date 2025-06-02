@@ -1,18 +1,18 @@
 import { Head } from '@inertiajs/react';
 
-import React, { useEffect } from 'react';
 import Categories from '@/Components/Main/Categories';
 import { Info } from '@/Components/Main/Info';
 import LastTasks from '@/Components/Main/LastTasks/LastTasks';
 import Roles from '@/Components/Main/Roles';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Title } from '@/Components/Main/Title';
-import Category from '@/types/models/category';
-import { PageProps } from '@/types';
-import Task from '@/types/models/task';
 import Support from '@/Components/Main/Support';
-import { parseAsNumberLiteral, useQueryState } from 'nuqs';
+import { Title } from '@/Components/Main/Title';
+import { PageProps } from '@/types';
+import Category from '@/types/models/category';
+import Task from '@/types/models/task';
 import { addToast } from '@heroui/toast';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { parseAsNumberLiteral, useQueryState } from 'nuqs';
+import { useEffect } from 'react';
 
 const ToastTitle = () => {
     const { t } = useLaravelReactI18n();
@@ -25,9 +25,9 @@ const ToastDescription = () => {
 };
 
 export default function Main({
-                                 categories,
-                                 tasks,
-                             }: PageProps<{
+    categories,
+    tasks,
+}: PageProps<{
     categories: Category[];
     tasks: Task[];
 }>) {
@@ -57,7 +57,7 @@ export default function Main({
                 },
             });
         }
-    }, [verified]);
+    }, [setVerified, verified]);
 
     return (
         <>

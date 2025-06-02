@@ -1,12 +1,19 @@
 {
+    "singleAttributePerLine": false,
+    "htmlWhitespaceSensitivity": "css",
     "printWidth": 100,
     "semi": true,
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "all",
     "plugins": [
+        "prettier-plugin-organize-imports",
         "prettier-plugin-blade",
         "prettier-plugin-tailwindcss"
+    ],
+    "tailwindFunctions": [
+        "clsx",
+        "cn"
     ],
     "overrides": [
         {
@@ -15,6 +22,12 @@
             ],
             "options": {
                 "parser": "blade"
+            }
+        },
+        {
+            "files": "**/*.yml",
+            "options": {
+                "tabWidth": 2
             }
         }
     ]

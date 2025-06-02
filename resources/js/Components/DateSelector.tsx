@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import Button from '@/Components/Shared/Button';
 import { cn } from '@heroui/react';
+import { usePage } from '@inertiajs/react';
+import { addDays, startOfDay } from 'date-fns';
+import { useEffect, useState } from 'react';
 import {
     Carousel,
     CarouselApi,
@@ -8,9 +11,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from './Shared/Carousel';
-import Button from '@/Components/Shared/Button';
-import { addDays, startOfDay } from 'date-fns';
-import { usePage } from '@inertiajs/react';
 
 export default function DateSelector() {
     const [offset, setOffset] = useState(0);
@@ -22,19 +22,13 @@ export default function DateSelector() {
         startOfDay(addDays(new Date(), i)),
     );
 
-    const changeOffset = (newOffset: number) => {
-        if (newOffset >= 0) {
-            setOffset(newOffset);
-        }
-    };
-
     useEffect(() => {
         if (api) {
             const handleScroll = () => {
                 const lastSlide = api.slideNodes().length - 1;
                 const isLastSlide = api.slidesInView().indexOf(lastSlide) !== -1;
-                if (isLastSlide) {
-                    changeOffset(offset + 1);
+                if (isLastSlide && offset >= 0) {
+                    setOffset(offset + 1);
                 }
             };
             api.on('slidesInView', handleScroll);
@@ -42,7 +36,7 @@ export default function DateSelector() {
                 api.off('slidesInView', handleScroll);
             };
         }
-    }, [api, days, offset, changeOffset]);
+    }, [api, days, offset]);
 
     return (
         <div className="@container flex w-full justify-center">

@@ -2,11 +2,11 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import { useRouter } from '@/hooks/useRouter';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
-import { FormEventHandler, useRef } from 'react';
-import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { FormEventHandler, useRef } from 'react';
 
 export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
     const { route } = useRouter();

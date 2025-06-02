@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
 import { Textarea } from '@heroui/react';
+import { Fragment, useState } from 'react';
 
 interface DescriptionModalProps {
     isOpen: boolean;
@@ -43,7 +43,7 @@ export default function DescriptionModal({ isOpen, onClose, onSave }: Descriptio
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-surface p-6 text-center align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="bg-surface w-full max-w-md transform overflow-hidden rounded-xl p-6 text-center align-middle shadow-xl transition-all">
                                 <Dialog.Title className="text-lg font-medium dark:text-white">
                                     Додатковий опис
                                 </Dialog.Title>
@@ -59,24 +59,24 @@ export default function DescriptionModal({ isOpen, onClose, onSave }: Descriptio
                                     />
                                 </div>
 
-                                    <div className="mt-4 flex items-center justify-center gap-20">
-                                        <button
-                                            onClick={onClose}
-                                            className="px-4 py-2 text-sm bg-none text-gray-500 rounded hover:text-primary cursor-pointer"
-                                        >
-                                            Скасувати
-                                        </button>
-                                        <button
-                                            onClick={handleSave}
-                                            className="px-4 py-2 text-sm text-primary rounded hover:text-gray-500 dark:hover:text-white cursor-pointer"
-                                        >
-                                            Зберегти
-                                        </button>
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
-                        </div>
+                                <div className="mt-4 flex items-center justify-center gap-20">
+                                    <button
+                                        onClick={onClose}
+                                        className="hover:text-primary cursor-pointer rounded bg-none px-4 py-2 text-sm text-gray-500"
+                                    >
+                                        Скасувати
+                                    </button>
+                                    <button
+                                        onClick={handleSave}
+                                        className="text-primary cursor-pointer rounded px-4 py-2 text-sm hover:text-gray-500 dark:hover:text-white"
+                                    >
+                                        Зберегти
+                                    </button>
+                                </div>
+                            </Dialog.Panel>
+                        </Transition.Child>
                     </div>
+                </div>
             </Dialog>
         </Transition>
     );

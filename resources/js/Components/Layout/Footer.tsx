@@ -1,10 +1,10 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import MdiInstagram from '~icons/mdi/instagram';
-import MdiFacebook from '~icons/mdi/facebook';
-import MdiTwitter from '~icons/mdi/twitter';
-import MaterialSymbolsArrowForwardIosRounded from '~icons/material-symbols/arrow-forward-ios-rounded';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Link } from '@heroui/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import MaterialSymbolsArrowForwardIosRounded from '~icons/material-symbols/arrow-forward-ios-rounded';
+import MdiFacebook from '~icons/mdi/facebook';
+import MdiInstagram from '~icons/mdi/instagram';
+import MdiTwitter from '~icons/mdi/twitter';
 
 export function Footer() {
     const { t } = useLaravelReactI18n();

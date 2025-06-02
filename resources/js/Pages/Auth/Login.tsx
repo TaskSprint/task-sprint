@@ -1,12 +1,12 @@
 import Button from '@/Components/Shared/Button';
-import { Head, useForm } from '@inertiajs/react';
-import React, { FormEventHandler } from 'react';
-import { useRouter } from '@/hooks/useRouter';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import LogosGoogleIcon from '~icons/logos/google-icon';
-import LogosFacebook from '~icons/logos/facebook';
-import { Link } from '@heroui/react';
 import Input from '@/Components/Shared/Input';
+import { useRouter } from '@/hooks/useRouter';
+import { Link } from '@heroui/react';
+import { Head, useForm } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { FormEventHandler } from 'react';
+import LogosFacebook from '~icons/logos/facebook';
+import LogosGoogleIcon from '~icons/logos/google-icon';
 
 export default function Login({
     status,

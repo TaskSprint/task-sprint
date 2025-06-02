@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { router } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
+import { router } from '@inertiajs/react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function usePageTransition({
     transitionElement,

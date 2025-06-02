@@ -1,9 +1,9 @@
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { InertiaNuqsAdapter } from '@/Components/Adapters/InertiaNuqsAdapter';
 import { HeroUIProvider, ToastProvider } from '@heroui/react';
 import { router } from '@inertiajs/react';
 import { RouterOptions } from '@react-types/shared';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { ReactNode } from 'react';
-import { InertiaNuqsAdapter } from '@/Components/Adapters/InertiaNuqsAdapter';
 
 export function Providers({ children }: Readonly<{ children: ReactNode }>) {
     return (

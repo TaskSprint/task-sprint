@@ -12,13 +12,12 @@ type SubCategoryProps = {
 };
 
 export default function SubCategory({ subCategory }: SubCategoryProps) {
-const { total, categories, tags } = subCategory;
-
+    const { total, categories, tags } = subCategory;
 
     return (
-        <aside className="bg-gray-900 text-white p-4 space-y-6 w-72">
+        <aside className="w-72 space-y-6 bg-gray-900 p-4 text-white">
             <div>
-                <span className="text-teal-400 text-3xl font-bold">{total}</span>
+                <span className="text-3xl font-bold text-teal-400">{total}</span>
                 <p className="text-xs text-gray-400">Оголошень в цій категорії</p>
             </div>
             <hr className="border-gray-700" />
@@ -28,21 +27,24 @@ const { total, categories, tags } = subCategory;
                 <ul className="space-y-1">
                     <li className="text-gray-300">Всі послуги</li>
                     {categories.map((cat, idx) =>
-                        typeof cat === "string" ? (
-                            <li key={idx} className="flex items-center gap-1 text-gray-300 cursor-pointer">
+                        typeof cat === 'string' ? (
+                            <li
+                                key={idx}
+                                className="flex cursor-pointer items-center gap-1 text-gray-300"
+                            >
                                 <ChevronLeftIcon />
                                 {cat}
                             </li>
                         ) : (
                             <li key={idx}>
                                 <div className="text-white">{cat.title}</div>
-                                <ul className="pl-4 space-y-1 text-gray-400">
+                                <ul className="space-y-1 pl-4 text-gray-400">
                                     {cat.children.map((child, i) => (
                                         <li key={i}>{child}</li>
                                     ))}
                                 </ul>
                             </li>
-                        )
+                        ),
                     )}
                 </ul>
             </div>
@@ -50,15 +52,15 @@ const { total, categories, tags } = subCategory;
             <hr className="border-gray-700" />
 
             <div>
-                <div className="font-semibold text-white mb-2 text-sm">Також шукають</div>
+                <div className="mb-2 text-sm font-semibold text-white">Також шукають</div>
                 <div className="flex flex-wrap gap-2">
                     {tags.map((tag, idx) => (
                         <span
                             key={idx}
-                            className="border border-gray-500 rounded-full px-3 py-1 text-xs text-gray-200 hover:bg-gray-300 cursor-pointer"
+                            className="cursor-pointer rounded-full border border-gray-500 px-3 py-1 text-xs text-gray-200 hover:bg-gray-300"
                         >
-              {tag}
-            </span>
+                            {tag}
+                        </span>
                     ))}
                 </div>
             </div>

@@ -1,8 +1,8 @@
-import { PropsWithChildren } from 'react';
-import Navigation from '@/Components/Layout/Navigation';
 import { Footer } from '@/Components/Layout/Footer';
+import Navigation from '@/Components/Layout/Navigation';
 import { usePageTransition } from '@/hooks/usePageTransition';
 import { cn } from '@heroui/react';
+import { PropsWithChildren } from 'react';
 
 export default function AppLayout({ children }: Readonly<PropsWithChildren>) {
     const transitioning = usePageTransition({ segmentIndex: 0 });

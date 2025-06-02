@@ -1,7 +1,7 @@
-import { ComponentProps, ElementType, HTMLProps, ReactElement } from 'react';
 import { cn, forwardRef } from '@heroui/react';
-import DOMPurify from 'isomorphic-dompurify';
 import parse, { attributesToProps, DOMNode, domToReact, Element } from 'html-react-parser';
+import DOMPurify from 'isomorphic-dompurify';
+import { ComponentProps, ElementType, HTMLProps, ReactElement } from 'react';
 
 type ElementProps<T> = T extends ElementType ? ComponentProps<T> : HTMLProps<T>;
 
@@ -9,7 +9,7 @@ type SafeHtmlProps<T = HTMLElement> = Omit<ElementProps<T>, 'children'> & {
     html: string;
 };
 
-const SafeHtml = forwardRef<any, Omit<SafeHtmlProps, 'ref'>>(
+const SafeHtml = forwardRef<ElementType, Omit<SafeHtmlProps, 'ref'>>(
     ({ className, html, ...props }, ref) => {
         return parse(DOMPurify.sanitize(html), {
             replace: (domNode) => {

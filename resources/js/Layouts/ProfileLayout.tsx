@@ -1,15 +1,14 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React from 'react';
+import MarkStarRating from '@/Components/MarkStarRating';
+import { usePageTransition } from '@/hooks/usePageTransition';
 import { useRouter } from '@/hooks/useRouter';
 import { Avatar, cn, Tab, Tabs } from '@heroui/react';
-import MarkStarRating from '@/Components/MarkStarRating';
 import { Link } from '@inertiajs/react';
-import { usePageTransition } from '@/hooks/usePageTransition';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const profileLink = `${window.location.origin}/profile`;
-    const { current, route } = useRouter();
+    const { route, relativeCurrent } = useRouter();
     const transitioning = usePageTransition({ segmentIndex: 1 });
 
     const tabs = [
@@ -88,7 +87,7 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         tab: 'max-w-fit px-[0.75rem] ',
                     }}
                     variant="underlined"
-                    selectedKey={tabs.find((item) => current(item.link))!.link}
+                    selectedKey={relativeCurrent}
                 >
                     {tabs.map((tab) => (
                         <Tab

@@ -4,10 +4,10 @@ import InputLabel from '@/Components/InputLabel';
 import Modal from '@/Components/Modal';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
-import { useForm } from '@inertiajs/react';
-import { FormEventHandler, useRef, useState } from 'react';
 import { useRouter } from '@/hooks/useRouter';
+import { useForm } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { FormEventHandler, useRef, useState } from 'react';
 
 export default function DeleteUserForm({ className = '' }: { className?: string }) {
     const { route } = useRouter();

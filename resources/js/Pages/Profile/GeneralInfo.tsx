@@ -1,19 +1,19 @@
 import Button from '@/Components/Shared/Button';
+import AppLayout from '@/Layouts/AppLayout';
+import ProfileLayout from '@/Layouts/ProfileLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { useRouter } from '@/hooks/useRouter';
+import { Checkbox, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
-import UserLayout from '@/Layouts/UserLayout';
-import AppLayout from '@/Layouts/AppLayout';
-import { Checkbox, Link } from '@heroui/react';
-import MaterialSymbolsMailOutline from '~icons/material-symbols/mail-outline';
 import MaterialSymbolsAccountCircleFull from '~icons/material-symbols/account-circle-full';
-import MaterialSymbolsBuild from '~icons/material-symbols/build';
 import MaterialSymbolsAd from '~icons/material-symbols/ad';
-import MaterialSymbolsDistanceOutline from '~icons/material-symbols/distance-outline';
+import MaterialSymbolsBuild from '~icons/material-symbols/build';
 import MaterialSymbolsCreditCard from '~icons/material-symbols/credit-card';
-import MaterialSymbolsNotificationsOutline from '~icons/material-symbols/notifications-outline';
 import MaterialSymbolsDeleteOutline from '~icons/material-symbols/delete-outline';
-import ProfileLayout from '@/Layouts/ProfileLayout';
-import { useRouter } from '@/hooks/useRouter';
+import MaterialSymbolsDistanceOutline from '~icons/material-symbols/distance-outline';
+import MaterialSymbolsMailOutline from '~icons/material-symbols/mail-outline';
+import MaterialSymbolsNotificationsOutline from '~icons/material-symbols/notifications-outline';
 
 export default function GeneralInfo() {
     const { t } = useLaravelReactI18n();

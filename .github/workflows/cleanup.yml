@@ -56,3 +56,53 @@ jobs:
           skip_dirty_check: false
           branch: ${{ github.event.pull_request.head.ref }}
 
+  pint:
+    if: ${{ github.event.review.state == 'APPROVED' }}
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run Pint
+        id: pint_check
+        run: vendor/bin/pint --test
+        continue-on-error: true
+
+      - name: Add auto-pint label
+        id: add_auto_pint_label
+        if: ${{ steps.pint_check.outcome == 'failure' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["🖌️ auto pint"]
+            })
+
+      - name: Pint
+        id: pint
+        if: ${{ steps.add_auto_pint_label.outcome == 'success' }}
+        run: vendor/bin/pint
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ steps.pint.outcome == 'success' }}
+        with:
+          commit_message: "[BOT] 🖌️ Auto pint"
+          push_options: ""
+          skip_dirty_check: false
+          branch: ${{ github.event.pull_request.head.ref }}
