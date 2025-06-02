@@ -63,12 +63,14 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            php artisan cache:clear
-            php artisan config:clear
-            php artisan route:clear
-            php artisan view:clear
-            php artisan event:clear
-            php artisan optimize:clear
+            if [ -f "artisan" ]; then
+              php artisan cache:clear
+              php artisan config:clear
+              php artisan route:clear
+              php artisan view:clear
+              php artisan event:clear
+              php artisan optimize:clear
+            fi
 
       - name: Deploy to Server
         uses: up9cloud/action-rsync@master
@@ -79,7 +81,7 @@ jobs:
           USER: ${{ secrets.SSH_USER }}
           PASSWORD: ${{ secrets.SSH_PASSWORD }}
           TARGET: ${{ secrets.DEPLOY_PATH }}
-          ARGS: "-avz --exclude=.git --exclude=node_modules --exclude=storage --exclude=public/storage --exclude=.env"
+          ARGS: "-avz --include='/public/build' --include='/vendor' --exclude='.git' --filter='dir-merge,-n /.gitignore'"
 
       - name: Laravel Cache and Optimizations
         uses: appleboy/ssh-action@v1.2.2

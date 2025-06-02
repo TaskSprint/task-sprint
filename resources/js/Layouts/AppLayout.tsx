@@ -10,7 +10,7 @@ export default function AppLayout({ children }: Readonly<PropsWithChildren>) {
     return (
         <div className="grid min-h-dvh w-full grid-cols-1 grid-rows-[auto_1fr_auto]">
             <Navigation />
-            <main className="background-gradient min-h-[calc(100dvh-var(--spacing-navbar-height))] max-w-dvw overflow-x-auto">
+            <main className="background-gradient min-h-[calc(100dvh-var(--spacing-navbar-height))] max-w-dvw">
                 <div
                     className={cn(
                         'flex h-full w-full flex-col items-center justify-center',
