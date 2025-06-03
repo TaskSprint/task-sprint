@@ -64,12 +64,12 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser, Has
 
     public function tasks(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class, 'customer_id');
     }
 
     public function taskOrders(): HasMany
     {
-        return $this->hasMany(TaskOrder::class);
+        return $this->hasMany(TaskOrder::class, 'employee_id');
     }
 
     public function getFilamentAvatarUrl(): ?string
