@@ -29,7 +29,7 @@ class TaskOrder extends Model
         return $this->belongsTo(User::class, 'employee_id');
     }
 
-    public function review(): TaskOrder|HasOne
+    public function review(): HasOne
     {
         return $this->hasOne(Review::class, 'task_order_id');
     }
