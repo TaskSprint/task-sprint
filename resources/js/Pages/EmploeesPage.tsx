@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import {  Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 import EmployeeCard from '@/Components/EmployeeCard';
