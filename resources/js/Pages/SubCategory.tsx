@@ -8,12 +8,12 @@ import { Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 
 export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
-    let { t } = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
-    let date1 = new Date('2025-05-26T14:00:00Z');
-    let date2 = new Date('2025-03-11T19:00:00Z');
-    let date3 = new Date('2025-05-01T09:00:00Z');
-    let bannersSM = [
+    const date1 = new Date('2025-05-26T14:00:00Z');
+    const date2 = new Date('2025-03-11T19:00:00Z');
+    const date3 = new Date('2025-05-01T09:00:00Z');
+    const bannersSM = [
         {
             item: 1,
             name: 'Коваль Д.',

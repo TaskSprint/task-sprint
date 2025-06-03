@@ -1,7 +1,7 @@
-import React from 'react';
-import { Avatar } from '@heroui/react';
-import OneStarRatingSM from '@/Components/OneStarRatingSM';
 import AbsenceTime from '@/Components/AbsenceTime';
+import OneStarRatingSM from '@/Components/OneStarRatingSM';
+import { Avatar } from '@heroui/react';
+import React from 'react';
 
 interface EmployeeChipProps {
     item: number;
@@ -13,23 +13,23 @@ interface EmployeeChipProps {
     lastVisit: string | Date;
 }
 
-const StarIcon = ({ color }: { color: string }) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={color}>
-        <path
-            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2
-         9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-        />
-    </svg>
-);
-
-const EmptyStar = ({ color }: { color: string }) => (
-    <svg viewBox="0 0 24 24" fill="transparent" stroke={color} width="20" height="20">
-        <path
-            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2
-        9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-        />
-    </svg>
-);
+// const StarIcon = ({ color }: { color: string }) => (
+//     <svg width="20" height="20" viewBox="0 0 24 24" fill={color}>
+//         <path
+//             d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2
+//          9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+//         />
+//     </svg>
+// );
+//
+// const EmptyStar = ({ color }: { color: string }) => (
+//     <svg viewBox="0 0 24 24" fill="transparent" stroke={color} width="20" height="20">
+//         <path
+//             d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2
+//         9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+//         />
+//     </svg>
+// );
 const ReviewsChip: React.FC<EmployeeChipProps> = ({
     item,
     name,

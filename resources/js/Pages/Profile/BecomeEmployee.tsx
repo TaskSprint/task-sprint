@@ -1,24 +1,23 @@
+import DescriptionModal from '@/Components/DescriptionModal';
+import Button from '@/Components/Shared/Button';
+import UploadFileModal from '@/Components/UploadFileModal';
+import AppLayout from '@/Layouts/AppLayout';
+import ProfileLayout from '@/Layouts/ProfileLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { Avatar, Image, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React, { ReactNode, useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import Button from '@/Components/Shared/Button';
-import UserLayout from '@/Layouts/UserLayout';
-import ProfileLayout from '@/Layouts/ProfileLayout';
+import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
 import LucidePencil from '~icons/lucide/pencil';
-import { Image, Link } from '@heroui/react';
-import { Avatar } from '@heroui/react';
+import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
 import MaterialSymbolsUpload from '~icons/material-symbols/upload';
 import MdiEyeOutline from '~icons/mdi/eye-outline';
-import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
-import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
-import UploadFileModal from '@/Components/UploadFileModal';
-import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function BecomeEmployee() {
     const { t } = useLaravelReactI18n();
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isSaveChangesModalOpen, setIsSaveChangesModalOpen] = useState(false);
-    const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
+    const [, setUploadedFilename] = useState<string | null>(null);
     const [isUploadedFileModalOpen, setUploadedFileModalOpen] = useState(false);
 
     const [isEducationModalOpen, setEducationModalOpen] = useState(false);
