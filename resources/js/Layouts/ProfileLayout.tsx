@@ -4,7 +4,7 @@ import { useRouter } from '@/hooks/useRouter';
 import { Avatar, cn, Tab, Tabs } from '@heroui/react';
 import { Link } from '@inertiajs/react';
 import { usePageTransition } from '@/hooks/usePageTransition';
-import OneStarRating from "@/Components/OneStarRating";
+import OneStarRating from '@/Components/OneStarRating';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
@@ -71,23 +71,24 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         className="win-w-[5.875rem] h-[5.875rem] w-[5.875rem]"
                     ></Avatar>
 
-
                     <div className="flex flex-col text-[1.5rem] leading-[2.75rem] font-medium">
-
                         <div className="flex justify-between gap-[1.25rem]">
                             {user1.name}
-                            <OneStarRating totalReviews={user1.rating} positiveReviews={user1.rating-2} evaluationType={"task"} />
-
+                            <OneStarRating
+                                totalReviews={user1.rating}
+                                positiveReviews={user1.rating - 2}
+                                evaluationType={'task'}
+                            />
                         </div>
 
                         <div className="flex justify-between gap-[1.25rem]">
-                            <div className="text-[1.25rem] text-muted">{user1.email}</div>
-                            <OneStarRating totalReviews={user1.rating-1} positiveReviews={user1.rating-2} />
+                            <div className="text-muted text-[1.25rem]">{user1.email}</div>
+                            <OneStarRating
+                                totalReviews={user1.rating - 1}
+                                positiveReviews={user1.rating - 2}
+                            />
                         </div>
-
-
                     </div>
-
                 </div>
 
                 <Tabs

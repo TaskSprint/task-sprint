@@ -22,7 +22,6 @@ const formatTimeSince = (lastVisit: string | Date): string => {
     const years = Math.floor(days / 365); // упрощённо
     const nowTime = -1;
 
-
     if (years > 0) return `${years}`;
     if (months > 0) return `${months}`;
     if (weeks > 0) return `${weeks}`;
@@ -46,7 +45,6 @@ const formatNameTimeSince = (lastVisit: string | Date): string => {
     const months = Math.floor(days / 30); // упрощённо
     const years = Math.floor(days / 365); // упрощённо
 
-
     if (years === 1) return t('absence-time.year');
     if (months === 1) return t('absence-time.month');
     if (weeks === 1) return t('absence-time.week');
@@ -60,26 +58,22 @@ const formatNameTimeSince = (lastVisit: string | Date): string => {
     if (hours > 0) return t('absence-time.hours');
     if (minutes > 0) return t('absence-time.minutes');
     return t('absence-time.now');
-
 };
-
 
 const AbsenceTime: React.FC<AbsenceTimeProps> = ({ lastVisit }) => {
     const { t } = useLaravelReactI18n();
     const timePassed = formatTimeSince(lastVisit);
     const timeName = formatNameTimeSince(lastVisit);
 
-        if (timePassed === "-1") {
-            return (
-                <p>{timeName}</p>
-            );
-
-        } else {
-            return (
-                <p>{timePassed} {timeName}</p>
-            );
+    if (timePassed === '-1') {
+        return <p>{timeName}</p>;
+    } else {
+        return (
+            <p>
+                {timePassed} {timeName}
+            </p>
+        );
     }
-
 };
 
 export default AbsenceTime;

@@ -32,20 +32,24 @@ export default function Task() {
     const [showContactsCustomer, setContactsCustomer] = useState(false);
     const [showContactsPerfomer, setContactsPerfomer] = useState(false);
 
-    const statusButtonText = useMemo(() => ({
-        pending: t('task.confirm_task'),
-        'pending_for_executor': t('task.start_execution'),
-        InProgress: t('task.mark_as_done'),
-        completed: t('task.create_similar_task'),
-        canceled: t('task.task_cancelled'),
-    }), [t])
+    const statusButtonText = useMemo(
+        () => ({
+            pending: t('task.confirm_task'),
+            pending_for_executor: t('task.start_execution'),
+            InProgress: t('task.mark_as_done'),
+            completed: t('task.create_similar_task'),
+            canceled: t('task.task_cancelled'),
+        }),
+        [t],
+    );
 
     const task = {
         id: '76457324',
         name: 'Створити сайт для магазину одягу',
         estimated_date: '15 квітня',
         image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/stray228-profile_image-ceb0393a88eb8286-70x70.jpeg',
-        description: 'Розробити сучасний та зручний інтернет-магазин одягу з адаптивним дизайном, що забезпечить комфортний перегляд і покупки з будь-яких пристроїв. Сайт має включати каталог товарів із фільтрами, кошик для покупок, систему оплати та зворотного зв’язку. Додаткові функції: особистий кабінет користувача, відгуки, інтеграція з соцмережами та можливість підключення аналітики для відстеження продажів.',
+        description:
+            'Розробити сучасний та зручний інтернет-магазин одягу з адаптивним дизайном, що забезпечить комфортний перегляд і покупки з будь-яких пристроїв. Сайт має включати каталог товарів із фільтрами, кошик для покупок, систему оплати та зворотного зв’язку. Додаткові функції: особистий кабінет користувача, відгуки, інтеграція з соцмережами та можливість підключення аналітики для відстеження продажів.',
         price: '3000',
         status: 'pending_for_executor',
         customer: {
@@ -223,12 +227,12 @@ export default function Task() {
                         <div className="flex text-black dark:text-white">
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-[0.625rem]">
-                                    <IconParkOutlineTime className="size-[1.5rem] min-w-[1.5rem]"/>
+                                    <IconParkOutlineTime className="size-[1.5rem] min-w-[1.5rem]" />
                                     {t('task.complete_by')} {task.estimated_date}
                                 </div>
 
                                 <div className="flex items-center gap-[0.625rem]">
-                                    <FluentDocument32Regular className="size-[1.5rem] min-w-[1.5rem]"/>
+                                    <FluentDocument32Regular className="size-[1.5rem] min-w-[1.5rem]" />
                                     файл.pdf
                                 </div>
                             </div>
@@ -237,12 +241,10 @@ export default function Task() {
                         <div className="text-primary text-right">{t(`tasks.${task.status}`)}</div>
                     </div>
 
-                    <div className="text-muted font-medium">
-                        {task.description}
-                    </div>
+                    <div className="text-muted font-medium">{task.description}</div>
 
                     <div className="flex items-center gap-[0.625rem] text-black dark:text-white">
-                        <MageKey className="size-[1.5rem] min-w-[1.5rem]"/>
+                        <MageKey className="size-[1.5rem] min-w-[1.5rem]" />
                         {t('task.confidential_info')}
                     </div>
 
@@ -253,7 +255,7 @@ export default function Task() {
                             onPress={() => setContactsCustomer(!showContactsCustomer)}
                             className="text-primary w-full rounded-[2.25rem] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                         >
-                            <MynauiTelephone className="size-[1.5rem] min-w-[1.5rem]"/>
+                            <MynauiTelephone className="size-[1.5rem] min-w-[1.5rem]" />
                             {t('task.show_contacts')}
                         </Button>
                     )}
@@ -281,7 +283,7 @@ export default function Task() {
                             color="primary"
                             className="w-full rounded-[2.25rem] py-6 leading-[1.6rem] font-semibold text-white sm:w-fit sm:p-[2rem]"
                         >
-                            <SolarMoneyBagLinear className="size-[1.5rem] min-w-[1.5rem]"/>
+                            <SolarMoneyBagLinear className="size-[1.5rem] min-w-[1.5rem]" />
                             {statusButtonText[task.status] ?? 'Невідомий статус'}
                         </Button>
 
@@ -290,7 +292,7 @@ export default function Task() {
                             onPress={() => openComplaint(0)}
                             className="text-muted w-full rounded-[2.25rem] py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                         >
-                            <IconParkOutlineAttention className="size-[1.5rem] min-w-[1.5rem]"/>
+                            <IconParkOutlineAttention className="size-[1.5rem] min-w-[1.5rem]" />
                             {t('task.complain')}
                         </Button>
                     </div>
@@ -302,7 +304,7 @@ export default function Task() {
                             onPress={() => openComplaint(1)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <IonPeopleOutline className="size-[1.5rem] min-w-[1.5rem] text-muted" />
+                            <IonPeopleOutline className="text-muted size-[1.5rem] min-w-[1.5rem]" />
                             {t('task.change_executor')}
                         </Button>
                         <Button
@@ -311,7 +313,7 @@ export default function Task() {
                             onPress={() => openComplaint(2)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <HugeiconsTimeHalfPass className="size-[1.5rem] min-w-[1.5rem] text-muted"  />
+                            <HugeiconsTimeHalfPass className="text-muted size-[1.5rem] min-w-[1.5rem]" />
                             {t('task.extend_task')}
                         </Button>
                         <Button
@@ -320,7 +322,7 @@ export default function Task() {
                             onPress={() => openComplaint(3)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <ProiconsDelete className="size-[1.5rem] min-w-[1.5rem] text-muted" />
+                            <ProiconsDelete className="text-muted size-[1.5rem] min-w-[1.5rem]" />
                             {t('task.delete_task')}
                         </Button>
                     </div>
@@ -445,7 +447,7 @@ export default function Task() {
                                             Коментар Коментар Коментар Коментар Коментар Коментар
                                             Коментар
                                         </div>
-                                        <div className="text-muted text-[1.25rem] leading-[1.6875rem] font-medium text-center">
+                                        <div className="text-muted text-center text-[1.25rem] leading-[1.6875rem] font-medium">
                                             {task.createdAt}
                                         </div>
                                     </div>
@@ -475,7 +477,7 @@ export default function Task() {
 
                                 <div className="flex flex-col items-start gap-[1.375rem]">
                                     <Button className="text-primary border-primary w-full rounded-[2.25rem] border-1 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
-                                        <ProiconsChat className="size-[2rem] min-w-[2rem]"/>
+                                        <ProiconsChat className="size-[2rem] min-w-[2rem]" />
                                         {t('task.write')}
                                     </Button>
 
@@ -515,7 +517,7 @@ export default function Task() {
                                         onPress={() => openComplaint(1)}
                                         className="flex gap-[0.625rem]"
                                     >
-                                        <IonPeopleOutline className="size-[1.5rem] min-w-[1.5rem] text-muted" />
+                                        <IonPeopleOutline className="text-muted size-[1.5rem] min-w-[1.5rem]" />
                                         {t('task.executor_not_suitable')}
                                     </Button>
                                 </div>
