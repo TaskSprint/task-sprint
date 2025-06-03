@@ -138,7 +138,7 @@ class UserResource extends Resource
                     ->label('users.avatar')
                     ->translateLabel()
                     ->getStateUsing(fn(User $record) => $record->getFilamentAvatarUrl() ??
-                        "https://ui-avatars.com/api/?background=random&name=$record->name")
+                        ("https://ui-avatars.com/api/?background=random&name=" . urlencode($record->name)))
                     ->size(50)
                     ->circular(),
 
