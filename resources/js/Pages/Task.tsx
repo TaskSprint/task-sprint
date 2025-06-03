@@ -10,22 +10,22 @@ import {
     Radio,
     RadioGroup,
 } from '@heroui/react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
-import MynauiShare from '~icons/mynaui/share';
-import IconamoonProfileLight from '~icons/iconamoon/profile-light';
-import MdiEyeOutline from '~icons/mdi/eye-outline';
 import { Link } from '@inertiajs/react';
-import MynauiTelephone from '~icons/mynaui/telephone';
-import React, { useState, useMemo } from 'react';
-import IconParkOutlineTime from '~icons/icon-park-outline/time';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React, { useMemo, useState } from 'react';
 import FluentDocument32Regular from '~icons/fluent/document-32-regular';
-import IconParkOutlineAttention from '~icons/icon-park-outline/attention';
-import IonPeopleOutline from '~icons/ion/people-outline';
-import ProiconsDelete from '~icons/proicons/delete';
-import ProiconsChat from '~icons/proicons/chat';
-import MageKey from '~icons/mage/key';
 import HugeiconsTimeHalfPass from '~icons/hugeicons/time-half-pass';
+import IconParkOutlineAttention from '~icons/icon-park-outline/attention';
+import IconParkOutlineTime from '~icons/icon-park-outline/time';
+import IconamoonProfileLight from '~icons/iconamoon/profile-light';
+import IonPeopleOutline from '~icons/ion/people-outline';
+import MageKey from '~icons/mage/key';
+import MdiEyeOutline from '~icons/mdi/eye-outline';
+import MynauiShare from '~icons/mynaui/share';
+import MynauiTelephone from '~icons/mynaui/telephone';
+import ProiconsChat from '~icons/proicons/chat';
+import ProiconsDelete from '~icons/proicons/delete';
+import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
 
 export default function Task() {
     const { t } = useLaravelReactI18n();
@@ -284,7 +284,8 @@ export default function Task() {
                             className="w-full rounded-[2.25rem] py-6 leading-[1.6rem] font-semibold text-white sm:w-fit sm:p-[2rem]"
                         >
                             <SolarMoneyBagLinear className="size-[1.5rem] min-w-[1.5rem]" />
-                            {statusButtonText[task.status] ?? 'Невідомий статус'}
+                            {statusButtonText[task.status as keyof typeof statusButtonText] ??
+                                'Невідомий статус'}
                         </Button>
 
                         <Button
@@ -346,7 +347,7 @@ export default function Task() {
 
                             {complaint.reasons?.length && (
                                 <RadioGroup className="w-full gap-4">
-                                    {complaint.reasons.map((reason, idx) => (
+                                    {(complaint.reasons as string[]).map((reason, idx) => (
                                         <Radio
                                             value={reason}
                                             key={idx}

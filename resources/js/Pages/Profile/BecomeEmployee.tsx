@@ -87,7 +87,7 @@ export default function BecomeEmployee() {
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.name')}</span>
                         <Button
-                            onPress={() => setEditModal({ field: 'name', isOpen: true })}
+                            onPress={() => setEditModal({ field: 'username', isOpen: true })}
                             variant="light"
                         >
                             <LucidePencil />
@@ -95,8 +95,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.name ? (
-                            user1.name
+                        {user1.username ? (
+                            user1.username
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -264,12 +264,7 @@ export default function BecomeEmployee() {
                     {/* 9. Освіта */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.education')}</span>
-                        <Button
-                            onPress={() =>
-                                setEducationModalOpen({ field: 'education', isOpen: true })
-                            }
-                            variant="light"
-                        >
+                        <Button onPress={() => setEducationModalOpen(true)} variant="light">
                             <LucidePencil />
                         </Button>
                     </div>
@@ -347,7 +342,7 @@ export default function BecomeEmployee() {
                 onClose={() => setIsDeleteModalOpen(false)}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={t('profile.become-employee.delete_profile_confirmation_title')}
@@ -362,7 +357,7 @@ export default function BecomeEmployee() {
                 onClose={() => setIsSaveChangesModalOpen(false)}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={t('profile.become-employee.save_changes_confirmation_title')}
@@ -376,7 +371,7 @@ export default function BecomeEmployee() {
                 onClose={() => setEditModal({ field: null, isOpen: false })}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={editModal.field ? t(`profile.become-employee.${editModal.field}`) : ''}
@@ -395,7 +390,7 @@ export default function BecomeEmployee() {
                 isOpen={isEducationModalOpen}
                 onClose={() => setEducationModalOpen(false)}
                 onSave={(updatedEducation) => {
-                    setUser1((prev) => ({ ...prev, education: updatedEducation }));
+                    setUser1((prev) => ({ ...prev, education: updatedEducation as string[] }));
                 }}
                 title="Редагувати освіту"
                 confirmText="Зберегти"

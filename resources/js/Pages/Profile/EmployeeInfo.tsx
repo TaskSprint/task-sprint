@@ -205,9 +205,6 @@ export default function EmployeeInfo() {
             <UploadFileModal
                 isOpen={isUploadedFileModalOpen}
                 onClose={() => setUploadedFileModalOpen(false)}
-                onUploadSuccess={(filename: React.SetStateAction<string | null>) =>
-                    setUploadedFilename(filename)
-                }
             />
         </div>
     );
