@@ -1,7 +1,4 @@
-import * as React from 'react';
-import { useMemo } from 'react';
-import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Button from '@/Components/Shared/Button';
 import {
     As,
     ButtonProps,
@@ -10,8 +7,11 @@ import {
     ScrollShadow,
     ScrollShadowVisibility,
 } from '@heroui/react';
-import Button from '@/Components/Shared/Button';
 import { useDOMRef } from '@heroui/react-utils';
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import * as React from 'react';
+import { useMemo } from 'react';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -259,10 +259,10 @@ const CarouselNext = forwardRef<typeof Button, ButtonProps>(
 CarouselNext.displayName = 'CarouselNext';
 
 export {
-    type CarouselApi,
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselPrevious,
     CarouselNext,
+    CarouselPrevious,
+    type CarouselApi,
 };

@@ -1,14 +1,14 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React from 'react';
+import MarkStarRating from '@/Components/MarkStarRating';
+import { usePageTransition } from '@/hooks/usePageTransition';
 import { useRouter } from '@/hooks/useRouter';
 import { Avatar, cn, Tab, Tabs } from '@heroui/react';
 import { Link } from '@inertiajs/react';
-import { usePageTransition } from '@/hooks/usePageTransition';
-import OneStarRating from '@/Components/OneStarRating';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const { current, route } = useRouter();
+    const { route, relativeCurrent } = useRouter();
     const transitioning = usePageTransition({ segmentIndex: 1 });
 
     const tabs = [
@@ -20,16 +20,12 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
             title: 'user-layout.start-earning-tab',
             link: 'profile.become-employee',
         },
-        {
-            title: 'user-layout.employee-info-tab',
-            link: 'profile.employee-info',
-        },
     ];
 
     const user1 = {
         id: '1',
         avatar: 'https://cdn.mos.cms.futurecdn.net/aLt5gVBGkBctmjY6Ed7v7g.png',
-        name: 'Iван. ',
+        name: 'Петрова К.',
         phone: '+380 98 677 78 88',
         email: 'email.kyiv@gmail.com',
         rating: '4.5',
@@ -71,23 +67,16 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         className="win-w-[5.875rem] h-[5.875rem] w-[5.875rem]"
                     ></Avatar>
 
-                    <div className="flex flex-col text-[1.5rem] leading-[2.75rem] font-medium">
-                        <div className="flex justify-between gap-[1.25rem]">
+                    <div className="flex">
+                        <div className="flex flex-col text-[1.5rem] leading-[2.75rem] font-medium">
                             {user1.name}
-                            <OneStarRating
-                                totalReviews={user1.rating}
-                                positiveReviews={user1.rating - 2}
-                                evaluationType={'task'}
-                            />
+                            <div className="text-[1.25rem] text-gray-300/50">{user1.email}</div>
                         </div>
+                    </div>
 
-                        <div className="flex justify-between gap-[1.25rem]">
-                            <div className="text-muted text-[1.25rem]">{user1.email}</div>
-                            <OneStarRating
-                                totalReviews={user1.rating - 1}
-                                positiveReviews={user1.rating - 2}
-                            />
-                        </div>
+                    <div className="flex h-fit items-center gap-[0.313rem] text-[1.5rem] leading-[2.75rem] font-medium">
+                        {user1.rating}
+                        <MarkStarRating maxRating={1} />
                     </div>
                 </div>
 
@@ -98,7 +87,7 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         tab: 'max-w-fit px-[0.75rem] ',
                     }}
                     variant="underlined"
-                    selectedKey={tabs.find((item) => current(item.link))?.link ?? null}
+                    selectedKey={relativeCurrent}
                 >
                     {tabs.map((tab) => (
                         <Tab

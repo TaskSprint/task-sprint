@@ -1,4 +1,15 @@
+import DateSelector from '@/Components/DateSelector';
+import DescriptionModal from '@/Components/DescriptionModal';
+import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import Button from '@/Components/Shared/Button';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/Components/Shared/Carousel';
+import UploadFileModal from '@/Components/UploadFileModal';
 import {
     BreadcrumbItem,
     Breadcrumbs,
@@ -13,24 +24,13 @@ import {
     Textarea,
 } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import React, { useState } from 'react';
-import DateSelector from '@/Components/DateSelector';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from '@/Components/Shared/Carousel';
-import UploadFileModal from '@/Components/UploadFileModal';
-import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
-    const [isDescriptionModalOpen, setDescriptionModalOpen] = useState(false);
+    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [description, setDescription] = useState('');
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
@@ -108,7 +108,7 @@ export default function TaskCreationPage() {
                         <div className="flex flex-row gap-20">
                             <div>
                                 <Link
-                                    onPress={() => setDescriptionModalOpen(true)}
+                                    onPress={() => setIsDescriptionModalOpen(true)}
                                     className="text-muted cursor-pointer text-base font-medium"
                                 >
                                     {t('task-creation.confidential-data')}
@@ -122,8 +122,8 @@ export default function TaskCreationPage() {
 
                                 <DescriptionModal
                                     isOpen={isDescriptionModalOpen}
-                                    onClose={() => setDescriptionModalOpen(false)}
-                                    onSave={(desc) => setDescription(desc)}
+                                    onClose={() => setIsDescriptionModalOpen(false)}
+                                    onSave={(desc) => setDescription(desc as string)}
                                     title="Додатковий опис"
                                     subtitle="Вкажіть деталі, які має знати виконавець"
                                     placeholder="Введіть додаткову інформацію..."

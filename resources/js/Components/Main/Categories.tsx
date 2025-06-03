@@ -1,10 +1,9 @@
-import React from 'react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Image, Link } from '@heroui/react';
-import Button from '@/Components/Shared/Button';
 import SafeHtml from '@/Components/SafeHtml';
-import isSvg from 'is-svg';
+import Button from '@/Components/Shared/Button';
 import Category from '@/types/models/category';
+import { Image, Link } from '@heroui/react';
+import isSvg from 'is-svg';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 const Categories = ({ categories }: { categories: Category[] }) => {
     const { t } = useLaravelReactI18n();
@@ -21,12 +20,9 @@ const Categories = ({ categories }: { categories: Category[] }) => {
                     >
                         {category.icon &&
                             (isSvg(category.icon) ? (
-                                <SafeHtml
-                                    className="aspect-square h-full w-min"
+                                <SafeHtml<'svg'>
+                                    className="aspect-square h-full min-w-max"
                                     html={category.icon}
-                                    classNames={{
-                                        content: 'h-full w-fit aspect-square',
-                                    }}
                                 />
                             ) : (
                                 <Image

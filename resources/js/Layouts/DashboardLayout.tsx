@@ -1,11 +1,11 @@
-import { Link } from '@inertiajs/react';
-import React, { PropsWithChildren } from 'react';
 import Button from '@/Components/Shared/Button';
-import { cn } from '@heroui/react';
-import { Divider } from '@heroui/divider';
-import { useRouter } from '@/hooks/useRouter';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { usePageTransition } from '@/hooks/usePageTransition';
+import { useRouter } from '@/hooks/useRouter';
+import { Divider } from '@heroui/divider';
+import { cn } from '@heroui/react';
+import { Link } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { PropsWithChildren } from 'react';
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
     const { t } = useLaravelReactI18n();

@@ -1,6 +1,7 @@
-import { Config, ParameterValue, RouteParams, ValidRouteName } from 'ziggy-js';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { usePage } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { useMemo } from 'react';
+import { Config, ParameterValue, RouteParams, ValidRouteName } from 'ziggy-js';
 
 export interface LocalizedRoute {
     <T extends ValidRouteName = string>(
@@ -23,7 +24,7 @@ export interface LocalizedRoute {
 export function useRouter() {
     const { currentLocale } = useLaravelReactI18n();
     const router = route();
-    const { locale } = usePage().props;
+    const { locale, ziggy } = usePage().props;
 
     const routeCallback = (
         name?: string,
@@ -43,8 +44,23 @@ export function useRouter() {
         }
     };
 
+    const currentLocation = new URL(ziggy.location);
+
+    const relativeCurrent = useMemo(() => {
+        const current = router.current();
+        if (!current) {
+            return;
+        }
+
+        const currentParts = current.split('.');
+        if (locale?.available.includes(currentParts[0])) {
+            return currentParts.slice(1).join('.');
+        }
+        return current;
+    }, [router, locale?.available]);
+
     const urlWithoutLocale = (url: string | URL) => {
-        const current = new URL(url, window.location.origin);
+        const current = new URL(url, ziggy.url);
         const pathSegments = current.pathname.split('/').filter((s) => s);
 
         if (locale?.available.includes(pathSegments[0])) {
@@ -68,7 +84,7 @@ export function useRouter() {
 
         let current = name ?? router.current();
         if (!current) {
-            const current = new URL(window.location.href);
+            const current = currentLocation;
             const pathSegments = current.pathname.split('/').filter((s) => s);
 
             if (locale?.available.includes(pathSegments[0])) {
@@ -115,6 +131,8 @@ export function useRouter() {
     return {
         router,
         urlWithoutLocale,
+        currentLocation,
+        relativeCurrent,
         route: routeCallback as typeof route,
         localizedRoute: localizedRoute as LocalizedRoute,
         current: current as typeof router.current,

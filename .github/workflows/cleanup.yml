@@ -1,12 +1,13 @@
 name: Cleanup Actions
 
 on:
-  pull_request_review:
-    types: [ submitted ]
+  pull_request:
+    branches:
+      - develop
+      - main
 
 jobs:
-  prettier:
-    if: ${{ github.event.review.state == 'APPROVED' }}
+  cleanup:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -22,7 +23,10 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Lint Frontend
+        run: npm run lint
 
       - name: Run Prettier check
         id: prettier_check
@@ -49,10 +53,8 @@ jobs:
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
-        if: ${{ steps.prettify.outcome == 'success' }}
         with:
-          commit_message: "[BOT] 🖌️ Auto prettify"
+          commit_message: "[BOT] 🖌️ Auto сleanup"
           push_options: ""
           skip_dirty_check: false
           branch: ${{ github.event.pull_request.head.ref }}
-

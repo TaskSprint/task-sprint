@@ -1,11 +1,11 @@
+import { router } from '@inertiajs/react';
 import mitt from 'mitt';
-import { useEffect, useState } from 'react';
 import {
+    unstable_createAdapterProvider as createAdapterProvider,
     renderQueryString,
     type unstable_AdapterOptions as AdapterOptions,
-    unstable_createAdapterProvider as createAdapterProvider,
 } from 'nuqs/adapters/custom';
-import { router } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 
 export const inertiaNuqsEmitter = mitt<{ update: URLSearchParams; prevent: undefined }>();
 

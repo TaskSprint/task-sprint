@@ -1,9 +1,9 @@
-import { FC, useRef } from 'react';
 import LastTaskCard from '@/Components/Main/LastTasks/LastTaskCard';
+import Button from '@/Components/Shared/Button';
 import Task from '@/types/models/task';
 import { ScrollShadow } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import Button from '@/Components/Shared/Button';
+import { FC, useRef } from 'react';
 import IcRoundArrowBackIos from '~icons/ic/round-arrow-back-ios';
 import IcRoundArrowForwardIos from '~icons/ic/round-arrow-forward-ios';
 

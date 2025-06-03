@@ -1,19 +1,19 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React, { ReactNode, useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import UserLayout from '@/Layouts/UserLayout';
-import ProfileLayout from '@/Layouts/ProfileLayout';
-import { Image, Link } from '@heroui/react';
-import MdiEyeOutline from '~icons/mdi/eye-outline';
-import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
-import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
 import UploadFileModal from '@/Components/UploadFileModal';
-import MynauiTelephone from '~icons/mynaui/telephone';
-import MaterialSymbolsMailOutline from '~icons/material-symbols/mail-outline';
+import AppLayout from '@/Layouts/AppLayout';
+import ProfileLayout from '@/Layouts/ProfileLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { Image, Link } from '@heroui/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { ReactNode, useState } from 'react';
+import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
 import IconParkOutlineTime from '~icons/icon-park-outline/time';
-import MaterialSymbolsBuild from '~icons/material-symbols/build';
-import SolarDocumentLinear from '~icons/solar/document-linear';
 import LsiconEducationOutline from '~icons/lsicon/education-outline';
+import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
+import MaterialSymbolsBuild from '~icons/material-symbols/build';
+import MaterialSymbolsMailOutline from '~icons/material-symbols/mail-outline';
+import MdiEyeOutline from '~icons/mdi/eye-outline';
+import MynauiTelephone from '~icons/mynaui/telephone';
+import SolarDocumentLinear from '~icons/solar/document-linear';
 
 export default function EmployeeInfo() {
     const { t } = useLaravelReactI18n();
@@ -205,9 +205,6 @@ export default function EmployeeInfo() {
             <UploadFileModal
                 isOpen={isUploadedFileModalOpen}
                 onClose={() => setUploadedFileModalOpen(false)}
-                onUploadSuccess={(filename: React.SetStateAction<string | null>) =>
-                    setUploadedFilename(filename)
-                }
             />
         </div>
     );

@@ -1,13 +1,13 @@
-import Button from '@/Components/Shared/Button';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Link, Textarea } from '@heroui/react';
-import React, { useState } from 'react';
 import MarkStarRating from '@/Components/MarkStarRating';
+import Button from '@/Components/Shared/Button';
+import { Link, Textarea } from '@heroui/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { useState } from 'react';
 
 export default function EmployeeReviewPopup() {
     const { t } = useLaravelReactI18n();
 
-    const [rating, setRating] = useState<number>(0);
+    const [, setRating] = useState<number>(0);
 
     const handleRatingChange = (newRating: number) => {
         setRating(newRating);

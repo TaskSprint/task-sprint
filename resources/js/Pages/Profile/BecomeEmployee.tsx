@@ -1,24 +1,23 @@
+import DescriptionModal from '@/Components/DescriptionModal';
+import Button from '@/Components/Shared/Button';
+import UploadFileModal from '@/Components/UploadFileModal';
+import AppLayout from '@/Layouts/AppLayout';
+import ProfileLayout from '@/Layouts/ProfileLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import { Avatar, Image, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React, { ReactNode, useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import Button from '@/Components/Shared/Button';
-import UserLayout from '@/Layouts/UserLayout';
-import ProfileLayout from '@/Layouts/ProfileLayout';
+import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
 import LucidePencil from '~icons/lucide/pencil';
-import { Image, Link } from '@heroui/react';
-import { Avatar } from '@heroui/react';
+import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
 import MaterialSymbolsUpload from '~icons/material-symbols/upload';
 import MdiEyeOutline from '~icons/mdi/eye-outline';
-import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
-import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
-import UploadFileModal from '@/Components/UploadFileModal';
-import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function BecomeEmployee() {
     const { t } = useLaravelReactI18n();
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isSaveChangesModalOpen, setIsSaveChangesModalOpen] = useState(false);
-    const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
+    const [, setUploadedFilename] = useState<string | null>(null);
     const [isUploadedFileModalOpen, setUploadedFileModalOpen] = useState(false);
 
     const [isEducationModalOpen, setEducationModalOpen] = useState(false);
@@ -88,7 +87,7 @@ export default function BecomeEmployee() {
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.name')}</span>
                         <Button
-                            onPress={() => setEditModal({ field: 'name', isOpen: true })}
+                            onPress={() => setEditModal({ field: 'username', isOpen: true })}
                             variant="light"
                         >
                             <LucidePencil />
@@ -96,8 +95,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.name ? (
-                            user1.name
+                        {user1.username ? (
+                            user1.username
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -265,12 +264,7 @@ export default function BecomeEmployee() {
                     {/* 9. Освіта */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.education')}</span>
-                        <Button
-                            onPress={() =>
-                                setEducationModalOpen({ field: 'education', isOpen: true })
-                            }
-                            variant="light"
-                        >
+                        <Button onPress={() => setEducationModalOpen(true)} variant="light">
                             <LucidePencil />
                         </Button>
                     </div>
@@ -348,7 +342,7 @@ export default function BecomeEmployee() {
                 onClose={() => setIsDeleteModalOpen(false)}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={t('profile.become-employee.delete_profile_confirmation_title')}
@@ -363,7 +357,7 @@ export default function BecomeEmployee() {
                 onClose={() => setIsSaveChangesModalOpen(false)}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={t('profile.become-employee.save_changes_confirmation_title')}
@@ -377,7 +371,7 @@ export default function BecomeEmployee() {
                 onClose={() => setEditModal({ field: null, isOpen: false })}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        handleSaveField(editModal.field, newValue as string);
                     }
                 }}
                 title={editModal.field ? t(`profile.become-employee.${editModal.field}`) : ''}
@@ -396,7 +390,7 @@ export default function BecomeEmployee() {
                 isOpen={isEducationModalOpen}
                 onClose={() => setEducationModalOpen(false)}
                 onSave={(updatedEducation) => {
-                    setUser1((prev) => ({ ...prev, education: updatedEducation }));
+                    setUser1((prev) => ({ ...prev, education: updatedEducation as string[] }));
                 }}
                 title="Редагувати освіту"
                 confirmText="Зберегти"

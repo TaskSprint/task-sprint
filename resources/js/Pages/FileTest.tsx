@@ -1,7 +1,7 @@
+import { useRouter } from '@/hooks/useRouter';
 import { PageProps } from '@/types';
 import { useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import { useRouter } from '@/hooks/useRouter';
 
 export default function FileTest({ file }: PageProps<{ file?: string }>) {
     const { data, setData, post, processing } = useForm<{ file: File | null }>({
@@ -27,7 +27,7 @@ export default function FileTest({ file }: PageProps<{ file?: string }>) {
         }
 
         setDidMount(true);
-    }, [data]);
+    }, [data, didMount, post, route]);
 
     return (
         <div>

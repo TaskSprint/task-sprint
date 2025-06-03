@@ -1,6 +1,6 @@
+import Currency from '@/types/models/currency';
 import SubCategory from '@/types/models/sub-category';
 import User from '@/types/models/user';
-import Currency from '@/types/models/currency';
 
 export default interface Task {
     id: number;

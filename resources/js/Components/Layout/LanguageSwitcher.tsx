@@ -1,5 +1,5 @@
-import { router, usePage } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
+import { router, usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function LanguageSwitcher() {

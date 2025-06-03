@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import FavoriteEmployees from '@/Components/FavoriteEmployees';
 import AppLayout from '@/Layouts/AppLayout';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import UserLayout from '@/Layouts/UserLayout';
-import FavoriteEmployees from '@/Components/FavoriteEmployees';
+import { ReactNode } from 'react';
 
 export default function Favorite() {
     return (

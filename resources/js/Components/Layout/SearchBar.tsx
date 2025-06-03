@@ -1,12 +1,12 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
+import Button from '@/Components/Shared/Button';
 import { cn, Input, Link, LinkIcon, Spinner } from '@heroui/react';
 import { usePage } from '@inertiajs/react';
-import { CSSProperties, useEffect, useRef, useState } from 'react';
-import { useOnClickOutside } from 'usehooks-ts';
-import Button from '@/Components/Shared/Button';
-import { useQueryState } from 'nuqs';
-import { useDebouncedCallback } from 'use-debounce';
 import * as Accordion from '@radix-ui/react-accordion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { useQueryState } from 'nuqs';
+import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
+import { useOnClickOutside } from 'usehooks-ts';
 
 export default function SearchBar() {
     const { t } = useLaravelReactI18n();
@@ -19,8 +19,11 @@ export default function SearchBar() {
         clearOnDefault: true,
     });
     const [inputValue, setInputValue] = useState(query);
-    const getRadixHeight = () =>
-        `calc(var(--spacing) * 10 * ${search?.subCategories.length ?? 0} + (var(--spacing) * 2 * ${Math.max(0, (search?.subCategories.length ?? 0) - 1)} + var(--spacing ) * 4)`;
+    const getRadixHeight = useCallback(
+        () =>
+            `calc(var(--spacing) * 10 * ${search?.subCategories.length ?? 0} + (var(--spacing) * 2 * ${Math.max(0, (search?.subCategories.length ?? 0) - 1)} + var(--spacing ) * 4)`,
+        [search?.subCategories.length],
+    );
     const [previousRadixHeight, setPreviousRadixHeight] = useState(getRadixHeight);
     const [isDebouncing, setIsDebouncing] = useState(false);
 
@@ -50,7 +53,7 @@ export default function SearchBar() {
         if (search?.subCategories.length) {
             setPreviousRadixHeight(getRadixHeight);
         }
-    }, [search]);
+    }, [search, getRadixHeight]);
 
     return (
         <Accordion.Root

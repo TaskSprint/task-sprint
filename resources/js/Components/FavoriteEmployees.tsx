@@ -1,9 +1,8 @@
+import AbsenceTime from '@/Components/AbsenceTime';
+import HeartCheckbox from '@/Components/HeartCheckbox';
 import Button from '@/Components/Shared/Button';
 import { Avatar, Divider, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import HeartCheckbox from '@/Components/HeartCheckbox';
-import React from 'react';
-import AbsenceTime from '@/Components/AbsenceTime';
 
 export default function FavoriteEmployees() {
     const { t } = useLaravelReactI18n();

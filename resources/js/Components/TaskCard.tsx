@@ -1,10 +1,7 @@
-import { Avatar, Link } from '@heroui/react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import StarRating from '@/Components/StarRating';
+import { Avatar, Link } from '@heroui/react';
 
 export default function TaskCard() {
-    const { t } = useLaravelReactI18n();
-
     return (
         <div className="h-fit min-h-[18.0625rem] w-full max-w-[45rem] flex-row items-center justify-center gap-8 overflow-hidden rounded-[1.25rem] border-1 border-[#B3F0FF] bg-[#FFFFFF] p-4 dark:border-none dark:bg-[#313131]">
             <div className="flex size-full w-full flex-row gap-3 sm:flex-col">
