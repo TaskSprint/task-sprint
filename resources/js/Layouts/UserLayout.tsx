@@ -27,7 +27,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                 {children}
             </main>
 
-            <div className="flex h-full flex-col py-[1rem] 2xl:flex-row">
+            <div className="flex h-full flex-col pt-4 2xl:flex-row 2xl:pb-4">
                 <Divider className="2xl:w-divider bg-muted 2xl:h-full" />
 
                 <div className="bg-surface flex flex-col px-9 pb-12 sm:rounded-b-[2rem] 2xl:max-w-min 2xl:rounded-r-[2rem] 2xl:rounded-bl-none">

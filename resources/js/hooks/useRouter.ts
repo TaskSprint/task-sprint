@@ -43,6 +43,18 @@ export function useRouter() {
         }
     };
 
+    const urlWithoutLocale = (url: string | URL) => {
+        const current = new URL(url, window.location.origin);
+        const pathSegments = current.pathname.split('/').filter((s) => s);
+
+        if (locale?.available.includes(pathSegments[0])) {
+            pathSegments.shift();
+        }
+
+        current.pathname = `/${pathSegments.join('/')}`;
+        return current.href;
+    };
+
     const localizedRoute = (
         lang: string,
         name?: string,
@@ -102,6 +114,7 @@ export function useRouter() {
 
     return {
         router,
+        urlWithoutLocale,
         route: routeCallback as typeof route,
         localizedRoute: localizedRoute as LocalizedRoute,
         current: current as typeof router.current,

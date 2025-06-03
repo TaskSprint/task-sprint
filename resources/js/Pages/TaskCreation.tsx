@@ -4,7 +4,6 @@ import {
     Breadcrumbs,
     Checkbox,
     Divider,
-    Form,
     Input,
     Link,
     Radio,
@@ -15,7 +14,7 @@ import {
 } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
-import React from 'react';
+import React, { useState } from 'react';
 import DateSelector from '@/Components/DateSelector';
 import {
     Carousel,
@@ -24,7 +23,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from '@/Components/Shared/Carousel';
-import { useState } from 'react';
 import UploadFileModal from '@/Components/UploadFileModal';
 import DescriptionModal from '@/Components/DescriptionModal';
 
@@ -37,7 +35,6 @@ export default function TaskCreationPage() {
     const [selected, setSelected] = React.useState('3-part');
     const [selected2, setSelected2] = React.useState('cash');
     const [selected3, setSelected3] = React.useState('option-1');
-    let date3 = new Date('2025-05-01T09:00:00Z')
 
     const cities = [
         { key: 'kyiv', label: 'Київ' },
@@ -135,7 +132,7 @@ export default function TaskCreationPage() {
                             <div>
                                 <Link
                                     onPress={() => setIsModalOpen(true)}
-                                    className="cursor-pointer text-base dark:text-[#00CCFF] font-medium"
+                                    className="cursor-pointer text-base font-medium dark:text-[#00CCFF]"
                                 >
                                     {t('task-creation.add-file')}
                                 </Link>
@@ -344,16 +341,34 @@ export default function TaskCreationPage() {
                     {t('task-creation.top-employees')}
                 </h3>
                 <div className="hidden flex-col gap-6.25 xl:flex">
-                    <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12645} totalReviews={ 12032 } key={1} />
-
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <FavoriteEmployeesSM
+                            key={i}
+                            item={i + 1}
+                            name={`Employee ${i + 1}`}
+                            totalReviews={0}
+                            positiveReviews={0}
+                            lastVisit={new Date()}
+                        />
+                    ))}
                 </div>
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-                <FavoriteEmployeesSM item={1} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} lastVisit={ new Date(date3)} name={"Коваль Д."} positiveReviews={12032} totalReviews={ 12645 } key={1} />
-
+                <Carousel className="w-full xl:hidden">
+                    <CarouselContent className="-ml-4">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <CarouselItem key={i} className="w-fit basis-2/3 pl-4">
+                                <FavoriteEmployeesSM
+                                    item={i + 1}
+                                    name={`Employee ${i + 1}`}
+                                    totalReviews={0}
+                                    positiveReviews={0}
+                                    lastVisit={new Date()}
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
                 <Link
                     href="#"
                     underline="always"
@@ -361,10 +376,7 @@ export default function TaskCreationPage() {
                 >
                     {t('task-creation.show-more')}
                 </Link>
-
             </div>
         </div>
-
-
     );
 }
