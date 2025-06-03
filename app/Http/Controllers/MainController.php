@@ -13,7 +13,6 @@ class MainController extends Controller
 {
     public function index()
     {
-        Debugbar::info(config('inertia.ssr.enabled'));
         return Inertia::render('Main', [
                 'categories' => CategoryResource::collection(Category::with('icon')
                     ->orderByLeftPowerJoinsCount('subCategories.tasks.id', 'desc')
