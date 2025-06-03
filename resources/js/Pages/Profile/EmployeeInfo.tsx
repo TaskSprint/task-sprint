@@ -4,7 +4,7 @@ import ProfileLayout from '@/Layouts/ProfileLayout';
 import UserLayout from '@/Layouts/UserLayout';
 import { Image, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
 import IconParkOutlineTime from '~icons/icon-park-outline/time';
 import LsiconEducationOutline from '~icons/lsicon/education-outline';
