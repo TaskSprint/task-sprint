@@ -1,18 +1,19 @@
-import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
-import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
-import TaskCard from '@/Components/TaskCard';
-import SubCategoryModel from '@/types/models/sub-category';
-import { BreadcrumbItem, Breadcrumbs } from '@heroui/breadcrumbs';
-import { Pagination } from '@heroui/react';
+import React from 'react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { Breadcrumbs, BreadcrumbItem } from '@heroui/breadcrumbs';
+import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
+import SubCategoryModel from '@/types/models/sub-category';
+import TaskCard from '@/Components/TaskCard';
+import { Pagination } from '@heroui/react';
+import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 
 export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
-    const { t } = useLaravelReactI18n();
+    let { t } = useLaravelReactI18n();
 
-    const date1 = new Date('2025-05-26T14:00:00Z');
-    const date2 = new Date('2025-03-11T19:00:00Z');
-    const date3 = new Date('2025-05-01T09:00:00Z');
-    const bannersSM = [
+    let date1 = new Date('2025-05-26T14:00:00Z');
+    let date2 = new Date('2025-03-11T19:00:00Z');
+    let date3 = new Date('2025-05-01T09:00:00Z');
+    let bannersSM = [
         {
             item: 1,
             name: 'Коваль Д.',

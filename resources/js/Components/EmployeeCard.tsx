@@ -1,15 +1,17 @@
-import AbsenceTime from '@/Components/AbsenceTime';
-import HeartCheckbox from '@/Components/HeartCheckbox';
 import Button from '@/Components/Shared/Button';
 import { Avatar, Divider, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import HeartCheckbox from '@/Components/HeartCheckbox';
 import ReviewsChip from './ReviewsChip';
+import AbsenceTime from '@/Components/AbsenceTime';
 
 export default function EmployeeCard() {
     const { t } = useLaravelReactI18n();
+    const lastViz = new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toString();
     const date1 = new Date('2025-05-26T14:00:00Z');
     const date2 = new Date('2025-05-27T19:00:00Z');
     const date3 = new Date('2025-05-01T09:00:00Z');
+    const date4 = new Date('2023-05-01T09:00:00Z');
     const nameCard = 'Ткач П.';
     const photoCard = 'https://avatars.githubusercontent.com/u/30373425?v=4';
     const totalReviewsCard = 12456;

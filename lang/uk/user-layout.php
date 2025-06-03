@@ -28,4 +28,5 @@ return [
     'general-info-tab' => 'Загальна інформація',
     'start-earning-tab' => 'Почати заробляти',
     'reviews-tab' => 'Відгуки',
+    'employee-info-tab' => 'Вартість робіт',
 ];

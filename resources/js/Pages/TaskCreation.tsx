@@ -124,6 +124,9 @@ export default function TaskCreationPage() {
                                     isOpen={isDescriptionModalOpen}
                                     onClose={() => setIsDescriptionModalOpen(false)}
                                     onSave={(desc) => setDescription(desc)}
+                                    title="Додатковий опис"
+                                    subtitle="Вкажіть деталі, які має знати виконавець"
+                                    placeholder="Введіть додаткову інформацію..."
                                 />
                             </div>
                             <div>

@@ -74,6 +74,12 @@ Route::localized(function () {
         Route::get('/profile/become-employee', function () {
             return Inertia::render('Profile/BecomeEmployee');
         })->name('profile.become-employee');
+
+        Route::get('/profile/employee-info', function () {
+            return Inertia::render('Profile/EmployeeInfo');
+        })->name('profile.employee-info');
+
+
     });
 });
 
