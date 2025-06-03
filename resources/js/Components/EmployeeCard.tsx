@@ -7,9 +7,11 @@ import AbsenceTime from '@/Components/AbsenceTime';
 
 export default function EmployeeCard() {
     const { t } = useLaravelReactI18n();
+    const lastViz = new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toString();
     const date1 = new Date('2025-05-26T14:00:00Z')
     const date2 = new Date('2025-05-27T19:00:00Z')
     const date3 = new Date('2025-05-01T09:00:00Z')
+    const date4 = new Date('2023-05-01T09:00:00Z')
     const nameCard="Ткач П."
     const photoCard="https://avatars.githubusercontent.com/u/30373425?v=4"
     const totalReviewsCard=12456;
@@ -39,7 +41,7 @@ export default function EmployeeCard() {
 
 
     return (
-        <div className="bg-white dark:bg-[#313131] relative w-fit min-w-[44.25rem] rounded-[1.25rem] p-2.5 gap-2.5 border-1 border-primary/50 flex flex-col shadow-sm">
+        <div className="bg-white dark:bg-[#313131] relative w-fit min-w-[44.25rem] rounded-[1.25rem] p-2.5 gap-2.5 border-1 border-primary flex flex-col shadow-sm">
 
 
             <div className="flex flex-row justify-between">
@@ -91,7 +93,9 @@ export default function EmployeeCard() {
                 </div>
             </div>
 
-            <div className="gap-4 flex flex-row justify-between items-center w-fit min-w-[44.25rem] h-full overflow-y-auto">
+            <div className="gap-4 flex flexrow justify-between items-center w-full max-w-[44.25rem] h-full overflow-y-auto">
+                {/*<ReviewsChip item={1} name={"Коваль Д."} photo={"https://i.pravatar.cc/150?u=a04258114e29026702d"} totalReviews={24} positiveReviews={21} shortText={"Дуже опреративно, квалифіковано та відповідально!!!... "} lastVisit={new Date(date1)} />*/}
+                {/*<ReviewsChip item={2} name={"Ткач П."} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} totalReviews={25} positiveReviews={25}  shortText={"Все сподобалось. Гарна робота! 5 зірок!..."} lastVisit={new Date(date3)} />*/}
                 <div className="flex flex-row gap-2.5">
                     {reviews.map((review) => (
                         <ReviewsChip

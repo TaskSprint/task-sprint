@@ -89,7 +89,7 @@ export default function UploadFileModal({
                                     <input
                                         type="file"
                                         onChange={handleFileChange}
-                                        className="w-full cursor-pointer bg-none text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 disabled:opacity-50 hover:!text-gray-500 dark:text-[#C7C7C7] dark:hover:!text-white"
+                                        className="w-full cursor-pointer bg-none text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 hover:!text-gray-500 disabled:opacity-50 dark:text-[#C7C7C7] dark:hover:!text-white"
                                     />
                                     <div className="flex items-center justify-center gap-2">
                                         <button
