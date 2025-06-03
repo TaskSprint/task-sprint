@@ -5,7 +5,6 @@ namespace App\Services\Models;
 use App\Facades\FileService;
 use App\Models\File;
 use App\ValueObjects\LocaleString;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -233,13 +232,18 @@ abstract class BaseModelService
     /**
      * @param string $search
      * @param Builder<TModel>|null $query
+     * @param string[]|string|null $attributes
      * @return Builder<TModel>
      */
-    public function search(string $search, ?Builder $query = null): Builder
+    public function search(string $search, array|string|null $attributes = null, ?Builder $query = null): Builder
     {
         $query = $query ?? $this->class::query();
-        return $query->where(function ($query) use ($search) {
-            foreach ($this->searchAttributes as $attribute) {
+        $searchAttributes = $attributes ?? $this->searchAttributes;
+        if (is_string($searchAttributes)) {
+            $searchAttributes = explode(',', $searchAttributes);
+        }
+        return $query->where(function ($query) use ($search, $searchAttributes) {
+            foreach ($searchAttributes as $attribute) {
                 $searchAttribute = str($attribute);
                 $query->when($searchAttribute->contains('.'),
                     fn($query) => $query->orWhereHas($searchAttribute->beforeLast('.')->toString(),

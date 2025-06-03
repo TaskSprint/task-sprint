@@ -81,7 +81,17 @@ class RolesAndPermissionsSeeder extends Seeder
                 'delete' => Permission::firstOrCreate(['name' => 'delete keyword']),
                 'restore' => Permission::firstOrCreate(['name' => 'restore keyword']),
                 'force delete' => Permission::firstOrCreate(['name' => 'force delete keyword']),
-            ]
+            ],
+            'review' => [
+                'safe' => [
+                    'create' => Permission::firstOrCreate(['name' => 'create review']),
+                    'edit' => Permission::firstOrCreate(['name' => 'edit review']),
+                    'delete' => Permission::firstOrCreate(['name' => 'delete review']),
+                ],
+                'restore' => Permission::firstOrCreate(['name' => 'restore review']),
+                'force edit' => Permission::firstOrCreate(['name' => 'force edit review']),
+                'force delete' => Permission::firstOrCreate(['name' => 'force delete review']),
+            ],
         ];
 
         // update cache to know about the newly created permissions (required if using WithoutModelEvents in seeders)

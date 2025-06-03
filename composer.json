@@ -20,6 +20,7 @@
         "laravel/octane": "^2.8",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "mokhosh/filament-rating": "^1.4",
         "propaganistas/laravel-phone": "^6.0",
         "shiftonelabs/laravel-cascade-deletes": "^2.0",
         "spatie/laravel-permission": "^6.16",
