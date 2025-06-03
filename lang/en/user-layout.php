@@ -28,4 +28,5 @@ return [
     'general-info-tab' => 'General Information',
     'start-earning-tab' => 'Start earning',
     'reviews-tab' => 'Reviews',
+    'employee-info-tab' => 'Employee Information',
 ];

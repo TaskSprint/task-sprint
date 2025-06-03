@@ -25,9 +25,9 @@ const ToastDescription = () => {
 };
 
 export default function Main({
-                                 categories,
-                                 tasks,
-                             }: PageProps<{
+    categories,
+    tasks,
+}: PageProps<{
     categories: Category[];
     tasks: Task[];
 }>) {

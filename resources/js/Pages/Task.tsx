@@ -17,7 +17,7 @@ import IconamoonProfileLight from '~icons/iconamoon/profile-light';
 import MdiEyeOutline from '~icons/mdi/eye-outline';
 import { Link } from '@inertiajs/react';
 import MynauiTelephone from '~icons/mynaui/telephone';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import IconParkOutlineTime from '~icons/icon-park-outline/time';
 import FluentDocument32Regular from '~icons/fluent/document-32-regular';
 import IconParkOutlineAttention from '~icons/icon-park-outline/attention';
@@ -32,21 +32,26 @@ export default function Task() {
     const [showContactsCustomer, setContactsCustomer] = useState(false);
     const [showContactsPerfomer, setContactsPerfomer] = useState(false);
 
-    const statusButtonText: Record<string, string> = {
-        pending: 'Підтвердити замовлення',
-        'pending for executor': 'Розпочати виконання',
-        InProgress: 'Закрити як виконане',
-        completed: 'Створити схоже завдання',
-        cancelled: 'Завдання скасовано',
-    };
+    const statusButtonText = useMemo(
+        () => ({
+            pending: t('task.confirm_task'),
+            pending_for_executor: t('task.start_execution'),
+            InProgress: t('task.mark_as_done'),
+            completed: t('task.create_similar_task'),
+            canceled: t('task.task_cancelled'),
+        }),
+        [t],
+    );
 
     const task = {
         id: '76457324',
-        title: 'Створити сайт для магазину одягу',
+        name: 'Створити сайт для магазину одягу',
         estimated_date: '15 квітня',
         image: 'https://static-cdn.jtvnw.net/jtv_user_pictures/stray228-profile_image-ceb0393a88eb8286-70x70.jpeg',
+        description:
+            'Розробити сучасний та зручний інтернет-магазин одягу з адаптивним дизайном, що забезпечить комфортний перегляд і покупки з будь-яких пристроїв. Сайт має включати каталог товарів із фільтрами, кошик для покупок, систему оплати та зворотного зв’язку. Додаткові функції: особистий кабінет користувача, відгуки, інтеграція з соцмережами та можливість підключення аналітики для відстеження продажів.',
         price: '3000',
-        status: 'pending',
+        status: 'pending_for_executor',
         customer: {
             name: 'Тiм К.',
             avatar: 'https://img01.rl0.ru/afisha/e1200x800i/daily.afisha.ru/uploads/images/2/53/253ce3bf3a76f3c678bc2b9bd3784f42.jpg',
@@ -86,7 +91,7 @@ export default function Task() {
                 },
             ],
         },
-        created_at: '1 червня 21:15',
+        createdAt: '1 червня 21:15',
     };
 
     const similarTasks = [
@@ -112,52 +117,52 @@ export default function Task() {
 
     const complaints = [
         {
-            title: 'Поскаржитись на замовлення',
-            subtitle: 'Виберіть відповідну причину:',
+            title: t('task.complain_about_task'),
+            subtitle: t('task.select_reason'),
             reasons: [
-                'Носить образливий характер',
-                'Накрутка відгуків / передплатників',
-                'Шахрайство, порушення закону',
-                'Купівля / продаж товарів',
-                'Купівля / оренда акаунтів',
-                'Неправильно оформлено (не та категорія / в описі контакти / це фахівець',
+                t('task.reasons.offensive'),
+                t('task.reasons.fake_reviews'),
+                t('task.reasons.fraud'),
+                t('task.reasons.buy_sell_goods'),
+                t('task.reasons.account_trading'),
+                t('task.reasons.invalid_format'),
             ],
-            note: 'Якщо у вас скарга іншого характеру, напишіть нам на support@tasksprint.tech',
+            note: t('task.other_complaint'),
             buttons: [
-                { text: 'Поскаржитись', type: 'submit' },
-                { text: 'Відміна', type: 'close' },
+                { text: t('task.complain'), type: 'submit' },
+                { text: t('task.cancel'), type: 'close' },
             ],
         },
         {
-            title: 'Бажаєте змінити фахівця?',
-            subtitle: 'Будь ласка, вкажіть причину зміни фахівця:',
+            title: t('task.want_to_change_executor'),
+            subtitle: t('task.specify_change_reason'),
             reasons: [
-                'Не можу зв’язатись',
-                'Не може виконати моє замовлення',
-                'Хочу розглянути інші пропозиції',
-                'Вказати свою причину',
+                t('task.change_reasons.no_contact'),
+                t('task.change_reasons.cannot_fulfill'),
+                t('task.change_reasons.consider_others'),
+                t('task.change_reasons.custom_reason'),
             ],
-            textareaPlaceholder: 'Вкажіть причину зміни фахівця',
+            textareaPlaceholder: t('task.enter_reason'),
             buttons: [
-                { text: 'Змінити фахівця', type: 'submit' },
-                { text: 'Відміна', type: 'close' },
-            ],
-        },
-        {
-            title: 'Подовження замовлення',
-            subtitle: 'Увага: ви можете продовжити замовлення тільки один раз',
-            reasons: ['3 дні', '5 днів', '10 днів', '30 днів'],
-            buttons: [
-                { text: 'Підтвердити', type: 'submit' },
-                { text: 'Відміна', type: 'close' },
+                { text: t('task.change_executor'), type: 'submit' },
+                { text: t('task.cancel'), type: 'close' },
             ],
         },
         {
-            title: 'Ви дійсно хочете видалити замовлення?',
-            subtitle: 'Ми можемо підібрати для вас іншого фахівця для виконання роботи',
+            title: t('task.extend_task_title'),
+            subtitle: t('task.extend_task_note'),
+            reasons: t('task.days'), // Це масив в усіх мовах
             buttons: [
-                { text: 'Вибрати іншого фахівця', type: 'submit' },
-                { text: 'Так, видалити.', type: 'close' },
+                { text: t('task.confirm'), type: 'submit' },
+                { text: t('task.cancel'), type: 'close' },
+            ],
+        },
+        {
+            title: t('task.confirm_deletion'),
+            subtitle: t('task.we_can_find_another'),
+            buttons: [
+                { text: t('task.choose_another_executor'), type: 'submit' },
+                { text: t('task.yes_delete'), type: 'close' },
             ],
         },
     ];
@@ -178,7 +183,7 @@ export default function Task() {
                 <div className="w-full gap-[0.625rem] py-[2.5rem] 2xl:px-[5.5rem] 2xl:pt-[3.5rem]">
                     <div className="flex w-full justify-between gap-[5rem]">
                         <div className="text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
-                            {task.title}
+                            {task.name}
                         </div>
                         <div className="text-primary text-[2rem] leading-[2.75rem] font-semibold">
                             {task.price} грн
@@ -190,7 +195,7 @@ export default function Task() {
                             <div className="flex gap-[2.2rem]">
                                 <div className="flex items-center gap-[0.625rem]">
                                     <MdiEyeOutline />
-                                    Перегляди: {task.view}
+                                    {t('task.views')} {task.view}
                                 </div>
 
                                 <div className="">№ {task.id}</div>
@@ -198,9 +203,9 @@ export default function Task() {
                         </div>
 
                         <div className="text-right">
-                            Ціна обговорюється
+                            {t('task.price_negotiated')}
                             <br />
-                            Оплата готівкою
+                            {t('task.cash_payment')}
                         </div>
                     </div>
 
@@ -222,32 +227,25 @@ export default function Task() {
                         <div className="flex text-black dark:text-white">
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-[0.625rem]">
-                                    <IconParkOutlineTime />
-                                    Виконати до: {task.estimated_date}
+                                    <IconParkOutlineTime className="size-[1.5rem] min-w-[1.5rem]" />
+                                    {t('task.complete_by')} {task.estimated_date}
                                 </div>
 
                                 <div className="flex items-center gap-[0.625rem]">
-                                    <FluentDocument32Regular />
+                                    <FluentDocument32Regular className="size-[1.5rem] min-w-[1.5rem]" />
                                     файл.pdf
                                 </div>
                             </div>
                         </div>
 
-                        <div className="text-primary text-right">{task.status}</div>
+                        <div className="text-primary text-right">{t(`tasks.${task.status}`)}</div>
                     </div>
 
-                    <div className="text-muted font-medium">
-                        Розробити сучасний та зручний інтернет-магазин одягу з адаптивним дизайном,
-                        що забезпечить комфортний перегляд і покупки з будь-яких пристроїв. Сайт має
-                        включати каталог товарів із фільтрами, кошик для покупок, систему оплати та
-                        зворотного зв’язку. Додаткові функції: особистий кабінет користувача,
-                        відгуки, інтеграція з соцмережами та можливість підключення аналітики для
-                        відстеження продажів.
-                    </div>
+                    <div className="text-muted font-medium">{task.description}</div>
 
                     <div className="flex items-center gap-[0.625rem] text-black dark:text-white">
-                        <MageKey />
-                        Конфіденційна інформація
+                        <MageKey className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('task.confidential_info')}
                     </div>
 
                     {!showContactsCustomer && (
@@ -257,20 +255,20 @@ export default function Task() {
                             onPress={() => setContactsCustomer(!showContactsCustomer)}
                             className="text-primary w-full rounded-[2.25rem] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                         >
-                            <MynauiTelephone />
-                            Показати контакти
+                            <MynauiTelephone className="size-[1.5rem] min-w-[1.5rem]" />
+                            {t('task.show_contacts')}
                         </Button>
                     )}
 
                     {showContactsCustomer && (
                         <div className="text-muted flex flex-col justify-center gap-[0.625rem] text-[1rem] leading-[1.375rem] font-medium">
                             <div className="flex">
-                                Телефон замовника:
+                                {t('task.customer_phone')}&nbsp;
                                 <div className="text-primary">{task.performer.phone}</div>
                             </div>
 
                             <div className="flex">
-                                Email замовника:
+                                {t('task.customer_email')}&nbsp;
                                 <div className="text-primary">{task.performer.email}</div>
                             </div>
                         </div>
@@ -285,7 +283,7 @@ export default function Task() {
                             color="primary"
                             className="w-full rounded-[2.25rem] py-6 leading-[1.6rem] font-semibold text-white sm:w-fit sm:p-[2rem]"
                         >
-                            <SolarMoneyBagLinear />
+                            <SolarMoneyBagLinear className="size-[1.5rem] min-w-[1.5rem]" />
                             {statusButtonText[task.status] ?? 'Невідомий статус'}
                         </Button>
 
@@ -294,8 +292,8 @@ export default function Task() {
                             onPress={() => openComplaint(0)}
                             className="text-muted w-full rounded-[2.25rem] py-6 leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                         >
-                            <IconParkOutlineAttention />
-                            Поскаржитись
+                            <IconParkOutlineAttention className="size-[1.5rem] min-w-[1.5rem]" />
+                            {t('task.complain')}
                         </Button>
                     </div>
 
@@ -306,8 +304,8 @@ export default function Task() {
                             onPress={() => openComplaint(1)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <IonPeopleOutline className="min-w-fit text-white" />
-                            Змінити фахівця
+                            <IonPeopleOutline className="text-muted size-[1.5rem] min-w-[1.5rem]" />
+                            {t('task.change_executor')}
                         </Button>
                         <Button
                             variant="light"
@@ -315,8 +313,8 @@ export default function Task() {
                             onPress={() => openComplaint(2)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <HugeiconsTimeHalfPass className="min-w-fit text-white" />
-                            <div className="text-primary">Подовжити замовлення</div>
+                            <HugeiconsTimeHalfPass className="text-muted size-[1.5rem] min-w-[1.5rem]" />
+                            {t('task.extend_task')}
                         </Button>
                         <Button
                             variant="light"
@@ -324,8 +322,8 @@ export default function Task() {
                             onPress={() => openComplaint(3)}
                             className="flex items-center gap-[0.625rem] text-nowrap"
                         >
-                            <ProiconsDelete className="min-w-fit text-white" />
-                            <div className="text-primary">Видалити замовлення</div>
+                            <ProiconsDelete className="text-muted size-[1.5rem] min-w-[1.5rem]" />
+                            {t('task.delete_task')}
                         </Button>
                     </div>
                 </div>
@@ -405,13 +403,14 @@ export default function Task() {
                                         );
                                     } else {
                                         return (
-                                            <button
+                                            <Button
                                                 key={btnIdx}
+                                                variant="light"
                                                 className="text-primary cursor-pointer bg-[0] text-[1.25rem] leading-[1.6875rem] font-semibold"
-                                                onClick={() => closeComplaint(index)} // закрываем блок
+                                                onPress={() => closeComplaint(index)} // закрываем блок
                                             >
                                                 {btn.text}
-                                            </button>
+                                            </Button>
                                         );
                                     }
                                 })}
@@ -422,13 +421,11 @@ export default function Task() {
 
                 <div className="flex w-full flex-col gap-[0.625rem] py-[2.5rem] 2xl:px-[5.5rem]">
                     <div className="text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
-                        Виконує
+                        {t('task.performed_by')}
                     </div>
 
                     <div className="text-muted text-[0.875rem] leading-[1.1875rem] font-medium">
-                        У цьому блоці відображається фахівець, який виконує ваше замовлення. Ви
-                        можете зв’язатись з ним за вказаними контактами або написати особисте
-                        повідомлення.
+                        {t('task.executor_block_text')}
                     </div>
                 </div>
 
@@ -450,8 +447,8 @@ export default function Task() {
                                             Коментар Коментар Коментар Коментар Коментар Коментар
                                             Коментар
                                         </div>
-                                        <div className="text-muted text-[1.25rem] leading-[1.6875rem] font-medium">
-                                            Сьогодні 12:27
+                                        <div className="text-muted text-center text-[1.25rem] leading-[1.6875rem] font-medium">
+                                            {task.createdAt}
                                         </div>
                                     </div>
 
@@ -461,18 +458,18 @@ export default function Task() {
 
                                     <div className="flex items-start gap-[3.125rem] text-black dark:text-white">
                                         <div className="f ont-medium text-[1rem] leading-[1.375rem]">
-                                            Відгуків: 134
+                                            {t('task.reviews')} 134
                                         </div>
                                         <div className="items-center text-[1rem] leading-[1.375rem] font-medium">
-                                            Позитивних: 94%
+                                            {t('task.positive_reviews')} 94%
                                         </div>
                                     </div>
 
                                     <div className="flex items-center justify-center gap-[0.625rem]">
-                                        <SolarMoneyBagLinear className="text-primary aspect-square size-[2rem] min-w-[2rem]" />
+                                        <SolarMoneyBagLinear className="text-primary size-[2rem] min-w-[2rem]" />
 
                                         <div className="text-muted flex text-[1rem] leading-[1.375rem] font-semibold">
-                                            Оплата в руки фахівця:{' '}
+                                            {t('task.cash_to_executor')}&nbsp;
                                             <div className="text-primary"> {task.price}</div>
                                         </div>
                                     </div>
@@ -480,8 +477,8 @@ export default function Task() {
 
                                 <div className="flex flex-col items-start gap-[1.375rem]">
                                     <Button className="text-primary border-primary w-full rounded-[2.25rem] border-1 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]">
-                                        <ProiconsChat />
-                                        Написати
+                                        <ProiconsChat className="size-[2rem] min-w-[2rem]" />
+                                        {t('task.write')}
                                     </Button>
 
                                     {!showContactsPerfomer && (
@@ -491,22 +488,22 @@ export default function Task() {
                                             }
                                             className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                                         >
-                                            <MynauiTelephone />
-                                            Показати контакти
+                                            <MynauiTelephone className="size-[2rem] min-w-[2rem]" />
+                                            {t('task.show_contacts')}
                                         </Button>
                                     )}
 
                                     {showContactsPerfomer && (
                                         <div className="text-muted flex flex-col justify-center gap-[0.625rem] text-[1rem] leading-[1.375rem] font-medium">
                                             <div className="flex">
-                                                Телефон фахівця:
+                                                {t('task.executor_phone')}&nbsp;
                                                 <div className="text-black dark:text-white">
                                                     {task.performer.phone}
                                                 </div>
                                             </div>
 
                                             <div className="flex">
-                                                Email фахівця:
+                                                {t('task.executor_email')}&nbsp;
                                                 <div className="text-black dark:text-white">
                                                     {task.performer.email}
                                                 </div>
@@ -520,8 +517,8 @@ export default function Task() {
                                         onPress={() => openComplaint(1)}
                                         className="flex gap-[0.625rem]"
                                     >
-                                        <IonPeopleOutline className="text-muted min-w-fit" />
-                                        Фахівець не підійшов
+                                        <IonPeopleOutline className="text-muted size-[1.5rem] min-w-[1.5rem]" />
+                                        {t('task.executor_not_suitable')}
                                     </Button>
                                 </div>
                             </div>
@@ -542,7 +539,7 @@ export default function Task() {
                 )}
 
                 <div className="w-full py-[2.5rem] text-center text-[2rem] leading-[2.75rem] font-semibold text-black 2xl:px-[5.5rem] dark:text-white">
-                    Інші замовлення у цій категорії
+                    {t('task.other_tasks_in_category')}
                 </div>
 
                 <Divider className="bg-muted" />
@@ -603,7 +600,7 @@ export default function Task() {
                                         12
                                     </div>
                                     <div className="text-primary text-[0.75rem] leading-[1rem] font-medium">
-                                        відгуків
+                                        {t('user-layout.reviews')}
                                     </div>
                                 </div>
 
@@ -614,7 +611,7 @@ export default function Task() {
                                         90%
                                     </div>
                                     <div className="text-muted flex items-center text-[0.75rem] leading-[1rem] font-medium">
-                                        позитивних
+                                        {t('user-layout.positive')}
                                     </div>
                                 </div>
                             </div>
@@ -630,8 +627,8 @@ export default function Task() {
                             <SolarMoneyBagLinear className="h-[1.5rem] w-[1.5rem] text-black dark:text-white"></SolarMoneyBagLinear>
 
                             <div className="text-muted flex text-[1rem] leading-[1.375rem] font-medium">
-                                Створено:{' '}
-                                <div className="text-black dark:text-white">{task.created_at}</div>
+                                {t('task.created_at')}&nbsp;
+                                <div className="text-black dark:text-white">{task.createdAt}</div>
                             </div>
                         </div>
 
@@ -639,8 +636,8 @@ export default function Task() {
                             <IconamoonProfileLight className="h-[1.5rem] w-[1.5rem] text-black dark:text-white"></IconamoonProfileLight>
 
                             <div className="text-muted flex text-[1rem] leading-[1.375rem] font-medium">
-                                Підписано:{' '}
-                                <div className="text-black dark:text-white">{task.created_at}</div>
+                                {t('task.signed')}&nbsp;
+                                <div className="text-black dark:text-white">{task.createdAt}</div>
                             </div>
                         </div>
                     </div>
