@@ -21,7 +21,7 @@ const Categories = ({ categories }: { categories: Category[] }) => {
                         {category.icon &&
                             (isSvg(category.icon) ? (
                                 <SafeHtml<'svg'>
-                                    className="aspect-square h-full min-w-max"
+                                    className="m-auto aspect-square h-3/5 min-w-max"
                                     html={category.icon}
                                 />
                             ) : (
@@ -32,7 +32,7 @@ const Categories = ({ categories }: { categories: Category[] }) => {
                                     height=""
                                     className="aspect-square h-full w-fit object-cover"
                                     classNames={{
-                                        wrapper: 'h-full w-min aspect-square',
+                                        wrapper: 'h-3/5 m-auto w-min aspect-square',
                                     }}
                                 />
                             ))}
