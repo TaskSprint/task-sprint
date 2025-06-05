@@ -190,7 +190,11 @@ export default function TaskCreationPage({
                             <div>
                                 <Button
                                     onPress={() => setIsModalOpen(true)}
-                                    color={errors.secret_description ? 'danger' : 'primary'}
+                                    color={
+                                        Object.keys(errors).find((e) => e.startsWith('files'))
+                                            ? 'danger'
+                                            : 'primary'
+                                    }
                                     variant="light"
                                     className="text-medium sm:text-xl"
                                 >
@@ -205,8 +209,26 @@ export default function TaskCreationPage({
 
                                 <UploadFileModal
                                     name="files"
-                                    errorMessage={errors.files}
-                                    onClearError={clearErrors}
+                                    errorMessage={
+                                        Object.keys(errors).find((e) => e.startsWith('files')) ? (
+                                            <ul className="list-disc pl-4">
+                                                {Object.entries(errors)
+                                                    .filter(([key]) => key.startsWith('files'))
+                                                    .map(([key, message]) => (
+                                                        <li key={key} className="text-danger">
+                                                            {message}
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        ) : undefined
+                                    }
+                                    onClearError={() =>
+                                        Object.keys(errors)
+                                            .filter((key) => key.startsWith('files'))
+                                            .forEach((key) =>
+                                                clearErrors(key as keyof typeof errors),
+                                            )
+                                    }
                                     open={isModalOpen}
                                     onOpenChange={setIsModalOpen}
                                     value={data.files}
@@ -473,6 +495,7 @@ export default function TaskCreationPage({
                                     positiveReviews={0}
                                     lastVisit={new Date()}
                                     subCategoryId={subCategory.id}
+                                    routerOptions={{ preserveState: true }}
                                 />
                             ))}
                         </div>
@@ -491,6 +514,9 @@ export default function TaskCreationPage({
                                             positiveReviews={0}
                                             lastVisit={new Date()}
                                             subCategoryId={subCategory.id}
+                                            routerOptions={{
+                                                preserveState: true,
+                                            }}
                                         />
                                     </CarouselItem>
                                 ))}

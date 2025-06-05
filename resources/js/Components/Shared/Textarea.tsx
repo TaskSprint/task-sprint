@@ -35,7 +35,8 @@ const Textarea = forwardRef<
         const handleBlur: React.FocusEventHandler<HTMLInputElement> &
             ((e: React.FocusEvent<HTMLInputElement>) => void) = (...props) => {
             onBlur?.(...props);
-            if (errorValue && errorValue !== controlledValue) {
+            console.log(errorValue, controlledValue);
+            if (errorMessage && errorValue !== controlledValue) {
                 onClearError?.(name);
             }
         };

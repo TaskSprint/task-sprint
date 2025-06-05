@@ -676,23 +676,24 @@ export default function Task({ locale, task }: PageProps<{ task: TaskModel }>) {
                                 })}
                             </div>
                         </div>
+                        {task.order?.createdAt && (
+                            <div className="flex items-center gap-[0.625rem]">
+                                <IconamoonProfileLight className="h-[1.5rem] w-[1.5rem]"></IconamoonProfileLight>
 
-                        <div className="flex items-center gap-[0.625rem]">
-                            <IconamoonProfileLight className="h-[1.5rem] w-[1.5rem]"></IconamoonProfileLight>
-
-                            <div className="text-muted flex text-[1rem] leading-[1.375rem] font-medium">
-                                {t('task.signed')}&nbsp;
-                                {new Date(task.order?.createdAt ?? new Date()).toLocaleDateString(
-                                    locale?.current,
-                                    {
-                                        minute: '2-digit',
-                                        hour: '2-digit',
-                                        month: 'long',
-                                        day: 'numeric',
-                                    },
-                                )}
+                                <div className="text-muted flex text-[1rem] leading-[1.375rem] font-medium">
+                                    {t('task.signed')}&nbsp;
+                                    {new Date(task.order?.createdAt).toLocaleDateString(
+                                        locale?.current,
+                                        {
+                                            minute: '2-digit',
+                                            hour: '2-digit',
+                                            month: 'long',
+                                            day: 'numeric',
+                                        },
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     <Divider className="bg-muted" />

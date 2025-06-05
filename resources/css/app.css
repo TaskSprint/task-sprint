@@ -146,6 +146,12 @@
     }
 }
 
+@layer base {
+    :root {
+        @apply scroll-smooth;
+    }
+}
+
 body {
     --color-surface: white;
     --radix-accordion-content-height: 0;

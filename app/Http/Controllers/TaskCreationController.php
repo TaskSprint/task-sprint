@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\TaskOrderStatus;
+use App\Facades\Models\TaskOrderService;
 use App\Facades\Models\TaskService;
 use App\Http\Requests\TaskPostRequest;
 use App\Http\Resources\SubCategoryResource;
@@ -41,8 +42,15 @@ class TaskCreationController extends Controller
     {
         $validated = $request->validated();
 
-        TaskService::create($validated);
+        $task = TaskService::create($validated);
+        if (isset($validated['employee_id'])) {
+            TaskOrderService::create([
+                'status' => TaskOrderStatus::Pending,
+                'employee_id' => $validated['employee_id'],
+                'task_id' => $task->id,
+            ]);
+        }
 
-        return redirect(route('sub-category.task.create.index'));
+        return redirect(route('task.index', ['task' => $task->id]));
     }
 }
