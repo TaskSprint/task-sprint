@@ -46,7 +46,8 @@ const Input = forwardRef<
             } else {
                 setErrorValue(undefined);
             }
-        }, [controlledValue, errorMessage]);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [errorMessage]);
 
         return (
             <Component

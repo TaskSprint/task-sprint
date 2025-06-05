@@ -25,4 +25,8 @@ return [
     'street' => 'Street',
     'building' => 'Building',
     'address' => 'Address',
+    'files' => 'Files',
+    'secret_description' => 'Secret Description',
+    'payment_details' => 'Payment Details',
+    'negotiable' => 'Price is negotiable',
 ];

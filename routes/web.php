@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskCreationController;
 use App\Http\Resources\SubCategoryResource;
 use App\Models\SubCategory;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
@@ -35,9 +36,9 @@ Route::localized(function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
 
-        Route::get('/task-creation', function () {
-            return Inertia::render('TaskCreation');
-        })->name('task-creation');
+        Route::get('/sub-category/{subCategory}/task/create', [TaskCreationController::class, 'index'])->name('sub-category.task.create.index');
+        Route::post('/sub-category/{subCategory}/task/create', [TaskCreationController::class, 'store'])
+            ->name('sub-category.task.create.store');
 
         Route::get('/file-test', [FileTestController::class, 'index'])->name('file-test.index');
         Route::post('/file-test', [FileTestController::class, 'update'])

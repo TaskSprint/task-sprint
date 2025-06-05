@@ -46,7 +46,8 @@ const Textarea = forwardRef<
             } else {
                 setErrorValue(undefined);
             }
-        }, [errorMessage, controlledValue]);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [errorMessage]);
 
         return (
             <Component

@@ -9,4 +9,5 @@ return [
     'search' => 'Search',
     'find' => 'Find',
     'create' => 'Create task',
+    'categories' => 'Categories',
 ];

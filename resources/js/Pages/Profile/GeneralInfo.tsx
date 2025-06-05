@@ -2,7 +2,6 @@ import Button from '@/Components/Shared/Button';
 import AppLayout from '@/Layouts/AppLayout';
 import ProfileLayout from '@/Layouts/ProfileLayout';
 import UserLayout from '@/Layouts/UserLayout';
-import { useRouter } from '@/hooks/useRouter';
 import { Checkbox, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
@@ -17,7 +16,6 @@ import MaterialSymbolsNotificationsOutline from '~icons/material-symbols/notific
 
 export default function GeneralInfo() {
     const { t } = useLaravelReactI18n();
-    const { route } = useRouter();
 
     const user1 = {
         id: 1,
@@ -128,10 +126,7 @@ export default function GeneralInfo() {
 
                 <div className="flex flex-col gap-[0.75rem] text-[1.25rem] leading-[1.375rem]">
                     {t('profile.general-info.order_categories')}
-                    <Link
-                        className="text-primary text-[1.25rem] leading-[1.375rem]"
-                        href={route('task-creation')}
-                    >
+                    <Link className="text-primary text-[1.25rem] leading-[1.375rem]">
                         {t('profile.general-info.create_ad')}
                     </Link>
                 </div>
@@ -142,10 +137,7 @@ export default function GeneralInfo() {
 
                 <div className="flex flex-col gap-[0.75rem] text-[1.25rem] leading-[1.375rem]">
                     {t('profile.general-info.my_ads')}
-                    <Link
-                        className="text-primary text-[1.25rem] leading-[1.375rem]"
-                        href={route('task-creation')}
-                    >
+                    <Link className="text-primary text-[1.25rem] leading-[1.375rem]">
                         {t('profile.general-info.create_ad')}
                     </Link>
                 </div>
@@ -165,10 +157,7 @@ export default function GeneralInfo() {
 
                 <div className="flex flex-col gap-[0.75rem] text-[1.25rem] leading-[1.375rem]">
                     {t('profile.general-info.payment_info')}
-                    <Link
-                        className="text-primary text-[1.25rem] leading-[1.375rem]"
-                        href={route('task-creation')}
-                    >
+                    <Link className="text-primary text-[1.25rem] leading-[1.375rem]">
                         {t('profile.general-info.create_ad')}
                     </Link>
                 </div>
