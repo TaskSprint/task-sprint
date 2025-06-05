@@ -6,7 +6,7 @@ return [
     "create_task_button" => "Create Task",
     "popular_tasks" => "Popular tasks",
     "popular_tasks_description" => "You can use any task as a template",
-    "completed_today_by" => "Completed today by specialist :customer",
+    "completed_by" => "Completed :date by specialist :customer",
     "repeat-task" => "Repeat task",
     "view-task" => "View task",
 ];

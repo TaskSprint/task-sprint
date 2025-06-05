@@ -20,6 +20,7 @@ import { BreadcrumbItem, Breadcrumbs, Checkbox, cn, Divider, Form, Link } from '
 import { useForm } from '@inertiajs/react';
 import { addDays, startOfDay } from 'date-fns';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { useQueryState } from 'nuqs';
 import { FormEvent, useState } from 'react';
 
 export default function TaskCreationPage({
@@ -36,6 +37,8 @@ export default function TaskCreationPage({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename] = useState<string | null>(null);
     const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
+    const [queryName] = useQueryState('n');
+    const [queryDescription] = useQueryState('d');
     // const [selected2, setSelected2] = React.useState('cash');
     // const [selected3, setSelected3] = React.useState('option-1');
 
@@ -59,9 +62,9 @@ export default function TaskCreationPage({
         employee_id: number | null;
         negotiable: boolean;
     }>({
-        name: '',
+        name: queryName ?? '',
         files: null,
-        description: '',
+        description: queryDescription ?? '',
         secret_description: '',
         estimated_date: startOfDay(addDays(new Date(), 1)),
         address: {

@@ -45,12 +45,16 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
                         className="aspect-square size-21.75 content-start justify-start"
                         src={photo}
                         as={Link}
+                        href={route('profile.general-info', { user: id })}
                     />
                 </div>
                 <div className="flex w-full flex-col gap-2 pt-1">
                     <div className="flex items-center gap-2.5">
                         <h2>
-                            <Link className="text-xl font-bold focus:text-gray-500 dark:text-white">
+                            <Link
+                                className="text-xl font-bold focus:text-gray-500 dark:text-white"
+                                href={route('profile.general-info', { user: id })}
+                            >
                                 <div className="inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap text-black dark:text-white">
                                     {name}
                                 </div>

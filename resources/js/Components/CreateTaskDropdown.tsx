@@ -1,5 +1,4 @@
 import SafeHtml from '@/Components/SafeHtml';
-import Button from '@/Components/Shared/Button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,9 +17,19 @@ import { Image } from '@heroui/react';
 import { Link, usePage } from '@inertiajs/react';
 import isSvg from 'is-svg';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
-export default function CreateTaskDropdown() {
+export default function CreateTaskDropdown({
+    name,
+    description,
+    employee,
+    children,
+}: Readonly<{
+    name?: string;
+    description?: string;
+    employee?: number;
+    children: ReactNode;
+}>) {
     const { t } = useLaravelReactI18n();
     const { route } = useRouter();
     const {
@@ -30,14 +39,7 @@ export default function CreateTaskDropdown() {
 
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    className="border-foreground h-11 rounded-full border text-base font-medium"
-                    variant="bordered"
-                >
-                    {t('navigation.create')}
-                </Button>
-            </DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>{t('navigation.categories')}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -74,6 +76,9 @@ export default function CreateTaskDropdown() {
                                                     className="w-full px-2 py-1.5"
                                                     href={route('sub-category.task.create.index', {
                                                         subCategory: subCategory.id,
+                                                        n: name,
+                                                        d: description,
+                                                        e: employee,
                                                     })}
                                                     onClick={() => setOpen(false)}
                                                 >

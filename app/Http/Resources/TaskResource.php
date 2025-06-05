@@ -24,12 +24,17 @@ class TaskResource extends JsonResource
             'negotiable' => $this->negotiable,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'files' => $this->whenLoaded('files', function () {
-                return $this->files->map(fn($file) => $file->getTemporaryUrl())->toArray();
+            'files' => FileResource::collection($this->whenLoaded('files')),
+            'images' => $this->whenLoaded('files', function () {
+                return $this->files
+                    ->filter(fn($file) => str($file->mime_type)->startsWith("image/"))
+                    ->map(fn($file) => $file->getTemporaryUrl())
+                    ->toArray();
             }),
             'currency' => new CurrencyResource($this->whenLoaded('currency')),
             'user' => new UserResource($this->whenLoaded('customer')),
             'subCategory' => new SubCategoryResource($this->whenLoaded('subCategory')),
+            'order' => new TaskOrderResource($this->whenLoaded('order')),
         ];
     }
 }

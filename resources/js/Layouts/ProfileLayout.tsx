@@ -1,28 +1,37 @@
 import OneStarRating from '@/Components/OneStarRating';
 import { usePageTransition } from '@/hooks/usePageTransition';
 import { useRouter } from '@/hooks/useRouter';
+import { PageProps } from '@/types';
+import User from '@/types/models/user';
 import { Avatar, cn, Tab, Tabs } from '@heroui/react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const { route, relativeCurrent } = useRouter();
-    const transitioning = usePageTransition({ segmentIndex: 1 });
+    const { auth, user } = usePage<PageProps<{ user?: User }>>().props;
+    const { route, relativeCurrent, current } = useRouter();
+    const transitioning = usePageTransition({
+        segmentIndex: current('profile.become-employee') ? 1 : 2,
+    });
 
     const tabs = [
         {
             title: 'user-layout.general-info-tab',
             link: 'profile.general-info',
+            params: { user: user ? user.id : auth.user?.id },
         },
         {
             title: 'user-layout.start-earning-tab',
             link: 'profile.become-employee',
+            check: () =>
+                auth.user && (current('profile.become-employee') || auth.user.id === user?.id),
         },
         {
             title: 'user-layout.employee-info-tab',
             link: 'profile.employee-info',
+            params: { user: user ? user.id : auth.user?.id },
         },
     ];
 
@@ -67,13 +76,13 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
             <div className="bg-surface flex h-full w-full flex-col gap-[1.5rem] rounded-l-[2rem] px-[1rem] py-[1rem]">
                 <div className="flex items-start gap-[0.938rem]">
                     <Avatar
-                        src={user1.avatar}
+                        src={user ? user.avatar : auth.user?.avatar}
                         className="win-w-[5.875rem] h-[5.875rem] w-[5.875rem]"
                     ></Avatar>
 
                     <div className="flex flex-col text-[1.5rem] leading-[2.75rem] font-medium">
                         <div className="flex justify-between gap-[1.25rem]">
-                            {user1.name}
+                            {user ? user.name : auth.user?.name}
                             <OneStarRating
                                 totalReviews={parseFloat(user1.rating)}
                                 positiveReviews={parseFloat(user1.rating) - 2}
@@ -82,7 +91,9 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         </div>
 
                         <div className="flex justify-between gap-[1.25rem]">
-                            <div className="text-muted text-[1.25rem]">{user1.email}</div>
+                            <div className="text-muted text-[1.25rem]">
+                                {user ? user.email : auth.user?.email}
+                            </div>
                             <OneStarRating
                                 totalReviews={parseFloat(user1.rating) - 1}
                                 positiveReviews={parseFloat(user1.rating) - 2}
@@ -101,15 +112,19 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                     variant="underlined"
                     selectedKey={relativeCurrent}
                 >
-                    {tabs.map((tab) => (
-                        <Tab
-                            key={tab.link}
-                            title={t(tab.title)}
-                            as={Link}
-                            href={route(tab.link)}
-                            className={cn('text-foreground gap-[1rem] pb-[1rem] text-[1.25rem]')}
-                        />
-                    ))}
+                    {tabs
+                        .filter((tab) => !tab.check || tab.check())
+                        .map((tab) => (
+                            <Tab
+                                key={tab.link}
+                                title={t(tab.title)}
+                                as={Link}
+                                href={route(tab.link, tab.params)}
+                                className={cn(
+                                    'text-foreground gap-[1rem] pb-[1rem] text-[1.25rem]',
+                                )}
+                            />
+                        ))}
                 </Tabs>
 
                 <main
