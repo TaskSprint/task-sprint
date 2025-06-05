@@ -1,4 +1,5 @@
 import Currency from '@/types/models/currency';
+import FileModel from '@/types/models/file-model';
 import SubCategory from '@/types/models/sub-category';
 import TaskOrder from '@/types/models/task-order';
 import User from '@/types/models/user';
@@ -17,7 +18,7 @@ export default interface Task {
     status: 'pending' | 'pending for executor' | 'in progress' | 'completed' | 'cancelled';
     user?: User;
     order?: TaskOrder;
-    files?: string[];
+    files?: FileModel[];
     images?: string[];
     updatedAt: string;
     createdAt: string;

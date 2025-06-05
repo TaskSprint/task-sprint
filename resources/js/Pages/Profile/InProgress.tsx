@@ -46,7 +46,7 @@ export default function InProgress({ tasks, locale }: PageProps<{ tasks: Task[] 
                             <Button
                                 className="border-primary text-primary w-full rounded-[2.25rem] border-2 bg-[0] py-6 text-[1.25rem] leading-[1.6rem] font-semibold sm:w-fit sm:p-[2rem]"
                                 as={Link}
-                                href={route('task.show', task.id)}
+                                href={route('task.index', { task: task.id })}
                             >
                                 {t('tasks-in-progress.view_task')}
                             </Button>

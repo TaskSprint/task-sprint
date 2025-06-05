@@ -24,9 +24,7 @@ class TaskResource extends JsonResource
             'negotiable' => $this->negotiable,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'files' => $this->whenLoaded('files', function () {
-                return $this->files->map(fn($file) => $file->getTemporaryUrl())->toArray();
-            }),
+            'files' => FileResource::collection($this->whenLoaded('files')),
             'images' => $this->whenLoaded('files', function () {
                 return $this->files
                     ->filter(fn($file) => str($file->mime_type)->startsWith("image/"))

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskCreationController;
 use App\Http\Resources\SubCategoryResource;
 use App\Http\Resources\TaskResource;
@@ -95,6 +96,7 @@ Route::localized(function () {
             return Inertia::render('Profile/NewTask', [
                 'tasks' => TaskResource::collection(Task::with('files', 'subCategory', 'order.employee')
                     ->where('status', TaskStatus::Completed)
+                    ->orderBy('updated_at', 'desc')
                     ->get()),
             ]);
         })->name('profile.new-task');
@@ -109,9 +111,7 @@ Route::localized(function () {
             ]);
         })->name('profile.archive');
 
-        Route::get('/task/{id}', function ($id) {
-            return Inertia::render('Task', ['id' => $id]);
-        })->name('task.show');
+        Route::get('/task/{task}', [TaskController::class, 'index'])->name('task.index');
 
         Route::get('/profile/become-employee', function () {
             return Inertia::render('Profile/BecomeEmployee');
