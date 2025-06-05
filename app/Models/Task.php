@@ -28,7 +28,7 @@ class Task extends Model
         return $this->belongsTo(User::class, 'customer_id');
     }
 
-    public function order(): HasOne|Task
+    public function order(): HasOne
     {
         return $this->hasOne(TaskOrder::class);
     }

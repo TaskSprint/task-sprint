@@ -1,12 +1,17 @@
 <?php
 
+use App\Enums\TaskStatus;
 use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskCreationController;
 use App\Http\Resources\SubCategoryResource;
+use App\Http\Resources\TaskResource;
+use App\Http\Resources\UserResource;
 use App\Models\SubCategory;
+use App\Models\Task;
+use App\Models\User;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -49,19 +54,42 @@ Route::localized(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('/profile/favorite', function () {
-            return Inertia::render('Profile/Favorite');
+            return Inertia::render('Profile/Favorite', [
+                'employees' => UserResource::collection(
+                    User::with('avatar')
+                        ->limit(5)
+                        ->role('employee')
+                        ->get()),
+            ]);
         })->name('profile.favorite');
 
         Route::get('/profile/in-progress', function () {
-            return Inertia::render('Profile/InProgress');
+            return Inertia::render('Profile/InProgress', [
+                'tasks' => TaskResource::collection(auth()->user()->tasks()
+                    ->with('files')
+                    ->where('status', TaskStatus::InProgress)
+                    ->orWhere('status', TaskStatus::Pending)
+                    ->orWhere('status', TaskStatus::PendingForExecutor)
+                    ->get()),
+            ]);
         })->name('profile.in-progress');
 
         Route::get('/profile/new-task', function () {
-            return Inertia::render('Profile/NewTask');
+            return Inertia::render('Profile/NewTask', [
+                'tasks' => TaskResource::collection(Task::with('files', 'subCategory', 'order.employee')
+                    ->where('status', TaskStatus::Completed)
+                    ->get()),
+            ]);
         })->name('profile.new-task');
 
         Route::get('/profile/archive', function () {
-            return Inertia::render('Profile/Archive');
+            return Inertia::render('Profile/Archive', [
+                'tasks' => TaskResource::collection(auth()->user()->tasks()
+                    ->with('files', 'subCategory')
+                    ->where('status', TaskStatus::Completed)
+                    ->orWhere('status', TaskStatus::Cancelled)
+                    ->get()),
+            ]);
         })->name('profile.archive');
 
         Route::get('/task/{id}', function ($id) {
