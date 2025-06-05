@@ -4,13 +4,9 @@ import {
     Breadcrumbs,
     Checkbox,
     Divider,
-    Input,
     Link,
     Radio,
     RadioGroup,
-    Select,
-    SelectItem,
-    Textarea,
 } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
@@ -24,32 +20,62 @@ import {
     CarouselPrevious,
 } from '@/Components/Shared/Carousel';
 import UploadFileModal from '@/Components/UploadFileModal';
-import DescriptionModal from '@/Components/DescriptionModal';
+import ActionModal from '@/Components/ActionModal';
+import { useForm } from '@inertiajs/react';
+import Textarea from '@/Components/Shared/Textarea';
+import Input from '@/Components/Shared/Input';
 
 export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
-    const [isDescriptionModalOpen, setDescriptionModalOpen] = useState(false);
-    const [description, setDescription] = useState('');
+    const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [selected, setSelected] = React.useState('3-part');
-    const [selected2, setSelected2] = React.useState('cash');
-    const [selected3, setSelected3] = React.useState('option-1');
+    // const [selected2, setSelected2] = React.useState('cash');
+    // const [selected3, setSelected3] = React.useState('option-1');
 
-    const cities = [
-        { key: 'kyiv', label: 'Київ' },
-        { key: 'odessa', label: 'Одеса' },
-        { key: 'kharkov', label: 'Харків' },
-        { key: 'zaporizha', label: 'Запоріжжюя' },
-        { key: 'lviv', label: 'Львів' },
-        { key: 'donetsk', label: 'Донецк' },
-    ];
+    const { data, setData, errors, clearErrors } = useForm<{
+        files: File[] | null;
+        description: string;
+        secretDescription: string;
+        address: {
+            city: string;
+            region: string;
+            street: string;
+            house: string;
+            details: string | null;
+        };
+        paymentDetails: string | null;
+        price: string;
+    }>({
+        files: null,
+        description: '',
+        secretDescription: '',
+        address: {
+            city: '',
+            region: '',
+            street: '',
+            house: '',
+            details: null,
+        },
+        paymentDetails: null,
+        price: '0',
+    });
 
-    const districts = [
-        { key: 'pecherskiiy', label: 'Печерський' },
-        { key: 'obolonskiiy', label: 'Обольнський' },
-        { key: 'podolskiiy', label: 'Поділський' },
-    ];
+    // const cities = [
+    //     { key: 'kyiv', label: 'Київ' },
+    //     { key: 'odessa', label: 'Одеса' },
+    //     { key: 'kharkov', label: 'Харків' },
+    //     { key: 'zaporizha', label: 'Запоріжжюя' },
+    //     { key: 'lviv', label: 'Львів' },
+    //     { key: 'donetsk', label: 'Донецк' },
+    // ];
+    //
+    // const districts = [
+    //     { key: 'pecherskiiy', label: 'Печерський' },
+    //     { key: 'obolonskiiy', label: 'Обольнський' },
+    //     { key: 'podolskiiy', label: 'Поділський' },
+    // ];
 
     return (
         <div className="bg-surface flex min-h-full w-full max-w-[87.5rem] flex-col xl:flex-row">
@@ -88,6 +114,7 @@ export default function TaskCreationPage() {
                             {t('task-creation.briefly')}
                         </h4>
                         <Textarea
+                            name="description"
                             className="w-full max-w-[34.625rem]"
                             color="primary"
                             variant="bordered"
@@ -99,43 +126,49 @@ export default function TaskCreationPage() {
                             {t('task-creation.description')}:
                         </h4>
                         <Textarea
+                            name="description"
                             className="w-full max-w-[40rem]"
                             color="primary"
                             variant="bordered"
                             radius="lg"
                             minRows={8}
+                            value={data.description}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('description', value)}
                         />
-                        <div className="flex flex-row gap-20">
+                        <div className="flex flex-row flex-wrap justify-center gap-x-10 gap-y-2">
                             <div>
-                                <Link
-                                    onPress={() => setDescriptionModalOpen(true)}
-                                    className="text-muted cursor-pointer text-base font-medium"
+                                <Button
+                                    variant="light"
+                                    className="text-medium sm:text-xl"
+                                    color={errors.secretDescription ? 'danger' : 'default'}
+                                    onPress={() => setIsDescriptionModalOpen(true)}
                                 >
-                                    {t('task-creation.confidential-data')}
-                                </Link>
+                                    + {t('task-creation.confidential-data.title')}
+                                </Button>
 
-                                {description && (
-                                    <div className="mt-2 text-sm text-[#00CCFF]">
-                                        <strong>Опис:</strong> {description}
-                                    </div>
-                                )}
-
-                                <DescriptionModal
-                                    isOpen={isDescriptionModalOpen}
-                                    onClose={() => setDescriptionModalOpen(false)}
-                                    onSave={(desc) => setDescription(desc)}
-                                    title="Додатковий опис"
-                                    subtitle="Вкажіть деталі, які має знати виконавець"
-                                    placeholder="Введіть додаткову інформацію..."
+                                <ActionModal
+                                    name="secretDescription"
+                                    errorMessage={errors.secretDescription}
+                                    onClearError={clearErrors}
+                                    open={isDescriptionModalOpen}
+                                    onOpenChange={setIsDescriptionModalOpen}
+                                    onSave={(desc) => setData('secretDescription', desc)}
+                                    title={t('task-creation.confidential-data.title')}
+                                    subtitle={t('task-creation.confidential-data.subtitle')}
+                                    placeholder={t('task-creation.confidential-data.placeholder')}
+                                    type="textarea"
                                 />
                             </div>
                             <div>
-                                <Link
+                                <Button
                                     onPress={() => setIsModalOpen(true)}
-                                    className="cursor-pointer text-base font-medium dark:text-[#00CCFF]"
+                                    color={errors.secretDescription ? 'danger' : 'primary'}
+                                    variant="light"
+                                    className="text-medium sm:text-xl"
                                 >
                                     {t('task-creation.add-file')}
-                                </Link>
+                                </Button>
 
                                 {uploadedFilename && (
                                     <div className="mt-2 text-sm dark:text-[#00CCFF]">
@@ -144,11 +177,13 @@ export default function TaskCreationPage() {
                                 )}
 
                                 <UploadFileModal
-                                    isOpen={isModalOpen}
-                                    onClose={() => setIsModalOpen(false)}
-                                    onUploadSuccess={(
-                                        filename: React.SetStateAction<string | null>,
-                                    ) => setUploadedFilename(filename)}
+                                    name="files"
+                                    errorMessage={errors.files}
+                                    onClearError={clearErrors}
+                                    open={isModalOpen}
+                                    onOpenChange={setIsModalOpen}
+                                    value={data.files}
+                                    onSave={(files) => setData('files', files)}
                                 />
                             </div>
                         </div>
@@ -160,60 +195,94 @@ export default function TaskCreationPage() {
                     </h2>
                     <div className="grid w-full grid-cols-1 flex-row items-center justify-between gap-2.5 sm:w-auto sm:grid-cols-[auto_minmax(0,25rem)] [&>h4]:mt-4 sm:[&>h4]:mt-0">
                         <h4 className="text-base font-medium">{t('task-creation.city')}</h4>
-                        <Select
-                            radius="full"
-                            labelPlacement="outside"
+                        <Input
+                            name="address.city"
+                            placeholder={t('task-creation.exmp-city')}
                             variant="bordered"
-                            defaultSelectedKeys={['kyiv']}
+                            radius="full"
                             size="lg"
                             color="primary"
-                            className="min-w-48"
-                        >
-                            {cities.map((city) => (
-                                <SelectItem key={city.key}>{city.label}</SelectItem>
-                            ))}
-                        </Select>
+                            value={data.address.city}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('address.city', value)}
+                        />
+                        {/*<Select*/}
+                        {/*    radius="full"*/}
+                        {/*    labelPlacement="outside"*/}
+                        {/*    variant="bordered"*/}
+                        {/*    defaultSelectedKeys={['kyiv']}*/}
+                        {/*    size="lg"*/}
+                        {/*    color="primary"*/}
+                        {/*    className="min-w-48"*/}
+                        {/*>*/}
+                        {/*    {cities.map((city) => (*/}
+                        {/*        <SelectItem key={city.key}>{city.label}</SelectItem>*/}
+                        {/*    ))}*/}
+                        {/*</Select>*/}
 
                         <h4 className="text-base font-medium">{t('task-creation.district')}</h4>
-                        <Select
-                            radius="full"
-                            labelPlacement="outside"
+                        <Input
+                            name="address.region"
+                            placeholder={t('task-creation.exmp-district')}
                             variant="bordered"
-                            color="primary"
-                            defaultSelectedKeys={['pecherskiiy']}
+                            radius="full"
                             size="lg"
-                            className="min-w-48"
-                        >
-                            {districts.map((district) => (
-                                <SelectItem key={district.key}>{district.label}</SelectItem>
-                            ))}
-                        </Select>
+                            color="primary"
+                            value={data.address.region}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('address.region', value)}
+                        />
+                        {/*<Select*/}
+                        {/*    radius="full"*/}
+                        {/*    labelPlacement="outside"*/}
+                        {/*    variant="bordered"*/}
+                        {/*    color="primary"*/}
+                        {/*    defaultSelectedKeys={['pecherskiiy']}*/}
+                        {/*    size="lg"*/}
+                        {/*    className="min-w-48"*/}
+                        {/*>*/}
+                        {/*    {districts.map((district) => (*/}
+                        {/*        <SelectItem key={district.key}>{district.label}</SelectItem>*/}
+                        {/*    ))}*/}
+                        {/*</Select>*/}
 
                         <h4 className="text-base font-medium">{t('task-creation.street')}</h4>
                         <Input
+                            name="address.street"
                             placeholder={t('task-creation.exmp-str')}
                             variant="bordered"
                             radius="full"
                             size="lg"
                             color="primary"
+                            value={data.address.street}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('address.street', value)}
                         />
 
                         <h4 className="text-base font-medium">{t('task-creation.house')}</h4>
                         <Input
+                            name="address.house"
                             placeholder={t('task-creation.exmp-home')}
                             variant="bordered"
                             radius="full"
                             size="lg"
                             color="primary"
+                            value={data.address.house}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('address.house', value)}
                         />
 
                         <h4 className="text-base font-medium">{t('task-creation.adrs-details')}</h4>
                         <Input
+                            name="address.details"
                             placeholder={t('task-creation.exmp-dtls')}
                             variant="bordered"
                             radius="full"
                             size="lg"
                             color="primary"
+                            value={data.address.details ?? ''}
+                            onClearError={clearErrors}
+                            onValueChange={(value) => setData('address.details', value)}
                         />
                     </div>
                 </div>
@@ -244,46 +313,50 @@ export default function TaskCreationPage() {
                                     {t('task-creation.payment-details')}
                                 </h4>
                                 <Textarea
+                                    name="paymentDetails"
                                     className="mb-1"
                                     variant="bordered"
                                     radius="full"
                                     size="lg"
                                     color="primary"
                                     minRows={1}
+                                    value={data.paymentDetails ?? ''}
+                                    onClearError={clearErrors}
+                                    onValueChange={(value) => setData('paymentDetails', value)}
                                 />
 
-                                <h4 className="text-base font-medium dark:text-white">
-                                    {t('task-creation.method')}
-                                </h4>
-                                <RadioGroup
-                                    value={selected2}
-                                    onValueChange={setSelected2}
-                                    classNames={{
-                                        wrapper: 'flex-row gap-4 sm:gap-2 sm:flex-col',
-                                    }}
-                                    defaultValue="cash"
-                                    color="primary"
-                                >
-                                    <Radio value="cash">{t('task-creation.cash')}</Radio>
-                                    <Radio value="card">{t('task-creation.card')}</Radio>
-                                </RadioGroup>
+                                {/*<h4 className="text-base font-medium dark:text-white">*/}
+                                {/*    {t('task-creation.method')}*/}
+                                {/*</h4>*/}
+                                {/*<RadioGroup*/}
+                                {/*    value={selected2}*/}
+                                {/*    onValueChange={setSelected2}*/}
+                                {/*    classNames={{*/}
+                                {/*        wrapper: 'flex-row gap-4 sm:gap-2 sm:flex-col',*/}
+                                {/*    }}*/}
+                                {/*    defaultValue="cash"*/}
+                                {/*    color="primary"*/}
+                                {/*>*/}
+                                {/*    <Radio value="cash">{t('task-creation.cash')}</Radio>*/}
+                                {/*    <Radio value="card">{t('task-creation.card')}</Radio>*/}
+                                {/*</RadioGroup>*/}
 
-                                <h4 className="text-base font-medium dark:text-white">
-                                    {t('task-creation.select-options')}
-                                </h4>
-                                <RadioGroup
-                                    value={selected3}
-                                    onValueChange={setSelected3}
-                                    classNames={{
-                                        wrapper: 'flex-row gap-4 sm:gap-2 sm:flex-col',
-                                    }}
-                                    defaultValue="option1"
-                                    color="primary"
-                                >
-                                    <Radio value="option1">{t('task-creation.option-1')}</Radio>
-                                    <Radio value="option2">{t('task-creation.option-2')}</Radio>
-                                    <Radio value="option3">{t('task-creation.option-3')}</Radio>
-                                </RadioGroup>
+                                {/*<h4 className="text-base font-medium dark:text-white">*/}
+                                {/*    {t('task-creation.select-options')}*/}
+                                {/*</h4>*/}
+                                {/*<RadioGroup*/}
+                                {/*    value={selected3}*/}
+                                {/*    onValueChange={setSelected3}*/}
+                                {/*    classNames={{*/}
+                                {/*        wrapper: 'flex-row gap-4 sm:gap-2 sm:flex-col',*/}
+                                {/*    }}*/}
+                                {/*    defaultValue="option1"*/}
+                                {/*    color="primary"*/}
+                                {/*>*/}
+                                {/*    <Radio value="option1">{t('task-creation.option-1')}</Radio>*/}
+                                {/*    <Radio value="option2">{t('task-creation.option-2')}</Radio>*/}
+                                {/*    <Radio value="option3">{t('task-creation.option-3')}</Radio>*/}
+                                {/*</RadioGroup>*/}
                             </div>
 
                             <div className="flex h-fit w-fit flex-col items-start gap-2 rounded-[1.25rem] bg-[#00CCFF1A] px-[2rem] py-[1rem]">
@@ -292,12 +365,16 @@ export default function TaskCreationPage() {
                                 </h5>
                                 <div className="flex items-center justify-start gap-2">
                                     <Input
+                                        name="price"
                                         variant="bordered"
                                         radius="full"
                                         placeholder="1000"
                                         color="primary"
                                         type="number"
                                         className="w-36"
+                                        value={data.price}
+                                        onClearError={clearErrors}
+                                        onValueChange={(value) => setData('price', value)}
                                     />
                                     <h4 className="mt-1 pb-2.5 text-center text-[1.25rem] font-[500] text-black dark:text-white">
                                         {t('task-creation.currency')}

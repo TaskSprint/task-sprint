@@ -118,6 +118,10 @@ class TaskResource extends Resource
                                     ->label('tasks.building')
                                     ->translateLabel()
                                     ->required(),
+
+                                TextInput::make('address.details')
+                                    ->label('task-creation.adrs-details')
+                                    ->translateLabel()
                             ]),
                     ])->columnSpan(2),
 
