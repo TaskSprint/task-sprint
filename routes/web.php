@@ -36,6 +36,23 @@ Route::localized(function () {
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
     Route::delete('/category-test/{category}', [CategoryTestController::class, 'destroy'])->name('category-test.destroy');
 
+    Route::get('/profile/{user}/general-info', function (User $user) {
+        return Inertia::render('Profile/GeneralInfo', [
+            'user' => new UserResource($user->load('avatar')),
+            'cities' => $user->tasks()
+                ->select("address->city as city")
+                ->distinct()
+                ->pluck('city')
+                ->toArray(),
+        ]);
+    })->name('profile.general-info');
+
+    Route::get('/profile/{user}/employee-info', function (User $user) {
+        return Inertia::render('Profile/EmployeeInfo', [
+            'user' => new UserResource($user->load('avatar')),
+        ]);
+    })->name('profile.employee-info');
+
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Dashboard');
@@ -96,19 +113,9 @@ Route::localized(function () {
             return Inertia::render('Task', ['id' => $id]);
         })->name('task.show');
 
-        Route::get('/profile/general-info', function () {
-            return Inertia::render('Profile/GeneralInfo');
-        })->name('profile.general-info');
-
         Route::get('/profile/become-employee', function () {
             return Inertia::render('Profile/BecomeEmployee');
         })->name('profile.become-employee');
-
-        Route::get('/profile/employee-info', function () {
-            return Inertia::render('Profile/EmployeeInfo');
-        })->name('profile.employee-info');
-
-
     });
 });
 

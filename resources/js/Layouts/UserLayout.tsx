@@ -4,6 +4,7 @@ import { useRouter } from '@/hooks/useRouter';
 import { Divider } from '@heroui/divider';
 import { cn } from '@heroui/react';
 import { addToast } from '@heroui/toast';
+import { usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 import IconamoonProfileLight from '~icons/iconamoon/profile-light';
@@ -14,8 +15,9 @@ import TablerReceipt from '~icons/tabler/receipt';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
+    const { auth } = usePage().props;
     const { route } = useRouter();
-    const profileLink = route('profile.general-info');
+    const profileLink = route('profile.general-info', { user: auth.user?.id });
     const transitioning = usePageTransition({ transitionElement: 'user', segmentIndex: 0 });
 
     return (

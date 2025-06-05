@@ -98,7 +98,7 @@ export default function Navigation() {
                                 variant="light"
                                 as={Link}
                                 data-transition="user"
-                                href={route('profile.general-info')}
+                                href={route('profile.general-info', { user: user.id })}
                                 className="aspect-square size-11 h-full min-w-fit rounded-full p-0"
                             >
                                 <Avatar
