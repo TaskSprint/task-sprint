@@ -463,7 +463,7 @@ export default function Task({ locale, task }: PageProps<{ task: TaskModel }>) {
                     </div>
                 </div>
 
-                {staticTask.performer && (
+                {task.order?.employee && (
                     <div className="flex w-full flex-col gap-[2.5rem] bg-[rgba(0,220,255,0.1)] py-[2.5rem] 2xl:px-[5.5rem]">
                         <div className="flex w-full gap-[1.875rem]">
                             <Avatar
