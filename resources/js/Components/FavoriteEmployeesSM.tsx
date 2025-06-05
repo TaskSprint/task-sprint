@@ -3,6 +3,7 @@ import HeartCheckbox from '@/Components/HeartCheckbox';
 import Button from '@/Components/Shared/Button';
 import { useRouter } from '@/hooks/useRouter';
 import { Avatar, cn, Divider, Link } from '@heroui/react';
+import { RouterOptions } from '@react-types/shared';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 
@@ -15,6 +16,7 @@ interface FavoriteEmployeeSMProps {
     positiveReviews: number;
     lastVisit: string | Date;
     className?: string;
+    routerOptions?: RouterOptions;
 }
 
 const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
@@ -26,6 +28,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
     lastVisit,
     className,
     subCategoryId,
+    routerOptions,
 }) => {
     const { route } = useRouter();
 
@@ -101,6 +104,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
                         subCategory: subCategoryId,
                         e: id,
                     })}
+                    routerOptions={routerOptions}
                     color="primary"
                     className="w-full justify-center rounded-[2.25rem] px-4 py-3 text-xl font-semibold text-white dark:text-black"
                 >

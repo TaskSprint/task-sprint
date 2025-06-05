@@ -3,7 +3,7 @@ import Input from '@/Components/Shared/Input';
 import Textarea from '@/Components/Shared/Textarea';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
 type ActionValue<T extends boolean | undefined> = T extends true ? string[] : string;
@@ -14,7 +14,7 @@ interface DescriptionModalProps<
 > {
     name: T;
     list?: TList;
-    errorMessage?: string;
+    errorMessage?: ReactNode;
     onClearError?: (name: T) => void;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
