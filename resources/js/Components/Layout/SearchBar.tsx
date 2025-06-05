@@ -1,6 +1,6 @@
 import Button from '@/Components/Shared/Button';
 import { useRouter } from '@/hooks/useRouter';
-import { cn, Input, Link, LinkIcon, Spinner } from '@heroui/react';
+import { cn, Input, Link, LinkIcon, Spinner, Tooltip } from '@heroui/react';
 import { usePage } from '@inertiajs/react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
@@ -70,7 +70,7 @@ export default function SearchBar() {
                 value="searchBar"
                 aria-label="Accordion SearchBar"
                 className={cn(
-                    'border-foreground overflow-clip rounded-[1.35rem] border bg-transparent p-0 transition-all',
+                    'border-foreground max-w-80 overflow-clip rounded-[1.35rem] border bg-transparent p-0 transition-all',
                     expanded && 'bg-background/70 backdrop-blur-lg backdrop-saturate-150',
                 )}
             >
@@ -78,7 +78,7 @@ export default function SearchBar() {
                     <Input
                         ref={inputRef}
                         type="text"
-                        className="h-full w-80"
+                        className="h-full w-full min-w-80"
                         onFocus={handleExpand}
                         value={inputValue}
                         onChange={(e) => handleSearch(e.target.value)}
@@ -108,22 +108,27 @@ export default function SearchBar() {
                     }
                 >
                     {search?.subCategories.map((subCategory) => (
-                        <Button
-                            className="group w-full justify-start text-base font-normal text-nowrap"
+                        <Tooltip
                             key={subCategory.id}
-                            as={Link}
-                            href={route('sub-category.task.create.index', {
-                                subCategory: subCategory.id,
-                            })}
-                            variant="light"
-                            endContent={
-                                <div className="text-muted ml-auto opacity-0 transition group-hover:opacity-100">
-                                    <LinkIcon />
-                                </div>
-                            }
+                            content={subCategory.name.current}
+                            delay={700}
                         >
-                            {subCategory.name.current}
-                        </Button>
+                            <Button
+                                className="group w-full justify-start text-base font-normal text-nowrap"
+                                as={Link}
+                                href={route('sub-category.task.create.index', {
+                                    subCategory: subCategory.id,
+                                })}
+                                variant="light"
+                                endContent={
+                                    <div className="text-muted ml-auto w-0 opacity-0 transition-all group-hover:w-4 group-hover:opacity-100 [&>svg]:m-0">
+                                        <LinkIcon />
+                                    </div>
+                                }
+                            >
+                                <div className="truncate">{subCategory.name.current}</div>
+                            </Button>
+                        </Tooltip>
                     ))}
                 </Accordion.Content>
             </Accordion.Item>
