@@ -1,16 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useUncontrolledProp } from 'uncontrollable';
+import Button from '@/Components/Shared/Button';
+import Input from '@/Components/Shared/Input';
 import Textarea from '@/Components/Shared/Textarea';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
-import Button from '@/Components/Shared/Button';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import Input from '@/Components/Shared/Input';
+import { useEffect, useState } from 'react';
+import { useUncontrolledProp } from 'uncontrollable';
 
 type ActionValue<T extends boolean | undefined> = T extends true ? string[] : string;
-type ActionName<
-    T extends string | undefined,
-    TList extends boolean | undefined,
-> = TList extends true ? `${T}[${number}]` : T;
 
 interface DescriptionModalProps<
     T extends string | undefined = undefined,
@@ -19,7 +15,7 @@ interface DescriptionModalProps<
     name: T;
     list?: TList;
     errorMessage?: string;
-    onClearError?: (name: ActionName<T, TList>) => void;
+    onClearError?: (name: T) => void;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     onSave?: (value: ActionValue<TList>) => void | Promise<unknown>;
@@ -118,17 +114,15 @@ export default function ActionModal<
                             )}
                             {list ? (
                                 <>
+                                    {errorMessage && (
+                                        <p className="text-danger text-sm">{errorMessage}</p>
+                                    )}
                                     <div className="flex max-h-[60dvh] flex-col gap-2 overflow-y-auto">
                                         {(controlledValue as string[]).map((item, index) => (
                                             <div key={`${name}-${index}`} className="flex gap-2">
                                                 <TypedInput
                                                     name={`${name}[${index}]`}
-                                                    errorMessage={errorMessage}
-                                                    onClearError={
-                                                        onClearError as (
-                                                            name: `${T}[${number}]`,
-                                                        ) => void
-                                                    }
+                                                    onClearError={() => onClearError?.(name)}
                                                     variant="bordered"
                                                     className="mb-2 w-full text-sm"
                                                     color="primary"
@@ -141,7 +135,7 @@ export default function ActionModal<
                                                 <Button
                                                     color="danger"
                                                     variant="bordered"
-                                                    className="rounded-medium aspect-square min-w-0 min-w-max px-0"
+                                                    className="rounded-medium aspect-square min-w-max px-0"
                                                     onPress={() => handleListRemove(index)}
                                                 >
                                                     -
@@ -161,7 +155,7 @@ export default function ActionModal<
                                 <TypedInput
                                     name={name}
                                     errorMessage={errorMessage}
-                                    onClearError={onClearError as (name: T) => void}
+                                    onClearError={onClearError}
                                     variant="bordered"
                                     className="w-full text-sm"
                                     color="primary"

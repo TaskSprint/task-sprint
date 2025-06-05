@@ -57,7 +57,14 @@ export function usePageTransition({
             startEvent();
             finishEvent();
         };
-    }, [isItemTransition, segmentIndex, urlWithoutLocale, setTransitioning, transitionElement]);
+    }, [
+        isItemTransition,
+        segmentIndex,
+        urlWithoutLocale,
+        setTransitioning,
+        transitionElement,
+        currentLocation,
+    ]);
 
     return transitioning;
 }

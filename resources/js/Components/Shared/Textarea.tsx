@@ -46,7 +46,7 @@ const Textarea = forwardRef<
             } else {
                 setErrorValue(undefined);
             }
-        }, [errorMessage]);
+        }, [errorMessage, controlledValue]);
 
         return (
             <Component

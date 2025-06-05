@@ -1,4 +1,17 @@
+import ActionModal from '@/Components/ActionModal';
+import DateSelector from '@/Components/DateSelector';
+import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
 import Button from '@/Components/Shared/Button';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/Components/Shared/Carousel';
+import Input from '@/Components/Shared/Input';
+import Textarea from '@/Components/Shared/Textarea';
+import UploadFileModal from '@/Components/UploadFileModal';
 import {
     BreadcrumbItem,
     Breadcrumbs,
@@ -8,27 +21,14 @@ import {
     Radio,
     RadioGroup,
 } from '@heroui/react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import FavoriteEmployeesSM from '@/Components/FavoriteEmployeesSM';
-import React, { useState } from 'react';
-import DateSelector from '@/Components/DateSelector';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from '@/Components/Shared/Carousel';
-import UploadFileModal from '@/Components/UploadFileModal';
-import ActionModal from '@/Components/ActionModal';
 import { useForm } from '@inertiajs/react';
-import Textarea from '@/Components/Shared/Textarea';
-import Input from '@/Components/Shared/Input';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React, { useState } from 'react';
 
 export default function TaskCreationPage() {
     const { t } = useLaravelReactI18n();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
+    const [uploadedFilename] = useState<string | null>(null);
     const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
     const [selected, setSelected] = React.useState('3-part');
     // const [selected2, setSelected2] = React.useState('cash');

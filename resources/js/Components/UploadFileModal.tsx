@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { useUncontrolledProp } from 'uncontrollable';
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import Button from '@/Components/Shared/Button';
 import Input from '@/Components/Shared/Input';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React, { useEffect, useState } from 'react';
+import { useUncontrolledProp } from 'uncontrollable';
 
 interface UploadFileModalProps<T extends string | undefined = undefined> {
     name: T;
@@ -62,7 +62,7 @@ export default function UploadFileModal<T extends string | undefined = undefined
                 ref.current.value = '';
             }
         }
-        console.log(ref.current, controlledValue);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [controlledValue, ref.current]);
 
     return (

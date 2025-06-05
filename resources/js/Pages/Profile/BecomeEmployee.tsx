@@ -1,10 +1,9 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React, { ReactNode, useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
+import ActionModal from '@/Components/ActionModal';
 import Button from '@/Components/Shared/Button';
-import UserLayout from '@/Layouts/UserLayout';
+import UploadFileModal from '@/Components/UploadFileModal';
+import AppLayout from '@/Layouts/AppLayout';
 import ProfileLayout from '@/Layouts/ProfileLayout';
-import LucidePencil from '~icons/lucide/pencil';
+import UserLayout from '@/Layouts/UserLayout';
 import {
     Avatar,
     Image,
@@ -15,13 +14,14 @@ import {
     ModalFooter,
     ModalHeader,
 } from '@heroui/react';
+import { useForm } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { ReactNode, useState } from 'react';
+import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
+import LucidePencil from '~icons/lucide/pencil';
+import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
 import MaterialSymbolsUpload from '~icons/material-symbols/upload';
 import MdiEyeOutline from '~icons/mdi/eye-outline';
-import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
-import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
-import UploadFileModal from '@/Components/UploadFileModal';
-import ActionModal from '@/Components/ActionModal';
-import { useForm } from '@inertiajs/react';
 
 export default function BecomeEmployee() {
     const { t } = useLaravelReactI18n();
@@ -394,6 +394,8 @@ export default function BecomeEmployee() {
 
             <ActionModal
                 name={editModal.field ?? ''}
+                errorMessage={editModal.field ? errors[editModal.field] : undefined}
+                onClearError={() => clearErrors(editModal.field!)}
                 value={editModal.field ? ((data[editModal.field] as string) ?? '') : ''}
                 open={editModal.isOpen}
                 onOpenChange={(isOpen) => setEditModal({ field: editModal.field, isOpen })}
@@ -408,6 +410,8 @@ export default function BecomeEmployee() {
 
             <UploadFileModal
                 name="certificates"
+                errorMessage={errors.certificates}
+                onClearError={clearErrors}
                 open={isUploadedFileModalOpen}
                 onOpenChange={() => setIsUploadedFileModalOpen(false)}
                 onSave={(file) => setUploadedFilename(file?.[0]?.name ?? null)}
@@ -415,6 +419,8 @@ export default function BecomeEmployee() {
 
             <ActionModal
                 name="education"
+                errorMessage={errors.education}
+                onClearError={clearErrors}
                 value={data.education ?? []}
                 open={isEducationModalOpen}
                 onOpenChange={setIsEducationModalOpen}
