@@ -1,10 +1,10 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React from 'react';
+import OneStarRating from '@/Components/OneStarRating';
+import { usePageTransition } from '@/hooks/usePageTransition';
 import { useRouter } from '@/hooks/useRouter';
 import { Avatar, cn, Tab, Tabs } from '@heroui/react';
 import { Link } from '@inertiajs/react';
-import { usePageTransition } from '@/hooks/usePageTransition';
-import OneStarRating from '@/Components/OneStarRating';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
@@ -64,8 +64,7 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
 
     return (
         <div className="h-full gap-[1.5rem] 2xl:max-w-[96rem] 2xl:flex-row">
-            <div
-                className="bg-surface flex h-full w-full flex-col gap-[1.5rem] rounded-l-[2rem] px-[1rem] py-[1rem]">
+            <div className="bg-surface flex h-full w-full flex-col gap-[1.5rem] rounded-l-[2rem] px-[1rem] py-[1rem]">
                 <div className="flex items-start gap-[0.938rem]">
                     <Avatar
                         src={user1.avatar}
