@@ -1,11 +1,11 @@
-import { As, forwardRef, Input as HeroUiInput, InputProps } from '@heroui/react';
+import { As, forwardRef, Textarea as HeroUiTextarea, TextAreaProps } from '@heroui/react';
 import { useDOMRef } from '@heroui/react-utils';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useUncontrolledProp } from 'uncontrollable';
 
-const Input = forwardRef<
-    typeof HeroUiInput,
-    InputProps & {
+const Textarea = forwardRef<
+    typeof HeroUiTextarea,
+    TextAreaProps & {
         onClearError?: (name?: string) => void;
     }
 >(
@@ -23,8 +23,8 @@ const Input = forwardRef<
         },
         ref,
     ) => {
-        const Component: As = HeroUiInput;
-        const domRef = useDOMRef<HTMLInputElement>(ref);
+        const Component: As = HeroUiTextarea;
+        const domRef = useDOMRef<HTMLTextAreaElement>(ref);
         const [errorValue, setErrorValue] = useState<string>();
         const [controlledValue, setControlledValue] = useUncontrolledProp(
             value,
@@ -63,10 +63,10 @@ const Input = forwardRef<
         );
     },
 ) as <T extends string | undefined = undefined>(
-    p: InputProps & {
+    p: TextAreaProps & {
         name: T;
         onClearError?: (name: T) => void;
     },
 ) => ReactElement;
 
-export default Input;
+export default Textarea;

@@ -14,7 +14,6 @@ return [
     'order-details' => 'Order details',
     'briefly' => 'What do you need to do (briefly)?',
     'description' => 'Describe your order in detail',
-    'confidential-data' => '+ Confidential data',
     'add-file' => '+ Add file',
     'add-loaded' => 'Loaded:',
     'add-select' => 'Select file',
@@ -26,6 +25,8 @@ return [
     'district' => 'District',
     'street' => 'Street',
     'house' => 'House',
+    'exmp-city' => 'For example: Kyiv',
+    'exmp-district' => 'For example: Solomyanskyi district',
     'exmp-str' => 'For example: Kazimiera Malevicha Street',
     'exmp-home' => 'For example: building 234-A, apt. 12',
     'exmp-dtls' => 'For example: intercom code – 123',
@@ -53,5 +54,10 @@ return [
         for the specialist`s work, excluding the cost of the material.',
     'rules' => 'By publishing the order, you agree to display your contact details to the specialist who will be
         selected to fulfill your order',
-    'publish' => 'Publish'
+    'publish' => 'Publish',
+    'confidential-data' => [
+        'title' => 'Confidential data',
+        'subtitle' => 'Specify the details the executor should know',
+        'placeholder' => 'Enter confidential data...',
+    ]
 ];

@@ -9,6 +9,7 @@ use Livewire\Features\SupportFileUploads\FileUploadConfiguration;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionNamedType;
 use Storage;
 
 trait MutateFiles
@@ -65,13 +66,13 @@ trait MutateFiles
             $reflection = new ReflectionClass($this->getModel());
             $methods = collect($reflection->getMethods());
             $model = $this->getRecord();
-            $this->fileAttributes = $methods->filter(function ($method) use ($model) {
-                return $method->isPublic() &&
-                    $method->getReturnType()?->getName() === MorphOne::class &&
-                    $model->{$method->getName()}()->getRelated() instanceof File;
-            })->map(function ($method) {
-                return $method->getName();
-            })->all();
+            $this->fileAttributes = $methods
+                ->filter(fn($method) => $method->isPublic())
+                ->filter(fn($method) => $method->getReturnType() instanceof ReflectionNamedType)
+                ->filter(fn($method) => $method->getReturnType()->getName() === MorphOne::class)
+                ->filter(fn($method) => $model->{$method->getName()}()->getRelated() instanceof File)
+                ->map(fn($method) => $method->getName())
+                ->all();
         }
 
         return $this->fileAttributes;
@@ -95,13 +96,13 @@ trait MutateFiles
             $reflection = new ReflectionClass($this->getModel());
             $methods = collect($reflection->getMethods());
             $model = $this->getRecord();
-            $this->fileCollectionsAttributes = $methods->filter(function ($method) use ($model) {
-                return $method->isPublic() &&
-                    $method->getReturnType()?->getName() === MorphMany::class &&
-                    $model->{$method->getName()}()->getRelated() instanceof File;
-            })->map(function ($method) {
-                return $method->getName();
-            })->all();
+            $this->fileCollectionsAttributes = $methods
+                ->filter(fn($method) => $method->isPublic())
+                ->filter(fn($method) => $method->getReturnType() instanceof ReflectionNamedType)
+                ->filter(fn($method) => $method->getReturnType()?->getName() === MorphMany::class)
+                ->filter(fn($method) => $model->{$method->getName()}()->getRelated() instanceof File)
+                ->map(fn($method) => $method->getName())
+                ->all();
         }
 
         return $this->fileCollectionsAttributes;
@@ -126,13 +127,11 @@ trait MutateFiles
             if (!key_exists($attribute, $data)) {
                 $data[$attribute] = [];
             }
-            foreach ($data[$attribute] as $file) {
-                if (is_string($file)) {
-                    $data[$attribute][] = TemporaryUploadedFile::createFromLivewire(str($file)
-                        ->after(FileUploadConfiguration::path())
-                        ->value());
-                }
-            }
+            $data[$attribute] = collect($data[$attribute])
+                ->map(fn($file) => is_string($file) ? TemporaryUploadedFile::createFromLivewire(str($file)
+                    ->after(FileUploadConfiguration::path())
+                    ->value()) : $file)
+                ->all();
         }
 
         return parent::mutateFormDataBeforeSave($data);

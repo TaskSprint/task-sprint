@@ -19,4 +19,7 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         current: string;
         available: string[];
     };
+    default: {
+        categories: Category[];
+    };
 };

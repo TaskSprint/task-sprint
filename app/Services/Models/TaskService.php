@@ -13,12 +13,15 @@ class TaskService extends BaseModelService
     protected array $attributes = [
         'name',
         'description',
+        'secret_description',
+        'payment_details',
         'status',
         'price',
         'currency_code',
         'address',
         'estimated_date',
         'sub_category_id',
+        'negotiable',
     ];
     protected array $authCreationAttributes = [
         'customer_id',

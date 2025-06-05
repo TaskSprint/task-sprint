@@ -7,8 +7,10 @@ use App\Filament\Resources\TaskResource\Pages;
 use App\Models\SubCategory;
 use App\Models\Task;
 use Exception;
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -20,12 +22,14 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Livewire\Features\SupportFileUploads\FileUploadConfiguration;
 
 class TaskResource extends Resource
 {
@@ -51,6 +55,14 @@ class TaskResource extends Resource
                             ->translateLabel()
                             ->required(),
 
+                        TextInput::make('secret_description')
+                            ->label('tasks.secret_description')
+                            ->translateLabel(),
+
+                        TextInput::make('payment_details')
+                            ->label('tasks.payment_details')
+                            ->translateLabel(),
+
                         TextInput::make('price')
                             ->label('tasks.price')
                             ->translateLabel()
@@ -65,7 +77,12 @@ class TaskResource extends Resource
                             ->default('UAH')
                             ->required(),
 
-                        DatePicker::make('estimated_date')
+                        Checkbox::make('negotiable')
+                            ->label('tasks.negotiable')
+                            ->translateLabel()
+                            ->default(false),
+
+                        DateTimePicker::make('estimated_date')
                             ->label('tasks.estimated_date')
                             ->translateLabel()
                             ->required(),
@@ -97,6 +114,15 @@ class TaskResource extends Resource
                             ->searchable()
                             ->required(),
 
+                        FileUpload::make('files')
+                            ->label('tasks.files')
+                            ->translateLabel()
+                            ->disk(FileUploadConfiguration::disk())
+                            ->directory(FileUploadConfiguration::path())
+                            ->storeFiles(false)
+                            ->visibility('private')
+                            ->multiple(),
+
                         Fieldset::make(fn() => __('tasks.address'))
                             ->schema([
                                 TextInput::make('address.region')
@@ -118,6 +144,10 @@ class TaskResource extends Resource
                                     ->label('tasks.building')
                                     ->translateLabel()
                                     ->required(),
+
+                                TextInput::make('address.details')
+                                    ->label('task-creation.adrs-details')
+                                    ->translateLabel()
                             ]),
                     ])->columnSpan(2),
 
@@ -168,10 +198,15 @@ class TaskResource extends Resource
                     ->money(fn(?Task $record) => $record->currency?->code ?? 'UAH')
                     ->searchable(),
 
+                CheckboxColumn::make('negotiable')
+                    ->label('tasks.negotiable')
+                    ->translateLabel()
+                    ->sortable(),
+
                 TextColumn::make('estimated_date')
                     ->label('tasks.estimated_date')
                     ->translateLabel()
-                    ->date()
+                    ->dateTime()
                     ->sortable(),
 
                 TextColumn::make('customer.name')

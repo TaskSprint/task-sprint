@@ -203,8 +203,9 @@ export default function EmployeeInfo() {
             </div>
 
             <UploadFileModal
-                isOpen={isUploadedFileModalOpen}
-                onClose={() => setUploadedFileModalOpen(false)}
+                name="certificates"
+                open={isUploadedFileModalOpen}
+                onOpenChange={() => setUploadedFileModalOpen(false)}
             />
         </div>
     );

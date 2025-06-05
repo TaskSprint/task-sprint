@@ -99,7 +99,7 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
                             {bannersSM.map((banner) => (
                                 <FavoriteEmployeesSM
                                     key={banner.item}
-                                    item={banner.item}
+                                    id={banner.item}
                                     name={banner.name}
                                     photo={banner.photo}
                                     totalReviews={banner.totalReviews}

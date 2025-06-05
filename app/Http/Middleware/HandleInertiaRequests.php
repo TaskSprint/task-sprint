@@ -12,6 +12,7 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\SubCategoryResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\UserResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -72,6 +73,12 @@ class HandleInertiaRequests extends Middleware
                 'current' => app()->getLocale(),
                 'available' => config('localized-routes.supported_locales'),
             ],
+            'default' => [
+                'categories' => fn() => CategoryResource::collection(
+                    Category::with(["subCategories", "icon"])
+                        ->get()
+                ),
+            ]
         ];
     }
 }

@@ -17,6 +17,7 @@ class CategoryResource extends JsonResource
             'color' => $this->color,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'subCategories' => $this->whenLoaded('subCategories'),
             'icon' => $this->whenLoaded('icon', fn() => $this->icon?->mime_type === "image/svg+xml"
                 ? $this->icon?->getText()
                 : $this->icon?->getTemporaryUrl()),

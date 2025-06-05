@@ -6,13 +6,17 @@ export default interface Task {
     id: number;
     name: string;
     description: string;
+    secretDescription?: string;
+    paymentDetails?: string;
     price: `${number}` | 'Infinity' | '-Infinity' | '+Infinity';
     subCategory?: SubCategory;
     currency?: Currency;
-    address: { city: string; region: string; street: string; house: string };
+    address: { city: string; region: string; street: string; building: string; details?: string };
     estimatedDate: string;
     status: string;
     user?: User;
+    files?: string[];
     updatedAt: string;
     createdAt: string;
+    negotiable: boolean;
 }

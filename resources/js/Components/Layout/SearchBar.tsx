@@ -1,4 +1,5 @@
 import Button from '@/Components/Shared/Button';
+import { useRouter } from '@/hooks/useRouter';
 import { cn, Input, Link, LinkIcon, Spinner } from '@heroui/react';
 import { usePage } from '@inertiajs/react';
 import * as Accordion from '@radix-ui/react-accordion';
@@ -10,6 +11,7 @@ import { useOnClickOutside } from 'usehooks-ts';
 
 export default function SearchBar() {
     const { t } = useLaravelReactI18n();
+    const { route } = useRouter();
     const { search } = usePage().props;
     const [expanded, setExpanded] = useState(false);
     const ref = useRef(null);
@@ -110,6 +112,9 @@ export default function SearchBar() {
                             className="group w-full justify-start text-base font-normal text-nowrap"
                             key={subCategory.id}
                             as={Link}
+                            href={route('sub-category.task.create.index', {
+                                subCategory: subCategory.id,
+                            })}
                             variant="light"
                             endContent={
                                 <div className="text-muted ml-auto opacity-0 transition group-hover:opacity-100">

@@ -1,4 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import CreateTaskDropdown from '@/Components/Layout/CreateTaskDropdown';
 import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import SearchBar from '@/Components/Layout/SearchBar';
 import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
@@ -41,14 +42,7 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button
-                        as={Link}
-                        href={route('task-creation')}
-                        className="border-foreground h-11 rounded-full border text-base font-medium"
-                        variant="bordered"
-                    >
-                        {t('navigation.create')}
-                    </Button>
+                    <CreateTaskDropdown />
                 </NavbarItem>
                 <NavbarItem className="h-full max-h-full">
                     <SearchBar />
