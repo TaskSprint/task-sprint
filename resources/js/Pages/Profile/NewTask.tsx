@@ -1,10 +1,10 @@
 import Button from '@/Components/Shared/Button';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
+import DashboardLayout from '@/Layouts/DashboardLayout';
 import UserLayout from '@/Layouts/UserLayout';
 import { Divider, Image } from '@heroui/react';
-import DashboardLayout from '@/Layouts/DashboardLayout';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
 export default function NewTask() {
     const { t } = useLaravelReactI18n();

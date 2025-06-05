@@ -1,8 +1,8 @@
+import AbsenceTime from '@/Components/AbsenceTime';
+import HeartCheckbox from '@/Components/HeartCheckbox';
 import Button from '@/Components/Shared/Button';
 import { Avatar, Divider, Link } from '@heroui/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import HeartCheckbox from '@/Components/HeartCheckbox';
-import AbsenceTime from '@/Components/AbsenceTime';
 import React from 'react';
 
 interface FavoriteEmployeeSMProps {

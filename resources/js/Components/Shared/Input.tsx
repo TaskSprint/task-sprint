@@ -46,7 +46,7 @@ const Input = forwardRef<
             } else {
                 setErrorValue(undefined);
             }
-        }, [errorMessage]);
+        }, [controlledValue, errorMessage]);
 
         return (
             <Component

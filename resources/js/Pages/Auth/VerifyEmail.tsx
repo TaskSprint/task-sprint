@@ -1,9 +1,9 @@
 import PrimaryButton from '@/Components/PrimaryButton';
+import { useRouter } from '@/hooks/useRouter';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import React, { FormEventHandler } from 'react';
-import { useRouter } from '@/hooks/useRouter';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React, { FormEventHandler } from 'react';
 
 export default function VerifyEmail({ status }: { status?: string }) {
     const { route } = useRouter();

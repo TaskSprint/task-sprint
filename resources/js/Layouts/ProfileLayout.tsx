@@ -8,7 +8,7 @@ import OneStarRating from '@/Components/OneStarRating';
 
 export default function ProfileLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const { current, route } = useRouter();
+    const { route, relativeCurrent } = useRouter();
     const transitioning = usePageTransition({ segmentIndex: 1 });
 
     const tabs = [
@@ -64,7 +64,8 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
 
     return (
         <div className="h-full gap-[1.5rem] 2xl:max-w-[96rem] 2xl:flex-row">
-            <div className="bg-surface flex h-full w-full flex-col gap-[1.5rem] rounded-l-[2rem] px-[1rem] py-[1rem]">
+            <div
+                className="bg-surface flex h-full w-full flex-col gap-[1.5rem] rounded-l-[2rem] px-[1rem] py-[1rem]">
                 <div className="flex items-start gap-[0.938rem]">
                     <Avatar
                         src={user1.avatar}
@@ -75,17 +76,18 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         <div className="flex justify-between gap-[1.25rem]">
                             {user1.name}
                             <OneStarRating
-                                totalReviews={user1.rating}
-                                positiveReviews={user1.rating - 2}
-                                evaluationType={'task'}
+                                totalReviews={parseFloat(user1.rating)}
+                                positiveReviews={parseFloat(user1.rating) - 2}
+                                evaluationType="task"
                             />
                         </div>
 
                         <div className="flex justify-between gap-[1.25rem]">
                             <div className="text-muted text-[1.25rem]">{user1.email}</div>
                             <OneStarRating
-                                totalReviews={user1.rating - 1}
-                                positiveReviews={user1.rating - 2}
+                                totalReviews={parseFloat(user1.rating) - 1}
+                                positiveReviews={parseFloat(user1.rating) - 2}
+                                evaluationType="service"
                             />
                         </div>
                     </div>
@@ -98,7 +100,7 @@ export default function ProfileLayout({ children }: Readonly<{ children: React.R
                         tab: 'max-w-fit px-[0.75rem] ',
                     }}
                     variant="underlined"
-                    selectedKey={tabs.find((item) => current(item.link))?.link ?? null}
+                    selectedKey={relativeCurrent}
                 >
                     {tabs.map((tab) => (
                         <Tab

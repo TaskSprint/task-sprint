@@ -1,7 +1,6 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Image } from '@heroui/image';
 import { Chip } from '@heroui/react';
-import React from 'react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function ProfilePortfolio() {
     const { t } = useLaravelReactI18n();

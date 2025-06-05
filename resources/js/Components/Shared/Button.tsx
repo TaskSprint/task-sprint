@@ -1,4 +1,4 @@
-import { As, Button as HeroUiButton, ButtonProps, cn, forwardRef } from '@heroui/react';
+import { As, ButtonProps, cn, forwardRef, Button as HeroUiButton } from '@heroui/react';
 import { useDOMRef } from '@heroui/react-utils';
 
 const Button = forwardRef<typeof HeroUiButton, ButtonProps>(({ className, ...props }, ref) => {

@@ -1,5 +1,5 @@
-import { SVGAttributes } from 'react';
 import { cn } from '@heroui/react';
+import { SVGAttributes } from 'react';
 
 export interface ApplicationLogoProps extends SVGAttributes<SVGElement> {
     logoColor?: string;
