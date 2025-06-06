@@ -3,6 +3,7 @@
 namespace App\Services\Models;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,7 +31,9 @@ class UserService extends BaseModelService
          * @var User $model
          */
         $model = parent::create($attributes, $attempts);
-        $model->sendEmailVerificationNotification();
+        if ($model instanceof MustVerifyEmail) {
+            $model->sendEmailVerificationNotification();
+        }
         return $this->addRoles($model, $attributes);
     }
 
