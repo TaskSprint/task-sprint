@@ -1,5 +1,8 @@
+import Button from '@/Components/Shared/Button';
+import { useRouter } from '@/hooks/useRouter';
 import Task from '@/types/models/task';
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@heroui/react';
+import { usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function LastTaskCard({
@@ -12,19 +15,22 @@ export default function LastTaskCard({
 }: Readonly<Task>) {
     const { t } = useLaravelReactI18n();
     const { locale } = usePage().props;
+    const { route } = useRouter();
 
     return (
-        <Link
-            href={`/task/${id}`}
-            className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 transition-colors hover:bg-gray-100 dark:border-[#C6C6C6] dark:hover:bg-gray-800"
+        <Button
+            as={Link}
+            variant="bordered"
+            href={route('task.index', { task: id })}
+            className="hover:bg-foreground/10 flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 px-5"
         >
             {/* Top block with title and category */}
-            <div className="flex flex-col items-start gap-2">
-                <h3 className="line-clamp-1 text-xl leading-7 font-semibold break-all text-ellipsis text-black dark:text-white">
+            <div className="flex w-full flex-col items-start gap-2 overflow-hidden">
+                <h3 className="w-full truncate text-xl leading-7 font-semibold break-all">
                     {name}
                 </h3>
                 {subCategory && (
-                    <p className="line-clamp-1 text-sm leading-5 font-semibold break-all text-ellipsis text-black dark:text-white">
+                    <p className="w-full truncate text-sm leading-5 font-semibold break-all">
                         {subCategory.name.current}
                     </p>
                 )}
@@ -39,7 +45,7 @@ export default function LastTaskCard({
                         }),
                     })}
                 </p>
-                <p className="text-2xl leading-8 font-semibold whitespace-nowrap text-black dark:text-white">
+                <p className="text-2xl leading-8 font-semibold whitespace-nowrap">
                     {Intl.NumberFormat(locale?.current, {
                         style: 'currency',
                         currencyDisplay: 'narrowSymbol',
@@ -47,6 +53,6 @@ export default function LastTaskCard({
                     }).format(price)}
                 </p>
             </div>
-        </Link>
+        </Button>
     );
 }
