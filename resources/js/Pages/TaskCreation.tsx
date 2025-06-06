@@ -363,7 +363,7 @@ export default function TaskCreationPage({
                         <div className="flex w-full flex-col justify-between">
                             <div className="flex w-full flex-col items-center gap-5.75 lg:flex-row lg:items-start">
                                 <div className="grid flex-1 grid-cols-1 gap-2.5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8 [&>h4]:mt-4 sm:[&>h4]:mt-0">
-                                    <h4 className="mt-1 pb-2.5 text-base font-medium dark:text-white">
+                                    <h4 className="mt-3 pb-2.5 text-base font-medium dark:text-white">
                                         {t('task-creation.payment-details')}
                                     </h4>
                                     <Textarea
