@@ -21,7 +21,7 @@ export function Footer() {
                         <p className="font-kreadon text-xl font-medium">TaskSprint</p>
                     </div>
                     <p className="text-lg font-normal">
-                        {t('footer.title')}: <a className="font-black">{t('footer.spring')}, 2025</a><br/><br/>{t('footer.academy')} <a className="font-black">IT Step KYIV</a><br/>
+                        {t('footer.title')}: <a className="font-black">{t('footer.spring')}, 2025</a><br/><br/>{t('footer.academy')} <a className="font-black">IT Step KYIV</a><br/><br/>
                     </p>
                     <ul className="flex h-9 gap-6">
                         <li className="flex h-full">
