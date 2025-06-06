@@ -38,6 +38,7 @@ return [
     '2-part' => 'From 12:00 to 16:00',
     '3-part' => 'From 16:00 to 22:00',
     'payment' => 'Payment for work',
+    'payment-details' => 'Payment details',
     'method' => 'Payment Method',
     'card' => 'Card',
     'cash' => 'Cash',
