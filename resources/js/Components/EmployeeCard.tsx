@@ -37,8 +37,9 @@ export default function EmployeeCard() {
 
     return (
         <Link
-        href={`#`}
-        className="border-primary relative flex w-fit min-w-[44.25rem] flex-col gap-2.5 rounded-[1.25rem] border-1 bg-white p-2.5 shadow-sm dark:bg-[#313131] hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            href={`#`}
+            className="border-primary relative flex w-fit min-w-[44.25rem] flex-col gap-2.5 rounded-[1.25rem] border-1 bg-white p-2.5 shadow-sm transition-colors hover:bg-gray-200 dark:bg-[#313131] dark:hover:bg-gray-700"
+        >
             <div className="flex flex-row justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="absolute top-2.5 left-2.5 flex min-h-[7.25rem] min-w-[24.28125rem] flex-row gap-5">
@@ -100,10 +101,8 @@ export default function EmployeeCard() {
                 </div>
             </div>
 
-            <div className="pt-30 flex-row flex h-full w-full max-w-[44.25rem] items-center justify-between gap-4 overflow-y-auto">
-                <Link
-                    href={`#`}
-                    className="flex flex-row gap-2.5">
+            <div className="flex h-full w-full max-w-[44.25rem] flex-row items-center justify-between gap-4 overflow-y-auto pt-30">
+                <Link href={`#`} className="flex flex-row gap-2.5">
                     {reviews.map((review) => (
                         <ReviewsChip
                             key={review.item}

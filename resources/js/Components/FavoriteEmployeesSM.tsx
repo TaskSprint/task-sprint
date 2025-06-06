@@ -39,7 +39,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
         <Link
             href={`#`}
             className={cn(
-                'border-primary relative flex h-max max-h-[15rem] flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors',
+                'border-primary relative flex h-max max-h-[15rem] flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700',
                 className,
             )}
         >

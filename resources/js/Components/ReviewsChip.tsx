@@ -1,8 +1,8 @@
 import AbsenceTime from '@/Components/AbsenceTime';
 import OneStarRatingSM from '@/Components/OneStarRatingSM';
 import { Avatar } from '@heroui/react';
-import React from 'react';
 import { Link } from '@inertiajs/react';
+import React from 'react';
 
 interface EmployeeChipProps {
     item: number;
@@ -35,7 +35,7 @@ const ReviewsChip: React.FC<EmployeeChipProps> = ({
         <Link
             href={`#`}
             key={item}
-            className="border-muted max-w-[21rem] w-full flex items-start gap-3 rounded-xl border bg-white p-4 dark:bg-[#313131] hover:bg-gray-400 dark:hover:bg-gray-900 transition-colors"
+            className="border-muted flex w-full max-w-[21rem] items-start gap-3 rounded-xl border bg-white p-4 transition-colors hover:bg-gray-400 dark:bg-[#313131] dark:hover:bg-gray-900"
         >
             <Avatar size="lg" className="bg-muted rounded-full text-white" src={photoChip} />
             <div className="flex-1 space-y-1">
