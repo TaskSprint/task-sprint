@@ -7,59 +7,7 @@ import { BreadcrumbItem, Breadcrumbs } from '@heroui/breadcrumbs';
 import SubCategoryModel from '@/types/models/sub-category';
 
 export function EmployeesPage({ subCategory }: { subCategory: SubCategoryModel }) {
-    let { t } = useLaravelReactI18n();
-
-    let date1 = new Date('2025-05-26T14:00:00Z')
-    let date2 = new Date('2025-03-11T19:00:00Z')
-    let date3 = new Date('2025-05-01T09:00:00Z')
-    let bannersSM = [
-        {
-            item: 1,
-            name: "Коваль Д.",
-            photo: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-            totalReviews: 24,
-            positiveReviews: 21,
-            lastVisit: new Date(date1),
-        },
-        {
-            item: 2,
-            name: "Ткач П.",
-            photo: "https://avatars.githubusercontent.com/u/30373425?v=4",
-            totalReviews: 25,
-            positiveReviews: 25,
-            lastVisit: new Date(date3),
-        },{
-            item: 3,
-            name: "Коваль Д.",
-            photo: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-            totalReviews: 24,
-            positiveReviews: 21,
-            lastVisit: new Date(date2),
-        },
-        {
-            item: 4,
-            name: "Ткач П.",
-            photo: "https://avatars.githubusercontent.com/u/30373425?v=4",
-            totalReviews: 25,
-            positiveReviews: 25,
-            lastVisit: new Date(date2),
-        },{
-            item: 5,
-            name: "Коваль Д.",
-            photo: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-            totalReviews: 24,
-            positiveReviews: 21,
-            lastVisit: new Date(date1),
-        },
-        {
-            item: 6,
-            name: "Ткач П.",
-            photo: "https://avatars.githubusercontent.com/u/30373425?v=4",
-            totalReviews: 25,
-            positiveReviews: 25,
-            lastVisit: new Date(date3),
-        },
-    ];
+    const { t } = useLaravelReactI18n();
 
 
     return (
