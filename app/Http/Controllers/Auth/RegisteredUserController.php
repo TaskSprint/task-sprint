@@ -6,6 +6,7 @@ use App\Facades\Models\UserService;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,12 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        if ($user->markEmailAsVerified()) {
+            $user->assignRole('customer');
+            event(new Verified($user));
+        }
+
+        return redirect(route('home', ['verified' => 1], absolute: false));
     }
 
     /**
