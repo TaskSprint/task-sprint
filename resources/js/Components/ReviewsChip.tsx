@@ -2,6 +2,7 @@ import AbsenceTime from '@/Components/AbsenceTime';
 import OneStarRatingSM from '@/Components/OneStarRatingSM';
 import { Avatar } from '@heroui/react';
 import React from 'react';
+import { Link } from '@inertiajs/react';
 
 interface EmployeeChipProps {
     item: number;
@@ -31,11 +32,12 @@ const ReviewsChip: React.FC<EmployeeChipProps> = ({
     const lastVisitChip = new Date(lastVisit);
 
     return (
-        <div
+        <Link
+            href={`#`}
             key={item}
-            className="border-muted flex items-start gap-3 rounded-xl border bg-white p-4 dark:bg-[#313131]"
+            className="border-muted max-w-[21rem] w-full flex items-start gap-3 rounded-xl border bg-white p-4 dark:bg-[#313131] hover:bg-gray-400 dark:hover:bg-gray-900 transition-colors"
         >
-            <Avatar size="sm" className="bg-muted rounded-full text-white" src={photoChip} />
+            <Avatar size="lg" className="bg-muted rounded-full text-white" src={photoChip} />
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                     <h4 className="text-[1.25rem] font-bold dark:text-white">{nameChip}</h4>
@@ -50,9 +52,9 @@ const ReviewsChip: React.FC<EmployeeChipProps> = ({
                     {' '}
                     <AbsenceTime lastVisit={lastVisitChip} />
                 </p>
-                <p className="text-sm text-gray-300">{shortTextChip}</p>
+                <p className="text-sm text-gray-800 dark:text-gray-300">{shortTextChip}</p>
             </div>
-        </div>
+        </Link>
     );
 };
 
