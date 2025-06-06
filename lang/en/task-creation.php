@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => 'Task creation',
     'top-employees' => 'TOP specialists in this category',
     'last-visit' => 'Was on site',
     'offer' => 'Offer a job',

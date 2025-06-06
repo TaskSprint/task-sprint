@@ -6,6 +6,7 @@ import UserLayout from '@/Layouts/UserLayout';
 import { PageProps } from '@/types';
 import Task from '@/types/models/task';
 import { BreadcrumbItem, Breadcrumbs, Divider, Image, Link } from '@heroui/react';
+import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React from 'react';
 
@@ -15,6 +16,8 @@ export default function Archive({ tasks, locale }: PageProps<{ tasks: Task[] }>)
 
     return (
         <>
+            <Head title={t('task-archive.title')} />
+
             <div className="box-border flex flex-col items-center justify-center gap-[1.56rem] pb-[2.5rem]">
                 <div className="flex h-[2.75rem] w-full items-center justify-center text-center text-[2rem] leading-[2.75rem] font-semibold text-black dark:text-white">
                     {t('task-archive.title')}
