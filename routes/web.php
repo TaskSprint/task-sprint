@@ -31,7 +31,7 @@ Route::localized(function () {
     })->name('sub-category');
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-    Route::get('/employees-page', function ()  {
+    Route::get('/employees-page', function () {
         return Inertia::render('EmploeesPage');
 
     })->name('employees-page');
@@ -92,9 +92,9 @@ Route::localized(function () {
             return Inertia::render('Profile/InProgress', [
                 'tasks' => TaskResource::collection(auth()->user()->tasks()
                     ->with('files')
-                    ->where('status', TaskStatus::InProgress)
-                    ->orWhere('status', TaskStatus::Pending)
-                    ->orWhere('status', TaskStatus::PendingForExecutor)
+                    ->where(fn($query) => $query->where('status', TaskStatus::InProgress)
+                        ->orWhere('status', TaskStatus::Pending)
+                        ->orWhere('status', TaskStatus::PendingForExecutor))
                     ->get()),
             ]);
         })->name('profile.in-progress');
