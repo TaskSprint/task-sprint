@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Facades\Models\UserService;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,15 +37,19 @@ class RegisteredUserController extends Controller
         $user = UserService::create($validated);
         $user->givePermissionTo("edit user", "delete user");
 
-        event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+        }
 
         Auth::login($user);
 
         try {
             $user->assignRole('customer');
             $user->markEmailAsVerified();
-        } catch (e) {
-
+        } catch (Exception $e) {
+            error_log($e->getMessage());
         }
 
         return redirect(route('home', ['verified' => 1], absolute: false));
