@@ -21,10 +21,13 @@ export function Footer() {
                         <p className="font-kreadon text-xl font-medium">TaskSprint</p>
                     </div>
                     <p className="text-lg font-normal">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-                        architecto, beatae delectus, ducimus eaque eum hic in, laborum maxime neque
-                        nisi officiis quasi quisquam reiciendis repellendus tempora tempore vero
-                        voluptatibus.
+                        {t('footer.title')}:{' '}
+                        <a className="font-black">{t('footer.spring')}, 2025</a>
+                        <br />
+                        <br />
+                        {t('footer.academy')} <a className="font-black">IT Step KYIV</a>
+                        <br />
+                        <br />
                     </p>
                     <ul className="flex h-9 gap-6">
                         <li className="flex h-full">
@@ -67,7 +70,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.about')}
                                 </Link>
                             </li>
                             <li>
@@ -77,7 +80,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.contacts')}
                                 </Link>
                             </li>
                             <li>
@@ -87,7 +90,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.mobile')}
                                 </Link>
                             </li>
                             <li>
@@ -97,7 +100,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.partners')}
                                 </Link>
                             </li>
                         </ul>
@@ -112,7 +115,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.service')}
                                 </Link>
                             </li>
                             <li>
@@ -122,7 +125,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.specialist')}
                                 </Link>
                             </li>
                             <li>
@@ -132,7 +135,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.find')}
                                 </Link>
                             </li>
                             <li>
@@ -142,7 +145,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.user-page')}
                                 </Link>
                             </li>
                         </ul>
@@ -157,7 +160,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.support')}
                                 </Link>
                             </li>
                             <li>
@@ -167,7 +170,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.offer')}
                                 </Link>
                             </li>
                             <li>
@@ -177,7 +180,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.q-a')}
                                 </Link>
                             </li>
                             <li>
@@ -187,7 +190,7 @@ export function Footer() {
                                     href="#"
                                 >
                                     <MaterialSymbolsArrowForwardIosRounded className="text-muted h-4" />
-                                    Lorem ipsum
+                                    {t('footer.all')}
                                 </Link>
                             </li>
                         </ul>
