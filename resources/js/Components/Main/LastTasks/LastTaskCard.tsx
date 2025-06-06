@@ -1,8 +1,9 @@
 import Task from '@/types/models/task';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function LastTaskCard({
+    id,
     name,
     price,
     estimatedDate,
@@ -13,7 +14,9 @@ export default function LastTaskCard({
     const { locale } = usePage().props;
 
     return (
-        <div className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 dark:border-[#C6C6C6]">
+        <Link
+            href={`/task/${id}`}
+             className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 dark:border-[#C6C6C6]  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             {/* Top block with title and category */}
             <div className="flex flex-col items-start gap-2">
                 <h3 className="line-clamp-1 text-xl leading-7 font-semibold break-all text-ellipsis text-black dark:text-white">
@@ -43,6 +46,6 @@ export default function LastTaskCard({
                     }).format(price)}
                 </p>
             </div>
-        </div>
+        </Link>
     );
 }
