@@ -16,7 +16,8 @@ export default function LastTaskCard({
     return (
         <Link
             href={`/task/${id}`}
-             className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 dark:border-[#C6C6C6]  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            className="flex h-[11.25rem] min-w-[22rem] flex-col items-start justify-center gap-10 rounded-3xl border-2 border-gray-400 px-5 transition-colors hover:bg-gray-100 dark:border-[#C6C6C6] dark:hover:bg-gray-800"
+        >
             {/* Top block with title and category */}
             <div className="flex flex-col items-start gap-2">
                 <h3 className="line-clamp-1 text-xl leading-7 font-semibold break-all text-ellipsis text-black dark:text-white">
