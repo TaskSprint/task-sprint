@@ -1,19 +1,23 @@
 import Button from '@/Components/Shared/Button';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { usePageTransition } from '@/hooks/usePageTransition';
+import { useRouter } from '@/hooks/useRouter';
 import { Divider } from '@heroui/divider';
+import { cn } from '@heroui/react';
+import { addToast } from '@heroui/toast';
+import { usePage } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
+import IconamoonProfileLight from '~icons/iconamoon/profile-light';
+import MynauiShare from '~icons/mynaui/share';
+import SolarCardOutline from '~icons/solar/card-outline';
 import SolarMoneyBagLinear from '~icons/solar/money-bag-linear';
 import TablerReceipt from '~icons/tabler/receipt';
-import SolarCardOutline from '~icons/solar/card-outline';
-import MynauiShare from '~icons/mynaui/share';
-import IconamoonProfileLight from '~icons/iconamoon/profile-light';
-import { addToast } from '@heroui/toast';
-import React from 'react';
-import { cn } from '@heroui/react';
-import { usePageTransition } from '@/hooks/usePageTransition';
 
 export default function UserLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const { t } = useLaravelReactI18n();
-    const profileLink = `${window.location.origin}/profile`;
+    const { auth } = usePage().props;
+    const { route } = useRouter();
+    const profileLink = route('profile.general-info', { user: auth.user?.id });
     const transitioning = usePageTransition({ transitionElement: 'user', segmentIndex: 0 });
 
     return (
@@ -30,7 +34,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
             <div className="flex h-full flex-col pt-4 2xl:flex-row 2xl:pb-4">
                 <Divider className="2xl:w-divider bg-muted 2xl:h-full" />
 
-                <div className="bg-surface flex flex-col px-9 pb-12 sm:rounded-b-[2rem] 2xl:max-w-min 2xl:rounded-r-[2rem] 2xl:rounded-bl-none">
+                <div className="bg-surface flex flex-col px-9 pb-12 sm:rounded-b-[2rem] 2xl:max-w-md 2xl:rounded-r-[2rem] 2xl:rounded-bl-none">
                     <div className="flex w-full max-w-sm items-end justify-center py-[1.875rem] 2xl:h-36">
                         <div className="flex w-full items-center justify-between gap-8">
                             <div>
@@ -145,7 +149,7 @@ export default function UserLayout({ children }: Readonly<{ children: React.Reac
                                     );
                                 }}
                             >
-                                <div className="text-muted/50 text-[0.875rem] leading-[1.1875rem]">
+                                <div className="text-muted/50 truncate text-[0.875rem] leading-[1.1875rem]">
                                     {profileLink}
                                 </div>
                             </Button>

@@ -8,3 +8,6 @@ package-lock.json
 composer.lock
 storage
 lang/php_*.json
+resources/js/components/ui/*
+resources/js/ziggy.js
+resources/views/mail/*

@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
-import laravel, { refreshPaths } from 'laravel-vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import i18n from 'laravel-react-i18n/vite';
+import laravel, { refreshPaths } from 'laravel-vite-plugin';
+import { resolve } from 'node:path';
 import Icons from 'unplugin-icons/vite';
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
     plugins: [
@@ -17,4 +18,12 @@ export default defineConfig({
         Icons({ compiler: 'jsx', jsx: 'react' }),
         tailwindcss(),
     ],
+    esbuild: {
+        jsx: 'automatic',
+    },
+    resolve: {
+        alias: {
+            'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
+        },
+    },
 });

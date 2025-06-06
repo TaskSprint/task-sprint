@@ -7,6 +7,7 @@ use App\Traits\Models\PolicyChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Task extends Model
@@ -27,7 +28,7 @@ class Task extends Model
         return $this->belongsTo(User::class, 'customer_id');
     }
 
-    public function order(): HasOne|Task
+    public function order(): HasOne
     {
         return $this->hasOne(TaskOrder::class);
     }
@@ -37,11 +38,16 @@ class Task extends Model
         return $this->belongsTo(Currency::class, 'currency_code');
     }
 
+    public function files(): MorphMany
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
     protected function casts(): array
     {
         return [
             'address' => 'array',
-            'estimated_date' => 'date',
+            'estimated_date' => 'datetime',
             'status' => TaskStatus::class,
         ];
     }

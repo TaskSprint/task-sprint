@@ -1,18 +1,19 @@
-import { Avatar, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
-import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import CreateTaskDropdown from '@/Components/CreateTaskDropdown';
+import LanguageSwitcher from '@/Components/Layout/LanguageSwitcher';
 import SearchBar from '@/Components/Layout/SearchBar';
+import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
 import Button from '@/Components/Shared/Button';
+import { useRouter } from '@/hooks/useRouter';
+import { Avatar, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
+import { usePage } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import SolarBellOutline from '~icons/solar/bell-outline';
+import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
+import SolarDocumentLinear from '~icons/solar/document-linear';
 import SolarKeyMinimalisticSquare3Linear from '~icons/solar/key-minimalistic-square-3-linear';
 import SolarLogin2Linear from '~icons/solar/login-2-linear';
-import ThemeSwitcher from '@/Components/Layout/ThemeSwitcher';
-import { useRouter } from '@/hooks/useRouter';
-import { usePage } from '@inertiajs/react';
 import SolarUserCircleLinear from '~icons/solar/user-circle-linear';
-import SolarBellOutline from '~icons/solar/bell-outline';
-import SolarDocumentLinear from '~icons/solar/document-linear';
-import SolarChatDotsLinear from '~icons/solar/chat-dots-linear';
 
 export default function Navigation() {
     const { t } = useLaravelReactI18n();
@@ -41,14 +42,14 @@ export default function Navigation() {
             </NavbarBrand>
             <NavbarContent justify="center" className="flex gap-[3.25rem]">
                 <NavbarItem>
-                    <Button
-                        as={Link}
-                        href={route('task-creation')}
-                        className="border-foreground h-11 rounded-full border text-base font-medium"
-                        variant="bordered"
-                    >
-                        {t('navigation.create')}
-                    </Button>
+                    <CreateTaskDropdown>
+                        <Button
+                            className="border-foreground h-11 rounded-full border text-base font-medium"
+                            variant="bordered"
+                        >
+                            {t('navigation.create')}
+                        </Button>
+                    </CreateTaskDropdown>
                 </NavbarItem>
                 <NavbarItem className="h-full max-h-full">
                     <SearchBar />
@@ -97,7 +98,7 @@ export default function Navigation() {
                                 variant="light"
                                 as={Link}
                                 data-transition="user"
-                                href={route('profile.general-info')}
+                                href={route('profile.general-info', { user: user.id })}
                                 className="aspect-square size-11 h-full min-w-fit rounded-full p-0"
                             >
                                 <Avatar

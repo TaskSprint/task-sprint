@@ -1,6 +1,6 @@
-import SolarSunBold from '~icons/solar/sun-bold';
-import SolarMoonLinear from '~icons/solar/moon-linear';
 import { useTheme } from 'next-themes';
+import SolarMoonLinear from '~icons/solar/moon-linear';
+import SolarSunBold from '~icons/solar/sun-bold';
 
 export default function ThemeSwitcher() {
     const { theme, setTheme } = useTheme();

@@ -23,3 +23,8 @@ yarn-error.log
 /.vscode
 /.zed
 lang/php_*.json
+
+.cache
+.config
+.local
+.bash_history

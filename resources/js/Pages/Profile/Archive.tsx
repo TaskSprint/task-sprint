@@ -1,42 +1,17 @@
 import Button from '@/Components/Shared/Button';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React from 'react';
+import { useRouter } from '@/hooks/useRouter';
 import AppLayout from '@/Layouts/AppLayout';
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { BreadcrumbItem, Breadcrumbs, Divider } from '@heroui/react';
-import { useRouter } from '@/hooks/useRouter';
 import UserLayout from '@/Layouts/UserLayout';
+import { PageProps } from '@/types';
+import Task from '@/types/models/task';
+import { BreadcrumbItem, Breadcrumbs, Divider, Image, Link } from '@heroui/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React from 'react';
 
-export default function Archive() {
+export default function Archive({ tasks, locale }: PageProps<{ tasks: Task[] }>) {
     const { t } = useLaravelReactI18n();
     const { route } = useRouter();
-
-    const tasks = [
-        {
-            id: 1,
-            title: 'Створити сайт для магазину одягу',
-            created_at: '15 квітня 08:35',
-            image: 'https://www.colorland.com/sites/default/files/styles/optimized/public/article/A%20man%20wearing%20a%20hat%2C%20taking%20a%20photo%20at%20sunset.jpg?itok=RL_hlVbF',
-            price: '2000',
-            customer: 'Георгій Ф.',
-        },
-        {
-            id: 2,
-            title: 'Редизайн мобільного додатку',
-            created_at: '20 травня 20:15',
-            image: 'https://www.digitalphoto.de/media/digitalphoto/styles/tec_frontend_large/public/images/2018/09/adobestock_101692534.jpeg?itok=lMmBoMR5',
-            price: '1500',
-            customer: 'Егором К.',
-        },
-        {
-            id: 3,
-            title: 'Лендінг для курсу',
-            created_at: '1 червня 21:15',
-            image: 'https://www.nationalgeographic.it/upload/ngi-hero/cover-1685960847724-Hero_100.jpg',
-            price: '1000',
-            customer: 'Георгій Ф.',
-        },
-    ];
 
     return (
         <>
@@ -68,27 +43,48 @@ export default function Archive() {
                             className="flex w-full flex-col items-center gap-[1.25rem] sm:flex-row sm:items-start"
                             key={task.id}
                         >
-                            <img
-                                src={task.image}
-                                alt={task.title}
-                                className="h-[5rem] w-[5rem] rounded-full"
+                            <Image
+                                src={task.images?.[0]}
+                                className="size-[5rem] min-w-[5rem] rounded-full"
                             />
 
                             <div className="flex w-full flex-col items-center gap-2.5 sm:items-start sm:gap-1">
                                 <div className="flex w-full flex-col-reverse items-center justify-between gap-2.5 sm:flex-row sm:gap-12">
                                     <div className="text-muted text-center text-[1.625rem] leading-[2.25rem] font-semibold sm:text-start">
-                                        {task.title}
+                                        {task.name}
                                     </div>
                                     <div className="text-[2rem] leading-[2.75rem] font-semibold">
-                                        {task.price}
+                                        {Intl.NumberFormat(locale?.current, {
+                                            style: 'currency',
+                                            currencyDisplay: 'narrowSymbol',
+                                            currency: task.currency?.code ?? 'UAH',
+                                        }).format(task.price)}
                                     </div>
                                 </div>
 
                                 <div className="text-muted text-center text-[1.125rem] font-medium break-all sm:text-start">
-                                    {t('task-archive.created', { created: task.created_at })}
+                                    {t('task-archive.created', {
+                                        created: new Date(task.createdAt).toLocaleDateString(
+                                            locale?.current,
+                                            {
+                                                month: 'long',
+                                                day: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit',
+                                            },
+                                        ),
+                                    })}
                                 </div>
 
-                                <Button className="bg-primary flex w-full items-center rounded-full text-white sm:ml-auto sm:w-fit sm:py-[1.875rem] sm:text-[1.25rem] sm:font-semibold">
+                                <Button
+                                    as={Link}
+                                    href={route('sub-category.task.create.index', {
+                                        subCategory: task.subCategory?.id,
+                                        n: task.name,
+                                        d: task.description,
+                                    })}
+                                    className="bg-primary flex w-full items-center rounded-full text-white sm:ml-auto sm:w-fit sm:py-[1.875rem] sm:text-[1.25rem] sm:font-semibold"
+                                >
                                     {t('task-archive.repeat-task')}
                                 </Button>
                             </div>

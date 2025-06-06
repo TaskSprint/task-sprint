@@ -1,11 +1,18 @@
 <?php
 
+use App\Enums\TaskStatus;
 use App\Http\Controllers\CategoryTestController;
 use App\Http\Controllers\FileTestController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TaskCreationController;
 use App\Http\Resources\SubCategoryResource;
+use App\Http\Resources\TaskResource;
+use App\Http\Resources\UserResource;
 use App\Models\SubCategory;
+use App\Models\Task;
+use App\Models\User;
 use CodeZero\LocalizedRoutes\Controllers\FallbackController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,14 +37,31 @@ Route::localized(function () {
     Route::put('/category-test/{category}', [CategoryTestController::class, 'update'])->name('category-test.update');
     Route::delete('/category-test/{category}', [CategoryTestController::class, 'destroy'])->name('category-test.destroy');
 
+    Route::get('/profile/{user}/general-info', function (User $user) {
+        return Inertia::render('Profile/GeneralInfo', [
+            'user' => new UserResource($user->load('avatar')),
+            'cities' => $user->tasks()
+                ->select("address->city as city")
+                ->distinct()
+                ->pluck('city')
+                ->toArray(),
+        ]);
+    })->name('profile.general-info');
+
+    Route::get('/profile/{user}/employee-info', function (User $user) {
+        return Inertia::render('Profile/EmployeeInfo', [
+            'user' => new UserResource($user->load('avatar')),
+        ]);
+    })->name('profile.employee-info');
+
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
 
-        Route::get('/task-creation', function () {
-            return Inertia::render('TaskCreation');
-        })->name('task-creation');
+        Route::get('/sub-category/{subCategory}/task/create', [TaskCreationController::class, 'index'])->name('sub-category.task.create.index');
+        Route::post('/sub-category/{subCategory}/task/create', [TaskCreationController::class, 'store'])
+            ->name('sub-category.task.create.store');
 
         Route::get('/file-test', [FileTestController::class, 'index'])->name('file-test.index');
         Route::post('/file-test', [FileTestController::class, 'update'])
@@ -48,38 +72,50 @@ Route::localized(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('/profile/favorite', function () {
-            return Inertia::render('Profile/Favorite');
+            return Inertia::render('Profile/Favorite', [
+                'employees' => UserResource::collection(
+                    User::with('avatar')
+                        ->limit(5)
+                        ->role('employee')
+                        ->get()),
+            ]);
         })->name('profile.favorite');
 
         Route::get('/profile/in-progress', function () {
-            return Inertia::render('Profile/InProgress');
+            return Inertia::render('Profile/InProgress', [
+                'tasks' => TaskResource::collection(auth()->user()->tasks()
+                    ->with('files')
+                    ->where('status', TaskStatus::InProgress)
+                    ->orWhere('status', TaskStatus::Pending)
+                    ->orWhere('status', TaskStatus::PendingForExecutor)
+                    ->get()),
+            ]);
         })->name('profile.in-progress');
 
         Route::get('/profile/new-task', function () {
-            return Inertia::render('Profile/NewTask');
+            return Inertia::render('Profile/NewTask', [
+                'tasks' => TaskResource::collection(Task::with('files', 'subCategory', 'order.employee')
+                    ->where('status', TaskStatus::Completed)
+                    ->orderBy('updated_at', 'desc')
+                    ->get()),
+            ]);
         })->name('profile.new-task');
 
         Route::get('/profile/archive', function () {
-            return Inertia::render('Profile/Archive');
+            return Inertia::render('Profile/Archive', [
+                'tasks' => TaskResource::collection(auth()->user()->tasks()
+                    ->with('files', 'subCategory')
+                    ->where('status', TaskStatus::Completed)
+                    ->orWhere('status', TaskStatus::Cancelled)
+                    ->get()),
+            ]);
         })->name('profile.archive');
 
-        Route::get('/task/{id}', function ($id) {
-            return Inertia::render('Task', ['id' => $id]);
-        })->name('task.show');
-
-        Route::get('/profile/general-info', function () {
-            return Inertia::render('Profile/GeneralInfo');
-        })->name('profile.general-info');
+        Route::get('/task/{task}', [TaskController::class, 'index'])->name('task.index');
 
         Route::get('/profile/become-employee', function () {
             return Inertia::render('Profile/BecomeEmployee');
         })->name('profile.become-employee');
-
-        Route::get('/profile/employee-info', function () {
-            return Inertia::render('Profile/EmployeeInfo');
-        })->name('profile.employee-info');
-
-
     });
 });
 

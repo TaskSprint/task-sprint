@@ -1,3 +1,5 @@
+import Task from '@/types/models/task';
+
 export default interface User {
     id: number;
     avatar?: string;
@@ -8,4 +10,5 @@ export default interface User {
     emailVerifiedAt: string;
     createdAt: string;
     updatedAt: string;
+    tasks?: Task[];
 }

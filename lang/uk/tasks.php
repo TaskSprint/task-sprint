@@ -25,4 +25,8 @@ return [
     'street' => 'Вулиця',
     'building' => 'Будівля',
     'address' => 'Адреса',
+    'files' => 'Файли',
+    'secret_description' => 'Секретний опис',
+    'payment_details' => 'Деталі оплати',
+    'negotiable' => 'Ціна обговорюється',
 ];

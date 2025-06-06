@@ -1,9 +1,9 @@
-import React, { FormEventHandler } from 'react';
-import { Head, useForm } from '@inertiajs/react';
-import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import Button from '@/Components/Shared/Button';
+import TextInput from '@/Components/TextInput';
+import { Head, useForm } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { FormEventHandler } from 'react';
 
 export default function Support() {
     const { t } = useLaravelReactI18n();

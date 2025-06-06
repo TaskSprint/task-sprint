@@ -1,5 +1,5 @@
-import Category from '@/types/models/category';
 import LocaleString from '@/types/locale-string';
+import Category from '@/types/models/category';
 import Task from '@/types/models/task';
 
 export default interface SubCategory {

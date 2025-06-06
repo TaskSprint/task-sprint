@@ -1,29 +1,38 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-import React, { ReactNode, useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
+import ActionModal from '@/Components/ActionModal';
 import Button from '@/Components/Shared/Button';
-import UserLayout from '@/Layouts/UserLayout';
+import UploadFileModal from '@/Components/UploadFileModal';
+import AppLayout from '@/Layouts/AppLayout';
 import ProfileLayout from '@/Layouts/ProfileLayout';
+import UserLayout from '@/Layouts/UserLayout';
+import {
+    Avatar,
+    Image,
+    Link,
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+} from '@heroui/react';
+import { useForm } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { ReactNode, useState } from 'react';
+import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
 import LucidePencil from '~icons/lucide/pencil';
-import { Image, Link } from '@heroui/react';
-import { Avatar } from '@heroui/react';
+import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
 import MaterialSymbolsUpload from '~icons/material-symbols/upload';
 import MdiEyeOutline from '~icons/mdi/eye-outline';
-import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
-import MaterialSymbolsAdd2 from '~icons/material-symbols/add-2';
-import UploadFileModal from '@/Components/UploadFileModal';
-import DescriptionModal from '@/Components/DescriptionModal';
 
 export default function BecomeEmployee() {
     const { t } = useLaravelReactI18n();
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isSaveChangesModalOpen, setIsSaveChangesModalOpen] = useState(false);
-    const [uploadedFilename, setUploadedFilename] = useState<string | null>(null);
-    const [isUploadedFileModalOpen, setUploadedFileModalOpen] = useState(false);
+    const [, setUploadedFilename] = useState<string | null>(null);
+    const [isUploadedFileModalOpen, setIsUploadedFileModalOpen] = useState(false);
 
-    const [isEducationModalOpen, setEducationModalOpen] = useState(false);
+    const [isEducationModalOpen, setIsEducationModalOpen] = useState(false);
 
-    const [user1, setUser1] = useState({
+    const { data, setData, errors, clearErrors } = useForm({
         id: '1',
         avatar: '...',
         username: 'GreedIsGood',
@@ -55,16 +64,9 @@ export default function BecomeEmployee() {
     });
 
     const [editModal, setEditModal] = useState<{
-        field: keyof typeof user1 | null;
+        field: keyof typeof data | null;
         isOpen: boolean;
     }>({ field: null, isOpen: false });
-
-    const handleSaveField = (field: keyof typeof user1, value: string) => {
-        setUser1((prev) => ({
-            ...prev,
-            [field]: value,
-        }));
-    };
 
     return (
         <div className="mx-auto flex flex-col gap-[3.75rem] px-[2rem] py-[1rem]">
@@ -88,7 +90,7 @@ export default function BecomeEmployee() {
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.name')}</span>
                         <Button
-                            onPress={() => setEditModal({ field: 'name', isOpen: true })}
+                            onPress={() => setEditModal({ field: 'username', isOpen: true })}
                             variant="light"
                         >
                             <LucidePencil />
@@ -96,8 +98,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.name ? (
-                            user1.name
+                        {data.username ? (
+                            data.username
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -118,8 +120,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-primary text-[1.5rem]">
-                        {user1.username ? (
-                            <div>@{user1.username}</div>
+                        {data.username ? (
+                            <div>@{data.username}</div>
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -140,8 +142,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.phone ? (
-                            user1.phone
+                        {data.phone ? (
+                            data.phone
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -162,8 +164,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.email ? (
-                            user1.email
+                        {data.email ? (
+                            data.email
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -184,8 +186,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.city ? (
-                            user1.city
+                        {data.city ? (
+                            data.city
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -206,8 +208,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.preferred_hours ? (
-                            user1.preferred_hours
+                        {data.preferred_hours ? (
+                            data.preferred_hours
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -228,8 +230,8 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.specialization ? (
-                            user1.specialization
+                        {data.specialization ? (
+                            data.specialization
                         ) : (
                             <div className="text-muted">
                                 {' '}
@@ -250,9 +252,9 @@ export default function BecomeEmployee() {
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.about_me ? (
+                        {data.about_me ? (
                             <p className="text-[1.5rem] leading-[2.0625rem] font-normal">
-                                {user1.about_me}
+                                {data.about_me}
                             </p>
                         ) : (
                             <div className="text-muted">
@@ -265,20 +267,15 @@ export default function BecomeEmployee() {
                     {/* 9. Освіта */}
                     <div className="flex items-start gap-[1.5625rem]">
                         <span>{t('profile.become-employee.education')}</span>
-                        <Button
-                            onPress={() =>
-                                setEducationModalOpen({ field: 'education', isOpen: true })
-                            }
-                            variant="light"
-                        >
+                        <Button onPress={() => setIsEducationModalOpen(true)} variant="light">
                             <LucidePencil />
                         </Button>
                     </div>
 
                     <div className="text-[1.5rem]">
-                        {user1.education ? (
+                        {data.education ? (
                             <div className="space-y-1">
-                                {user1.education?.map((edu) => (
+                                {data.education?.map((edu) => (
                                     <div key={edu}>
                                         <span className="text-primary">{edu}</span>,
                                     </div>
@@ -297,7 +294,7 @@ export default function BecomeEmployee() {
                     <span>{t('profile.become-employee.certificates')}</span>
 
                     <div className="flex flex-wrap gap-[1.5rem]">
-                        {user1.certificates?.map((cert) => (
+                        {data.certificates?.map((cert) => (
                             <div
                                 key={cert.id}
                                 className="group relative h-[8.813rem] w-[15.938rem] overflow-hidden rounded-md shadow-md"
@@ -317,7 +314,7 @@ export default function BecomeEmployee() {
 
                         <Link
                             className="group bg-muted/50 relative h-[8.813rem] w-[15.938rem] rounded-md shadow-md"
-                            onPress={() => setUploadedFileModalOpen(true)}
+                            onPress={() => setIsUploadedFileModalOpen(true)}
                         >
                             <div className="absolute inset-0 z-10 flex items-center justify-center gap-[1.5rem] rounded-md bg-black/50 opacity-50 transition-opacity duration-300 group-hover:opacity-100">
                                 <MaterialSymbolsAdd2 className="h-[3.5rem] w-[3.5rem] text-white" />
@@ -343,41 +340,68 @@ export default function BecomeEmployee() {
                 </Button>
             </div>
 
-            <DescriptionModal
-                isOpen={isDeleteModalOpen}
-                onClose={() => setIsDeleteModalOpen(false)}
+            <ActionModal
+                name="password"
+                open={isDeleteModalOpen}
+                onOpenChange={setIsDeleteModalOpen}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        setData(editModal.field, newValue);
                     }
                 }}
                 title={t('profile.become-employee.delete_profile_confirmation_title')}
                 subtitle={t('profile.become-employee.delete_profile_confirmation_subtitle')}
                 confirmText={t('profile.become-employee.delete_profile')}
-                submitDanger={true}
-                placeholder="Password"
+                submitDanger
+                placeholder={t('users.password')}
             />
 
-            <DescriptionModal
+            <Modal
+                backdrop="blur"
                 isOpen={isSaveChangesModalOpen}
                 onClose={() => setIsSaveChangesModalOpen(false)}
-                onSave={(newValue) => {
-                    if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
-                    }
-                }}
-                title={t('profile.become-employee.save_changes_confirmation_title')}
-                subtitle={t('profile.become-employee.save_changes_confirmation_subtitle')}
-                confirmText="OK"
-                textInput={false}
-            />
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">
+                                {t('profile.become-employee.save_changes_confirmation_title')}
+                            </ModalHeader>
+                            <ModalBody>
+                                <p className="text-muted-foreground mt-1 text-sm">
+                                    {t(
+                                        'profile.become-employee.save_changes_confirmation_subtitle',
+                                    )}
+                                </p>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    color="danger"
+                                    className="text-base"
+                                    variant="light"
+                                    onPress={onClose}
+                                >
+                                    {t('Cancel')}
+                                </Button>
+                                <Button color="primary" className="text-base">
+                                    OK
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
 
-            <DescriptionModal
-                isOpen={editModal.isOpen}
-                onClose={() => setEditModal({ field: null, isOpen: false })}
+            <ActionModal
+                name={editModal.field ?? ''}
+                errorMessage={editModal.field ? errors[editModal.field] : undefined}
+                onClearError={() => clearErrors(editModal.field!)}
+                value={editModal.field ? ((data[editModal.field] as string) ?? '') : ''}
+                open={editModal.isOpen}
+                onOpenChange={(isOpen) => setEditModal({ field: editModal.field, isOpen })}
                 onSave={(newValue) => {
                     if (editModal.field) {
-                        handleSaveField(editModal.field, newValue);
+                        setData(editModal.field, newValue);
                     }
                 }}
                 title={editModal.field ? t(`profile.become-employee.${editModal.field}`) : ''}
@@ -385,24 +409,28 @@ export default function BecomeEmployee() {
             />
 
             <UploadFileModal
-                isOpen={isUploadedFileModalOpen}
-                onClose={() => setUploadedFileModalOpen(false)}
-                onUploadSuccess={(filename: React.SetStateAction<string | null>) =>
-                    setUploadedFilename(filename)
-                }
+                name="certificates"
+                errorMessage={errors.certificates}
+                onClearError={clearErrors}
+                open={isUploadedFileModalOpen}
+                onOpenChange={() => setIsUploadedFileModalOpen(false)}
+                onSave={(file) => setUploadedFilename(file?.[0]?.name ?? null)}
             />
 
-            <DescriptionModal
-                isOpen={isEducationModalOpen}
-                onClose={() => setEducationModalOpen(false)}
+            <ActionModal
+                name="education"
+                errorMessage={errors.education}
+                onClearError={clearErrors}
+                value={data.education ?? []}
+                open={isEducationModalOpen}
+                onOpenChange={setIsEducationModalOpen}
                 onSave={(updatedEducation) => {
-                    setUser1((prev) => ({ ...prev, education: updatedEducation }));
+                    setData('education', updatedEducation);
                 }}
                 title="Редагувати освіту"
                 confirmText="Зберегти"
-                textInput={false}
-                initialList={user1.education}
                 placeholder={t(`profile.become-employee.education`)}
+                list
             />
         </div>
     );

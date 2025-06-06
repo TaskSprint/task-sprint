@@ -15,15 +15,26 @@ class TaskResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'secretDescription' => $this->secret_description,
+            'paymentDetails' => $this->payment_details,
             'price' => $this->price,
             'address' => $this->address,
             'estimatedDate' => $this->estimated_date,
             'status' => $this->status,
+            'negotiable' => $this->negotiable,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'files' => FileResource::collection($this->whenLoaded('files')),
+            'images' => $this->whenLoaded('files', function () {
+                return $this->files
+                    ->filter(fn($file) => str($file->mime_type)->startsWith("image/"))
+                    ->map(fn($file) => $file->getTemporaryUrl())
+                    ->toArray();
+            }),
             'currency' => new CurrencyResource($this->whenLoaded('currency')),
             'user' => new UserResource($this->whenLoaded('customer')),
             'subCategory' => new SubCategoryResource($this->whenLoaded('subCategory')),
+            'order' => new TaskOrderResource($this->whenLoaded('order')),
         ];
     }
 }

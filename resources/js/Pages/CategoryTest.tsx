@@ -1,21 +1,25 @@
+import { CategoryTestCard } from '@/Components/CategoryTestCard';
+import { useRouter } from '@/hooks/useRouter';
+import { PageProps } from '@/types';
+import Category from '@/types/models/category';
 import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Input } from '@heroui/react';
 import { useForm, usePage } from '@inertiajs/react';
-import { useRouter } from '@/hooks/useRouter';
 import { FormEventHandler, useEffect, useRef } from 'react';
-import Category from '@/types/models/category';
-import { PageProps } from '@/types';
-import { CategoryTestCard } from '@/Components/CategoryTestCard';
 
 export default function CategoryTest({ categories }: PageProps<{ categories: Category[] }>) {
     const { props } = usePage();
-    const localizedNames: Record<string, any> = {};
+    const localizedNames: Record<`name_${string}`, string> = {};
     props.locale?.available.forEach((locale) => {
         localizedNames[`name_${locale}`] = '';
     });
 
     const { route } = useRouter();
-    const { data, setData, post, processing, reset } = useForm<Record<string, any>>({
-        icon: null,
+    const { data, setData, post, processing, reset } = useForm<{
+        icon?: File;
+        color: string;
+        [key: `name_${string}`]: string;
+    }>({
+        icon: undefined,
         color: '#00CCFF',
         ...localizedNames,
     });
@@ -32,7 +36,7 @@ export default function CategoryTest({ categories }: PageProps<{ categories: Cat
 
     useEffect(() => {
         console.log(categories);
-    }, []);
+    }, [categories]);
 
     return (
         <div className="flex flex-col items-center justify-center gap-4 p-4">

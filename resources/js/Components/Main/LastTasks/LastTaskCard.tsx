@@ -1,6 +1,6 @@
-import { useLaravelReactI18n } from 'laravel-react-i18n';
 import Task from '@/types/models/task';
 import { usePage } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function LastTaskCard({
     name,

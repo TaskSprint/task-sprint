@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { router } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
+import { router } from '@inertiajs/react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function usePageTransition({
     transitionElement,
@@ -9,7 +9,7 @@ export function usePageTransition({
     transitionElement?: string;
     segmentIndex?: number;
 } = {}) {
-    const { urlWithoutLocale } = useRouter();
+    const { urlWithoutLocale, currentLocation } = useRouter();
     const [transitioning, setTransitioning] = useState(false);
 
     const isItemTransition = useCallback(
@@ -28,12 +28,12 @@ export function usePageTransition({
             };
 
             const detailUrl = urlWithoutLocale(event.detail.visit.url);
-            const currentUrl = urlWithoutLocale(window.location.href);
+            const currentUrl = urlWithoutLocale(currentLocation);
             let isTransitioning = detailUrl !== currentUrl;
 
             if (segmentIndex !== undefined) {
-                const current = new URL(currentUrl, window.location.origin);
-                const detail = new URL(detailUrl, window.location.origin);
+                const current = new URL(currentUrl, currentLocation.origin);
+                const detail = new URL(detailUrl, currentLocation.origin);
                 const currentSegments = current.pathname.split('/').filter((s) => s);
                 const detailSegments = detail.pathname.split('/').filter((s) => s);
                 let segmentIsTransitioning = false;
@@ -47,10 +47,7 @@ export function usePageTransition({
                 isTransitioning ||= !!isItemTransition(updatedEvent.explicitOriginalTarget);
             }
 
-            if (
-                isTransitioning &&
-                urlWithoutLocale(event.detail.visit.url) !== urlWithoutLocale(window.location.href)
-            ) {
+            if (isTransitioning && detailUrl !== currentUrl) {
                 setTransitioning(true);
             }
         });
@@ -60,7 +57,14 @@ export function usePageTransition({
             startEvent();
             finishEvent();
         };
-    }, [isItemTransition, segmentIndex, urlWithoutLocale, setTransitioning, transitionElement]);
+    }, [
+        isItemTransition,
+        segmentIndex,
+        urlWithoutLocale,
+        setTransitioning,
+        transitionElement,
+        currentLocation,
+    ]);
 
     return transitioning;
 }

@@ -12,6 +12,8 @@ const Input = forwardRef<
     (
         {
             name,
+            type,
+            multiple,
             value,
             defaultValue,
             errorMessage,
@@ -35,7 +37,7 @@ const Input = forwardRef<
         const handleBlur: React.FocusEventHandler<HTMLInputElement> &
             ((e: React.FocusEvent<HTMLInputElement>) => void) = (...props) => {
             onBlur?.(...props);
-            if (errorValue && errorValue !== controlledValue) {
+            if (errorMessage && errorValue !== controlledValue) {
                 onClearError?.(name);
             }
         };
@@ -46,6 +48,7 @@ const Input = forwardRef<
             } else {
                 setErrorValue(undefined);
             }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [errorMessage]);
 
         return (
@@ -55,6 +58,8 @@ const Input = forwardRef<
                 value={controlledValue}
                 onValueChange={setControlledValue}
                 onBlur={handleBlur}
+                type={type}
+                multiple={multiple}
                 errorMessage={errorMessage}
                 isInvalid={isInvalid ?? (errorMessage ? true : undefined)}
                 ref={domRef}

@@ -1,7 +1,5 @@
-import Category from '@/types/models/category';
-import { useForm, usePage } from '@inertiajs/react';
 import { useRouter } from '@/hooks/useRouter';
-import { FormEventHandler, useEffect, useState } from 'react';
+import Category from '@/types/models/category';
 import {
     Button,
     Card,
@@ -12,10 +10,12 @@ import {
     Image,
     Input,
 } from '@heroui/react';
+import { useForm, usePage } from '@inertiajs/react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
 export function CategoryTestCard({ category }: Readonly<{ category: Category }>) {
     const { props } = usePage();
-    const localizedNames: Record<string, any> = {};
+    const localizedNames: Record<`name_${string}`, string> = {};
     props.locale?.available.forEach((locale) => {
         localizedNames[`name_${locale}`] = category.name.data[locale];
     });
@@ -27,9 +27,14 @@ export function CategoryTestCard({ category }: Readonly<{ category: Category }>)
         post,
         processing,
         delete: destroy,
-    } = useForm<Record<string, any>>({
+    } = useForm<{
+        _method: 'PUT';
+        icon?: File;
+        color: string;
+        [key: `name_${string}`]: string;
+    }>({
         _method: 'PUT',
-        icon: null,
+        icon: undefined,
         color: category.color,
         ...localizedNames,
     });
@@ -46,7 +51,7 @@ export function CategoryTestCard({ category }: Readonly<{ category: Category }>)
 
     const handleIconRemove = () => {
         setRemovedIcon(true);
-        setData('icon', null);
+        setData('icon', undefined);
     };
 
     useEffect(() => {
