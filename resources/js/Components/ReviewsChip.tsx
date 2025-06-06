@@ -1,7 +1,7 @@
-import React from 'react';
-import { Avatar } from '@heroui/react';
-import OneStarRatingSM from '@/Components/OneStarRatingSM';
 import AbsenceTime from '@/Components/AbsenceTime';
+import OneStarRatingSM from '@/Components/OneStarRatingSM';
+import { Avatar } from '@heroui/react';
+import React from 'react';
 
 interface EmployeeChipProps {
     item: number;
@@ -12,7 +12,6 @@ interface EmployeeChipProps {
     shortText: string;
     lastVisit: string | Date;
 }
-
 
 const ReviewsChip: React.FC<EmployeeChipProps> = ({
     item,
