@@ -12,7 +12,7 @@ export default function Roles() {
             <div className="flex flex-wrap justify-center gap-8">
                 <Button
                     as={Link}
-                    href="#"
+                    href="https://tasksprint.pp.ua/uk/employees-page"
                     className="h-fit rounded-[2.25rem] px-16 py-5 text-xl font-semibold text-white"
                     color="primary"
                 >
@@ -20,7 +20,7 @@ export default function Roles() {
                 </Button>
                 <Button
                     as={Link}
-                    href="#"
+                    href="https://tasksprint.pp.ua/uk/sub-category/4"
                     className="h-fit rounded-[2.25rem] px-16 py-5 text-xl font-semibold text-white"
                     color="primary"
                 >

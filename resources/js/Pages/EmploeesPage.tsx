@@ -4,9 +4,8 @@ import {  Pagination } from '@heroui/react';
 import SubCategoryStandalone from '@/Components/SubCategoryListDemo';
 import EmployeeCard from '@/Components/EmployeeCard';
 import { BreadcrumbItem, Breadcrumbs } from '@heroui/breadcrumbs';
-import SubCategoryModel from '@/types/models/sub-category';
 
-export function EmployeesPage({ subCategory }: { subCategory: SubCategoryModel }) {
+export function EmployeesPage() {
     const { t } = useLaravelReactI18n();
 
 
@@ -15,9 +14,9 @@ export function EmployeesPage({ subCategory }: { subCategory: SubCategoryModel }
             <div className="w-full min-h-[3.375rem] h-fit  items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
                <Breadcrumbs className="px-10 text-[1rem] font-normal">
                     <BreadcrumbItem color="foreground">
-                        {subCategory.category?.name.current}
+                        {t('sub-category.programming')}
                     </BreadcrumbItem>
-                    <BreadcrumbItem color="foreground">{subCategory.name.current}</BreadcrumbItem>
+                    <BreadcrumbItem color="foreground">{t('sub-category.sites-creation')}</BreadcrumbItem>
                 </Breadcrumbs>
             </div>
             <div

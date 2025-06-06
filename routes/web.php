@@ -30,6 +30,13 @@ Route::localized(function () {
         ]);
     })->name('sub-category');
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    Route::get('/employees-page', function ()  {
+        return Inertia::render('EmploeesPage');
+
+    })->name('employees-page');
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Route::get('/sub-preview', fn() => Inertia::render('SubCategory'));
 
     Route::get('/category-test', [CategoryTestController::class, 'index'])->name('category-test.index');
