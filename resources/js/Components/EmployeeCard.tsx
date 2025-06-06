@@ -36,13 +36,10 @@ export default function EmployeeCard() {
     ];
 
     return (
-        <Link
-            href={`#`}
-            className="border-primary relative flex w-fit min-w-[44.25rem] flex-col gap-2.5 rounded-[1.25rem] border-1 bg-white p-2.5 shadow-sm transition-colors hover:bg-gray-200 dark:bg-[#313131] dark:hover:bg-gray-700"
-        >
+        <div className="border-primary relative flex w-fit min-w-[44.25rem] flex-col gap-2.5 rounded-[1.25rem] border-1 bg-white p-2.5 shadow-sm dark:bg-[#313131]">
             <div className="flex flex-row justify-between">
-                <div className="flex flex-col gap-4">
-                    <div className="absolute top-2.5 left-2.5 flex min-h-[7.25rem] min-w-[24.28125rem] flex-row gap-5">
+                <div className="flex flex-col items-start justify-between gap-4">
+                    <div className="flex min-h-[7.25rem] min-w-[24.28125rem] flex-row items-start gap-5">
                         <Avatar src={photoCard} className="min-h-[5.5rem] min-w-[5.5rem]" />
                         <div className="text-center md:text-left">
                             <div className="flex items-center justify-center gap-2 md:justify-start">
@@ -52,7 +49,7 @@ export default function EmployeeCard() {
                             <p className="text-muted text-sm">
                                 <AbsenceTime lastVisit={date2} />
                             </p>
-                            <div className="text-muted mt-2 flex min-w-[3rem] items-center gap-6 text-sm">
+                            <div className="text-muted mt-2 flex min-w-[rem] items-center gap-6 text-sm">
                                 <div className="flex items-center gap-2 text-black dark:text-white">
                                     <span className="text-primary text-2xl font-black">✓ </span>
                                     <span>
@@ -101,8 +98,10 @@ export default function EmployeeCard() {
                 </div>
             </div>
 
-            <div className="flex h-full w-full max-w-[44.25rem] flex-row items-center justify-between gap-4 overflow-y-auto pt-30">
-                <Link href={`#`} className="flex flex-row gap-2.5">
+            <div className="flexrow flex h-full w-full max-w-[44.25rem] items-center justify-between gap-4 overflow-y-auto">
+                {/*<ReviewsChip item={1} name={"Коваль Д."} photo={"https://i.pravatar.cc/150?u=a04258114e29026702d"} totalReviews={24} positiveReviews={21} shortText={"Дуже опреративно, квалифіковано та відповідально!!!... "} lastVisit={new Date(date1)} />*/}
+                {/*<ReviewsChip item={2} name={"Ткач П."} photo={"https://avatars.githubusercontent.com/u/30373425?v=4"} totalReviews={25} positiveReviews={25}  shortText={"Все сподобалось. Гарна робота! 5 зірок!..."} lastVisit={new Date(date3)} />*/}
+                <div className="flex flex-row gap-2.5">
                     {reviews.map((review) => (
                         <ReviewsChip
                             key={review.item}
@@ -115,8 +114,8 @@ export default function EmployeeCard() {
                             lastVisit={review.lastVisit}
                         />
                     ))}
-                </Link>
+                </div>
             </div>
-        </Link>
+        </div>
     );
 }

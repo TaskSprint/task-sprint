@@ -36,10 +36,9 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
 
     const { t } = useLaravelReactI18n();
     return (
-        <Link
-            href={`#`}
+        <div
             className={cn(
-                'border-primary relative flex h-max max-h-[15rem] flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700',
+                'border-primary relative flex h-max max-h-[15rem] flex-col items-center gap-2.5 overflow-hidden rounded-[1.25rem] border-1 p-2.5',
                 className,
             )}
         >
@@ -114,7 +113,7 @@ const FavoriteEmployeeSM: React.FC<FavoriteEmployeeSMProps> = ({
                     </div>
                 </Button>
             )}
-        </Link>
+        </div>
     );
 };
 
