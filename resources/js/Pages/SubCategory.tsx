@@ -4,6 +4,7 @@ import TaskCard from '@/Components/TaskCard';
 import SubCategoryModel from '@/types/models/sub-category';
 import { BreadcrumbItem, Breadcrumbs } from '@heroui/breadcrumbs';
 import { Pagination } from '@heroui/react';
+import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) {
@@ -64,64 +65,70 @@ export function SubCategory({ subCategory }: { subCategory: SubCategoryModel }) 
     ];
 
     return (
-        <div className="flex h-full w-full flex-col items-center justify-center">
-            <div className="w-full items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
-                <Breadcrumbs className="px-10 text-[1rem] font-normal">
-                    <BreadcrumbItem color="foreground">
-                        {subCategory.category?.name.current}
-                    </BreadcrumbItem>
-                    <BreadcrumbItem color="foreground">{subCategory.name.current}</BreadcrumbItem>
-                </Breadcrumbs>
-            </div>
-            <div className="mx-24 flex h-[3.375rem] w-full max-w-[78.5rem] items-center justify-between bg-[#FFFFFF] px-3 py-1 shadow dark:bg-[#373737] dark:text-gray-500">
-                <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.filter')}</h3>
-                <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.sort')}</h3>
-            </div>
-            <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-start">
-                <div className="flex w-full max-w-[53.25rem] flex-col items-center justify-center gap-8 p-4 dark:border-r-1 dark:border-r-white">
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <div className="flex items-center justify-center">
-                        <Pagination isCompact showControls initialPage={1} total={5} />
-                    </div>
-                </div>
-                <div className="flex h-full w-fit flex-col items-center justify-start gap-3 bg-white pb-32 shadow dark:bg-transparent">
-                    <div className="mt-6 flex flex-col justify-center gap-2.5 pr-3 pl-13">
-                        <h2 className="mx-auto items-center pl-2 text-center text-xl font-semibold dark:text-white">
-                            {t('sub-category.top-specialist')}
-                        </h2>
-                        <div className="flex flex-col gap-2.5">
-                            {bannersSM.map((banner) => (
-                                <FavoriteEmployeesSM
-                                    key={banner.item}
-                                    id={banner.item}
-                                    name={banner.name}
-                                    photo={banner.photo}
-                                    totalReviews={banner.totalReviews}
-                                    positiveReviews={banner.positiveReviews}
-                                    lastVisit={banner.lastVisit}
-                                />
-                            ))}
-                        </div>
+        <>
+            <Head title={subCategory.name.current} />
 
-                        <h3 className="href='#' text-center text-xl font-medium text-[#A7A7A7] underline">
-                            {t('sub-category.more')}
-                        </h3>
-                        <hr className="w-full min-w-[19.25rem] border-1 border-gray-700" />
+            <div className="flex h-full w-full flex-col items-center justify-center">
+                <div className="w-full items-start gap-2.5 bg-[#F8F8F8] px-30 py-4 dark:bg-[#151515]">
+                    <Breadcrumbs className="px-10 text-[1rem] font-normal">
+                        <BreadcrumbItem color="foreground">
+                            {subCategory.category?.name.current}
+                        </BreadcrumbItem>
+                        <BreadcrumbItem color="foreground">
+                            {subCategory.name.current}
+                        </BreadcrumbItem>
+                    </Breadcrumbs>
+                </div>
+                <div className="mx-24 flex h-[3.375rem] w-full max-w-[78.5rem] items-center justify-between bg-[#FFFFFF] px-3 py-1 shadow dark:bg-[#373737] dark:text-gray-500">
+                    <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.filter')}</h3>
+                    <h3 className="p-3 text-[1rem] font-normal">{t('sub-category.sort')}</h3>
+                </div>
+                <div className="bg-surface/50 flex w-full max-w-[76.5rem] flex-row items-center justify-start">
+                    <div className="flex w-full max-w-[53.25rem] flex-col items-center justify-center gap-8 p-4 dark:border-r-1 dark:border-r-white">
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <div className="flex items-center justify-center">
+                            <Pagination isCompact showControls initialPage={1} total={5} />
+                        </div>
                     </div>
-                    <div>
-                        <div className="flex size-fit items-start justify-start dark:bg-none">
-                            <SubCategoryStandalone />
+                    <div className="flex h-full w-fit flex-col items-center justify-start gap-3 bg-white pb-32 shadow dark:bg-transparent">
+                        <div className="mt-6 flex flex-col justify-center gap-2.5 pr-3 pl-13">
+                            <h2 className="mx-auto items-center pl-2 text-center text-xl font-semibold dark:text-white">
+                                {t('sub-category.top-specialist')}
+                            </h2>
+                            <div className="flex flex-col gap-2.5">
+                                {bannersSM.map((banner) => (
+                                    <FavoriteEmployeesSM
+                                        key={banner.item}
+                                        id={banner.item}
+                                        name={banner.name}
+                                        photo={banner.photo}
+                                        totalReviews={banner.totalReviews}
+                                        positiveReviews={banner.positiveReviews}
+                                        lastVisit={banner.lastVisit}
+                                    />
+                                ))}
+                            </div>
+
+                            <h3 className="href='#' text-center text-xl font-medium text-[#A7A7A7] underline">
+                                {t('sub-category.more')}
+                            </h3>
+                            <hr className="w-full min-w-[19.25rem] border-1 border-gray-700" />
+                        </div>
+                        <div>
+                            <div className="flex size-fit items-start justify-start dark:bg-none">
+                                <SubCategoryStandalone />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

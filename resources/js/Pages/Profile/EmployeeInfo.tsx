@@ -6,6 +6,7 @@ import UserLayout from '@/Layouts/UserLayout';
 import { PageProps } from '@/types';
 import User from '@/types/models/user';
 import { Image } from '@heroui/react';
+import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ReactNode, useState } from 'react';
 import BxBxsTrashAlt from '~icons/bx/bxs-trash-alt';
@@ -60,148 +61,152 @@ export default function EmployeeInfo({
     };
 
     return (
-        <div className="mx-auto flex flex-col items-start text-[1.5rem] leading-[2.0625rem] font-normal">
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <MynauiTelephone className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.phone')}:
+        <>
+            <Head title={`${t('user-layout.employee-info-tab')} - ${user.name}`} />
+
+            <div className="mx-auto flex flex-col items-start text-[1.5rem] leading-[2.0625rem] font-normal">
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <MynauiTelephone className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.phone')}:
+                    </div>
+
+                    <div>{user.phone}</div>
                 </div>
 
-                <div>{user.phone}</div>
-            </div>
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <MaterialSymbolsMailOutline className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.email')}:
+                    </div>
 
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <MaterialSymbolsMailOutline className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.email')}:
+                    <div>{user.email}</div>
                 </div>
 
-                <div>{user.email}</div>
-            </div>
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <IconParkOutlineTime className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.preferred_hours')}:
+                    </div>
 
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <IconParkOutlineTime className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.preferred_hours')}:
+                    <div>
+                        {user1.preferred_hours ? (
+                            user1.preferred_hours
+                        ) : (
+                            <div className="text-muted">
+                                {' '}
+                                {t('profile.become-employee.field_missing')}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div>
-                    {user1.preferred_hours ? (
-                        user1.preferred_hours
-                    ) : (
-                        <div className="text-muted">
-                            {' '}
-                            {t('profile.become-employee.field_missing')}
-                        </div>
-                    )}
-                </div>
-            </div>
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <MaterialSymbolsBuild className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.specialization')}:
+                    </div>
 
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <MaterialSymbolsBuild className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.specialization')}:
-                </div>
-
-                <div>
-                    {user1.specialization ? (
-                        user1.specialization
-                    ) : (
-                        <div className="text-muted">
-                            {' '}
-                            {t('profile.become-employee.field_missing')}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <SolarDocumentLinear className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.about_me')}:
+                    <div>
+                        {user1.specialization ? (
+                            user1.specialization
+                        ) : (
+                            <div className="text-muted">
+                                {' '}
+                                {t('profile.become-employee.field_missing')}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div>
-                    {user1.about_me ? (
-                        user1.about_me
-                    ) : (
-                        <div className="text-muted">
-                            {' '}
-                            {t('profile.become-employee.field_missing')}
-                        </div>
-                    )}
-                </div>
-            </div>
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <SolarDocumentLinear className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.about_me')}:
+                    </div>
 
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    <LsiconEducationOutline className="size-[1.5rem] min-w-[1.5rem]" />
-                    {t('profile.employee-info.education')}:
+                    <div>
+                        {user1.about_me ? (
+                            user1.about_me
+                        ) : (
+                            <div className="text-muted">
+                                {' '}
+                                {t('profile.become-employee.field_missing')}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div>
-                    {user1.education ? (
-                        <div className="space-y-1">
-                            {user1.education?.map((edu) => (
-                                <div key={edu}>
-                                    <span className="text-primary">{edu}</span>,
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        <LsiconEducationOutline className="size-[1.5rem] min-w-[1.5rem]" />
+                        {t('profile.employee-info.education')}:
+                    </div>
+
+                    <div>
+                        {user1.education ? (
+                            <div className="space-y-1">
+                                {user1.education?.map((edu) => (
+                                    <div key={edu}>
+                                        <span className="text-primary">{edu}</span>,
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-muted">
+                                {' '}
+                                {t('profile.become-employee.field_missing')}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
+                    <div className="flex items-center gap-3">
+                        {t('profile.employee-info.certificates')}:
+                    </div>
+
+                    <div className="flex flex-wrap gap-[1.5rem]">
+                        {user1.certificates?.map((cert) => (
+                            <div
+                                key={cert.id}
+                                className="group relative h-[6.563rem] w-[11.875rem] overflow-hidden rounded-md shadow-md"
+                            >
+                                <Image
+                                    src={cert.image}
+                                    alt="Certificate"
+                                    className="h-full w-full object-cover"
+                                />
+
+                                <div className="absolute inset-0 z-10 flex items-center justify-center gap-[1.5rem] bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    <MdiEyeOutline className="size-[2.5rem] min-w-[2.5rem] text-white" />
+                                    {user.id === auth.user?.id && (
+                                        <BxBxsTrashAlt className="size-[2.5rem] min-w-[2.5rem] text-white" />
+                                    )}
                                 </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-muted">
-                            {' '}
-                            {t('profile.become-employee.field_missing')}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            <div className="flex flex-col items-start justify-center gap-3 p-3 text-[1.5rem] leading-[2.0625rem] font-normal">
-                <div className="flex items-center gap-3">
-                    {t('profile.employee-info.certificates')}:
-                </div>
-
-                <div className="flex flex-wrap gap-[1.5rem]">
-                    {user1.certificates?.map((cert) => (
-                        <div
-                            key={cert.id}
-                            className="group relative h-[6.563rem] w-[11.875rem] overflow-hidden rounded-md shadow-md"
-                        >
-                            <Image
-                                src={cert.image}
-                                alt="Certificate"
-                                className="h-full w-full object-cover"
-                            />
-
-                            <div className="absolute inset-0 z-10 flex items-center justify-center gap-[1.5rem] bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                <MdiEyeOutline className="size-[2.5rem] min-w-[2.5rem] text-white" />
-                                {user.id === auth.user?.id && (
-                                    <BxBxsTrashAlt className="size-[2.5rem] min-w-[2.5rem] text-white" />
-                                )}
                             </div>
-                        </div>
-                    ))}
+                        ))}
 
-                    {user.id === auth.user?.id && (
-                        <Button
-                            className="group bg-muted/50 relative h-[6.563rem] w-[11.875rem] rounded-md shadow-md"
-                            onPress={() => setIsUploadedFileModalOpen(true)}
-                        >
-                            <div className="absolute inset-0 z-10 flex items-center justify-center gap-[1.5rem] rounded-md bg-black/50 opacity-50 transition-opacity duration-300 group-hover:opacity-100">
-                                <MaterialSymbolsAdd2 className="size-[2.5rem] min-w-[2.5rem] text-white" />
-                            </div>
-                        </Button>
-                    )}
+                        {user.id === auth.user?.id && (
+                            <Button
+                                className="group bg-muted/50 relative h-[6.563rem] w-[11.875rem] rounded-md shadow-md"
+                                onPress={() => setIsUploadedFileModalOpen(true)}
+                            >
+                                <div className="absolute inset-0 z-10 flex items-center justify-center gap-[1.5rem] rounded-md bg-black/50 opacity-50 transition-opacity duration-300 group-hover:opacity-100">
+                                    <MaterialSymbolsAdd2 className="size-[2.5rem] min-w-[2.5rem] text-white" />
+                                </div>
+                            </Button>
+                        )}
+                    </div>
                 </div>
-            </div>
 
-            <UploadFileModal
-                name="certificates"
-                open={isUploadedFileModalOpen}
-                onOpenChange={() => setIsUploadedFileModalOpen(false)}
-            />
-        </div>
+                <UploadFileModal
+                    name="certificates"
+                    open={isUploadedFileModalOpen}
+                    onOpenChange={() => setIsUploadedFileModalOpen(false)}
+                />
+            </div>
+        </>
     );
 }
 
